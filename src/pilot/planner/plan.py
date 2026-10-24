@@ -279,11 +279,22 @@ def spread_gem_events(events: list[GemEvent], per_level: int = MAX_ITEMS) -> dic
 
 # ----------------------------------------------------------------------------- gear
 
-def load_gear_file(path: str | Path) -> dict[int, list[str]]:
-    """Sidecar ``{"gear": {"<level>": [str, ...]}}``; keys starting with "_" are ignored."""
+class GearLines(dict):
+    """level -> lines from a sidecar; ``pob_uniques=False`` drops "Надеть X" hints from the PoB."""
+    pob_uniques: bool = True
+
+
+def load_gear_file(path: str | Path) -> GearLines:
+    """Sidecar ``{"gear": {"<level>": [str, ...]}, "pob_uniques": bool}``; "_" keys are ignored.
+
+    ``"pob_uniques": false`` is for self-found play (fresh league, no currency): the PoB's
+    equipped uniques are not hinted, only the sidecar's own lines are.
+    """
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     gear = raw.get("gear", {}) if isinstance(raw, dict) else {}
-    out: dict[int, list[str]] = {}
+    out = GearLines()
+    if isinstance(raw, dict) and raw.get("pob_uniques") is False:
+        out.pob_uniques = False
     for k, v in (gear.items() if isinstance(gear, dict) else ()):
         if str(k).startswith("_"):
             continue
@@ -308,7 +319,8 @@ def plan_gear(build: PobBuild, sidecar: dict[int, list[str]] | None = None) -> d
     side_text = " ".join(x for v in sidecar.values() for x in v).lower()
     out: dict[int, list[str]] = {}
     seen: set[str] = set()
-    for it in build.equipped_items:
+    uniques = build.equipped_items if getattr(sidecar, "pob_uniques", True) else ()
+    for it in uniques:
         if it.rarity != "UNIQUE" or it.is_jewel or it.level_req is None or it.name in seen:
             continue
         seen.add(it.name)

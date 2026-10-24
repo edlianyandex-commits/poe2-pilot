@@ -143,3 +143,20 @@ def test_all_strings_lengths():
             assert 0 < len(x) <= 32, x
     for lines in p.setups.values():
         assert all(len(x) <= 40 for x in lines)
+
+
+def test_sidecar_can_drop_pob_unique_hints(tmp_path):
+    """Self-found builds: "pob_uniques": false keeps only the sidecar's own lines."""
+    import json
+    from pathlib import Path
+    from pilot.planner import build_plan
+    src = Path(__file__).resolve().parents[2] / "builds" / "twister_martial_artist_787prada_0_5_5.pob"
+    pob = tmp_path / "ma.pob"
+    pob.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+    with_uniques = build_plan(pob)                       # no sidecar yet
+    assert any(g.startswith("Надеть") for h in with_uniques.hints.values() for g in h.gear)
+    (tmp_path / "ma.gear.json").write_text(
+        json.dumps({"pob_uniques": False, "gear": {"1": ["Копьё"]}}), encoding="utf-8")
+    p = build_plan(pob)
+    gear = [g for h in p.hints.values() for g in h.gear]
+    assert gear == ["Копьё"]
