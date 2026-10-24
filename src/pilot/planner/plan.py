@@ -5,7 +5,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from pilot.contracts import LevelHint, LevelPlan
+from pilot.contracts import GemCard, GemRow, LevelHint, LevelPlan
 
 from . import data as _data
 from .pobcode import GemEntry, PobBuild, SkillGroup
@@ -46,6 +46,9 @@ class GemInfo:
     tags: tuple[str, ...]
     known: bool = True
     weapon: str = ""        # weapon requirement; tier-0 skills with one are granted by the weapon
+    color: str = "none"     # str | dex | int | none
+    description: str = ""
+    icon: str | None = None
 
 
 def gem_info(g: GemEntry) -> GemInfo:
@@ -62,9 +65,23 @@ def gem_info(g: GemEntry) -> GemInfo:
                 break
     if rec is None:
         support = "support" in g.skill_id.lower() or "support" in g.gem_id.lower()
-        return GemInfo(g.name, "support" if support else "skill", 0, (), known=False)
+        return GemInfo(g.name, "support" if support else "skill", 0, (), known=False,
+                       icon=_data.gem_icons().get(g.name))
+    # poe2db listing map first (checked), PoB-derived skill icon as fallback
+    icon = _data.gem_icons().get(rec["n"]) or rec.get("i")
     return GemInfo(rec["n"], rec["k"], int(rec.get("tier") or 0), tuple(rec.get("tags", ())),
-                   weapon=rec.get("w", ""))
+                   weapon=rec.get("w", ""), color=rec.get("c", "none"),
+                   description=rec.get("d", ""), icon=icon)
+
+
+def gem_card(info: GemInfo) -> GemCard:
+    """GemCard for the gem window; ``name`` is the exact English in-game name."""
+    desc = info.description
+    if len(desc) > 400:
+        desc = desc[:399].rstrip() + "…"
+    return GemCard(name=info.name, kind=info.kind,
+                   color=info.color if info.color in ("str", "dex", "int") else "none",
+                   description=desc, icon_url=info.icon)
 
 
 def weapon_granted(info: GemInfo) -> bool:
@@ -204,26 +221,41 @@ def setup_line(skill: str, supports: list[str], n: int = SETUP_LEN) -> str:
     return clip(skill, n)
 
 
+def socketed_at(groups: list[GroupPlan], lvl: int) -> list[tuple[GemInfo, list[GemInfo]]]:
+    """(skill, supports) socketed at ``lvl``: main group first, supports in PoB order."""
+    rows: list[tuple[GemInfo, list[GemInfo]]] = []
+    seen: set[str] = set()
+    for gp in groups:
+        if gp.lead_level > lvl or gp.lead.name in seen:
+            continue
+        sups = [x for when, x in gp.supports if when <= lvl]
+        if weapon_granted(gp.lead) and not sups:
+            continue
+        seen.add(gp.lead.name)
+        rows.append((gp.lead, sups))
+    return rows
+
+
 def plan_setups(groups: list[GroupPlan], max_level: int = MAX_LEVEL) -> dict[int, tuple[str, ...]]:
     """Full socketed setup at every level where it changes (main group first)."""
-    out: dict[int, tuple[str, ...]] = {}
-    prev: tuple[str, ...] | None = None
+    return plan_setups_and_rows(groups, max_level)[0]
+
+
+def plan_setups_and_rows(groups: list[GroupPlan], max_level: int = MAX_LEVEL
+                         ) -> tuple[dict[int, tuple[str, ...]], dict[int, tuple[GemRow, ...]]]:
+    """Text setups (<= 40 chars per line) and gem-window rows, at the same levels."""
+    setups: dict[int, tuple[str, ...]] = {}
+    rows: dict[int, tuple[GemRow, ...]] = {}
+    prev: tuple | None = None
     for lvl in range(1, max_level + 1):
-        lines: list[str] = []
-        seen: set[str] = set()
-        for gp in groups:
-            if gp.lead_level > lvl or gp.lead.name in seen:
-                continue
-            sups = [x.name for when, x in gp.supports if when <= lvl]
-            if weapon_granted(gp.lead) and not sups:
-                continue
-            seen.add(gp.lead.name)
-            lines.append(setup_line(gp.lead.name, sups))
-        cur = tuple(lines)
-        if cur != prev and (cur or prev):
-            out[lvl] = cur
-        prev = cur
-    return out
+        cur_rows = socketed_at(groups, lvl)
+        key = tuple((s.name, tuple(x.name for x in sups)) for s, sups in cur_rows)
+        if key != prev and (key or prev):
+            setups[lvl] = tuple(setup_line(s.name, [x.name for x in sups]) for s, sups in cur_rows)
+            rows[lvl] = tuple(GemRow(skill=gem_card(s), supports=tuple(gem_card(x) for x in sups))
+                              for s, sups in cur_rows)
+        prev = key
+    return setups, rows
 
 
 def spread_gem_events(events: list[GemEvent], per_level: int = MAX_ITEMS) -> dict[int, list[GemEvent]]:
@@ -499,7 +531,7 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
     groups = plan_groups(build, warnings)
     events, main_name = plan_gems(build, warnings, groups)
     gem_by_level = spread_gem_events(events)
-    setups = plan_setups(groups, max_level)
+    setups, gem_rows = plan_setups_and_rows(groups, max_level)
     gear_by_level = plan_gear(build, gear)
 
     # ascendancy nodes are shown on entering the trial area, not on level-up
@@ -545,6 +577,7 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
     head = build.ascendancy_name or build.class_name
     title = clip(f"{head}: {main_name}" if main_name else head)
     plan = LevelPlan(title=title, char_class=class_name, hints=hints, planned_node_ids=planned,
-                     ascendancy=asc_hints, warnings=tuple(warnings), setups=setups)
+                     ascendancy=asc_hints, warnings=tuple(warnings), setups=setups,
+                     gem_rows=gem_rows)
     return PlanDetail(plan, main_order, asc_order, alloc_level, points_used, warnings, tree, root,
                       asc_root, build)

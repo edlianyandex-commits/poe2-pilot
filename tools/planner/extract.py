@@ -259,8 +259,9 @@ def gem_kind(g: dict) -> str:
     return "skill"
 
 
-def extract_gems(gems_lua: Path) -> dict:
+def extract_gems(gems_lua: Path, cards: dict[str, dict] | None = None) -> dict:
     data = parse_lua_return(gems_lua.read_text(encoding="utf-8"))
+    cards = cards or {}
     out = {}
     for game_id, g in data.items():
         if not isinstance(g, dict) or not g.get("name"):
@@ -278,7 +279,48 @@ def extract_gems(gems_lua: Path) -> dict:
             rec["fam"] = g["gemFamily"]
         if g.get("weaponRequirements"):
             rec["w"] = g["weaponRequirements"]
+        card = cards.get(g.get("grantedEffectId", ""), {})
+        rec["c"] = card.get("c", "none")
+        if card.get("d"):
+            rec["d"] = card["d"]
+        if card.get("i"):
+            rec["i"] = card["i"]
         out[game_id] = rec
+    return out
+
+
+_SKILL_HEAD = re.compile(r'^skills\["([^"]+)"\] = \{', re.M)
+_STR_FIELD = r'^\t{field} = "((?:\\.|[^"\\])*)"'
+COLORS = {1: "str", 2: "dex", 3: "int"}
+ICON_CDN = "https://cdn.poe2db.tw/image/"
+DESC_MAX = 400
+
+
+def _field(block: str, name: str) -> str | None:
+    m = re.search(_STR_FIELD.format(field=name), block, re.M)
+    return _unescape(m.group(1)) if m else None
+
+
+def extract_skill_cards(skills_dir: Path) -> dict[str, dict]:
+    """grantedEffectId -> {desc, color, icon} from Data/Skills/*.lua (top-level fields only)."""
+    out: dict[str, dict] = {}
+    for f in sorted(skills_dir.glob("*.lua")):
+        s = f.read_text(encoding="utf-8")
+        heads = list(_SKILL_HEAD.finditer(s))
+        for i, m in enumerate(heads):
+            block = s[m.end(): heads[i + 1].start() if i + 1 < len(heads) else len(s)]
+            rec: dict = {}
+            desc = _field(block, "description")
+            if desc:
+                desc = " ".join(desc.split())
+                rec["d"] = desc if len(desc) <= DESC_MAX else desc[: DESC_MAX - 1].rstrip() + "…"
+            cm = re.search(r"^\tcolor = (\d+)", block, re.M)
+            if cm:
+                rec["c"] = COLORS.get(int(cm.group(1)), "none")
+            icon = _field(block, "icon")
+            if icon:
+                rec["i"] = ICON_CDN + re.sub(r"\.dds$", ".webp", icon, flags=re.I)
+            out.setdefault(m.group(1), rec)
     return out
 
 
@@ -321,7 +363,7 @@ def main(argv=None) -> int:
     (a.out / f"tree_{ver}.json").write_text(json.dumps(tree, ensure_ascii=False, separators=(",", ":")),
                                             encoding="utf-8")
 
-    gems = extract_gems(src / "Data" / "Gems.lua")
+    gems = extract_gems(src / "Data" / "Gems.lua", extract_skill_cards(src / "Data" / "Skills"))
     (a.out / "gems.json").write_text(json.dumps({"source_commit": commit, "gems": gems},
                                                 ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
@@ -346,7 +388,11 @@ def main(argv=None) -> int:
         "This project is not affiliated with or endorsed by Grinding Gear Games.\n\n"
         "Regenerate with: `python -I tools/planner/extract.py --pob vendor/pob2 --out data/planner`.\n"
         "`quest_points.json` and the support/socket parts of `gem_rules.json` are curated by hand "
-        "(sources listed inside).\n",
+        "(sources listed inside).\n\n"
+        "Gem descriptions/colours/skill icons come from PoB `src/Data/Skills/*.lua`. Icon URLs\n"
+        "(`gems.json` field `i`, `gem_icons.json`) point to the https://poe2db.tw image CDN\n"
+        "(cdn.poe2db.tw); `gem_icons.json` is a name -> URL map parsed from poe2db gem listing pages\n"
+        "by `tools/planner/poe2db_icons.py`. No images are stored in this repository.\n",
         encoding="utf-8")
 
     total = sum(p.stat().st_size for p in a.out.glob("*.json"))

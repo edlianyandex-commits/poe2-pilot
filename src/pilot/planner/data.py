@@ -49,3 +49,12 @@ def gem_rules() -> dict:
 @lru_cache(maxsize=1)
 def quest_points() -> dict:
     return _load("quest_points.json")
+
+
+@lru_cache(maxsize=1)
+def gem_icons() -> dict[str, str]:
+    """English gem name -> icon URL (poe2db CDN); empty if the map was not generated."""
+    try:
+        return _load("gem_icons.json").get("icons", {})
+    except FileNotFoundError:
+        return {}

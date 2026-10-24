@@ -23,7 +23,7 @@
  ],
  "source_commit": "bb52d6b368307457eb9c54bb13f1829993d390b1",
  "_doc": "skill_level_requirement is extracted from PoB (char level needed for gem level N, index N-1). Everything else here is curated by hand; see sources.",
- "skill_tier_rule": "A skill/spirit gem of Tier T is cut from an Uncut Skill/Spirit Gem of level >= T and comes out at that level, so the earliest character level is skill_level_requirement[T-1]. Tier 0 = not obtainable from uncut gems (granted by items/ascendancy/tree, lineage) -> not planned.",
+ "skill_tier_rule": "A skill/spirit gem of Tier T can only be engraved from an Uncut Skill/Spirit Gem of level >= T, and the engraved gem has the uncut gem's level, so it needs character level skill_level_requirement[T-1] (e.g. Barrage: Tier 5 -> gem level 5 -> requires level 14, poe2db Barrage level table). Tier 0 = not obtainable from uncut gems (granted by items/ascendancy/tree, lineage) -> not planned, except tier-0 weapon skills (granted by the weapon, level 1).",
  "spirit_min_uncut_level": 4,
  "support_tier_min_char_level": {
   "1": 1,
@@ -45,6 +45,12 @@
   "PoB-PoE2 src/Data/Gems.lua (Tier)",
   "https://www.poe-vault.com/poe2/guides/gems-guide (gem tier = required uncut gem level)",
   "https://poe2wiki.net/wiki/Uncut_gem (drop level breakpoints, search snippet; page blocked for bots)",
-  "https://outof.games/realms/poe2/items/uncut-support-gem-level-4/"
- ]
+  "https://outof.games/realms/poe2/items/uncut-support-gem-level-4/",
+  "https://poe2db.tw/us/Barrage (Tier 5; level 5 requires char level 14)",
+  "https://poe2db.tw/us/Uncut_Skill_Gem (engraves a gem / levels it to the uncut gem's level)",
+  "https://poe2db.tw/us/The_Executioner (Area: Ogham Village, level 13)",
+  "https://poe2db.tw/us/Salvo (support, Tier 3, Requires Level 0)"
+ ],
+ "support_rule": "Support gems have no character level requirement (poe2db: Requires Level 0); only the uncut support gem level (= tier) gates them, see support_tier_min_char_level (estimate).",
+ "barrage_check": "2026-10-24: Travic gets Barrage from the level-5 Uncut Skill Gem after the Executioner. poe2db: The Executioner is in Ogham Village (G1_13_2, area level 13), so the gem arrives at char ~13 and a level-5 Barrage is usable from 14. Planner says 14: consistent, rule unchanged."
 }
