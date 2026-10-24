@@ -92,6 +92,18 @@ def parse_route(data: object, source: str = "<dict>") -> Route:
     return Route(rid, data.get("title", ""), merge_same_area(steps), data.get("patch", ""))
 
 
+# the game logs some zones under another id than the route uses (layout versions, patches)
+AREA_ALIASES = {
+    "G2_3": "G2_3a",       # The Halani Gates, second version
+    "G2_12": "G2_12_1",    # The Dreadnought (0.5 id)
+}
+
+
+def route_area(area_id: str) -> str:
+    """Area id as the route knows it."""
+    return AREA_ALIASES.get(area_id, area_id)
+
+
 # a must-kill boss leads its zone; an optional one only when nothing else happens there
 _KIND_PRIORITY = {"boss": 7, "trial": 6, "quest": 5, "town": 4, "wp": 3, "move": 2, "boss_opt": 1, "skip": 0}
 

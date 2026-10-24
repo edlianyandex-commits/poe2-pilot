@@ -76,19 +76,20 @@ def test_start_requires_level_1():
 
 
 def test_steps_progress_skip_and_hideout_and_time():
+    """The HUD shows the step of the zone the player is in, in any order."""
     eng, f, clk = make()
     f.zone("G1_1", 0, 1)
-    f.zone("G1_2", 100, 2)                      # next step area
-    assert eng.snapshot().step_index == 1 + 0 and eng.snapshot().step_short == "→ b"
+    f.zone("G1_2", 100, 2)                      # b's zone
+    assert eng.snapshot().step_index == 1 and eng.snapshot().step_short == "→ b"
     f.zone("Hideout_X", 150)                    # ignored
     assert eng.snapshot().step_short == "→ b"
-    f.zone("G1_town", 200)                      # town: no advance
+    f.zone("G1_town", 200)                      # no step here: next open objective
+    assert eng.snapshot().step_short == "→ c"
+    f.zone("G1_3", 300, 3)
+    assert eng.snapshot().step_short == "→ c"
+    f.zone("G1_2", 310)                         # back in b's zone: b again
     assert eng.snapshot().step_short == "→ b"
-    f.zone("G1_3", 300, 3)                      # b -> c
-    assert eng.snapshot().step_short == "→ c"
-    f.zone("G1_2", 310)                         # backwards: ignored
-    assert eng.snapshot().step_short == "→ c"
-    f.zone("G1_town", 400)                      # done_on of c
+    f.zone("G1_town", 400)
     s = eng.snapshot()
     assert s.step_short == "→ d" and s.next_short == "→ e"
     assert eng.split_times() == {"a": 0.0}
@@ -213,7 +214,7 @@ def test_progress_kinds_and_marks():
     f.zone("G1_1", 0, 1)
     f.zone("G1_2", 10)
     s = eng.snapshot()
-    assert s.progress == 0.2 and s.step_index == 1
+    assert s.progress == 0.4 and s.step_index == 1      # a and b done of 5
     f.zone("G_Endgame_Town", 100, 65)
     s = eng.snapshot()
     assert s.progress == 1.0 and s.step_kind is None and s.next_kind is None
@@ -336,7 +337,7 @@ def test_new_character_mid_run_restarts_from_its_riverbank():
         f.zone(z, 100 + i * 100)
     assert eng.snapshot().step_index > 1
     f.zone("G1_1", 1000, 1)                      # new character spawns on Riverbank
-    assert eng.snapshot().step_index > 1         # undecided: old run still shown
+    assert eng._pending_new is not None           # undecided: Riverbank shown, run kept
     f.feed(LevelUp, 1150, "New", "Monk", 2)
     s = eng.snapshot()
     assert s.running and s.step_index == 0 and s.char_level == 2
@@ -349,11 +350,11 @@ def test_old_character_back_on_riverbank_keeps_run():
     f.feed(LevelUp, 60, "Old", "Monk", 4)
     for i, z in enumerate(("G1_town", "G1_2", "G1_3")):
         f.zone(z, 100 + i * 100)
-    step = eng.snapshot().step_index
+    done = eng.snapshot().progress
     f.zone("G1_1", 500, 1)
     f.feed(LevelUp, 600, "Old", "Monk", 5)
     s = eng.snapshot()
-    assert s.running and s.step_index >= step and s.run_time_s > 550
+    assert s.running and s.progress >= done and s.run_time_s > 550
 
 
 def test_manual_pause_stops_timer():

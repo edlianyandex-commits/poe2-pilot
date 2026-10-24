@@ -66,39 +66,50 @@ def test_real_route_replay_regression(tmp_path):
     a1 = next(s for s in route.steps if "a1-011" in s.all_ids)
     assert a1.kind == "boss" and a1.id == "a1-010" and "a1-010" in a1.all_ids
 
+    from pilot.contracts import AreaGenerated
+    from pilot.core.engine import is_hideout, is_town
+    from pilot.core.parser import parse_line
+    from pilot.core.route import route_area
     eng = RunEngine(route, store=SplitStore(tmp_path))
-    seen, last = [], None
+    areas = {s.area for s in route.steps}
+    entries = wrong = 0
+    shown = set()
     with open(FIXTURE, encoding="utf-8") as f:
         for line in f:
-            eng.feed_line(line)
-            idx = eng.snapshot().step_index
-            if idx != last:
-                seen.append(idx)
-                last = idx
+            ev = parse_line(line)
+            if ev is None:
+                continue
+            eng.feed(ev)
+            s = eng.snapshot()
+            shown.add(s.step_index)
+            z = getattr(ev, "area_id", None)
+            if isinstance(ev, AreaGenerated) and s.running and route_area(z) in areas                     and not is_town(z) and not is_hideout(z):
+                entries += 1
+                wrong += route.steps[s.step_index].area != route_area(z)
     assert eng.finished
-    jumps = [b - a for a, b in zip(seen, seen[1:]) if b < a or b - a > 6]
-    assert not jumps
-    shown = {i for i in seen if i < len(route.steps)}
-    assert len(shown) >= 0.9 * len(route.steps)
+    assert entries > 50 and wrong == 0          # every route zone shows its own step
+    assert len(shown & set(range(len(route.steps)))) >= 0.9 * len(route.steps)
     split_ids = [s.id for s in route.steps if s.split]
     assert len(split_ids) == 8
     assert list(eng.split_times()) == split_ids
 
 
-def test_lookahead_window_town_next_and_details():
+def test_any_order_skipped_steps_and_reminders():
     from datetime import datetime
     from pilot.contracts import AreaGenerated
-    steps = tuple(Step(f"s{k}", 1, a, f"→ s{k}", "move", detail=f"d{k}", reward="R" if k == 1 else None,
-                       split=(a == "G1_town"), done_on_enter="Zdone" if k == 0 else None)
-                  for k, a in enumerate(["G1_1", "G1_town", "G1_3", "G1_4", "G1_5", "G1_6", "G1_7", "G1_8", "G1_9"]))
+    kinds = ["move", "town", "boss", "move", "move"]
+    steps = tuple(Step(f"s{k}", 1, a, f"→ s{k}", kinds[k], detail=f"d{k}", reward="R" if k == 2 else None,
+                       split=(a == "G1_town"))
+                  for k, a in enumerate(["G1_1", "G1_town", "G1_3", "G1_4", "G1_5"]))
     eng = RunEngine(Route("w", "w", steps))
     t = datetime(2025, 1, 1, 12, 0, 0)
     eng.feed(AreaGenerated(t, "G1_1", 1, 1))
-    eng.feed(AreaGenerated(t, "G1_9", 9, 1))          # 8 ahead: outside window
-    assert eng.snapshot().step_index == 0
-    eng.feed(AreaGenerated(t, "G1_town", 15, 1))      # next step is a town (cur has done_on): advances
-    assert eng.snapshot().step_index == 1
-    assert eng.details() == ["d1", "Награда: R", "→ s2", "→ s3", "→ s4"]
-    eng.feed(AreaGenerated(t, "G1_6", 6, 1))          # 4 ahead: jump, passes the town split
-    assert eng.snapshot().step_index == 5 and "s1" in eng.split_times()
-    assert eng.upcoming(2) == ["→ s6", "→ s7"]
+    eng.feed(AreaGenerated(t, "G1_5", 5, 1))           # far ahead: shown, skips the pass-throughs
+    s = eng.snapshot()
+    assert s.step_short == "→ s4" and "s1" in eng.split_times()   # town split passed silently
+    assert s.next_short == "→ s2"                       # skipped must-kill boss stays a reminder
+    eng.feed(AreaGenerated(t, "G1_3", 3, 1))           # back for the boss
+    assert eng.snapshot().step_short == "→ s2"
+    assert eng.details()[:2] == ["d2", "Награда: R"]
+    eng.feed(AreaGenerated(t, "G1_4", 4, 1))           # revisit: that zone's (done) step
+    assert eng.snapshot().step_short == "→ s3"

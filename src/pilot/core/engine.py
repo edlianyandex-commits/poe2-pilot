@@ -12,7 +12,7 @@ from pilot.contracts import (
     LevelUp, LoadingScreen, PassiveAllocated, SceneEntered, Toast,
 )
 from pilot.core.parser import parse_line
-from pilot.core.route import Route
+from pilot.core.route import Route, route_area
 from pilot.core.splits import RunRecord, SplitStore, ZoneSegment
 
 log = logging.getLogger(__name__)
@@ -23,7 +23,8 @@ AFK_GAP_S = 900.0          # gaps between log events longer than this = game was
 LEVEL_WARN_MARGIN = 3      # warn when char level < area level - 3
 MIN_ABANDON_SAVE_S = 30.0  # don't litter history with instantly-reset runs
 MAX_TOAST = 40
-LOOKAHEAD = 6              # max steps the pointer may jump forward on a zone change
+# steps a player may skip on the way; they count as done once a later step of the act is reached
+SKIPPABLE_KINDS = {"move", "wp", "town", "skip", "boss_opt"}
 OFF_PLAN_TOAST_GAP_S = 60.0  # min gap between "off plan" toasts
 _RE_ACT = re.compile(r"^(?:G(\d)|P(\d))_")
 
@@ -149,7 +150,12 @@ class RunEngine:
             steps = self.route.steps
             i = self._step
             cur = steps[i] if i < len(steps) else None
-            nxt = steps[i + 1] if i + 1 < len(steps) else None
+            j = None
+            if cur:                           # next open after this one, else a skipped leftover
+                j = self._first_open(i, exclude_area=cur.area)
+                if j is None:
+                    j = self._first_open(exclude_area=cur.area)
+            nxt = steps[j] if j is not None else None
             act = cur.act if cur else None
             if act is None or not self._running and not self._finished:
                 act = area_act(self._area_id) or act
@@ -172,21 +178,25 @@ class RunEngine:
                 paused=self._running and self._paused(),
                 step_kind=cur.display_kind if cur else None,
                 next_kind=nxt.display_kind if nxt else None,
-                progress=min(i / total, 1.0) if total else 0.0,
+                progress=(1.0 if self._finished else min(len(self._done) / total, 1.0)) if total else 0.0,
                 split_marks=self._marks,
             )
 
     def next_step(self) -> None:
         with self._lock:
-            last = max(len(self.route.steps) - 1, 0)
-            if self._running and self._step < last:
-                self._advance_to(self._step + 1)
-            else:
-                self._step = min(self._step + 1, last)
+            if self._step < len(self.route.steps):          # manual fix-up: this step is done
+                if self._running:
+                    self._complete(self._step, toast=False)
+                else:
+                    self._done.add(self._step)
+            nxt = self._first_open()
+            if nxt is not None:
+                self._step = nxt
 
     def prev_step(self) -> None:
         with self._lock:
             self._step = max(self._step - 1, 0)
+            self._done.discard(self._step)
 
     def reset_run(self) -> None:
         """Abandon the current run (saved if it lasted long enough) and wait for the next start."""
@@ -214,8 +224,14 @@ class RunEngine:
     def upcoming(self, n: int = 3) -> list[str]:
         """Shorts of the next `n` steps after the current one."""
         with self._lock:
-            i = self._step
-            return [st.short for st in self.route.steps[i + 1:i + 1 + n]]
+            out, k = [], self._step
+            cur_area = self.route.steps[k].area if k < len(self.route.steps) else None
+            while len(out) < n:
+                k = self._first_open(k, exclude_area=cur_area)
+                if k is None:
+                    break
+                out.append(self.route.steps[k].short)
+            return out
 
     def details(self) -> list[str]:
         """Details panel lines: step detail, reward, gem setup for the char level (<=4), upcoming(3); <=10."""
@@ -266,6 +282,7 @@ class RunEngine:
         self._finished = False
         self._pending_new = None
         self._step = 0
+        self._done: set[int] = set()
         self._elapsed = 0.0
         self._started_iso = ""
         self._hits: dict[str, float] = {}
@@ -455,7 +472,7 @@ class RunEngine:
             self._start_run(ev)
             self._tentative = not sure
             log.info("run started at %s%s", ev.ts, "" if sure else " (tentative: last level %s)" % self._char_level)
-        elif z == START_AREA and self._step > 1 and self._pending_new is None:
+        elif z == START_AREA and len(self._done) > 1 and self._pending_new is None:
             # Riverbank deep into a run: maybe a new character; the next LevelUp decides
             self._pending_new = (ev, self._elapsed)
             self._toast("Новый персонаж? Забег — с ур. 2", "zone", 8.0)
@@ -481,36 +498,59 @@ class RunEngine:
                 self._toast(" · ".join(hint.gems), "level", 5.0)
             self._gear_toast(hint.gear)
 
-    def _on_zone_in_run(self, z: str) -> None:
+    def _first_open(self, after: int = -1, exclude_area: str | None = None) -> int | None:
+        for k in range(after + 1, len(self.route.steps)):
+            if k not in self._done and self.route.steps[k].area != exclude_area:
+                return k
+        return None
+
+    def _complete(self, k: int, toast: bool) -> None:
+        """Mark step k done, plus skipped pass-through steps before it in the same act."""
         steps = self.route.steps
-        i = self._step
-        new = i
-        if i < len(steps):
-            cur = steps[i]
-            nxt = steps[i + 1] if i + 1 < len(steps) else None
-            if (cur.done_on_enter is not None and z == cur.done_on_enter)                     or (nxt is not None and nxt.area == z):
-                new = i + 1                           # normal advance (towns included)
-            elif not is_town(z):                      # skipped ahead, within the window
-                for j in range(i + 2, min(i + LOOKAHEAD, len(steps) - 1) + 1):
-                    if steps[j].area == z:
-                        new = j
-                        break
-        self._advance_to(new, toast_idx=new if new < len(steps) and steps[new].area == z else None)
+        newly = [k] if k not in self._done else []
+        for j in range(k):
+            if j not in self._done and steps[j].act == steps[k].act \
+                    and steps[j].display_kind in SKIPPABLE_KINDS:
+                newly.append(j)
+        for j in sorted(newly):
+            self._done.add(j)
+            self._hit_split(j, toast=toast and j == k)
+
+    def _on_zone_in_run(self, z: str) -> None:
+        """Show the step of the zone the player is in, in any order; elsewhere the next open one.
+
+        Entering a route zone completes its step (kills aren't logged) and the pass-through
+        steps (move/wp/town/skip/optional boss) skipped before it in the same act; skipped
+        must-kill bosses, quests and trials stay open as reminders.
+        """
+        steps = self.route.steps
+        rz = route_area(z)
+        here = [k for k, s in enumerate(steps) if s.area == rz]
+        open_here = [k for k in here if k not in self._done]
+        shown = None
+        if is_town(z):
+            # a town step only when it is due: nothing but required leftovers before it
+            if open_here:
+                k = open_here[0]
+                due = all(steps[j].display_kind not in SKIPPABLE_KINDS
+                          for j in range(k) if j not in self._done and steps[j].act == steps[k].act)
+                if due:
+                    self._complete(k, toast=True)
+                    shown = k
+        elif open_here:
+            shown = open_here[0]
+            self._complete(shown, toast=True)
+        elif here:
+            shown = here[-1]                          # revisit: this zone's (done) step
+        if shown is None:
+            shown = self._first_open()
+        self._step = len(steps) if shown is None else shown
         self._ascendancy_hint(z)
         seg = self._segs.get(z)
         if seg is not None and seg.visits == 1:     # pickup hints only on the first visit
             self._zone_hint(z)
         if z == END_AREA:
             self._finish()
-
-    def _advance_to(self, new: int, toast_idx: int | None = None) -> None:
-        """Move the pointer; splits of steps passed over are recorded now (silently)."""
-        steps = self.route.steps
-        for k in range(self._step, min(new, len(steps))):
-            self._hit_split(k, toast=False)
-        self._step = new
-        if toast_idx is not None:
-            self._hit_split(toast_idx, toast=True)
 
     def _hit_split(self, idx: int, toast: bool) -> None:
         step = self.route.steps[idx]
