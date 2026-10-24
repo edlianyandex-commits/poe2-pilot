@@ -8,17 +8,22 @@ from pathlib import Path
 
 from pilot.config import load_config, save_config
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "data"
+from pilot.paths import BUILDS, DATA
+
+# used when neither --build nor build_code_file in the config is set
+DEFAULT_BUILD = "twister_speed_campaign_travic_0_5_5.pob"
 
 
 def _load_plan(cfg: dict, build_arg: str | None):
     """-> PlanDetail (plan + tree data for the tree window) or None without a build."""
-    src = build_arg or cfg.get("build_code_file")
-    if not src:
-        return None
+    src = build_arg or cfg.get("build_code_file") or DEFAULT_BUILD
     from pilot.planner import build_plan_detail
     p = Path(src)
+    if not p.exists() and (BUILDS / src).exists():     # a bundled build by file name
+        p = BUILDS / src
+    if not p.exists() and len(src) < 260 and src.endswith(".pob"):
+        print(f"Билд не найден: {src}", file=sys.stderr)
+        return None
     # a file path lets the planner pick up the X.gear.json sidecar next to X.pob
     return build_plan_detail(p if p.exists() else src)
 

@@ -15,7 +15,9 @@ from pilot.core.logwatch import replay
 from pilot.core.route import Route, load_route
 from pilot.core.splits import RunRecord, SplitStore, ZoneSegment
 
-DEFAULT_ROUTE = Path(__file__).resolve().parents[3] / "data" / "routes" / "campaign-0.5.json"
+from pilot.paths import DATA  # noqa: E402
+
+DEFAULT_ROUTE = DATA / "routes" / "campaign-0.5.json"
 
 # rooms inside a trial are logged as their own areas; they belong to the trial's route step
 _SUBAREA_PREFIX = {"Sanctum_": "G2_13"}

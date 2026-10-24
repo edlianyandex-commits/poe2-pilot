@@ -16,6 +16,16 @@ python -m pilot.overlay.demo                 # HUD only, scripted states
 python -m pilot.planner build.txt            # print the leveling plan
 ```
 
+## Build the exe
+```
+pip install pyinstaller
+python packaging/build_exe.py            # test build with a console window for logs
+python packaging/build_exe.py --windowed # no console
+```
+Result: `dist/PoE2Pilot/PoE2Pilot.exe` (keep the `_internal` folder next to it). Without `--build`
+it uses the bundled `twister_speed_campaign_travic_0_5_5.pob`; `--build <name>.pob` picks another
+bundled build by file name.
+
 ## Hotkeys
 | Key | Action |
 |---|---|

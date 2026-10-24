@@ -13,8 +13,8 @@ def data_dir() -> Path:
     env = os.environ.get("POE2_PILOT_PLANNER_DATA")
     if env:
         return Path(env)
-    # src/pilot/planner/data.py -> repo root
-    return Path(__file__).resolve().parents[3] / "data" / "planner"
+    from pilot.paths import DATA
+    return DATA / "planner"
 
 
 def _load(name: str) -> dict:
