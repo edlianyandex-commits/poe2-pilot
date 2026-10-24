@@ -1,0 +1,1194 @@
+{
+  "id": "campaign-0.5",
+  "patch": "0.5.x",
+  "title": "Кампания 0.5: быстрый маршрут",
+  "steps": [
+    {
+      "id": "a1-001",
+      "act": 1,
+      "area": "G1_1",
+      "short": "→ Берег реки",
+      "detail": "Старт кампании",
+      "kind": "move",
+      "split": true
+    },
+    {
+      "id": "a1-002",
+      "act": 1,
+      "area": "G1_1",
+      "short": "⚔ The Bloated Miller",
+      "detail": "Обязательный босс зоны",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-003",
+      "act": 1,
+      "area": "G1_town",
+      "short": "⌂ Лагерь Клирфелл",
+      "detail": "Сдать квест Reaching Clearfell",
+      "kind": "town",
+      "reward": "Uncut Skill Gem"
+    },
+    {
+      "id": "a1-004",
+      "act": 1,
+      "area": "G1_2",
+      "short": "◆ Клирфелл",
+      "detail": "WP в зоне",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-005",
+      "act": 1,
+      "area": "G1_3",
+      "short": "→ Грязевая нора",
+      "detail": "Без WP",
+      "kind": "move"
+    },
+    {
+      "id": "a1-006",
+      "act": 1,
+      "area": "G1_4",
+      "short": "◆ Грельвуд",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-007",
+      "act": 1,
+      "area": "G1_6",
+      "short": "◆ Мрачные заросли",
+      "detail": "WP. Квест: корни Mysterious Shade",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-008",
+      "act": 1,
+      "area": "G1_5",
+      "short": "⚔ The Rust King",
+      "detail": "Обязательный. Дает Runed Girdle",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-009",
+      "act": 1,
+      "area": "G1_5",
+      "short": "! Secrets in the Dark",
+      "detail": "3 Runed Girdle: обелиски и босс",
+      "kind": "quest"
+    },
+    {
+      "id": "a1-010",
+      "act": 1,
+      "area": "G1_7",
+      "short": "◆ Кладбище Вечных",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-011",
+      "act": 1,
+      "area": "G1_7",
+      "short": "⚔ Lachlann of Endless Lament",
+      "detail": "Обязательный. Квест Sorrow Among Stones",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-012",
+      "act": 1,
+      "area": "G1_8",
+      "short": "◆ Мавзолей претора",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-013",
+      "act": 1,
+      "area": "G1_8",
+      "short": "⚔ Draven, the Eternal Praetor",
+      "detail": "Обязательный. Memorial Key Piece",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-014",
+      "act": 1,
+      "area": "G1_9",
+      "short": "◆ Супружеская гробница",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-015",
+      "act": 1,
+      "area": "G1_9",
+      "short": "⚔ Asinia, the Praetor's Consort",
+      "detail": "Обязательный. Memorial Key Piece",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-016",
+      "act": 1,
+      "area": "G1_11",
+      "short": "◆ Охотничьи угодья",
+      "detail": "WP. Crowbell опц.",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-017",
+      "act": 1,
+      "area": "G1_12",
+      "short": "◆ Фрейторн",
+      "detail": "WP. King in the Mists опц.",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-018",
+      "act": 1,
+      "area": "G1_13_1",
+      "short": "◆ Фермерские земли Огама",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-019",
+      "act": 1,
+      "area": "G1_13_2",
+      "short": "◆ Деревня Огам",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-020",
+      "act": 1,
+      "area": "G1_13_2",
+      "short": "⚔ The Executioner",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a1-021",
+      "act": 1,
+      "area": "G1_14",
+      "short": "◆ Стены замка",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-022",
+      "act": 1,
+      "area": "G1_15",
+      "short": "◆ Замок Огам",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a1-023",
+      "act": 1,
+      "area": "G1_15",
+      "short": "⚔ Count Geonor",
+      "detail": "Обязательный. Открывает Акт 2",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-001",
+      "act": 2,
+      "area": "G2_1",
+      "short": "→ Окраины Вастири",
+      "detail": "Старт Акта 2",
+      "kind": "move",
+      "split": true
+    },
+    {
+      "id": "a2-002",
+      "act": 2,
+      "area": "G2_1",
+      "short": "⚔ Rathbreaker",
+      "detail": "Обязательный. Открывает Караван",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-003",
+      "act": 2,
+      "area": "G2_town",
+      "short": "⌂ Караван Ардура",
+      "detail": "Хаб. Карта пустыни",
+      "kind": "town"
+    },
+    {
+      "id": "a2-004",
+      "act": 2,
+      "area": "G2_town",
+      "short": "! Earning Passage",
+      "detail": "Квест",
+      "kind": "quest",
+      "reward": "Uncut Skill Gem"
+    },
+    {
+      "id": "a2-005",
+      "act": 2,
+      "area": "G2_2",
+      "short": "◆ Тропа Изменницы",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-006",
+      "act": 2,
+      "area": "G2_2",
+      "short": "⚔ Balbala, the Traitor",
+      "detail": "Опц. Открывает испытание Сехем",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-007",
+      "act": 2,
+      "area": "G2_13",
+      "short": "✦ Испытание Сехем",
+      "detail": "Trial of the Sekhemas. Опционально",
+      "kind": "trial"
+    },
+    {
+      "id": "a2-008",
+      "act": 2,
+      "area": "G2_3a",
+      "short": "→ Ворота Халани",
+      "detail": "Без WP",
+      "kind": "move"
+    },
+    {
+      "id": "a2-009",
+      "act": 2,
+      "area": "G2_3a",
+      "short": "⚔ Jamanra, the Risen King",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-010",
+      "act": 2,
+      "area": "G2_10_1",
+      "short": "◆ Каменоломня Маудун",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-011",
+      "act": 2,
+      "area": "G2_10_2",
+      "short": "◆ Шахта Маудун",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-012",
+      "act": 2,
+      "area": "G2_10_2",
+      "short": "⚔ Rudja, the Dread Engineer",
+      "detail": "Обязательный. Освобождает Risu",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-013",
+      "act": 2,
+      "area": "G2_4_1",
+      "short": "◆ Кет",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-014",
+      "act": 2,
+      "area": "G2_4_1",
+      "short": "✕ Kabala, Constrictor Queen",
+      "detail": "Опц.: 2 очка оружейного сета",
+      "kind": "skip",
+      "_unverified": true
+    },
+    {
+      "id": "a2-015",
+      "act": 2,
+      "area": "G2_4_2",
+      "short": "◆ Затерянный город",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-016",
+      "act": 2,
+      "area": "G2_4_3",
+      "short": "◆ Захоронённые святилища",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-017",
+      "act": 2,
+      "area": "G2_4_3",
+      "short": "⚔ Azarian, the Forsaken Son",
+      "detail": "Обязательный. Открывает Water Goddess",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-018",
+      "act": 2,
+      "area": "G2_6",
+      "short": "◆ Долина Титанов",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-019",
+      "act": 2,
+      "area": "G2_7",
+      "short": "◆ Грот Титанов",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-020",
+      "act": 2,
+      "area": "G2_7",
+      "short": "⚔ Zalmarath, the Colossus",
+      "detail": "Обязательный",
+      "kind": "boss",
+      "reward": "Flame Ruby"
+    },
+    {
+      "id": "a2-021",
+      "act": 2,
+      "area": "G2_5_1",
+      "short": "◆ Бесплодные земли мастодонтов",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-022",
+      "act": 2,
+      "area": "G2_5_2",
+      "short": "◆ Костяные ямы",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-023",
+      "act": 2,
+      "area": "G2_5_2",
+      "short": "⚔ Iktab, the Deathlord",
+      "detail": "Обязательный",
+      "kind": "boss",
+      "reward": "Mastodon Tusks"
+    },
+    {
+      "id": "a2-024",
+      "act": 2,
+      "area": "G2_5_2",
+      "short": "⚔ Ekbab, Ancient Steed",
+      "detail": "Обязательный",
+      "kind": "boss",
+      "reward": "Mastodon Tusks"
+    },
+    {
+      "id": "a2-025",
+      "act": 2,
+      "area": "G2_8",
+      "short": "◆ Дешар",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-026",
+      "act": 2,
+      "area": "G2_9_1",
+      "short": "◆ Путь скорби",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-027",
+      "act": 2,
+      "area": "G2_9_2",
+      "short": "◆ Шпили Дешара",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-028",
+      "act": 2,
+      "area": "G2_9_2",
+      "short": "⚔ Tor Gul, the Defiler",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-029",
+      "act": 2,
+      "area": "G2_12_1",
+      "short": "◆ Дредноут",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a2-030",
+      "act": 2,
+      "area": "G2_12_1",
+      "short": "⚔ Jamanra, the Abomination",
+      "detail": "Обязательный. Финал Акта 2",
+      "kind": "boss"
+    },
+    {
+      "id": "a2-031",
+      "act": 2,
+      "area": "G2_12_2",
+      "short": "→ Авангард Дредноута",
+      "detail": "Конец Акта 2",
+      "kind": "move",
+      "_unverified": true
+    },
+    {
+      "id": "a3-001",
+      "act": 3,
+      "area": "G3_1",
+      "short": "→ Занесённое песком болото",
+      "detail": "Старт Акта 3. WP",
+      "kind": "move",
+      "split": true
+    },
+    {
+      "id": "a3-002",
+      "act": 3,
+      "area": "G3_town",
+      "short": "⌂ Лагерь на зиккурате",
+      "detail": "Альва: открывает Храм Копека",
+      "kind": "town"
+    },
+    {
+      "id": "a3-003",
+      "act": 3,
+      "area": "G3_3",
+      "short": "→ Развалины в джунглях",
+      "detail": "Silverfist опц.",
+      "kind": "move"
+    },
+    {
+      "id": "a3-004",
+      "act": 3,
+      "area": "G3_2_1",
+      "short": "◆ Заражённые земли",
+      "detail": "WP. Stone Altar",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-005",
+      "act": 3,
+      "area": "G3_7",
+      "short": "✕ Болото Азак",
+      "detail": "Опц.: Ignagduk",
+      "kind": "skip",
+      "_unverified": true
+    },
+    {
+      "id": "a3-006",
+      "act": 3,
+      "area": "G3_5",
+      "short": "◆ Топи химеридов",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-007",
+      "act": 3,
+      "area": "G3_5",
+      "short": "⚔ Xyclucian, the Chimera",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a3-008",
+      "act": 3,
+      "area": "G3_6_1",
+      "short": "✕ Blackjaw, the Remnant",
+      "detail": "Опц.: Flame Core",
+      "kind": "skip"
+    },
+    {
+      "id": "a3-009",
+      "act": 3,
+      "area": "G3_6_1",
+      "short": "◆ Машинариум Джиквани",
+      "detail": "WP. Small Soul Cores",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-010",
+      "act": 3,
+      "area": "G3_6_2",
+      "short": "◆ Святилище Джиквани",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-011",
+      "act": 3,
+      "area": "G3_6_2",
+      "short": "⚔ Zicoatl, Warden of the Core",
+      "detail": "Обязательный. Large Soul Core",
+      "kind": "boss"
+    },
+    {
+      "id": "a3-012",
+      "act": 3,
+      "area": "G3_4",
+      "short": "✕ Ядовитые крипты",
+      "detail": "Опц.: Corpse-snake Venom",
+      "kind": "skip",
+      "_unverified": true
+    },
+    {
+      "id": "a3-013",
+      "act": 3,
+      "area": "G3_2_2",
+      "short": "→ Водотоки Матлан",
+      "detail": "Вход через Stone Altar",
+      "kind": "move"
+    },
+    {
+      "id": "a3-014",
+      "act": 3,
+      "area": "G3_8",
+      "short": "◆ Затопленный город",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-015",
+      "act": 3,
+      "area": "G3_9",
+      "short": "✕ Расплавленные залы",
+      "detail": "Опц.: Mektul",
+      "kind": "skip",
+      "_unverified": true
+    },
+    {
+      "id": "a3-016",
+      "act": 3,
+      "area": "G3_11",
+      "short": "◆ Осквернённая вершина",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-017",
+      "act": 3,
+      "area": "G3_11",
+      "short": "⚔ Queen of Filth",
+      "detail": "Обязательный. Temple Door Idol",
+      "kind": "boss"
+    },
+    {
+      "id": "a3-018",
+      "act": 3,
+      "area": "G3_12",
+      "short": "→ Храм Копека",
+      "detail": "Idol: Альва откроет вход",
+      "kind": "move"
+    },
+    {
+      "id": "a3-019",
+      "act": 3,
+      "area": "G3_12",
+      "short": "⚔ Ketzuli, High Priest of the Sun",
+      "detail": "Обязательный (по данным)",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "a3-020",
+      "act": 3,
+      "area": "G3_14",
+      "short": "◆ Утцааль",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-021",
+      "act": 3,
+      "area": "G3_14",
+      "short": "! Inscribed Ultimatum",
+      "detail": "Нужно для Храма Хаоса",
+      "kind": "quest"
+    },
+    {
+      "id": "a3-022",
+      "act": 3,
+      "area": "G3_10_Airlock",
+      "short": "→ Храм Хаоса",
+      "detail": "Вход в испытание",
+      "kind": "move"
+    },
+    {
+      "id": "a3-023",
+      "act": 3,
+      "area": "G3_10",
+      "short": "✦ Испытание Хаоса",
+      "detail": "Опционально. Uxmal, Chetza, Bahlak",
+      "kind": "trial"
+    },
+    {
+      "id": "a3-024",
+      "act": 3,
+      "area": "G3_16",
+      "short": "◆ Аггорат",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-025",
+      "act": 3,
+      "area": "G3_17",
+      "short": "◆ Чёрные залы",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a3-026",
+      "act": 3,
+      "area": "G3_17",
+      "short": "⚔ Doryani, Royal Thaumaturge",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-001",
+      "act": 4,
+      "area": "G4_town",
+      "short": "⌂ Кингсмарш",
+      "detail": "Старт Акта 4",
+      "kind": "town",
+      "split": true
+    },
+    {
+      "id": "a4-002",
+      "act": 4,
+      "area": "G4_2_1",
+      "short": "◆ Кеджский залив",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-003",
+      "act": 4,
+      "area": "G4_2_2",
+      "short": "◆ Конец странствия",
+      "detail": "WP. Нужна Boat Charter",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-004",
+      "act": 4,
+      "area": "G4_2_2",
+      "short": "⚔ Captain Hartlin",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-005",
+      "act": 4,
+      "area": "G4_2_2",
+      "short": "⚔ Omniphobia, Fear Manifest",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-006",
+      "act": 4,
+      "area": "G4_3_1",
+      "short": "✕ Great White One (опц.)",
+      "detail": "Shark Fin",
+      "kind": "skip",
+      "_unverified": true
+    },
+    {
+      "id": "a4-007",
+      "act": 4,
+      "area": "G4_3_2",
+      "short": "◆ Поющие пещеры",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-008",
+      "act": 4,
+      "area": "G4_3_2",
+      "short": "⚔ Diamora, Song of Death",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-009",
+      "act": 4,
+      "area": "G4_1_1",
+      "short": "→ Остров Рода",
+      "detail": "Blind Beast опц.",
+      "kind": "move"
+    },
+    {
+      "id": "a4-010",
+      "act": 4,
+      "area": "G4_1_2",
+      "short": "◆ Вулканические лабиринты",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-011",
+      "act": 4,
+      "area": "G4_1_2",
+      "short": "⚔ Krutog, Lord of Kin",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-012",
+      "act": 4,
+      "area": "G4_5_1",
+      "short": "◆ Заброшенная тюрьма",
+      "detail": "WP. Chapel Key опц.",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-013",
+      "act": 4,
+      "area": "G4_5_2",
+      "short": "◆ Одиночные камеры",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-014",
+      "act": 4,
+      "area": "G4_5_2",
+      "short": "⚔ The Prisoner",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-015",
+      "act": 4,
+      "area": "G4_7",
+      "short": "◆ Остров криков",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-016",
+      "act": 4,
+      "area": "G4_7",
+      "short": "⚔ Scourge of the Skies",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-017",
+      "act": 4,
+      "area": "G4_4_1",
+      "short": "◆ Глаз Хинекоры",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-018",
+      "act": 4,
+      "area": "G4_4_2",
+      "short": "◆ Залы мёртвых",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-019",
+      "act": 4,
+      "area": "G4_4_3",
+      "short": "✦ Испытание предков",
+      "detail": "Испытание восхождения (Ascendancy)",
+      "kind": "trial"
+    },
+    {
+      "id": "a4-020",
+      "act": 4,
+      "area": "G4_11_1a",
+      "short": "◆ Нгакану",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-021",
+      "act": 4,
+      "area": "G4_8b",
+      "short": "◆ Арастас",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-022",
+      "act": 4,
+      "area": "G4_8b",
+      "short": "⚔ Torvian, Hand of the Saviour",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-023",
+      "act": 4,
+      "area": "G4_10",
+      "short": "◆ Раскопки",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-024",
+      "act": 4,
+      "area": "G4_10",
+      "short": "⚔ Benedictus, First Herald of Utopia",
+      "detail": "Обязательный",
+      "kind": "boss"
+    },
+    {
+      "id": "a4-025",
+      "act": 4,
+      "area": "G4_13",
+      "short": "→ Мыс грабителя",
+      "detail": "4 Torn Map Piece по островам",
+      "kind": "move"
+    },
+    {
+      "id": "a4-026",
+      "act": 4,
+      "area": "G4_11_1b",
+      "short": "◆ Нгакану",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-027",
+      "act": 4,
+      "area": "G4_11_2",
+      "short": "◆ Сердце племени",
+      "detail": "WP",
+      "kind": "wp"
+    },
+    {
+      "id": "a4-028",
+      "act": 4,
+      "area": "G4_11_2",
+      "short": "⚔ Tavakai, the Chieftain",
+      "detail": "Обязательный. Финал Акта 4",
+      "kind": "boss"
+    },
+    {
+      "id": "p1-001",
+      "act": 101,
+      "area": "P1_Town",
+      "short": "⌂ Пристанище",
+      "detail": "Старт интерлюдии 1",
+      "kind": "town",
+      "split": true,
+      "_unverified": true
+    },
+    {
+      "id": "p1-002",
+      "act": 101,
+      "area": "P1_1",
+      "short": "→ Выжженные фермерские земли",
+      "kind": "move",
+      "_unverified": true
+    },
+    {
+      "id": "p1-003",
+      "act": 101,
+      "area": "P1_2",
+      "short": "◆ Камни Серли",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p1-004",
+      "act": 101,
+      "area": "P1_3",
+      "short": "→ Чернолесье",
+      "kind": "move",
+      "_unverified": true
+    },
+    {
+      "id": "p1-005",
+      "act": 101,
+      "area": "P1_4",
+      "short": "◆ Холтен",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p1-006",
+      "act": 101,
+      "area": "P1_4",
+      "short": "⚔ Sigbert, Godwin",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p1-007",
+      "act": 101,
+      "area": "P1_6",
+      "short": "◆ Поместье Холтен",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p1-008",
+      "act": 101,
+      "area": "P1_6",
+      "short": "⚔ Thane Wulfric, Lady Elswyth",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p1-009",
+      "act": 101,
+      "area": "P1_5",
+      "short": "◆ Вольфенхолд",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p1-010",
+      "act": 101,
+      "area": "P1_5",
+      "short": "⚔ Oswin, the Dread Warden",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p2-001",
+      "act": 102,
+      "area": "P2_Town",
+      "short": "⌂ Кхарийский базар",
+      "detail": "Старт интерлюдии 2",
+      "kind": "town",
+      "split": true,
+      "_unverified": true
+    },
+    {
+      "id": "p2-002",
+      "act": 102,
+      "area": "P2_1",
+      "short": "→ Кхарийский перевал",
+      "detail": "Без WP",
+      "kind": "move",
+      "_unverified": true
+    },
+    {
+      "id": "p2-003",
+      "act": 102,
+      "area": "P2_5",
+      "short": "◆ Ворота Галаи",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p2-004",
+      "act": 102,
+      "area": "P2_5",
+      "short": "⚔ Vornas, the Fell Flame",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p2-005",
+      "act": 102,
+      "area": "P2_2",
+      "short": "◆ Воды Хаталя",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p2-006",
+      "act": 102,
+      "area": "P2_3",
+      "short": "◆ Храм Селхари",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p2-007",
+      "act": 102,
+      "area": "P2_3",
+      "short": "⚔ Elzarah, the Cobra Lord",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p2-008",
+      "act": 102,
+      "area": "P2_6",
+      "short": "◆ Кима",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p2-009",
+      "act": 102,
+      "area": "P2_7",
+      "short": "◆ Водохранилище Кима",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p2-010",
+      "act": 102,
+      "area": "P2_7",
+      "short": "⚔ Azmadi, the Faridun Prince",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p3-001",
+      "act": 103,
+      "area": "P3_Town",
+      "short": "⌂ Опушка",
+      "detail": "Старт интерлюдии 3",
+      "kind": "town",
+      "split": true,
+      "_unverified": true
+    },
+    {
+      "id": "p3-002",
+      "act": 103,
+      "area": "P3_1",
+      "short": "→ Пепельный лес",
+      "detail": "Без WP",
+      "kind": "move",
+      "_unverified": true
+    },
+    {
+      "id": "p3-003",
+      "act": 103,
+      "area": "P3_2",
+      "short": "◆ Деревня Криар",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-004",
+      "act": 103,
+      "area": "P3_2",
+      "short": "⚔ Lythara, the Wayward Spear",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p3-005",
+      "act": 103,
+      "area": "P3_3",
+      "short": "◆ Ледниковое озеро",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-006",
+      "act": 103,
+      "area": "P3_3",
+      "short": "⚔ Rakkar, the Frozen Talon",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p3-007",
+      "act": 103,
+      "area": "P3_4",
+      "short": "◆ Воющие пещеры",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-008",
+      "act": 103,
+      "area": "P3_4",
+      "short": "⚔ The Abominable Yeti",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p3-009",
+      "act": 103,
+      "area": "P3_5",
+      "short": "◆ Пики Криар",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-010",
+      "act": 103,
+      "area": "P3_6",
+      "short": "◆ Высеченное ущелье",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-011",
+      "act": 103,
+      "area": "P3_6",
+      "short": "⚔ Stormgore, the Guardian",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "p3-012",
+      "act": 103,
+      "area": "P3_7",
+      "short": "◆ Убежище Куачик",
+      "detail": "WP",
+      "kind": "wp",
+      "_unverified": true
+    },
+    {
+      "id": "p3-013",
+      "act": 103,
+      "area": "P3_7",
+      "short": "⚔ Zolin & Zelina",
+      "detail": "Обязательность не проверена",
+      "kind": "boss",
+      "_unverified": true
+    },
+    {
+      "id": "end-001",
+      "act": 103,
+      "area": "G_Endgame_Town",
+      "short": "⌂ Убежище в зиккурате",
+      "detail": "Финиш кампании",
+      "kind": "town",
+      "split": true
+    }
+  ]
+}

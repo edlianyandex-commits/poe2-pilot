@@ -1,0 +1,782 @@
+{
+  "G1_1": {
+    "act": 1,
+    "level": 1,
+    "ru": "Берег реки",
+    "en": "The Riverbank",
+    "town": false,
+    "has_wp": false
+  },
+  "G1_town": {
+    "act": 1,
+    "level": 15,
+    "ru": "Лагерь Клирфелл",
+    "en": "Clearfell Encampment",
+    "town": true,
+    "has_wp": true
+  },
+  "G1_2": {
+    "act": 1,
+    "level": 2,
+    "ru": "Клирфелл",
+    "en": "Clearfell",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_3": {
+    "act": 1,
+    "level": 3,
+    "ru": "Грязевая нора",
+    "en": "Mud Burrow",
+    "town": false,
+    "has_wp": false
+  },
+  "G1_4": {
+    "act": 1,
+    "level": 4,
+    "ru": "Грельвуд",
+    "en": "The Grelwood",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_6": {
+    "act": 1,
+    "level": 6,
+    "ru": "Мрачные заросли",
+    "en": "The Grim Tangle",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_5": {
+    "act": 1,
+    "level": 5,
+    "ru": "Красная Долина",
+    "en": "The Red Vale",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_7": {
+    "act": 1,
+    "level": 7,
+    "ru": "Кладбище Вечных",
+    "en": "Cemetery of the Eternals",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_8": {
+    "act": 1,
+    "level": 8,
+    "ru": "Мавзолей претора",
+    "en": "Mausoleum of the Praetor",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_9": {
+    "act": 1,
+    "level": 9,
+    "ru": "Супружеская гробница",
+    "en": "Tomb of the Consort",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_11": {
+    "act": 1,
+    "level": 10,
+    "ru": "Охотничьи угодья",
+    "en": "Hunting Grounds",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_12": {
+    "act": 1,
+    "level": 11,
+    "ru": "Фрейторн",
+    "en": "Freythorn",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_13_1": {
+    "act": 1,
+    "level": 12,
+    "ru": "Фермерские земли Огама",
+    "en": "Ogham Farmlands",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_13_2": {
+    "act": 1,
+    "level": 13,
+    "ru": "Деревня Огам",
+    "en": "Ogham Village",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_14": {
+    "act": 1,
+    "level": 14,
+    "ru": "Стены замка",
+    "en": "The Manor Ramparts",
+    "town": false,
+    "has_wp": true
+  },
+  "G1_15": {
+    "act": 1,
+    "level": 15,
+    "ru": "Замок Огам",
+    "en": "Ogham Manor",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_1": {
+    "act": 2,
+    "level": 16,
+    "ru": "Окраины Вастири",
+    "en": "Vastiri Outskirts",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_town": {
+    "act": 2,
+    "level": 32,
+    "ru": "Караван Ардура",
+    "en": "The Ardura Caravan",
+    "town": true,
+    "has_wp": true
+  },
+  "G2_3a": {
+    "act": 2,
+    "level": 20,
+    "ru": "Ворота Халани",
+    "en": "The Halani Gates",
+    "town": false,
+    "has_wp": false
+  },
+  "G2_10_1": {
+    "act": 2,
+    "level": 17,
+    "ru": "Каменоломня Маудун",
+    "en": "Mawdun Quarry",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_10_2": {
+    "act": 2,
+    "level": 18,
+    "ru": "Шахта Маудун",
+    "en": "Mawdun Mine",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_2": {
+    "act": 2,
+    "level": 19,
+    "ru": "Тропа Изменницы",
+    "en": "Traitor's Passage",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_3": {
+    "act": 2,
+    "level": 20,
+    "ru": "Ворота Халани",
+    "en": "The Halani Gates",
+    "town": false,
+    "has_wp": false
+  },
+  "G2_4_1": {
+    "act": 2,
+    "level": 21,
+    "ru": "Кет",
+    "en": "Keth",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_4_2": {
+    "act": 2,
+    "level": 22,
+    "ru": "Затерянный город",
+    "en": "The Lost City",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_4_3": {
+    "act": 2,
+    "level": 23,
+    "ru": "Захоронённые святилища",
+    "en": "Buried Shrines",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_6": {
+    "act": 2,
+    "level": 24,
+    "ru": "Долина Титанов",
+    "en": "Valley of the Titans",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_7": {
+    "act": 2,
+    "level": 25,
+    "ru": "Грот Титанов",
+    "en": "The Titan Grotto",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_5_1": {
+    "act": 2,
+    "level": 26,
+    "ru": "Бесплодные земли мастодонтов",
+    "en": "Mastodon Badlands",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_5_2": {
+    "act": 2,
+    "level": 27,
+    "ru": "Костяные ямы",
+    "en": "The Bone Pits",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_8": {
+    "act": 2,
+    "level": 28,
+    "ru": "Дешар",
+    "en": "Deshar",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_9_1": {
+    "act": 2,
+    "level": 29,
+    "ru": "Путь скорби",
+    "en": "Path of Mourning",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_9_2": {
+    "act": 2,
+    "level": 30,
+    "ru": "Шпили Дешара",
+    "en": "The Spires of Deshar",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_12_1": {
+    "act": 2,
+    "level": 31,
+    "ru": "Дредноут",
+    "en": "Dreadnought",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_12_2": {
+    "act": 2,
+    "level": 32,
+    "ru": "Авангард Дредноута",
+    "en": "Dreadnought Vanguard",
+    "town": false
+  },
+  "G3_1": {
+    "act": 3,
+    "level": 33,
+    "ru": "Занесённое песком болото",
+    "en": "Sandswept Marsh",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_town": {
+    "act": 3,
+    "level": 44,
+    "ru": "Лагерь на зиккурате",
+    "en": "Ziggurat Encampment",
+    "town": true,
+    "has_wp": true
+  },
+  "G3_3": {
+    "act": 3,
+    "level": 34,
+    "ru": "Развалины в джунглях",
+    "en": "Jungle Ruins",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_2_1": {
+    "act": 3,
+    "level": 35,
+    "ru": "Заражённые земли",
+    "en": "Infested Barrens",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_13": {
+    "act": 2,
+    "level": 22,
+    "ru": "Испытание Сехем",
+    "en": "Trial of the Sekhemas",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_7": {
+    "act": 3,
+    "level": 36,
+    "ru": "Болото Азак",
+    "en": "The Azak Bog",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_5": {
+    "act": 3,
+    "level": 36,
+    "ru": "Топи химеридов",
+    "en": "Chimeral Wetlands",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_10_Airlock": {
+    "act": 3,
+    "level": 38,
+    "ru": "Храм Хаоса",
+    "en": "Temple of Chaos",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_6_1": {
+    "act": 3,
+    "level": 37,
+    "ru": "Машинариум Джиквани",
+    "en": "Jiquani's Machinarium",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_6_2": {
+    "act": 3,
+    "level": 38,
+    "ru": "Святилище Джиквани",
+    "en": "Jiquani's Sanctum",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_4": {
+    "act": 3,
+    "level": 35,
+    "ru": "Ядовитые крипты",
+    "en": "The Venom Crypts",
+    "town": false
+  },
+  "G3_2_2": {
+    "act": 3,
+    "level": 39,
+    "ru": "Водотоки Матлан",
+    "en": "The Matlan Waterways",
+    "town": false
+  },
+  "G3_8": {
+    "act": 3,
+    "level": 40,
+    "ru": "Затопленный город",
+    "en": "The Drowned City",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_9": {
+    "act": 3,
+    "level": 41,
+    "ru": "Расплавленные залы",
+    "en": "The Molten Vault",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_11": {
+    "act": 3,
+    "level": 41,
+    "ru": "Осквернённая вершина",
+    "en": "Apex of Filth",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_12": {
+    "act": 3,
+    "level": 42,
+    "ru": "Храм Копека",
+    "en": "Temple of Kopec",
+    "town": false,
+    "has_wp": false
+  },
+  "G3_14": {
+    "act": 3,
+    "level": 43,
+    "ru": "Утцааль",
+    "en": "Utzaal",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_16": {
+    "act": 3,
+    "level": 44,
+    "ru": "Аггорат",
+    "en": "Aggorat",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_17": {
+    "act": 3,
+    "level": 45,
+    "ru": "Чёрные залы",
+    "en": "The Black Chambers",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_town": {
+    "act": 4,
+    "level": 53,
+    "ru": "Кингсмарш",
+    "en": "Kingsmarch",
+    "town": true,
+    "has_wp": true
+  },
+  "G4_2_1": {
+    "act": 4,
+    "level": 46,
+    "ru": "Кеджский залив",
+    "en": "Kedge Bay",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_2_2": {
+    "act": 4,
+    "level": 47,
+    "ru": "Конец странствия",
+    "en": "Journey's End",
+    "town": false,
+    "has_wp": true
+  },
+  "G3_10": {
+    "act": 3,
+    "level": 38,
+    "ru": "Испытание Хаоса",
+    "en": "Trial of Chaos",
+    "town": false
+  },
+  "G4_3_1": {
+    "act": 4,
+    "level": 47,
+    "ru": "Остров Вакапану",
+    "en": "Whakapanu Island",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_3_2": {
+    "act": 4,
+    "level": 48,
+    "ru": "Поющие пещеры",
+    "en": "Singing Caverns",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_1_1": {
+    "act": 4,
+    "level": 48,
+    "ru": "Остров Рода",
+    "en": "Isle of Kin",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_1_2": {
+    "act": 4,
+    "level": 49,
+    "ru": "Вулканические лабиринты",
+    "en": "Volcanic Warrens",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_5_1": {
+    "act": 4,
+    "level": 49,
+    "ru": "Заброшенная тюрьма",
+    "en": "Abandoned Prison",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_5_2": {
+    "act": 4,
+    "level": 50,
+    "ru": "Одиночные камеры",
+    "en": "Solitary Confinement",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_7": {
+    "act": 4,
+    "level": 50,
+    "ru": "Остров криков",
+    "en": "Shrike Island",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_4_1": {
+    "act": 4,
+    "level": 51,
+    "ru": "Глаз Хинекоры",
+    "en": "Eye of Hinekora",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_4_2": {
+    "act": 4,
+    "level": 52,
+    "ru": "Залы мёртвых",
+    "en": "Halls of the Dead",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_4_3": {
+    "act": 4,
+    "level": 51,
+    "ru": "Испытание предков",
+    "en": "Trial of the Ancestors",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_11_1a": {
+    "act": 4,
+    "level": 53,
+    "ru": "Нгакану",
+    "en": "Ngakanu",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_8b": {
+    "act": 4,
+    "level": 52,
+    "ru": "Арастас",
+    "en": "Arastas",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_10": {
+    "act": 4,
+    "level": 52,
+    "ru": "Раскопки",
+    "en": "The Excavation",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_13": {
+    "act": 4,
+    "level": 53,
+    "ru": "Мыс грабителя",
+    "en": "Plunder's Point",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_11_1b": {
+    "act": 4,
+    "level": 53,
+    "ru": "Нгакану",
+    "en": "Ngakanu",
+    "town": false,
+    "has_wp": true
+  },
+  "G4_11_2": {
+    "act": 4,
+    "level": 53,
+    "ru": "Сердце племени",
+    "en": "Heart of the Tribe",
+    "town": false,
+    "has_wp": true
+  },
+  "P1_Town": {
+    "act": 101,
+    "level": 64,
+    "ru": "Пристанище",
+    "en": "The Refuge",
+    "town": true,
+    "has_wp": true
+  },
+  "P1_1": {
+    "act": 101,
+    "level": 54,
+    "ru": "Выжженные фермерские земли",
+    "en": "Scorched Farmlands",
+    "town": false,
+    "has_wp": true
+  },
+  "P1_2": {
+    "act": 101,
+    "level": 54,
+    "ru": "Камни Серли",
+    "en": "Stones of Serle",
+    "town": false,
+    "has_wp": true
+  },
+  "P1_3": {
+    "act": 101,
+    "level": 55,
+    "ru": "Чернолесье",
+    "en": "The Blackwood",
+    "town": false,
+    "has_wp": true
+  },
+  "P1_4": {
+    "act": 101,
+    "level": 55,
+    "ru": "Холтен",
+    "en": "Holten",
+    "town": false,
+    "has_wp": true
+  },
+  "P1_6": {
+    "act": 101,
+    "level": 56,
+    "ru": "Поместье Холтен",
+    "en": "Holten Estate",
+    "town": false,
+    "has_wp": true
+  },
+  "P2_Town": {
+    "act": 102,
+    "level": 64,
+    "ru": "Кхарийский базар",
+    "en": "The Khari Bazaar",
+    "town": true,
+    "has_wp": true
+  },
+  "P2_1": {
+    "act": 102,
+    "level": 57,
+    "ru": "Кхарийский перевал",
+    "en": "The Khari Crossing",
+    "town": false,
+    "has_wp": false
+  },
+  "P2_5": {
+    "act": 102,
+    "level": 59,
+    "ru": "Ворота Галаи",
+    "en": "The Galai Gates",
+    "town": false,
+    "has_wp": true
+  },
+  "P2_2": {
+    "act": 102,
+    "level": 58,
+    "ru": "Воды Хаталя",
+    "en": "Pools of Khatal",
+    "town": false,
+    "has_wp": true
+  },
+  "P2_3": {
+    "act": 102,
+    "level": 58,
+    "ru": "Храм Селхари",
+    "en": "Sel Khari Sanctuary",
+    "town": false,
+    "has_wp": true
+  },
+  "P2_6": {
+    "act": 102,
+    "level": 59,
+    "ru": "Кима",
+    "en": "Qimah",
+    "town": false,
+    "has_wp": true
+  },
+  "P2_7": {
+    "act": 102,
+    "level": 59,
+    "ru": "Водохранилище Кима",
+    "en": "Qimah Reservoir",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_Town": {
+    "act": 103,
+    "level": 64,
+    "ru": "Опушка",
+    "en": "The Glade",
+    "town": true,
+    "has_wp": true
+  },
+  "P3_1": {
+    "act": 103,
+    "level": 61,
+    "ru": "Пепельный лес",
+    "en": "Ashen Forest",
+    "town": false,
+    "has_wp": false
+  },
+  "P3_2": {
+    "act": 103,
+    "level": 61,
+    "ru": "Деревня Криар",
+    "en": "Kriar Village",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_3": {
+    "act": 103,
+    "level": 62,
+    "ru": "Ледниковое озеро",
+    "en": "Glacial Tarn",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_4": {
+    "act": 103,
+    "level": 62,
+    "ru": "Воющие пещеры",
+    "en": "Howling Caves",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_5": {
+    "act": 103,
+    "level": 63,
+    "ru": "Пики Криар",
+    "en": "Kriar Peaks",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_6": {
+    "act": 103,
+    "level": 63,
+    "ru": "Высеченное ущелье",
+    "en": "Etched Ravine",
+    "town": false,
+    "has_wp": true
+  },
+  "P3_7": {
+    "act": 103,
+    "level": 63,
+    "ru": "Убежище Куачик",
+    "en": "The Cuachic Vault",
+    "town": false,
+    "has_wp": true
+  },
+  "G_Endgame_Town": {
+    "act": 103,
+    "level": 65,
+    "ru": "Убежище в зиккурате",
+    "en": "Ziggurat Refuge",
+    "town": true,
+    "has_wp": true
+  },
+  "P1_5": {
+    "act": 101,
+    "level": 64,
+    "ru": "Вольфенхолд",
+    "en": "Wolvenhold",
+    "town": false,
+    "has_wp": true
+  },
+  "G2_12": {
+    "act": 2,
+    "level": 31,
+    "ru": "Дредноут",
+    "en": "Dreadnought",
+    "town": false,
+    "has_wp": true
+  }
+}
