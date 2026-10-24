@@ -48,6 +48,12 @@ def main(argv: list[str] | None = None) -> int:
     plan = _load_plan(cfg, args.build)
     engine = RunEngine(route, plan=plan, store=SplitStore())
     cfg["details_provider"] = engine.details
+    cfg["gem_provider"] = engine.gem_rows
+
+    def current_level():
+        s = engine.snapshot()
+        return s.char_level or (1 if s.running else None)
+    cfg["level_provider"] = current_level
 
     def on_line(line: str) -> None:
         ev = parse_line(line)

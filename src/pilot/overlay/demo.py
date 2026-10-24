@@ -1,14 +1,14 @@
 """`python -m pilot.overlay.demo [--seconds N] [--palette colorblind]` - HUD without the game.
 
 Cycles scripted states: zone change, level-up + gear toasts, ahead/behind delta, warning,
-interlude. Hotkeys work (alt+q hold, alt+e edit); quit from the tray icon, or --seconds N.
+interlude. Hotkeys work (alt+q hold, alt+e edit, alt+g gems); quit from the tray icon, or --seconds N.
 """
 from __future__ import annotations
 
 import argparse
 import time
 
-from pilot.contracts import HudState, Toast
+from pilot.contracts import GemCard, GemRow, HudState, Toast
 
 CYCLE_S = 36.0
 MARKS = (0.12, 0.31, 0.47, 0.62, 0.78)
@@ -67,6 +67,22 @@ class DemoSource:
                   toasts=(Toast("Интерлюдия 2", "zone", 3.0),) if ph < 31 else (), **base)
 
 
+def demo_gem_rows() -> tuple[GemRow, ...]:
+    def g(name, kind, color, desc=""):
+        return GemCard(name, kind, color, desc)
+
+    return (
+        GemRow(g("Twister", "skill", "dex", "Spiral through enemies as a whirlwind, damaging them "
+                 "and building up Wind. Releasing the buildup unleashes a Twister."),
+               (g("Salvo", "support", "dex", "Supported skills fire a salvo of projectiles."),
+                g("Prolonged Duration II", "support", "int", "Supported skills have more skill effect duration."))),
+        GemRow(g("Barrage", "skill", "dex", "Fire a rapid volley of arrows at the target."),
+               (g("Heightened Charges", "support", "str", "Supported skills have more effect from charges."),)),
+        GemRow(g("Whirling Slash", "skill", "str", "Leap and spin, slashing all nearby enemies."),
+               (g("Exploit Weakness", "support", "str", "Supported skills deal more damage to enemies with Armour broken."),)),
+    )
+
+
 class DemoActions:
     def next_step(self): pass
     def prev_step(self): pass
@@ -87,8 +103,11 @@ def main(argv=None) -> int:
     app = QApplication.instance() or QApplication([])
     if args.seconds > 0:
         QTimer.singleShot(int(args.seconds * 1000), app.quit)
+    source = DemoSource()
     cfg = {
         "hide_when_unfocused": False,
+        "gem_provider": demo_gem_rows,
+        "level_provider": lambda: source.snapshot().char_level,
         "palette": args.palette,
         "details_provider": lambda: [
             "затем: Склеп",
@@ -97,7 +116,7 @@ def main(argv=None) -> int:
             "Пассивка: Быстрота",
         ],
     }
-    return run_overlay(DemoSource(), DemoActions(), cfg)
+    return run_overlay(source, DemoActions(), cfg)
 
 
 if __name__ == "__main__":

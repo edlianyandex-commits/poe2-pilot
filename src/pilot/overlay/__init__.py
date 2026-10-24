@@ -34,18 +34,22 @@ def run_overlay(source, actions, config: dict) -> int:
     """Show the HUD, poll `source.snapshot()` at 10 Hz, serve hotkeys. Blocks until Quit.
 
     config keys (all optional): hotkeys{}, hide_when_unfocused, game_exes, scale, x, y,
-    dim_opacity, details_provider, on_save.
+    dim_opacity, details_provider, on_save, palette,
+    gem_provider() -> tuple[GemRow], level_provider() -> int|None, icon_cache (IconCache),
+    gems_window {x, y, scale}.
     """
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
     from .hotkeys import HotkeyManager
+    from .gems_window import GemsWindow
     from .hud import HudWindow
 
     app = QApplication.instance() or QApplication(sys.argv[:1])
     app.setQuitOnLastWindowClosed(False)
 
     hud = HudWindow(config)
+    gems = GemsWindow(config)
 
     def tick():
         try:
@@ -60,6 +64,7 @@ def run_overlay(source, actions, config: dict) -> int:
     vis = QTimer()
     vis.setInterval(250)
     vis.timeout.connect(hud.refresh_visibility)
+    vis.timeout.connect(gems.refresh_visibility)
 
     def act(name):
         return lambda: getattr(actions, name)()
@@ -72,6 +77,7 @@ def run_overlay(source, actions, config: dict) -> int:
             "edit": hud.toggle_edit,
             "hide": hud.toggle_hidden,
             "details": hud.set_details_visible,
+            "gems": gems.toggle,
         },
         config.get("hotkeys"),
     )
@@ -80,6 +86,7 @@ def run_overlay(source, actions, config: dict) -> int:
     tray.setToolTip("PoE2 Pilot")
     menu = QMenu()
     menu.addAction("Edit position", hud.toggle_edit)
+    menu.addAction("Gems", gems.toggle)
     menu.addAction("Quit", app.quit)
     tray.setContextMenu(menu)
     tray.show()
@@ -95,3 +102,5 @@ def run_overlay(source, actions, config: dict) -> int:
         hotkeys.stop()
         tray.hide()
         hud.hide()
+        gems.hide()
+        gems.tip.hide()

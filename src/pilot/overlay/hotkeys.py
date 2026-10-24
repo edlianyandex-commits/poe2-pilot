@@ -26,6 +26,7 @@ DEFAULT_HOTKEYS = {
     "reset": "alt+r",
     "edit": "alt+e",
     "hide": "alt+h",
+    "gems": "alt+g",
 }
 
 _MODS = {
