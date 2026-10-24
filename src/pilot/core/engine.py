@@ -214,6 +214,14 @@ class RunEngine:
                 lines.extend(self.plan.setup_for(level)[:3])
             return (lines + self.upcoming(3))[:10]
 
+    def gem_rows(self) -> tuple:
+        """Gem window content: the plan's GemRows for the current character level."""
+        with self._lock:
+            level = self._char_level or (1 if self._running else None)
+            if self.plan is None or level is None:
+                return ()
+            return self.plan.gem_rows_for(level)
+
     # read-only helpers for UI/tests
     @property
     def finished(self) -> bool:

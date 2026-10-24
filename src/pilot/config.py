@@ -18,6 +18,7 @@ DEFAULTS: dict = {
         "reset": "alt+r",
         "edit": "alt+e",
         "hide": "alt+h",
+        "gems": "alt+g",
     },
 }
 

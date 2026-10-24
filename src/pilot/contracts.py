@@ -75,6 +75,22 @@ class GameClosed(Event):
 # ---------- planner output (planner/) ----------
 
 @dataclass(frozen=True)
+class GemCard:
+    """One gem as the gem window shows it. `name` is English: it is what a click copies."""
+    name: str
+    kind: str                     # "skill" | "support" | "spirit"
+    color: str                    # "str" | "dex" | "int" | "none" -> fallback icon colour
+    description: str = ""         # tooltip text, <= 400 chars
+    icon_url: str | None = None   # remote image; the app caches it locally
+
+
+@dataclass(frozen=True)
+class GemRow:
+    """A socketed skill and the supports that go into it at a given level."""
+    skill: GemCard
+    supports: tuple[GemCard, ...] = ()
+
+@dataclass(frozen=True)
 class LevelHint:
     """What to do when the character reaches `level`. Every string <= 32 chars."""
     level: int
@@ -98,10 +114,17 @@ class LevelPlan:
     def hint_for(self, level: int) -> LevelHint | None:
         return self.hints.get(level)
 
+    # same setups as structured rows for the gem window: level -> rows, main skill first
+    gem_rows: dict[int, tuple[GemRow, ...]] = field(default_factory=dict)
+
     def setup_for(self, level: int) -> tuple[str, ...]:
         """Gem setup that should be socketed at `level` (latest entry at or below it)."""
         best = max((lv for lv in self.setups if lv <= level), default=None)
         return self.setups[best] if best is not None else ()
+
+    def gem_rows_for(self, level: int) -> tuple[GemRow, ...]:
+        best = max((lv for lv in self.gem_rows if lv <= level), default=None)
+        return self.gem_rows[best] if best is not None else ()
 
 
 # ---------- what the overlay renders (core/engine.py -> overlay/) ----------
