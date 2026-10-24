@@ -82,6 +82,7 @@ def run_overlay(source, actions, config: dict) -> int:
             "details": hud.set_details_visible,
             "gems": gems.toggle,
             "tree": tree.toggle,
+            "pause": act("toggle_pause"),
         },
         config.get("hotkeys"),
     )

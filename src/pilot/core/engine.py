@@ -67,12 +67,16 @@ class RunEngine:
     def __init__(self, route: Route, plan: LevelPlan | None = None,
                  store: SplitStore | None = None,
                  clock: Callable[[], float] = time.monotonic,
-                 afk_gap_s: float = AFK_GAP_S) -> None:
+                 afk_gap_s: float = AFK_GAP_S, pause_when_unfocused: bool = True) -> None:
         self.route = route
         self.plan = plan
         self.store = store
         self._clock = clock
         self._afk = afk_gap_s
+        self._pause_unfocused = pause_when_unfocused
+        # manual pause (Alt+P): intervals on self._clock, since the log never records it
+        self._mpause_start: float | None = None
+        self._mpauses: list[tuple[float, float]] = []
         self._lock = threading.RLock()
         # character / zone
         self._char_name: str | None = None
@@ -165,6 +169,7 @@ class RunEngine:
                 warn=self._level_warning(),
                 game_focused=self._focused and not self._closed,
                 running=self._running,
+                paused=self._running and self._paused(),
                 step_kind=cur.kind if cur else None,
                 next_kind=nxt.kind if nxt else None,
                 progress=min(i / total, 1.0) if total else 0.0,
@@ -295,21 +300,50 @@ class RunEngine:
 
     def _advance_time(self, ev: Event) -> None:
         """Accumulate in-game time using log timestamps (so replays are exact)."""
+        now = self._clock()
         if self._last_ts is not None and self._running:
             dt = (ev.ts - self._last_ts).total_seconds()
-            if not self._closed and 0 < dt <= self._afk:
-                self._elapsed += dt
+            if not self._closed and not self._focus_paused() and 0 < dt <= self._afk:
+                self._elapsed += max(0.0, dt - self._manual_overlap(self._last_clock, now))
         if self._closed:           # first event after the game was closed = restarted
             self._closed = False
             self._focused = True
         self._last_ts = ev.ts
-        self._last_clock = self._clock()
+        self._last_clock = now
+        self._mpauses = [p for p in self._mpauses if p[1] > now - 2 * self._afk]   # keep it short
+
+    def _focus_paused(self) -> bool:
+        return self._pause_unfocused and not self._focused
+
+    def _manual_overlap(self, a: float, b: float) -> float:
+        """Seconds of manual pause inside [a, b] on self._clock."""
+        spans = list(self._mpauses)
+        if self._mpause_start is not None:
+            spans.append((self._mpause_start, b))
+        return sum(max(0.0, min(b, y) - max(a, x)) for x, y in spans)
+
+    def _paused(self) -> bool:
+        return self._mpause_start is not None or self._focus_paused()
 
     def _run_time_now(self) -> float:
         if not self._running:
             return self._elapsed
-        extra = 0.0 if self._closed else max(0.0, self._clock() - self._last_clock)
+        if self._closed or self._focus_paused():
+            return self._elapsed
+        now = self._clock()
+        extra = max(0.0, now - self._last_clock - self._manual_overlap(self._last_clock, now))
         return self._elapsed + min(extra, self._afk)
+
+    def toggle_pause(self) -> None:
+        """Alt+P: stop / resume the run timer (for the game's own pause menu)."""
+        with self._lock:
+            now = self._clock()
+            if self._mpause_start is None:
+                self._mpause_start = now
+            else:
+                self._mpauses.append((self._mpause_start, now))
+                self._mpause_start = None
+            log.info("timer %s (Alt+P)", "paused" if self._mpause_start is not None else "resumed")
 
     def _toast(self, text: str, kind: str, ttl: float = 3.0) -> None:
         t = Toast(_clip(text), kind, ttl)

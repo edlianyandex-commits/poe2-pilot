@@ -359,6 +359,13 @@ class HudWindow(QWidget):
         L["timer_txt"] = timer_txt
         L["timer_x"] = W - padx - self._tab_w(timer_txt, self.m1)
         timer_left = W - padx - timer_w
+        L["paused"] = bool(getattr(st, "paused", False))
+        if L["paused"]:                      # pause bars just left of the timer
+            bw, bh = self.u(4), self.u(14)
+            bx = L["timer_x"] - self.u(6) - 3 * bw
+            L["pause_bars"] = (QRectF(bx, pad_y + (row1 - bh) / 2, bw, bh),
+                               QRectF(bx + 2 * bw, pad_y + (row1 - bh) / 2, bw, bh))
+            timer_left = min(timer_left, bx) - self.u(4)
         L["pill"] = pill_style(st.split_delta_s, pal_name)
         right = timer_left - self.u(10)
         if L["pill"]:
@@ -476,7 +483,14 @@ class HudWindow(QWidget):
         pill = L["pill"]
         if pill:
             self._pill(p, L["pill_rect"], pill.text, pill.fg, pill.bg, self.f3, self.m3, tab=True)
-        self._draw_tab(p, L["timer_x"], L["base1"], L["timer_txt"], self.f1, self.m1, WHITE)
+        timer_col = WHITE
+        if L.get("paused"):
+            timer_col = YELLOW
+            p.setPen(Qt.NoPen)
+            p.setBrush(timer_col)
+            for r in L["pause_bars"]:
+                p.drawRoundedRect(r, self.u(1), self.u(1))
+        self._draw_tab(p, L["timer_x"], L["base1"], L["timer_txt"], self.f1, self.m1, timer_col)
         # ---- progress
         self._progress(p, L["prog"], st)
         # ---- line 2

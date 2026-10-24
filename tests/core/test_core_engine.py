@@ -137,9 +137,9 @@ def test_loading_closed_and_afk_excluded():
     f.feed(FocusChanged, 100000, False)          # first event after 27h closed
     assert eng.snapshot().run_time_s == 7.0 + 9.0
     f.feed(FocusChanged, 100030, True)
-    assert eng.snapshot().run_time_s == 7.0 + 9.0 + 30
+    assert eng.snapshot().run_time_s == 7.0 + 9.0        # 30 s without focus = paused
     f.feed(FocusChanged, 100030 + 3600, True)    # silent hour = idle, not counted
-    assert eng.snapshot().run_time_s == 7.0 + 9.0 + 30
+    assert eng.snapshot().run_time_s == 7.0 + 9.0
 
 
 def test_split_delta_and_store(tmp_path):
@@ -354,3 +354,33 @@ def test_old_character_back_on_riverbank_keeps_run():
     f.feed(LevelUp, 600, "Old", "Monk", 5)
     s = eng.snapshot()
     assert s.running and s.step_index >= step and s.run_time_s > 550
+
+
+def test_manual_pause_stops_timer():
+    eng, f, clk = make()
+    f.zone("G1_1", 0, 1)
+    clk.t += 10
+    before = eng.snapshot().run_time_s
+    eng.toggle_pause()
+    assert eng.snapshot().paused
+    clk.t += 120                                  # paused for two minutes
+    f.zone("G1_town", 130)                        # a log event while paused (e.g. a chat line)
+    clk.t += 60
+    assert abs(eng.snapshot().run_time_s - before) < 1.0
+    eng.toggle_pause()
+    clk.t += 30
+    s = eng.snapshot()
+    assert not s.paused and abs(s.run_time_s - (before + 30)) < 1.0
+
+
+def test_focus_lost_pauses_timer():
+    from pilot.contracts import FocusChanged
+    eng, f, clk = make()
+    f.zone("G1_1", 0, 1)
+    f.feed(FocusChanged, 100, False)
+    t_lost = eng.snapshot().run_time_s
+    assert eng.snapshot().paused
+    f.feed(FocusChanged, 400, True)               # 5 minutes alt-tabbed
+    assert abs(eng.snapshot().run_time_s - t_lost) < 1.0
+    f.zone("G1_2", 460)
+    assert abs(eng.snapshot().run_time_s - (t_lost + 60)) <= 1.5

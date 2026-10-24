@@ -64,7 +64,8 @@ def main(argv: list[str] | None = None) -> int:
     route_path = Path(route_arg) if route_arg.endswith(".json") else DATA / "routes" / f"{route_arg}.json"
     route = load_route(route_path)
     detail = _load_plan(cfg, args.build)
-    engine = RunEngine(route, plan=detail.plan if detail else None, store=SplitStore())
+    engine = RunEngine(route, plan=detail.plan if detail else None, store=SplitStore(),
+                       pause_when_unfocused=cfg.get("pause_when_unfocused", True))
     cfg["details_provider"] = engine.details
     cfg["gem_provider"] = engine.gem_rows
 

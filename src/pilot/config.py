@@ -11,6 +11,7 @@ DEFAULTS: dict = {
     "build_code_file": None,               # text file with a PoB2 export code
     "hud": {"x": None, "y": 24, "scale": 1.0, "opacity": 1.0},
     "hide_when_unfocused": True,
+    "pause_when_unfocused": True,          # timer stops while the game window has no focus
     "hotkeys": {                           # names match overlay.hotkeys.DEFAULT_HOTKEYS
         "details": "alt+q",
         "next": "alt+]",
@@ -20,6 +21,7 @@ DEFAULTS: dict = {
         "hide": "alt+h",
         "gems": "alt+g",
         "tree": "alt+t",
+        "pause": "alt+p",
     },
 }
 

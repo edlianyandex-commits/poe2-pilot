@@ -28,6 +28,7 @@ DEFAULT_HOTKEYS = {
     "hide": "alt+h",
     "gems": "alt+g",
     "tree": "alt+t",
+    "pause": "alt+p",
 }
 
 _MODS = {

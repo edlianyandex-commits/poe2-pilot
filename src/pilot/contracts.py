@@ -178,6 +178,7 @@ class HudState:
     warn: str | None = None              # one persistent warning max, e.g. "Уровень < зоны −4"
     game_focused: bool = True
     running: bool = False
+    paused: bool = False                 # timer stopped: Alt+P, or the game window lost focus
     step_kind: str | None = None         # route kind of step_short ("boss", "wp", ...) -> icon
     next_kind: str | None = None
     progress: float = 0.0                # 0..1 through the whole route
@@ -189,6 +190,7 @@ class Actions(Protocol):
     def next_step(self) -> None: ...
     def prev_step(self) -> None: ...
     def reset_run(self) -> None: ...
+    def toggle_pause(self) -> None: ...
 
 
 class SnapshotSource(Protocol):
