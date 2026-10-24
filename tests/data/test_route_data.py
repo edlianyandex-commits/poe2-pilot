@@ -19,7 +19,7 @@ KIND_SYMBOLS = {
     "skip": "✕",
 }
 REQUIRED_STEP_KEYS = {"id", "act", "area", "short", "kind"}
-OPTIONAL_STEP_KEYS = {"detail", "split", "done_on", "reward"}
+OPTIONAL_STEP_KEYS = {"detail", "split", "done_on", "reward", "optional"}
 SHORT_MAX = 40
 DETAIL_MAX = 120
 REWARD_MAX = 32

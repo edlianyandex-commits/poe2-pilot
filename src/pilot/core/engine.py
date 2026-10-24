@@ -170,8 +170,8 @@ class RunEngine:
                 game_focused=self._focused and not self._closed,
                 running=self._running,
                 paused=self._running and self._paused(),
-                step_kind=cur.kind if cur else None,
-                next_kind=nxt.kind if nxt else None,
+                step_kind=cur.display_kind if cur else None,
+                next_kind=nxt.display_kind if nxt else None,
                 progress=min(i / total, 1.0) if total else 0.0,
                 split_marks=self._marks,
             )

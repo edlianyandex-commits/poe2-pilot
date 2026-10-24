@@ -9,7 +9,7 @@ KINDS = frozenset({"move", "wp", "boss", "quest", "town", "trial", "skip"})
 MAX_SHORT, MAX_DETAIL, MAX_REWARD = 40, 120, 32
 VALID_ACTS = frozenset({1, 2, 3, 4, 101, 102, 103})
 _ROUTE_KEYS = {"id", "patch", "title", "steps"}
-_STEP_KEYS = {"id", "act", "area", "short", "detail", "kind", "split", "done_on", "reward"}
+_STEP_KEYS = {"id", "act", "area", "short", "detail", "kind", "split", "done_on", "reward", "optional"}
 
 
 class RouteError(ValueError):
@@ -35,6 +35,12 @@ class Step:
     done_on_enter: str | None = None
     reward: str | None = None
     merged_ids: tuple[str, ...] = ()   # original step ids folded into this one (first == id)
+    optional: bool = False             # not needed to progress (optional bosses keep a dim icon)
+
+    @property
+    def display_kind(self) -> str:
+        """Kind for the HUD icon: an optional boss is "boss_opt", not a must-kill "boss"."""
+        return "boss_opt" if self.kind == "boss" and self.optional else self.kind
 
     @property
     def all_ids(self) -> tuple[str, ...]:
@@ -86,7 +92,8 @@ def parse_route(data: object, source: str = "<dict>") -> Route:
     return Route(rid, data.get("title", ""), merge_same_area(steps), data.get("patch", ""))
 
 
-_KIND_PRIORITY = {"boss": 6, "trial": 5, "quest": 4, "town": 3, "wp": 2, "move": 1, "skip": 0}
+# a must-kill boss leads its zone; an optional one only when nothing else happens there
+_KIND_PRIORITY = {"boss": 7, "trial": 6, "quest": 5, "town": 4, "wp": 3, "move": 2, "boss_opt": 1, "skip": 0}
 
 
 def merge_same_area(steps: list[Step]) -> tuple[Step, ...]:
@@ -107,7 +114,7 @@ def merge_same_area(steps: list[Step]) -> tuple[Step, ...]:
             g = group[0]
             out.append(replace(g, merged_ids=(g.id,)))
             continue
-        primary = max(group, key=lambda g: _KIND_PRIORITY[g.kind])  # max keeps the first on ties
+        primary = max(group, key=lambda g: _KIND_PRIORITY[g.display_kind])  # max keeps the first on ties
         others = [g.short for g in group if g is not primary]
         details = [g.detail for g in group if g.detail]
         detail = " · ".join(others)
@@ -120,7 +127,7 @@ def merge_same_area(steps: list[Step]) -> tuple[Step, ...]:
             short=primary.short, kind=primary.kind, detail=detail,
             split=any(g.split for g in group), done_on_enter=group[-1].done_on_enter,
             reward=next((g.reward for g in group if g.reward), None),
-            merged_ids=tuple(g.id for g in group),
+            merged_ids=tuple(g.id for g in group), optional=primary.optional,
         ))
     return tuple(out)
 
@@ -184,6 +191,9 @@ def _parse_step(raw: object, i: int, seen: set[str], errs: list[str]) -> Step | 
             if not isinstance(enter, str) or not enter:
                 errs.append(f"{where}: done_on.enter required non-empty string")
                 enter = None
+    optional = raw.get("optional", False)
+    if not isinstance(optional, bool):
+        errs.append(f"{where}: optional must be a boolean")
     if len(errs) > n0:
         return None
-    return Step(sid, act, area, short, kind, detail, split, enter, reward)
+    return Step(sid, act, area, short, kind, detail, split, enter, reward, optional=optional)

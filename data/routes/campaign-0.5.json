@@ -46,7 +46,8 @@
       "detail": "Опц. Без WP. Камень поддержки и 100 золота; Грельвуд доступен и без норы",
       "kind": "boss",
       "reward": "Uncut Support Gem",
-      "_source": "https://poe2db.tw/us/Act_1"
+      "_source": "https://poe2db.tw/us/Act_1",
+      "optional": true
     },
     {
       "id": "a1-006",
@@ -240,7 +241,8 @@
       "area": "G2_2",
       "short": "⚔ Balbala, the Traitor",
       "detail": "Опц. Открывает испытание Сехем",
-      "kind": "boss"
+      "kind": "boss",
+      "optional": true
     },
     {
       "id": "a2-007",

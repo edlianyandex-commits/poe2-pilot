@@ -11,7 +11,8 @@ YELLOW: RGB = (255, 216, 74)
 KIND_COLORS: dict[str, RGB] = {
     "move": (225, 225, 225),
     "wp": (96, 205, 255),
-    "boss": (255, 140, 90),
+    "boss": (255, 140, 90),        # must kill to progress
+    "boss_opt": (140, 140, 140),   # optional boss: same swords, greyed out
     "quest": (255, 216, 74),
     "town": (232, 200, 150),
     "trial": (236, 140, 226),

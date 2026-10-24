@@ -108,6 +108,7 @@ def _get() -> dict[str, list[Op]]:
     global _ICONS
     if _ICONS is None:
         _ICONS = _build()
+        _ICONS["boss_opt"] = _ICONS["boss"]     # optional boss: same swords, its own (grey) colour
     return _ICONS
 
 

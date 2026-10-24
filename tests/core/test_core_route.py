@@ -58,3 +58,15 @@ def test_bad_file(tmp_path):
 def test_empty_steps(tmp_path):
     with pytest.raises(RouteError):
         load_route(_write(tmp_path, []))
+
+
+def test_optional_boss_does_not_lead_its_zone():
+    from pilot.core.route import parse_route
+    r = parse_route({"id": "x", "title": "t", "steps": [
+        {"id": "a", "act": 1, "area": "G1_3", "short": "◆ WP", "kind": "wp"},
+        {"id": "b", "act": 1, "area": "G1_3", "short": "⚔ The Devourer", "kind": "boss", "optional": True},
+        {"id": "c", "act": 1, "area": "G1_4", "short": "⚔ Brambleghast", "kind": "boss"},
+        {"id": "d", "act": 1, "area": "G1_5", "short": "⚔ Optional only", "kind": "boss", "optional": True},
+    ]})
+    kinds = [s.display_kind for s in r.steps]
+    assert kinds == ["wp", "boss", "boss_opt"]       # wp leads G1_3; must-kill keeps "boss"

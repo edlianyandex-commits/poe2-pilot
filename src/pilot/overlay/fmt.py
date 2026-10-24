@@ -118,7 +118,7 @@ def step_parts(text: str | None, kind: str | None) -> tuple[str | None, str]:
     glyph, name = strip_glyph(text)
     if kind is None and glyph is not None:
         kind = GLYPH_KIND.get(glyph)
-    if kind == "boss":
+    if kind in ("boss", "boss_opt"):
         name = short_boss(name)
     return kind, name
 
