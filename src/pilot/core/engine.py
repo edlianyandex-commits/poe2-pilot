@@ -90,6 +90,7 @@ class RunEngine:
         self._armed = False
         self._finished_before = False
         self._tentative = False
+        self._pending_new: tuple | None = None   # (Riverbank AreaGenerated, game time then)
         n = len(route.steps)
         self._marks = tuple(k / n for k, st in enumerate(route.steps) if st.split) if n else ()
         self._reset_run_state()
@@ -258,6 +259,7 @@ class RunEngine:
     def _reset_run_state(self) -> None:
         self._running = False
         self._finished = False
+        self._pending_new = None
         self._step = 0
         self._elapsed = 0.0
         self._started_iso = ""
@@ -336,6 +338,18 @@ class RunEngine:
             if ev.level > 2:                      # not a fresh character: there was no run
                 self._reset_run_state()
                 self._toasts.clear()
+        if self._pending_new is not None:
+            entry_ev, entry_elapsed = self._pending_new
+            self._pending_new = None
+            if ev.level <= 2 and self._running:   # a new character took over mid-run
+                since = max(0.0, self._elapsed - entry_elapsed)
+                area, level = self._area_id, self._area_level
+                self._start_run(entry_ev)
+                self._elapsed = since             # the new run's clock starts at its Riverbank
+                if area and area != START_AREA:
+                    self._area_id, self._area_level = area, level
+                    self._enter_zone(area)
+                    self._on_zone_in_run(area)
         self._char_name, self._char_level = ev.character, ev.level
         hint = self.plan.hint_for(ev.level) if self.plan else None
         if hint is None:
@@ -404,6 +418,10 @@ class RunEngine:
             sure = self._armed or self._finished_before or self._char_level in (None, 1)
             self._start_run(ev)
             self._tentative = not sure
+        elif z == START_AREA and self._step > 1 and self._pending_new is None:
+            # Riverbank deep into a run: maybe a new character; the next LevelUp decides
+            self._pending_new = (ev, self._elapsed)
+            self._toast("Новый персонаж? Забег — с ур. 2", "zone", 8.0)
         self._enter_zone(z)
         if is_hideout(z):
             return

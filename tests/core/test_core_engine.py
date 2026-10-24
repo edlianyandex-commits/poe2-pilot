@@ -325,3 +325,32 @@ def test_old_character_revisiting_riverbank_cancels_tentative_run():
     f.feed(LevelUp, 100, "Old", "Monk", 8)
     s = eng.snapshot()
     assert not s.running and s.char_level == 8
+
+
+def test_new_character_mid_run_restarts_from_its_riverbank():
+    """Old run deep in Act 1; a new character enters Riverbank; its first level-up switches runs."""
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.feed(LevelUp, 60, "Old", "Monk", 4)
+    for i, z in enumerate(("G1_town", "G1_2", "G1_3", "G1_4")):
+        f.zone(z, 100 + i * 100)
+    assert eng.snapshot().step_index > 1
+    f.zone("G1_1", 1000, 1)                      # new character spawns on Riverbank
+    assert eng.snapshot().step_index > 1         # undecided: old run still shown
+    f.feed(LevelUp, 1150, "New", "Monk", 2)
+    s = eng.snapshot()
+    assert s.running and s.step_index == 0 and s.char_level == 2
+    assert 140 <= s.run_time_s <= 160            # counted from the new Riverbank
+
+
+def test_old_character_back_on_riverbank_keeps_run():
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.feed(LevelUp, 60, "Old", "Monk", 4)
+    for i, z in enumerate(("G1_town", "G1_2", "G1_3")):
+        f.zone(z, 100 + i * 100)
+    step = eng.snapshot().step_index
+    f.zone("G1_1", 500, 1)
+    f.feed(LevelUp, 600, "Old", "Monk", 5)
+    s = eng.snapshot()
+    assert s.running and s.step_index >= step and s.run_time_s > 550
