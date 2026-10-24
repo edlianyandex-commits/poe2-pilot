@@ -65,7 +65,9 @@ def test_start_requires_level_1():
     eng, f, _ = make()
     f.feed(LevelUp, 0, "X", "Mage", 7)
     f.zone("G1_1", 5)
-    assert not eng.snapshot().running
+    assert eng.snapshot().running                 # tentative: may be a new character
+    f.feed(LevelUp, 50, "X", "Mage", 8)
+    assert not eng.snapshot().running             # it wasn't
     eng2, f2, _ = make()
     f2.zone("G1_1", 5, level=1, name="Берег")
     s = eng2.snapshot()
@@ -302,3 +304,24 @@ def test_zone_hints_on_first_visit_only():
     f.zone("G1_1", 20)
     f.zone("G1_2", 30)
     assert "Renly: Twister" not in [t.text for t in eng.snapshot().toasts]
+
+
+def test_new_character_while_running_starts_run():
+    """App open while switching characters: old char was level 7, the new one enters Riverbank."""
+    eng, f, _ = make()
+    f.feed(LevelUp, 0, "Old", "Monk", 7)
+    f.zone("G1_1", 10, 1)                       # new character, no LevelUp yet
+    assert eng.snapshot().running and eng.snapshot().char_level == 1
+    f.feed(LevelUp, 100, "New", "Monk", 2)      # confirms the run
+    f.zone("G1_town", 200)
+    s = eng.snapshot()
+    assert s.running and s.char_level == 2 and s.run_time_s > 0
+
+
+def test_old_character_revisiting_riverbank_cancels_tentative_run():
+    eng, f, _ = make()
+    f.feed(LevelUp, 0, "Old", "Monk", 7)
+    f.zone("G1_1", 10, 1)
+    f.feed(LevelUp, 100, "Old", "Monk", 8)
+    s = eng.snapshot()
+    assert not s.running and s.char_level == 8

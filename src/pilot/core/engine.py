@@ -89,6 +89,7 @@ class RunEngine:
         # run
         self._armed = False
         self._finished_before = False
+        self._tentative = False
         n = len(route.steps)
         self._marks = tuple(k / n for k, st in enumerate(route.steps) if st.split) if n else ()
         self._reset_run_state()
@@ -330,6 +331,11 @@ class RunEngine:
     # ---- event handlers ----
 
     def _on_level(self, ev: LevelUp) -> None:
+        if self._running and self._tentative:
+            self._tentative = False
+            if ev.level > 2:                      # not a fresh character: there was no run
+                self._reset_run_state()
+                self._toasts.clear()
         self._char_name, self._char_level = ev.character, ev.level
         hint = self.plan.hint_for(ev.level) if self.plan else None
         if hint is None:
@@ -390,11 +396,14 @@ class RunEngine:
         self._area_name = ""
         self._awaiting_scene = True
         if not self._running:
-            if z == START_AREA and (self._armed or self._finished_before
-                                    or self._char_level in (None, 1)):
-                self._start_run(ev)
-            else:
+            if z != START_AREA:
                 return
+            # a new character may be created while the app runs: the level we remember then
+            # belongs to the previous character. Start anyway, but only tentatively; the next
+            # LevelUp confirms (level <= 2) or cancels (an old character revisiting Riverbank).
+            sure = self._armed or self._finished_before or self._char_level in (None, 1)
+            self._start_run(ev)
+            self._tentative = not sure
         self._enter_zone(z)
         if is_hideout(z):
             return
@@ -405,6 +414,8 @@ class RunEngine:
         self._allocated = set()
         self._running = True
         self._armed = False
+        self._tentative = False
+        self._char_level = 1                      # a run always starts with a level-1 character
         self._started_iso = ev.ts.isoformat(timespec="seconds")
         self._seg_mark = 0.0
         self._toast("Ран начат", "zone")
