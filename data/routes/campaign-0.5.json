@@ -300,9 +300,9 @@
       "act": 2,
       "area": "G2_4_1",
       "short": "✕ Kabala, Constrictor Queen",
-      "detail": "Опц.: 2 очка оружейного сета",
+      "detail": "Опц.: Kabala, Constrictor Queen → 2 очка оружейного сета",
       "kind": "skip",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Keth"
     },
     {
       "id": "a2-015",
@@ -430,19 +430,20 @@
     {
       "id": "a2-030",
       "act": 2,
-      "area": "G2_12_1",
+      "area": "G2_12_2",
       "short": "⚔ Jamanra, the Abomination",
-      "detail": "Обязательный. Финал Акта 2",
-      "kind": "boss"
+      "detail": "Обязательный. Финал Акта 2; бой в конце Авангарда Дредноута",
+      "kind": "boss",
+      "_source": "https://www.gamerguides.com/path-of-exile-2/guide/campaign/act-2/the-trail-of-corruption-jamanra-the-abomination-boss-guide"
     },
     {
       "id": "a2-031",
       "act": 2,
-      "area": "G2_12_2",
-      "short": "→ Авангард Дредноута",
-      "detail": "Конец Акта 2",
-      "kind": "move",
-      "_unverified": true
+      "area": "G2_town",
+      "short": "⌂ Караван Ардура → Акт 3",
+      "detail": "После Jamanra вернуться в лагерь, выбрать переход в Занесённое песком болото",
+      "kind": "town",
+      "_source": "https://poe2db.tw/us/Act_2"
     },
     {
       "id": "a3-001",
@@ -482,9 +483,9 @@
       "act": 3,
       "area": "G3_7",
       "short": "✕ Болото Азак",
-      "detail": "Опц.: Ignagduk",
+      "detail": "Опц. (квест): Ignagduk, the Bog Witch → +30 Spirit навсегда",
       "kind": "skip",
-      "_unverified": true
+      "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
     {
       "id": "a3-006",
@@ -539,9 +540,9 @@
       "act": 3,
       "area": "G3_4",
       "short": "✕ Ядовитые крипты",
-      "detail": "Опц.: Corpse-snake Venom",
+      "detail": "Опц. (вход у WP Развалин): Corpse-snake Venom → Servi, постоянный бафф",
       "kind": "skip",
-      "_unverified": true
+      "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
     {
       "id": "a3-013",
@@ -564,9 +565,9 @@
       "act": 3,
       "area": "G3_9",
       "short": "✕ Расплавленные залы",
-      "detail": "Опц.: Mektul",
+      "detail": "Опц. (квест): Mektul, the Forgemaster → открывает Reforging Bench",
       "kind": "skip",
-      "_unverified": true
+      "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
     {
       "id": "a3-016",
@@ -597,9 +598,9 @@
       "act": 3,
       "area": "G3_12",
       "short": "⚔ Ketzuli, High Priest of the Sun",
-      "detail": "Обязательный (по данным)",
+      "detail": "Обязателен для сюжета; вход в храм — идол с Queen of Filth. Без WP",
       "kind": "boss",
-      "_unverified": true
+      "_source": "https://www.gamerguides.com/path-of-exile-2/guide/campaign/act-3/legacy-of-the-vaal-ketzuli-high-priest-of-the-sun-guide"
     },
     {
       "id": "a3-020",
@@ -608,6 +609,15 @@
       "short": "◆ Утцааль",
       "detail": "WP",
       "kind": "wp"
+    },
+    {
+      "id": "a3-020a",
+      "act": 3,
+      "area": "G3_14",
+      "short": "⚔ Viper Napuatzi",
+      "detail": "Босс Утцааля",
+      "kind": "boss",
+      "_source": "https://poe2db.tw/us/Act_3"
     },
     {
       "id": "a3-021",
@@ -703,9 +713,9 @@
       "act": 4,
       "area": "G4_3_1",
       "short": "✕ Great White One (опц.)",
-      "detail": "Shark Fin",
+      "detail": "Опц.: Shark Fin → Kaimana (бонус на выбор). Зона — проход к Поющим пещерам",
       "kind": "skip",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Act_4"
     },
     {
       "id": "a4-007",
@@ -888,10 +898,10 @@
       "act": 101,
       "area": "P1_Town",
       "short": "⌂ Пристанище",
-      "detail": "Старт интерлюдии 1",
+      "detail": "Старт интерлюдии 1; затем выход в Выжженные фермерские земли",
       "kind": "town",
       "split": true,
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-002",
@@ -899,7 +909,18 @@
       "area": "P1_1",
       "short": "→ Выжженные фермерские земли",
       "kind": "move",
-      "_unverified": true
+      "detail": "WP в зоне",
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
+    },
+    {
+      "id": "p1-002a",
+      "act": 101,
+      "area": "P1_1",
+      "short": "✕ Isolde и Heldra (опц.?)",
+      "detail": "Isolde of the White Shroud, Heldra of the Black Pyre; на востоке зоны",
+      "kind": "skip",
+      "_unverified": true,
+      "_note": "poe2db: обязат. для прохода; guide domistae: опц."
     },
     {
       "id": "p1-003",
@@ -908,7 +929,16 @@
       "short": "◆ Камни Серли",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
+    },
+    {
+      "id": "p1-003a",
+      "act": 101,
+      "area": "P1_2",
+      "short": "⚔ Siora, Blade of the Mists",
+      "detail": "Сначала 6 мегалитов по краю зоны, затем бой в центре круга",
+      "kind": "boss",
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-004",
@@ -916,7 +946,8 @@
       "area": "P1_3",
       "short": "→ Чернолесье",
       "kind": "move",
-      "_unverified": true
+      "detail": "WP в зоне. Тьма на входе снимается мегалитами Серли",
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-005",
@@ -925,16 +956,26 @@
       "short": "◆ Холтен",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-006",
       "act": 101,
       "area": "P1_4",
-      "short": "⚔ Sigbert, Godwin",
-      "detail": "Обязательность не проверена",
-      "kind": "boss",
-      "_unverified": true
+      "short": "✕ Sigbert и Godwin (опц.?)",
+      "detail": "Sigbert of the Sullied Oath, Godwin of the Shattered Creed: Armourer's Scrap и лут",
+      "kind": "skip",
+      "_unverified": true,
+      "_note": "poe2db: опц. (Psalm of Blood); guide domistae: обязат."
+    },
+    {
+      "id": "p1-010",
+      "act": 101,
+      "area": "P1_5",
+      "short": "✕ Oswin, the Dread Warden (опц.)",
+      "detail": "Вольфенхолд (WP). Опц.: Warden's Ledger → 2 очка оружейного сета",
+      "kind": "skip",
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-007",
@@ -943,34 +984,16 @@
       "short": "◆ Поместье Холтен",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p1-008",
       "act": 101,
       "area": "P1_6",
       "short": "⚔ Thane Wulfric, Lady Elswyth",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязательны (финал): во двор Поместья — через боковой вход",
       "kind": "boss",
-      "_unverified": true
-    },
-    {
-      "id": "p1-009",
-      "act": 101,
-      "area": "P1_5",
-      "short": "◆ Вольфенхолд",
-      "detail": "WP",
-      "kind": "wp",
-      "_unverified": true
-    },
-    {
-      "id": "p1-010",
-      "act": 101,
-      "area": "P1_5",
-      "short": "⚔ Oswin, the Dread Warden",
-      "detail": "Обязательность не проверена",
-      "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
       "id": "p2-001",
@@ -980,7 +1003,7 @@
       "detail": "Старт интерлюдии 2",
       "kind": "town",
       "split": true,
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-002",
@@ -989,25 +1012,25 @@
       "short": "→ Кхарийский перевал",
       "detail": "Без WP",
       "kind": "move",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
+    },
+    {
+      "id": "p2-002a",
+      "act": 102,
+      "area": "P2_1",
+      "short": "⚔ Akthi и Anundr",
+      "detail": "Akthi, the Final Sting + Anundr, the Sandworm. Обязательны; арена с чекпойнтом",
+      "kind": "boss",
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-003",
       "act": 102,
       "area": "P2_5",
       "short": "◆ Ворота Галаи",
-      "detail": "WP",
+      "detail": "Взять WP сразу; босс Vornas — после Храма Селхари",
       "kind": "wp",
-      "_unverified": true
-    },
-    {
-      "id": "p2-004",
-      "act": 102,
-      "area": "P2_5",
-      "short": "⚔ Vornas, the Fell Flame",
-      "detail": "Обязательность не проверена",
-      "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-005",
@@ -1016,7 +1039,7 @@
       "short": "◆ Воды Хаталя",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-006",
@@ -1025,16 +1048,25 @@
       "short": "◆ Храм Селхари",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-007",
       "act": 102,
       "area": "P2_3",
       "short": "⚔ Elzarah, the Cobra Lord",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязателен; после него поговорить с Sekhema Asala",
       "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
+    },
+    {
+      "id": "p2-004",
+      "act": 102,
+      "area": "P2_5",
+      "short": "⚔ Vornas, the Fell Flame",
+      "detail": "Обязателен: охраняет проход в Кима",
+      "kind": "boss",
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-008",
@@ -1043,7 +1075,7 @@
       "short": "◆ Кима",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-009",
@@ -1052,16 +1084,16 @@
       "short": "◆ Водохранилище Кима",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p2-010",
       "act": 102,
       "area": "P2_7",
       "short": "⚔ Azmadi, the Faridun Prince",
-      "detail": "Обязательность не проверена",
+      "detail": "Финал: Grand Barya, Jado и Asala, затем в город к Hooded One",
       "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
     {
       "id": "p3-001",
@@ -1071,7 +1103,7 @@
       "detail": "Старт интерлюдии 3",
       "kind": "town",
       "split": true,
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-002",
@@ -1080,7 +1112,7 @@
       "short": "→ Пепельный лес",
       "detail": "Без WP",
       "kind": "move",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-003",
@@ -1089,16 +1121,17 @@
       "short": "◆ Деревня Криар",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-004",
       "act": 103,
       "area": "P3_2",
       "short": "⚔ Lythara, the Wayward Spear",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязательна. Damage check: убить быстро, пока её не усилили wisps",
       "kind": "boss",
-      "_unverified": true
+      "reward": "+40 Spirit, Uncut Spirit Gem",
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-005",
@@ -1107,34 +1140,25 @@
       "short": "◆ Ледниковое озеро",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-006",
       "act": 103,
       "area": "P3_3",
       "short": "⚔ Rakkar, the Frozen Talon",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязателен: охраняет проход в Пики Криар",
       "kind": "boss",
-      "_unverified": true
-    },
-    {
-      "id": "p3-007",
-      "act": 103,
-      "area": "P3_4",
-      "short": "◆ Воющие пещеры",
-      "detail": "WP",
-      "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-008",
       "act": 103,
       "area": "P3_4",
-      "short": "⚔ The Abominable Yeti",
-      "detail": "Обязательность не проверена",
-      "kind": "boss",
-      "_unverified": true
+      "short": "✕ The Abominable Yeti (опц.)",
+      "detail": "Воющие пещеры. Опц.: Icy Tusks → Hilda в Опушке, 2 очка оружейного сета",
+      "kind": "skip",
+      "_source": "https://poe2db.tw/us/Howling_Winds"
     },
     {
       "id": "p3-009",
@@ -1143,7 +1167,7 @@
       "short": "◆ Пики Криар",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-010",
@@ -1152,16 +1176,16 @@
       "short": "◆ Высеченное ущелье",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-011",
       "act": 103,
       "area": "P3_6",
       "short": "⚔ Stormgore, the Guardian",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязателен: открывает путь в Убежище Куачик",
       "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-012",
@@ -1170,16 +1194,16 @@
       "short": "◆ Убежище Куачик",
       "detail": "WP",
       "kind": "wp",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "p3-013",
       "act": 103,
       "area": "P3_7",
       "short": "⚔ Zolin & Zelina",
-      "detail": "Обязательность не проверена",
+      "detail": "Обязательны (финал). Потом: Doryani, Кингсмарш к Hooded One, Ориат",
       "kind": "boss",
-      "_unverified": true
+      "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
     {
       "id": "end-001",
