@@ -28,6 +28,17 @@ def _load_plan(cfg: dict, build_arg: str | None):
     return build_plan_detail(p if p.exists() else src)
 
 
+def _setup_logging() -> None:
+    """Console + %APPDATA%/poe2-pilot/pilot.log (overwritten each start), for in-game test reports."""
+    import logging
+    from pilot.config import config_dir
+    config_dir().mkdir(parents=True, exist_ok=True)
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        handlers=[logging.StreamHandler(),
+                  logging.FileHandler(config_dir() / "pilot.log", mode="w", encoding="utf-8")])
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="poe2-pilot")
     ap.add_argument("--route", help="route id in data/routes or path to a .json")
@@ -47,6 +58,7 @@ def main(argv: list[str] | None = None) -> int:
 
     cfg = load_config()
     cfg["on_save"] = save_config
+    _setup_logging()
 
     route_arg = args.route or cfg["route"]
     route_path = Path(route_arg) if route_arg.endswith(".json") else DATA / "routes" / f"{route_arg}.json"

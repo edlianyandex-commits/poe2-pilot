@@ -338,6 +338,7 @@ class RunEngine:
             if ev.level > 2:                      # not a fresh character: there was no run
                 self._reset_run_state()
                 self._toasts.clear()
+                log.info("tentative run cancelled: %s is level %s", ev.character, ev.level)
         if self._pending_new is not None:
             entry_ev, entry_elapsed = self._pending_new
             self._pending_new = None
@@ -346,6 +347,7 @@ class RunEngine:
                 area, level = self._area_id, self._area_level
                 self._start_run(entry_ev)
                 self._elapsed = since             # the new run's clock starts at its Riverbank
+                log.info("new character %s: run restarted from Riverbank at %s", ev.character, entry_ev.ts)
                 if area and area != START_AREA:
                     self._area_id, self._area_level = area, level
                     self._enter_zone(area)
@@ -418,10 +420,12 @@ class RunEngine:
             sure = self._armed or self._finished_before or self._char_level in (None, 1)
             self._start_run(ev)
             self._tentative = not sure
+            log.info("run started at %s%s", ev.ts, "" if sure else " (tentative: last level %s)" % self._char_level)
         elif z == START_AREA and self._step > 1 and self._pending_new is None:
             # Riverbank deep into a run: maybe a new character; the next LevelUp decides
             self._pending_new = (ev, self._elapsed)
             self._toast("Новый персонаж? Забег — с ур. 2", "zone", 8.0)
+            log.info("Riverbank at %s during a run: waiting for level-up to decide", ev.ts)
         self._enter_zone(z)
         if is_hideout(z):
             return

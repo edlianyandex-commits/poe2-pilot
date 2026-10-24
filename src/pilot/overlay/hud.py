@@ -222,7 +222,14 @@ class HudWindow(QWidget):
         return winapi.is_game_foreground(fg, self.config.get("game_exes") or winapi.GAME_EXES)
 
     def refresh_visibility(self, fg=None) -> None:
+        if fg is None and self.config.get("hide_when_unfocused", True):
+            fg = winapi.foreground_info()
         want = self.should_be_visible(fg)
+        if want != self.isVisible():
+            # one line per change: tells "hidden by Alt+H" from "another window took the front"
+            reason = ("edit mode" if self._edit else "Alt+H" if self._user_hidden
+                      else f"foreground={getattr(fg, 'exe', None)}")
+            log.info("HUD %s (%s)", "shown" if want else "hidden", reason)
         if want and not self.isVisible():
             self.show()
             self._apply_native()
