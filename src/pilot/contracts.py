@@ -81,6 +81,7 @@ class LevelHint:
     passives: tuple[str, ...] = ()      # display names of nodes to allocate now
     gems: tuple[str, ...] = ()          # "+ Ледяная стрела", "Support: X -> Y"
     note: str | None = None             # e.g. "Сменить скилл"
+    gear: tuple[str, ...] = ()          # "Надеть Skysliver", "Новое копьё"
 
 
 @dataclass
@@ -91,9 +92,16 @@ class LevelPlan:
     planned_node_ids: tuple[str, ...] = ()   # allocation order, used to flag deviations
     ascendancy: dict[str, LevelHint] = field(default_factory=dict)   # trial area id -> nodes to take
     warnings: tuple[str, ...] = ()           # planner diagnostics, never shown on the HUD
+    # full gem setup from this level on: level -> ("Twister: Salvo, Retreat II", ...), each <= 40
+    setups: dict[int, tuple[str, ...]] = field(default_factory=dict)
 
     def hint_for(self, level: int) -> LevelHint | None:
         return self.hints.get(level)
+
+    def setup_for(self, level: int) -> tuple[str, ...]:
+        """Gem setup that should be socketed at `level` (latest entry at or below it)."""
+        best = max((lv for lv in self.setups if lv <= level), default=None)
+        return self.setups[best] if best is not None else ()
 
 
 # ---------- what the overlay renders (core/engine.py -> overlay/) ----------
@@ -101,7 +109,7 @@ class LevelPlan:
 @dataclass(frozen=True)
 class Toast:
     text: str            # <= 40 chars
-    kind: str            # "level" | "zone" | "split" | "warn"
+    kind: str            # "level" | "zone" | "split" | "warn" | "gear"
     ttl_s: float = 3.0
 
 
@@ -121,6 +129,10 @@ class HudState:
     warn: str | None = None              # one persistent warning max, e.g. "Уровень < зоны −4"
     game_focused: bool = True
     running: bool = False
+    step_kind: str | None = None         # route kind of step_short ("boss", "wp", ...) -> icon
+    next_kind: str | None = None
+    progress: float = 0.0                # 0..1 through the whole route
+    split_marks: tuple[float, ...] = ()  # progress positions of split steps, ascending
 
 
 class Actions(Protocol):
