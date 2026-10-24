@@ -18,8 +18,8 @@ def _load_plan(cfg: dict, build_arg: str | None):
         return None
     from pilot.planner import build_plan
     p = Path(src)
-    code = p.read_text(encoding="utf-8").strip() if p.exists() else src
-    return build_plan(code)
+    # a file path lets the planner pick up the X.gear.json sidecar next to X.pob
+    return build_plan(p if p.exists() else src)
 
 
 def main(argv: list[str] | None = None) -> int:

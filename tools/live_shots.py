@@ -25,7 +25,7 @@ from pilot.planner import build_plan  # noqa: E402
 from tests.overlay.test_screens import _shot  # noqa: E402
 
 build = Path(sys.argv[1] if len(sys.argv) > 1 else ROOT / "tests/planner/fixtures/amazon_leveling_0_5.pob")
-plan = build_plan(build.read_text(encoding="utf-8").strip())
+plan = build_plan(build)   # path, so the X.gear.json sidecar is picked up
 engine = RunEngine(load_route(ROOT / "data/routes/campaign-0.5.json"), plan=plan,
                    store=SplitStore(Path(tempfile.mkdtemp())), clock=lambda: 0.0)
 app = QApplication.instance() or QApplication([])

@@ -1,0 +1,13 @@
+{
+  "_source": "https://mobalytics.gg/poe-2/builds/whirling-slash-twister-blast-through-the-campaign",
+  "_note": "Gear timeline from Travic's speed campaign guide (0.5.5), paraphrased. Strings <= 32 chars.",
+  "gear": {
+    "1": ["Tabula Rasa + 6 изумрудов", "Редкое копьё", "Whirling Slash не качать"],
+    "10": ["Новое копьё (макс. DPS)"],
+    "16": ["Надеть Wake of Destruction", "Надеть Skysliver (сет 1)", "Новое копьё (макс. DPS)"],
+    "26": ["Новое копьё (макс. DPS)"],
+    "36": ["Новое копьё (макс. DPS)"],
+    "46": ["Новое копьё (макс. DPS)"],
+    "50": ["Кольца с уроном к атакам"]
+  }
+}

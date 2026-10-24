@@ -201,3 +201,71 @@ def test_level_warning():
     f.zone("G1_5", 30, level=14)
     assert eng.snapshot().warn is not None
     assert len(eng.snapshot().warn) <= 40
+
+
+def test_progress_kinds_and_marks():
+    eng, f, _ = make()
+    s = eng.snapshot()
+    assert s.progress == 0.0 and s.step_kind == "move" and s.next_kind == "move"
+    assert s.split_marks == (0.0, 0.6, 0.8)         # steps a, d, e of 5
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_2", 10)
+    s = eng.snapshot()
+    assert s.progress == 0.2 and s.step_index == 1
+    f.zone("G_Endgame_Town", 100, 65)
+    s = eng.snapshot()
+    assert s.progress == 1.0 and s.step_kind is None and s.next_kind is None
+
+
+def test_gear_toast_and_max_three_toasts():
+    plan = LevelPlan("p", "W", {5: LevelHint(5, passives=("A",), gems=("G",), note="N",
+                                             gear=("Надеть Skysliver", "Новое копьё"))})
+    eng, f, _ = make(plan=plan)
+    f.feed(LevelUp, 0, "X", "W", 5)
+    toasts = eng.snapshot().toasts
+    assert len(toasts) == 3
+    assert (toasts[-1].kind, toasts[-1].ttl_s, toasts[-1].text) == ("gear", 5.0, "Надеть Skysliver · Новое копьё")
+    assert [t.kind for t in toasts[:2]] == ["level", "level"]
+
+
+def test_details_with_setups():
+    plan = LevelPlan("p", "W", setups={1: ("Twister: A",), 10: tuple(f"L{k}" for k in range(6))})
+    steps = (Step("s0", 1, "G1_1", "→ s0", "move", detail="d0", reward="R"),
+             *(Step(f"s{k}", 1, f"G1_{k + 1}", f"→ s{k}", "move") for k in range(1, 6)))
+    eng = RunEngine(Route("w", "w", steps), plan)
+    eng.feed(LevelUp(T0, "X", "W", 3))
+    assert eng.details() == ["d0", "Награда: R", "Twister: A", "→ s1", "→ s2", "→ s3"]
+    eng.feed(LevelUp(T0, "X", "W", 12))
+    d = eng.details()
+    assert d == ["d0", "Награда: R", "L0", "L1", "L2", "→ s1", "→ s2", "→ s3"] and len(d) <= 10
+
+
+def test_level1_hint_at_run_start_and_gear_in_details():
+    gear = ("Tabula Rasa", "Редкое копьё", "Whirling Slash ур. 1")
+    plan = LevelPlan("p", "W", hints={1: LevelHint(1, gems=("+ Twister",), gear=gear),
+                                      16: LevelHint(16, gear=("Надеть Skysliver",))},
+                     setups={1: ("Twister",)})
+    eng, f, _ = make(plan=plan)
+    f.zone("G1_1", 0, 1)                      # run starts at level 1: no LevelUp line exists
+    texts = [t.text for t in eng.snapshot().toasts]
+    assert "+ Twister" in texts
+    assert "Tabula Rasa · +2 (Alt+Q)" in texts            # >2 items: first + count
+    assert eng.details()[:3] == ["Tabula Rasa", "Редкое копьё", "Twister"]
+    f.feed(LevelUp, 10, "X", "W", 16)
+    assert "Надеть Skysliver" in [t.text for t in eng.snapshot().toasts]
+    assert eng.details()[0] == "Надеть Skysliver"
+
+
+def test_segments_accounting():
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_town", 100)
+    f.feed(LoadingScreen, 130, "T", 5.0)
+    f.feed(Death, 150, "X")
+    f.zone("G1_1", 200, 1)
+    rec = eng.current_record()
+    segs = {s["area_id"]: s for s in rec.segments}
+    assert segs["G1_1"]["visits"] == 2 and segs["G1_town"]["is_town"]
+    assert segs["G1_town"]["loading_s"] == 5.0 and segs["G1_town"]["deaths"] == 1
+    assert abs(segs["G1_town"]["seconds"] - 95.0) < 1e-9
+    assert abs(sum(s["seconds"] for s in rec.segments) - rec.total_s) < 1e-9

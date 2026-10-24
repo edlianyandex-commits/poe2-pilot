@@ -43,15 +43,31 @@ class ToastStack:
         if toast.ttl_s <= 0 or not toast.text:
             return
         self._entries.append(_Entry(toast, now))
-        # entries beyond the stack limit can never be shown again (only newest N are)
-        if len(self._entries) > self.max_visible:
-            del self._entries[: len(self._entries) - self.max_visible]
+        # entries outside the limit can never be shown again, drop them now
+        keep = self._select(self._entries)
+        self._entries = [e for e in self._entries if e in keep]
+
+    def _select(self, entries: list[_Entry]) -> list[_Entry]:
+        """Newest-first pick: at most `max_visible` ordinary toasts, plus one extra slot
+        that only a "gear" toast may use (it often arrives together with a level-up)."""
+        picked: list[_Entry] = []
+        plain = 0
+        for e in reversed(entries):
+            if e.toast.kind != "gear":
+                if plain >= self.max_visible:
+                    continue
+                plain += 1
+            if len(picked) >= self.max_visible + 1:
+                break
+            picked.append(e)
+        picked.reverse()
+        return picked
 
     def visible(self, now: float) -> list[tuple[Toast, float]]:
         """[(toast, alpha 0..1)], oldest first (top to bottom)."""
         self._entries = [e for e in self._entries if now < e.end]
         out = []
-        for e in self._entries[-self.max_visible:]:
+        for e in self._select(self._entries):
             a_in = (now - e.start) / self.fade_s if self.fade_s > 0 else 1.0
             a_out = (e.end - now) / self.fade_s if self.fade_s > 0 else 1.0
             alpha = max(0.0, min(1.0, a_in, a_out))

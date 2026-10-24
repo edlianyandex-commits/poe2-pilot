@@ -1,7 +1,9 @@
 """PobBuild -> LevelPlan: passive points per level, ascendancy at trials, gem unlocks."""
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from pilot.contracts import LevelHint, LevelPlan
 
@@ -105,62 +107,123 @@ class GemEvent:
     is_main: bool = field(default=False, compare=False)
 
 
-def plan_gems(build: PobBuild, warnings: list[str]) -> tuple[list[GemEvent], str | None]:
+@dataclass
+class GroupPlan:
+    """One socketed skill group: its lead skill and when each support can join it."""
+    lead: GemInfo
+    lead_level: int
+    is_main: bool
+    prio: int
+    actives: list[tuple[int, GemInfo]]          # (earliest level, gem), PoB order
+    supports: list[tuple[int, GemInfo]]         # (level it can be socketed, gem), PoB order
+
+
+def plan_groups(build: PobBuild, warnings: list[str]) -> list[GroupPlan]:
+    """Main group first; groups without an obtainable active skill are dropped."""
     groups: list[SkillGroup] = [g for g in build.skill_groups if g.enabled and not g.source and g.gems]
     main = build.main_group
     if main is None or main not in groups:
         main = groups[0] if groups else None
     ordered = ([main] if main else []) + [g for g in groups if g is not main]
-    events: list[GemEvent] = []
-    seen_skill: set[str] = set()
-    seen_pair: set[tuple[str, str]] = set()
-    main_name = None
-    seq = 0
+    out: list[GroupPlan] = []
+    have_main = False
     for grp in ordered:
         infos = [(g, gem_info(g)) for g in grp.gems if g.enabled]
         for g, inf in infos:
             if not inf.known:
                 warnings.append(f"gem not in data: {g.name}")
         actives = [inf for _, inf in infos if inf.kind != "support"]
-        supports = [inf for _, inf in infos if inf.kind == "support"]
         if not actives:
             continue
-        # the group's leading active (first obtainable one) is what supports are linked to
-        act_levels = [(earliest_level(a), i, a) for i, a in enumerate(actives)]
-        obtainable = [x for x in act_levels if x[0] is not None]
+        obtainable = [(earliest_level(a), i, a) for i, a in enumerate(actives)]
+        obtainable = [x for x in obtainable if x[0] is not None]
         if not obtainable:
             continue
+        # the group's leading active is what supports are linked to
         lead_lvl, _, lead = min(obtainable, key=lambda x: (x[1] if grp is main else 0, x[0], x[1]))
-        is_main = main_name is None and lead.kind == "skill"  # main group, or first usable fallback
-        if is_main:
-            main_name = lead.name
-        prio_base = 0 if is_main else (2 if lead.kind == "spirit" else 4)
-        for lvl, _, a in obtainable:
+        is_main = not have_main and lead.kind == "skill"  # main group, or first usable fallback
+        have_main |= is_main
+        sup_infos = [inf for _, inf in infos if inf.kind == "support"]
+        sup = [(earliest_level(x), i, x) for i, x in enumerate(sup_infos)]
+        sup = [x for x in sup if x[0] is not None]       # lineage / unique-only supports dropped
+        by_avail = sorted(sup, key=lambda x: (x[0], x[1]))
+        when = {i: max(lv, lead_lvl, support_slot_level(k))
+                for k, (lv, i, _) in enumerate(by_avail, 1)}
+        out.append(GroupPlan(
+            lead=lead, lead_level=lead_lvl, is_main=is_main,
+            prio=0 if is_main else (2 if lead.kind == "spirit" else 4),
+            actives=[(lv, a) for lv, _, a in obtainable],
+            supports=[(when[i], x) for _, i, x in sup]))
+    return out
+
+
+def plan_gems(build: PobBuild, warnings: list[str],
+              groups: list[GroupPlan] | None = None) -> tuple[list[GemEvent], str | None]:
+    groups = plan_groups(build, warnings) if groups is None else groups
+    events: list[GemEvent] = []
+    seen_skill: set[str] = set()
+    seen_pair: set[tuple[str, str]] = set()
+    main_name = next((g.lead.name for g in groups if g.is_main), None)
+    seq = 0
+    for gp in groups:
+        for lvl, a in gp.actives:
             if a.name in seen_skill:
                 continue
             seen_skill.add(a.name)
             seq += 1
             text = f"+ {a.name} (оружие)" if weapon_granted(a) else f"+ {a.name}"
-            events.append(GemEvent(lvl, prio_base, seq, clip(text), is_main=(a is lead and is_main)))
-        sup_info = []
-        for s in supports:
-            lv = earliest_level(s)
-            if lv is None:
-                continue  # lineage / unique-only supports
-            sup_info.append((lv, s))
-        sup_info.sort(key=lambda x: x[0])
-        for k, (lv, s) in enumerate(sup_info, 1):
-            if (s.name, lead.name) in seen_pair:
+            events.append(GemEvent(lvl, gp.prio, seq, clip(text),
+                                   is_main=(a is gp.lead and gp.is_main)))
+        for when, x in sorted(gp.supports, key=lambda t: t[0]):
+            if (x.name, gp.lead.name) in seen_pair:
                 continue
-            seen_pair.add((s.name, lead.name))
-            when = max(lv, lead_lvl, support_slot_level(k))
-            text = f"+ {s.name} → {lead.name}"
+            seen_pair.add((x.name, gp.lead.name))
+            text = f"+ {x.name} → {gp.lead.name}"
             if len(text) > MAX_LEN:
-                text = f"+ {s.name}"
+                text = f"+ {x.name}"
             seq += 1
-            events.append(GemEvent(when, prio_base + 1, seq, clip(text)))
+            events.append(GemEvent(when, gp.prio + 1, seq, clip(text)))
     events.sort()
     return events, main_name
+
+
+SETUP_LEN = 40
+
+
+def setup_line(skill: str, supports: list[str], n: int = SETUP_LEN) -> str:
+    """'Skill: Sup1, Sup2' <= n chars; overflow keeps the first supports (PoB order) + '+N'."""
+    if not supports:
+        return clip(skill, n)
+    full = f"{skill}: {', '.join(supports)}"
+    if len(full) <= n:
+        return full
+    for k in range(len(supports) - 1, -1, -1):
+        cand = f"{skill}: {', '.join(supports[:k] + ['+' + str(len(supports) - k)])}"
+        if len(cand) <= n:
+            return cand
+    return clip(skill, n)
+
+
+def plan_setups(groups: list[GroupPlan], max_level: int = MAX_LEVEL) -> dict[int, tuple[str, ...]]:
+    """Full socketed setup at every level where it changes (main group first)."""
+    out: dict[int, tuple[str, ...]] = {}
+    prev: tuple[str, ...] | None = None
+    for lvl in range(1, max_level + 1):
+        lines: list[str] = []
+        seen: set[str] = set()
+        for gp in groups:
+            if gp.lead_level > lvl or gp.lead.name in seen:
+                continue
+            sups = [x.name for when, x in gp.supports if when <= lvl]
+            if weapon_granted(gp.lead) and not sups:
+                continue
+            seen.add(gp.lead.name)
+            lines.append(setup_line(gp.lead.name, sups))
+        cur = tuple(lines)
+        if cur != prev and (cur or prev):
+            out[lvl] = cur
+        prev = cur
+    return out
 
 
 def spread_gem_events(events: list[GemEvent], per_level: int = MAX_ITEMS) -> dict[int, list[GemEvent]]:
@@ -180,6 +243,49 @@ def spread_gem_events(events: list[GemEvent], per_level: int = MAX_ITEMS) -> dic
             carry = carry[per_level:]
         lvl += 1
     return out
+
+
+# ----------------------------------------------------------------------------- gear
+
+def load_gear_file(path: str | Path) -> dict[int, list[str]]:
+    """Sidecar ``{"gear": {"<level>": [str, ...]}}``; keys starting with "_" are ignored."""
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    gear = raw.get("gear", {}) if isinstance(raw, dict) else {}
+    out: dict[int, list[str]] = {}
+    for k, v in (gear.items() if isinstance(gear, dict) else ()):
+        if str(k).startswith("_"):
+            continue
+        try:
+            lvl = int(k)
+        except ValueError:
+            continue
+        items = [v] if isinstance(v, str) else list(v or [])
+        lines = [clip(str(x)) for x in items if str(x).strip()]
+        if lines:
+            out.setdefault(max(1, lvl), []).extend(lines)
+    return out
+
+
+def plan_gear(build: PobBuild, sidecar: dict[int, list[str]] | None = None) -> dict[int, list[str]]:
+    """Equipped uniques from PoB ("Надеть X" at max(1, LevelReq)) merged with the sidecar.
+
+    Sidecar lines win: a PoB unique whose name appears in any sidecar line is dropped.
+    Uniques without a LevelReq are skipped (no guessing); jewels are handled by the tree.
+    """
+    sidecar = sidecar or {}
+    side_text = " ".join(x for v in sidecar.values() for x in v).lower()
+    out: dict[int, list[str]] = {}
+    seen: set[str] = set()
+    for it in build.equipped_items:
+        if it.rarity != "UNIQUE" or it.is_jewel or it.level_req is None or it.name in seen:
+            continue
+        seen.add(it.name)
+        if it.name.lower() in side_text:
+            continue
+        out.setdefault(max(1, it.level_req), []).append(clip(f"Надеть {it.name}"))
+    for lvl, lines in sidecar.items():   # guide lines first: they are the author's priorities
+        out[lvl] = list(lines) + out.get(lvl, [])
+    return {k: out[k] for k in sorted(out)}
 
 
 # ----------------------------------------------------------------------------- passives
@@ -261,7 +367,9 @@ def _component(tree: PassiveTree, root: int, nodes: set[int]) -> set[int]:
 
 
 def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
-                     max_level: int = MAX_LEVEL) -> PlanDetail:
+                     max_level: int = MAX_LEVEL,
+                     gear: dict[int, list[str]] | None = None) -> PlanDetail:
+    """``gear``: sidecar gear timeline (level -> lines); it wins over PoB uniques of the same name."""
     warnings: list[str] = []
     spec = build.spec
     base = tree or PassiveTree.load(spec.tree_version)
@@ -388,8 +496,11 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
         warnings.append(f"{len(main_order) - mi} passives beyond level {max_level}")
 
     # ------------------------------------------------------------------ gems
-    events, main_name = plan_gems(build, warnings)
+    groups = plan_groups(build, warnings)
+    events, main_name = plan_gems(build, warnings, groups)
     gem_by_level = spread_gem_events(events)
+    setups = plan_setups(groups, max_level)
+    gear_by_level = plan_gear(build, gear)
 
     # ascendancy nodes are shown on entering the trial area, not on level-up
     asc_hints: dict[str, LevelHint] = {}
@@ -417,7 +528,8 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
     for lvl in range(1, max_level + 1):
         nodes = [n for n in per_level_nodes.get(lvl, []) if n not in asc_set]
         gems_ev = gem_by_level.get(lvl, [])
-        if not nodes and not gems_ev:
+        gear_lines = gear_by_level.get(lvl, ())
+        if not nodes and not gems_ev and not gear_lines:
             continue
         note = None
         if any(n in opens for n in nodes):
@@ -425,13 +537,14 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
         if any(e.is_main for e in gems_ev) and lvl > 1 and note is None:
             note = clip(f"Основной скилл: {main_name}") if note is None else note
         hints[lvl] = LevelHint(level=lvl, passives=format_passives(tree, nodes, build),
-                               gems=tuple(e.text for e in gems_ev), note=note)
+                               gems=tuple(e.text for e in gems_ev), note=note,
+                               gear=tuple(gear_lines))
 
     chrono = sorted((alloc_level[n], i, n) for i, n in enumerate(main_order + asc_order) if n in alloc_level)
     planned = tuple(tree.nodes[n].sid for _, _, n in chrono)
     head = build.ascendancy_name or build.class_name
     title = clip(f"{head}: {main_name}" if main_name else head)
     plan = LevelPlan(title=title, char_class=class_name, hints=hints, planned_node_ids=planned,
-                     ascendancy=asc_hints, warnings=tuple(warnings))
+                     ascendancy=asc_hints, warnings=tuple(warnings), setups=setups)
     return PlanDetail(plan, main_order, asc_order, alloc_level, points_used, warnings, tree, root,
                       asc_root, build)

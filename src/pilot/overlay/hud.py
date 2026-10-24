@@ -13,13 +13,15 @@ from PySide6.QtWidgets import QWidget
 from pilot.contracts import HudState
 
 from . import winapi
-from .fmt import (act_label, delta_kind, details_lines, elide, format_delta, format_time,
-                  warn_text)
+from . import theme
+from .fmt import (act_label, details_lines, elide, format_time, level_text, pill_style,
+                  progress_segments, step_parts, strip_warn_glyph, zone_pill)
+from .icons import draw_icon, kind_color, toast_color, toast_icon
 from .toasts import ToastStack
 
 log = logging.getLogger(__name__)
 
-BASE_W = 520          # px at scale 1.0
+BASE_W = 560          # px at scale 1.0
 BASE_FONT = 18        # px, line 1
 SUB_FONT = 15         # px, line 2 / details
 SCALE_MIN, SCALE_MAX = 0.75, 2.0
@@ -40,6 +42,7 @@ DEFAULT_CONFIG = {
     "y": None,
     "details_provider": None,
     "on_save": None,
+    "palette": "default",     # "default" | "colorblind"
 }
 
 
@@ -91,6 +94,11 @@ class HudWindow(QWidget):
             f.setStyleStrategy(QFont.PreferAntialias)
         self.m1 = QFontMetrics(self.f1)
         self.m2 = QFontMetrics(self.f2)
+        self.f3 = QFont("Segoe UI")           # pills
+        self.f3.setPixelSize(max(8, round(13 * s)))
+        self.f3.setWeight(QFont.DemiBold)
+        self.f3.setStyleStrategy(QFont.PreferAntialias)
+        self.m3 = QFontMetrics(self.f3)
 
     def u(self, n: float) -> float:
         return n * self.scale
@@ -102,11 +110,16 @@ class HudWindow(QWidget):
     def _toast_items(self, now: float):
         return self.toasts.visible(now)
 
+    def _bar_h(self) -> float:
+        return self.u(6) * 2 + self.u(28) + self.u(10) + self.u(22)
+
+    def _toast_width(self, text: str) -> float:
+        return min(self.width_px, self.m2.horizontalAdvance(text) + self.u(16) + self.u(8) + self.u(30))
+
     def _geometry(self, now: float):
         """Return (total_height, bar_rect, details_rect|None, [toast_rects])."""
         W = self.width_px
-        pad_y, row1, row2 = self.u(6), self.u(28), self.u(22)
-        bar_h = pad_y * 2 + row1 + row2
+        bar_h = self._bar_h()
         y = bar_h
         bar = QRectF(0, 0, W, bar_h)
         det = None
@@ -120,7 +133,7 @@ class HudWindow(QWidget):
         for toast, _a in self._toast_items(now):
             y += self.u(6)
             th = self.u(30)
-            tw = min(W, self.m2.horizontalAdvance(toast.text) + self.u(32))
+            tw = self._toast_width(toast.text)
             trects.append(QRectF((W - tw) / 2, y, tw, th))
             y += th
         return int(y + 1), bar, det, trects
@@ -301,6 +314,134 @@ class HudWindow(QWidget):
         c.setAlphaF(c.alphaF() * alpha)
         p.fillPath(path, c)
 
+    # ------------------------------------------------------------------ bar layout
+    def _tab_w(self, text: str, fm: QFontMetrics) -> float:
+        """Width with tabular digits: every digit takes the widest digit's cell."""
+        cell = max(fm.horizontalAdvance(str(d)) for d in range(10))
+        return sum(cell if c.isdigit() else fm.horizontalAdvance(c) for c in text)
+
+    def _draw_tab(self, p, x, base_y, text, font, fm, color, alpha=1.0) -> None:
+        cell = max(fm.horizontalAdvance(str(d)) for d in range(10))
+        for c in text:
+            adv = fm.horizontalAdvance(c)
+            if c.isdigit():
+                self._text(p, x + (cell - adv) / 2, base_y, c, font, color, alpha)
+                x += cell
+            else:
+                self._text(p, x, base_y, c, font, color, alpha)
+                x += adv
+
+    def _base(self, top: float, h: float, fm: QFontMetrics) -> float:
+        return top + h * 0.5 + fm.ascent() * 0.5 - fm.descent() * 0.5
+
+    def bar_layout(self, st: HudState) -> dict:
+        """All positions of the two-line bar (also used by tests to check nothing clips)."""
+        W = self.width_px
+        padx, pad_y, row1, row2 = self.u(12), self.u(6), self.u(28), self.u(22)
+        pal_name = self.config.get("palette")
+        L: dict = {"W": W, "padx": padx}
+        col = max(self.m1.horizontalAdvance("A4"), self.m1.horizontalAdvance("И3")) + self.u(10)
+        isz = self.u(18)
+        L["label"] = act_label(st.act, None)
+        L["base1"] = self._base(pad_y, row1, self.m1)
+        L["icon1"] = QRectF(padx + col, pad_y + (row1 - isz) / 2, isz, isz)
+        name_x = padx + col + isz + self.u(7)
+        L["name_x"] = name_x
+        timer_txt = format_time(st.run_time_s)
+        timer_w = max(self._tab_w("8:88:88", self.m1), self._tab_w(timer_txt, self.m1))
+        L["timer_txt"] = timer_txt
+        L["timer_x"] = W - padx - self._tab_w(timer_txt, self.m1)
+        timer_left = W - padx - timer_w
+        L["pill"] = pill_style(st.split_delta_s, pal_name)
+        right = timer_left - self.u(10)
+        if L["pill"]:
+            pw = self._tab_w(L["pill"].text, self.m3) + self.u(14)
+            ph = self.u(20)
+            L["pill_rect"] = QRectF(right - pw, pad_y + (row1 - ph) / 2, pw, ph)
+            right = right - pw - self.u(10)
+        kind, name = step_parts(st.step_short, st.step_kind)
+        L["kind"] = kind
+        L["name"] = elide(name, self.m1, right - name_x)
+        L["name_right"] = right
+        # progress bar
+        L["prog"] = QRectF(padx, pad_y + row1 + self.u(3), W - 2 * padx, self.u(4))
+        # line 2
+        top2 = pad_y + row1 + self.u(10)
+        L["base2"] = self._base(top2, row2, self.m2)
+        L["icon2"] = QRectF(padx + col + (isz - self.u(14)) / 2, top2 + (row2 - self.u(14)) / 2,
+                            self.u(14), self.u(14))
+        if st.warn:
+            L["warn"] = elide(strip_warn_glyph(st.warn), self.m2, W - padx - name_x)
+            return L
+        r = W - padx
+        zp = zone_pill(st.area_level, st.char_level)
+        L["zone"] = zp
+        if zp:
+            zw = self.m3.horizontalAdvance(zp.text) + self.u(14)
+            zh = self.u(18)
+            L["zone_rect"] = QRectF(r - zw, top2 + (row2 - zh) / 2, zw, zh)
+            r -= zw + self.u(8)
+        lv = level_text(st.char_level)
+        L["lv"] = lv
+        if lv:
+            lw = self.m2.horizontalAdvance(lv)
+            L["lv_x"] = r - lw
+            r -= lw + self.u(12)
+        nkind, nname = step_parts(st.next_short, st.next_kind)
+        L["nkind"] = nkind
+        L["nname"] = elide(nname, self.m2, r - name_x) if nname else ""
+        L["nname_right"] = r
+        return L
+
+    def _pill(self, p, rect: QRectF, text: str, fg, bg, font, fm, tab=False) -> None:
+        p.setPen(Qt.NoPen)
+        p.setBrush(QColor(*bg))
+        p.drawRoundedRect(rect, rect.height() / 2, rect.height() / 2)
+        p.setFont(font)
+        p.setPen(QColor(*fg))
+        base = self._base(rect.top(), rect.height(), fm)
+        w = self._tab_w(text, fm) if tab else fm.horizontalAdvance(text)
+        x = rect.left() + (rect.width() - w) / 2
+        if tab:
+            cell = max(fm.horizontalAdvance(str(d)) for d in range(10))
+            for c in text:
+                adv = fm.horizontalAdvance(c)
+                if c.isdigit():
+                    p.drawText(QPointF(x + (cell - adv) / 2, base), c)
+                    x += cell
+                else:
+                    p.drawText(QPointF(x, base), c)
+                    x += adv
+        else:
+            p.drawText(QPointF(x, base), text)
+
+    def _progress(self, p, rect: QRectF, st: HudState) -> None:
+        pal = theme.palette(self.config.get("palette"))
+        done_col = QColor(*pal["ahead"])
+        gap = self.u(2)
+        rad = rect.height() / 2
+        p.setPen(Qt.NoPen)
+        for s in progress_segments(st.progress, st.split_marks):
+            ax = rect.left() + s.a * rect.width() + (gap / 2 if s.a > 0 else 0)
+            bx = rect.left() + s.b * rect.width() - (gap / 2 if s.b < 1 else 0)
+            seg = QRectF(ax, rect.top(), max(1.0, bx - ax), rect.height())
+            p.setBrush(QColor(255, 255, 255, 46))
+            p.drawRoundedRect(seg, rad, rad)
+            if s.state == "done":
+                p.setBrush(done_col)
+                p.drawRoundedRect(seg, rad, rad)
+            elif s.state == "current" and s.frac > 0:
+                p.setBrush(QColor(238, 238, 238))
+                p.drawRoundedRect(QRectF(seg.left(), seg.top(), max(rad * 2, seg.width() * s.frac),
+                                         seg.height()), rad, rad)
+        prog = min(1.0, max(0.0, st.progress or 0.0))
+        tw, th = max(2.0, self.u(2.5)), rect.height() + self.u(6)
+        tick = QRectF(rect.left() + prog * rect.width() - tw / 2, rect.center().y() - th / 2, tw, th)
+        p.setBrush(QColor(0, 0, 0, 200))
+        p.drawRoundedRect(tick.adjusted(-1, -1, 1, 1), 1.5, 1.5)
+        p.setBrush(QColor(255, 255, 255))
+        p.drawRoundedRect(tick, 1, 1)
+
     def paintEvent(self, _event):  # noqa: N802
         now = self._clock()
         st = self.state
@@ -318,35 +459,34 @@ class HudWindow(QWidget):
         p.setBrush(BG)
         p.drawRoundedRect(bar, r, r)
 
-        padx = self.u(12)
-        W = bar.width()
-        # ---- line 1
-        base1 = self.u(6) + self.u(28) * 0.5 + self.m1.ascent() * 0.5 - self.m1.descent() * 0.5
-        col_w = self.m1.horizontalAdvance("И3 · 88") + self.u(16)
-        label = act_label(st.act, st.area_level)
-        self._text(p, padx, base1, label, self.f1, WHITE)
-        timer_txt = format_time(st.run_time_s)
-        tw = self.m1.horizontalAdvance("0:00:00") + self.u(2)
-        self._text(p, W - padx - self.m1.horizontalAdvance(timer_txt), base1, timer_txt, self.f1, WHITE)
-        step_x = padx + col_w
-        step_w = (W - padx - tw) - step_x - self.u(12)
-        step = elide(st.step_short or "", self.m1, step_w)
-        self._text(p, step_x, base1, step, self.f1, WHITE)
+        L = self.bar_layout(st)
+        padx, W = L["padx"], L["W"]
+        # ---- line 1: act | icon name | delta pill | timer
+        self._text(p, padx, L["base1"], L["label"], self.f1, WHITE)
+        if L["kind"]:
+            draw_icon(p, L["kind"], L["icon1"], kind_color(L["kind"]))
+        self._text(p, L["name_x"], L["base1"], L["name"], self.f1, WHITE)
+        pill = L["pill"]
+        if pill:
+            self._pill(p, L["pill_rect"], pill.text, pill.fg, pill.bg, self.f3, self.m3, tab=True)
+        self._draw_tab(p, L["timer_x"], L["base1"], L["timer_txt"], self.f1, self.m1, WHITE)
+        # ---- progress
+        self._progress(p, L["prog"], st)
         # ---- line 2
-        base2 = self.u(6) + self.u(28) + self.u(22) * 0.5 + self.m2.ascent() * 0.5 - self.m2.descent() * 0.5
-        delta_txt = format_delta(st.split_delta_s)
-        dw = self.m2.horizontalAdvance(delta_txt) if delta_txt else 0
-        avail = W - padx - step_x - (dw + self.u(14) if delta_txt else 0)
         if st.warn:
-            self._text(p, step_x, base2, elide(warn_text(st.warn), self.m2, avail), self.f2, YELLOW)
+            draw_icon(p, "alert", L["icon2"], theme.YELLOW)
+            self._text(p, L["name_x"], L["base2"], L["warn"], self.f2, YELLOW)
         else:
-            if st.next_short:
-                nxt = elide("затем: " + st.next_short, self.m2, avail)
-                self._text(p, step_x, base2, nxt, self.f2, WHITE, 0.7)
-            if delta_txt:
-                kind = delta_kind(st.split_delta_s)
-                col = GREEN if kind == "ahead" else RED if kind == "behind" else WHITE
-                self._text(p, W - padx - dw, base2, delta_txt, self.f2, col)
+            if L["nname"]:
+                if L["nkind"]:
+                    draw_icon(p, L["nkind"], L["icon2"], kind_color(L["nkind"]), 0.75)
+                self._text(p, L["name_x"], L["base2"], L["nname"], self.f2, WHITE, 0.7)
+            if L["lv"]:
+                self._text(p, L["lv_x"], L["base2"], L["lv"], self.f2, WHITE, 0.85)
+            zp = L["zone"]
+            if zp:
+                fg, bg = theme.ZONE_AMBER if zp.amber else theme.ZONE_NEUTRAL
+                self._pill(p, L["zone_rect"], zp.text, fg, bg, self.f3, self.m3)
         # ---- details panel
         if det is not None:
             p.setPen(Qt.NoPen)
@@ -355,25 +495,28 @@ class HudWindow(QWidget):
             lh = self.u(22)
             y = det.top() + self.u(8)
             for i, line in enumerate(self._details):
-                by = y + lh * 0.5 + self.m2.ascent() * 0.5 - self.m2.descent() * 0.5
-                f = self.f2
-                self._text(p, padx, by, elide(line, self.m2, W - 2 * padx), f, WHITE, 1.0 if i else 0.75)
+                by = self._base(y, lh, self.m2)
+                self._text(p, padx, by, elide(line, self.m2, W - 2 * padx), self.f2, WHITE,
+                           1.0 if i else 0.75)
                 y += lh
         # ---- toasts
+        isz = self.u(16)
         for (toast, a), rect in zip(self._toast_items(now), trects):
             p.setOpacity(dim * a)
             p.setPen(Qt.NoPen)
             p.setBrush(BG)
             p.drawRoundedRect(rect, r, r)
-            by = rect.top() + rect.height() * 0.5 + self.m2.ascent() * 0.5 - self.m2.descent() * 0.5
-            txt = elide(toast.text, self.m2, rect.width() - self.u(24))
-            self._text(p, rect.left() + self.u(16), by, txt, self.f2,
+            draw_icon(p, toast_icon(toast.kind),
+                      QRectF(rect.left() + self.u(12), rect.center().y() - isz / 2, isz, isz),
+                      toast_color(toast.kind))
+            tx = rect.left() + self.u(12) + isz + self.u(8)
+            txt = elide(toast.text, self.m2, rect.right() - self.u(14) - tx)
+            self._text(p, tx, self._base(rect.top(), rect.height(), self.m2), txt, self.f2,
                        YELLOW if toast.kind == "warn" else WHITE)
         # ---- edit hint: dashed outline only
         if self._edit:
             p.setOpacity(1.0)
-            pen = QPen(WHITE, 1.5, Qt.DashLine)
-            p.setPen(pen)
+            p.setPen(QPen(WHITE, 1.5, Qt.DashLine))
             p.setBrush(Qt.NoBrush)
             p.drawRoundedRect(bar.adjusted(1, 1, -1, -1), r, r)
         p.end()

@@ -13,7 +13,7 @@ from pilot.contracts import (
 )
 from pilot.core.parser import parse_line
 from pilot.core.route import Route
-from pilot.core.splits import RunRecord, SplitStore
+from pilot.core.splits import RunRecord, SplitStore, ZoneSegment
 
 log = logging.getLogger(__name__)
 
@@ -89,6 +89,8 @@ class RunEngine:
         # run
         self._armed = False
         self._finished_before = False
+        n = len(route.steps)
+        self._marks = tuple(k / n for k, st in enumerate(route.steps) if st.split) if n else ()
         self._reset_run_state()
         self._toasts: list[tuple[Toast, float]] = []
         self._off_plan = 0
@@ -105,20 +107,28 @@ class RunEngine:
     def feed(self, ev: Event) -> None:
         with self._lock:
             self._advance_time(ev)
+            self._account()
             if isinstance(ev, AreaGenerated):
                 self._on_area(ev)
             elif isinstance(ev, SceneEntered):
                 if self._awaiting_scene:
                     self._area_name = ev.name
                     self._awaiting_scene = False
+                    if self._seg is not None and not self._seg.area_name:
+                        self._seg.area_name = ev.name
             elif isinstance(ev, LoadingScreen):
                 if self._running:
                     self._elapsed = max(0.0, self._elapsed - ev.seconds)
+                    if self._seg is not None:
+                        self._seg.loading_s += ev.seconds
+                    self._account()
             elif isinstance(ev, LevelUp):
                 self._on_level(ev)
             elif isinstance(ev, Death):
                 if self._running:
                     self._deaths += 1
+                    if self._seg is not None:
+                        self._seg.deaths += 1
             elif isinstance(ev, PassiveAllocated):
                 self._on_passive(ev)
             elif isinstance(ev, FocusChanged):
@@ -135,6 +145,7 @@ class RunEngine:
             act = cur.act if cur else None
             if act is None or not self._running and not self._finished:
                 act = area_act(self._area_id) or act
+            total = len(steps)
             return HudState(
                 act=act,
                 area_name=self._area_name,
@@ -150,6 +161,10 @@ class RunEngine:
                 warn=self._level_warning(),
                 game_focused=self._focused and not self._closed,
                 running=self._running,
+                step_kind=cur.kind if cur else None,
+                next_kind=nxt.kind if nxt else None,
+                progress=min(i / total, 1.0) if total else 0.0,
+                split_marks=self._marks,
             )
 
     def next_step(self) -> None:
@@ -179,7 +194,7 @@ class RunEngine:
             return [st.short for st in self.route.steps[i + 1:i + 1 + n]]
 
     def details(self) -> list[str]:
-        """Lines for the details panel: current step detail, reward, then upcoming(3)."""
+        """Details panel lines: step detail, reward, gem setup for the char level (<=4), upcoming(3); <=10."""
         with self._lock:
             i = self._step
             lines: list[str] = []
@@ -189,7 +204,15 @@ class RunEngine:
                     lines.append(cur.detail)
                 if cur.reward:
                     lines.append(f"Награда: {cur.reward}")
-            return lines + self.upcoming(3)
+            # no LevelUp line is logged for level 1, so a running run starts at 1
+            level = self._char_level or (1 if self._running else None)
+            if self.plan is not None and level is not None:
+                gear_lv = max((lv for lv, h in self.plan.hints.items() if h.gear and lv <= level),
+                              default=None)
+                if gear_lv is not None:
+                    lines.extend(self.plan.hints[gear_lv].gear[:2])
+                lines.extend(self.plan.setup_for(level)[:3])
+            return (lines + self.upcoming(3))[:10]
 
     # read-only helpers for UI/tests
     @property
@@ -213,6 +236,32 @@ class RunEngine:
         self._hits: dict[str, float] = {}
         self._split_delta: float | None = None
         self._deaths = 0
+        self._segs: dict[str, ZoneSegment] = {}
+        self._seg: ZoneSegment | None = None
+        self._seg_mark = 0.0
+
+    def _account(self) -> None:
+        """Attribute game time elapsed since the last call to the current zone segment."""
+        if self._running and self._seg is not None:
+            self._seg.seconds += self._elapsed - self._seg_mark
+        self._seg_mark = self._elapsed
+
+    def _enter_zone(self, z: str) -> None:
+        seg = self._segs.get(z)
+        if seg is None:
+            seg = self._segs[z] = ZoneSegment(z, "", self._elapsed, is_town=is_town(z) or is_hideout(z))
+        seg.visits += 1
+        self._seg = seg
+
+    def _record(self, status: str) -> RunRecord:
+        segs = [sg.to_dict() for sg in self._segs.values()]
+        return RunRecord(self.route.id, status, self._started_iso, self._elapsed,
+                         dict(self._hits), self._deaths, segs)
+
+    def current_record(self, status: str = "incomplete") -> RunRecord | None:
+        """Snapshot of the run in progress (None when no run was started)."""
+        with self._lock:
+            return self._record(status) if self._segs else None
 
     def _advance_time(self, ev: Event) -> None:
         """Accumulate in-game time using log timestamps (so replays are exact)."""
@@ -266,6 +315,16 @@ class RunEngine:
         extra = list(hint.gems) + ([hint.note] if hint.note else [])
         if extra:
             self._toast(" · ".join(extra), "level", 4.0)
+        self._gear_toast(hint.gear)
+
+    def _gear_toast(self, gear: tuple[str, ...]) -> None:
+        """At most two items per toast; the rest are in the details panel."""
+        if not gear:
+            return
+        text = " · ".join(gear[:2])
+        if len(gear) > 2:
+            text = f"{gear[0]} · +{len(gear) - 1} (Alt+Q)"
+        self._toast(text, "gear", 5.0)
 
     def _ascendancy_hint(self, z: str) -> None:
         hint = self.plan.ascendancy.get(z) if self.plan else None
@@ -296,6 +355,7 @@ class RunEngine:
                 self._start_run(ev)
             else:
                 return
+        self._enter_zone(z)
         if is_hideout(z):
             return
         self._on_zone_in_run(z)
@@ -305,7 +365,13 @@ class RunEngine:
         self._running = True
         self._armed = False
         self._started_iso = ev.ts.isoformat(timespec="seconds")
+        self._seg_mark = 0.0
         self._toast("Ран начат", "zone")
+        hint = self.plan.hint_for(1) if self.plan else None   # level 1 has no LevelUp line
+        if hint is not None:
+            if hint.gems:
+                self._toast(" · ".join(hint.gems), "level", 5.0)
+            self._gear_toast(hint.gear)
 
     def _on_zone_in_run(self, z: str) -> None:
         steps = self.route.steps
@@ -371,8 +437,7 @@ class RunEngine:
             return
         if status == "abandoned" and self._elapsed < MIN_ABANDON_SAVE_S:
             return
-        rec = RunRecord(self.route.id, status, self._started_iso, self._elapsed,
-                        dict(self._hits), self._deaths)
+        rec = self._record(status)
         try:
             self.store.save_run(rec)
         except OSError:

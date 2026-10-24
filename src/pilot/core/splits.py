@@ -19,6 +19,22 @@ def default_runs_dir() -> Path:
 
 
 @dataclass
+class ZoneSegment:
+    """Per-zone statistics of one run (game seconds, loading screens excluded)."""
+    area_id: str
+    area_name: str = ""
+    first_s: float = 0.0          # game time of the first entry
+    seconds: float = 0.0          # game time spent, summed over visits
+    visits: int = 0
+    loading_s: float = 0.0        # loading-screen seconds (already excluded from `seconds`)
+    deaths: int = 0
+    is_town: bool = False
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
 class RunRecord:
     """One finished or abandoned run. `splits` maps split id -> cumulative game seconds."""
     route_id: str
@@ -27,6 +43,10 @@ class RunRecord:
     total_s: float
     splits: dict[str, float] = field(default_factory=dict)
     deaths: int = 0
+    segments: list[dict] = field(default_factory=list)   # ZoneSegment dicts; absent in old files
+
+    def zone_segments(self) -> list[ZoneSegment]:
+        return [ZoneSegment(**d) for d in self.segments]
 
 
 class SplitStore:

@@ -61,6 +61,18 @@ class TreeSpec:
     attribute_choice: dict[int, str] = field(default_factory=dict)  # node -> "str" | "dex" | "int"
 
 
+@dataclass(frozen=True)
+class ItemEntry:
+    """An item equipped in the active PoB item set."""
+    id: str
+    slot: str
+    rarity: str                     # UNIQUE | RARE | MAGIC | NORMAL
+    name: str                       # unique/rare name, or base type for magic/normal
+    base: str = ""
+    level_req: int | None = None    # None when the item text has no "LevelReq:" line
+    is_jewel: bool = False
+
+
 @dataclass
 class PobBuild:
     class_name: str
@@ -71,6 +83,7 @@ class PobBuild:
     active_spec: int                # 0-based
     skill_groups: list[SkillGroup]
     target_version: str = ""
+    equipped_items: list[ItemEntry] = field(default_factory=list)  # active item set, slot order
 
     def target_spec_index(self) -> int:
         """The spec we plan towards: the one with the most nodes (ties -> the active one).
@@ -224,6 +237,53 @@ def _start_point_items(root: ET.Element) -> dict[str, str]:
     return out
 
 
+_JEWEL_BASE_RE = re.compile(r"\b(jewel|ruby|emerald|sapphire|diamond|time-lost)\b", re.I)
+
+
+def _parse_item_text(item_id: str, slot: str, text: str) -> ItemEntry | None:
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    rarity, rest = "", []
+    for i, ln in enumerate(lines):
+        if ln.lower().startswith("rarity:"):
+            rarity = ln.split(":", 1)[1].strip().upper()
+            rest = lines[i + 1:]
+            break
+    if not rarity or not rest:
+        return None
+    name = rest[0]
+    base = rest[1] if rarity in ("UNIQUE", "RARE") and len(rest) > 1 else name
+    level_req = None
+    for ln in lines:
+        m = re.match(r"(?:LevelReq|Requires Level):?\s*(\d+)", ln, re.I)
+        if m:
+            level_req = int(m.group(1))
+            break
+    is_jewel = "socket" in slot.lower() or bool(_JEWEL_BASE_RE.search(base))
+    return ItemEntry(item_id, slot, rarity, name, base, level_req, is_jewel)
+
+
+def _parse_items(root: ET.Element) -> list[ItemEntry]:
+    """Items equipped in the active item set (tree jewel sockets are not item slots)."""
+    items = root.find("Items")
+    if items is None:
+        return []
+    by_id = {it.get("id"): "".join(it.itertext()) for it in items.findall("Item") if it.get("id")}
+    sets = items.findall("ItemSet")
+    container = items
+    if sets:
+        active = items.get("activeItemSet", "1")
+        container = next((s for s in sets if s.get("id") == active), sets[0])
+    out: list[ItemEntry] = []
+    for slot in container.findall("Slot"):
+        iid = slot.get("itemId", "0")
+        if iid in ("", "0") or iid not in by_id:
+            continue
+        e = _parse_item_text(iid, slot.get("name", "") or "", by_id[iid])
+        if e:
+            out.append(e)
+    return out
+
+
 def parse_pob_xml(xml_text: str) -> PobBuild:
     if len(xml_text) > MAX_XML_BYTES:
         raise PobDecodeError("build XML too large")
@@ -259,6 +319,7 @@ def parse_pob_xml(xml_text: str) -> PobBuild:
         active_spec=active,
         skill_groups=_parse_skills(root),
         target_version=b.get("targetVersion", "") or "",
+        equipped_items=_parse_items(root),
     )
 
 
