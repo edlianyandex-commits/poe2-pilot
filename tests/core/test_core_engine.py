@@ -171,14 +171,15 @@ def test_level_toasts_and_plan():
                      planned_node_ids=("n1",))
     eng, f, _ = make(plan=plan)
     f.feed(LevelUp, 0, "X", "Mage", 3)
-    assert eng.snapshot().toasts[-1].text == "Ур. 3: +Быстрота · Ледяная стрела"
+    toasts = [t.text for t in eng.snapshot().toasts]
+    assert toasts[-2:] == ["Ур. 3: +Быстрота", "Ледяная стрела"]
     f.feed(LevelUp, 1, "X", "Mage", 4)
     assert eng.snapshot().toasts[-1].text == "Ур. 4"
     assert eng.snapshot().char_level == 4
     f.feed(PassiveAllocated, 2, "n1", "ok", True)
     f.feed(PassiveAllocated, 3, "zzz", "bad", True)
     texts = [t.text for t in eng.snapshot().toasts]
-    assert texts.count("Пассивка не по плану") == 1
+    assert texts.count("Пассивки не по плану: 1") == 1
     eng2, f2, _ = make()                          # no plan: no passive warnings
     f2.feed(PassiveAllocated, 0, "zzz", "bad", True)
     assert eng2.snapshot().toasts == ()

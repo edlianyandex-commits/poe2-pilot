@@ -61,9 +61,9 @@ def test_elide(qapp):
 def test_details_lines():
     st = HudState(step_short="→ A", next_short="B", step_index=3, step_total=10, char_level=7,
                   area_name="Z")
-    lines = details_lines(st, ["x", "y"])
-    assert lines[0] == "4/10 · ур. 7 · Z"
-    assert "→ A" in lines and lines[-2:] == ["x", "y"]
+    lines = details_lines(st, ["x", "B", "y"])
+    assert lines == ["4/10 · ур. 7 · Z", "x", "y"]      # bar's step/next not repeated
+    assert "→ A" in details_lines(st)                   # no provider -> fall back to state
     assert len(details_lines(HudState(), ["q"] * 30)) == 10
 
 

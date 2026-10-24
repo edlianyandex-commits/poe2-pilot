@@ -74,10 +74,13 @@ def details_lines(state, extra: list[str] | None = None, limit: int = 10) -> lis
         head.append(state.area_name)
     if head:
         lines.append(" · ".join(head))
+    if extra:
+        # the bar already shows the current and next step; don't repeat them
+        shown = {state.step_short, state.next_short}
+        lines.extend(str(ln) for ln in extra if ln not in shown)
+        return lines[:limit]
     if state.step_short:
         lines.append(state.step_short)
     if state.next_short:
         lines.append("затем: " + state.next_short)
-    for ln in extra or []:
-        lines.append(str(ln))
     return lines[:limit]

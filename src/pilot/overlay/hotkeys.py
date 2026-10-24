@@ -107,7 +107,11 @@ class HotkeyManager:
                  key_state: Callable[[int], bool] | None = None):
         self.callbacks = callbacks
         spec = dict(DEFAULT_HOTKEYS)
-        spec.update(hotkeys or {})
+        for name, s in (hotkeys or {}).items():
+            if name in DEFAULT_HOTKEYS:
+                spec[name] = s
+            else:
+                log.warning("unknown hotkey name %r (known: %s)", name, ", ".join(DEFAULT_HOTKEYS))
         self.specs = spec
         self.parsed: dict[str, tuple[int, int]] = {}
         for name, s in spec.items():

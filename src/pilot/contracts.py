@@ -89,6 +89,8 @@ class LevelPlan:
     char_class: str
     hints: dict[int, LevelHint] = field(default_factory=dict)
     planned_node_ids: tuple[str, ...] = ()   # allocation order, used to flag deviations
+    ascendancy: dict[str, LevelHint] = field(default_factory=dict)   # trial area id -> nodes to take
+    warnings: tuple[str, ...] = ()           # planner diagnostics, never shown on the HUD
 
     def hint_for(self, level: int) -> LevelHint | None:
         return self.hints.get(level)

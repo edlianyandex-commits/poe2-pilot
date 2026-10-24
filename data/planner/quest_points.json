@@ -1,0 +1,161 @@
+{
+ "_doc": "Campaign passive & ascendancy point rewards used by the planner. Each regular-passive quest reward gives +2 passive points (PoB labels them '+2 Weapon Set Passive Skill Points'; the same quests also unlock weapon-set points). typical_char_level = level at which a typical (non-speedrun-optimal) player receives them; taken from the real ru log tests/fixtures/campaign_ru.log where available, else area level + ~2. CONFIDENCE: medium. Patch 0.5.x; PoB commit bb52d6b.",
+ "level_points": "1 passive point per character level after level 1 (99 total at level 100).",
+ "passive_rewards": [
+  {
+   "act": 1,
+   "quest": "Crowbell",
+   "area": "Hunting Grounds",
+   "area_id": "G1_11",
+   "points": 2,
+   "typical_char_level": 12,
+   "verified_in_log": true
+  },
+  {
+   "act": 1,
+   "quest": "Una's Lute",
+   "area": "Ogham Farmlands",
+   "area_id": "G1_13_1",
+   "points": 2,
+   "typical_char_level": 13,
+   "verified_in_log": true,
+   "note": "reward taken in G1_town"
+  },
+  {
+   "act": 2,
+   "quest": "Kabala",
+   "area": "Keth",
+   "area_id": "G2_4_1",
+   "points": 2,
+   "typical_char_level": 22,
+   "verified_in_log": true
+  },
+  {
+   "act": 2,
+   "quest": "The Final Letter",
+   "area": "Deshar",
+   "area_id": "G2_8",
+   "points": 2,
+   "typical_char_level": 29,
+   "verified_in_log": true,
+   "note": "reward taken in G2_town"
+  },
+  {
+   "act": 3,
+   "quest": "Mighty Silverfist",
+   "area": "Jungle Ruins",
+   "area_id": "G3_3",
+   "points": 2,
+   "typical_char_level": 32,
+   "verified_in_log": true
+  },
+  {
+   "act": 3,
+   "quest": "Blood Sacrifice",
+   "area": "Aggorat",
+   "area_id": "G3_16",
+   "points": 2,
+   "typical_char_level": 43,
+   "verified_in_log": true
+  },
+  {
+   "act": 4,
+   "quest": "Blind Beast",
+   "area": "Isle of Kin",
+   "area_id": "G4_1_1",
+   "points": 2,
+   "typical_char_level": 45,
+   "verified_in_log": true,
+   "note": "reward taken in G4_town"
+  },
+  {
+   "act": 4,
+   "quest": "Hinekora",
+   "area": "Trial of the Ancestors",
+   "area_id": "G4_4_3",
+   "points": 2,
+   "typical_char_level": 52,
+   "verified_in_log": true
+  },
+  {
+   "act": "Interlude 1",
+   "quest": "Oswin",
+   "area": "Wolvenhold",
+   "area_id": "P1_5",
+   "points": 2,
+   "typical_char_level": 57,
+   "verified_in_log": false,
+   "note": "optional area; not done in the fixture run"
+  },
+  {
+   "act": "Interlude 2",
+   "quest": "Clearing The Way",
+   "area": "Khari Bazaar",
+   "area_id": "P2_Town",
+   "points": 2,
+   "typical_char_level": 58,
+   "verified_in_log": true
+  },
+  {
+   "act": "Interlude 3",
+   "quest": "Abominable Yeti",
+   "area": "Howling Caves",
+   "area_id": "P3_4",
+   "points": 2,
+   "typical_char_level": 62,
+   "verified_in_log": true,
+   "note": "reward taken in P3_Town"
+  },
+  {
+   "act": "Epilogue",
+   "quest": "Siege Of Oriath",
+   "area": "Kingsmarch",
+   "area_id": null,
+   "points": 2,
+   "typical_char_level": 66,
+   "verified_in_log": false,
+   "note": "after campaign end in the fixture run"
+  }
+ ],
+ "ascendancy_trials": [
+  {
+   "trial": "Trial of the Sekhemas",
+   "ascension": 1,
+   "area_id": "G2_13",
+   "area_level": 22,
+   "points": 2,
+   "typical_char_level": 24,
+   "note": "fixture run did it late at char level 33"
+  },
+  {
+   "trial": "Trial of Chaos",
+   "ascension": 2,
+   "area_id": "G3_10",
+   "area_level": 38,
+   "points": 2,
+   "typical_char_level": 40,
+   "note": "fixture run did it at char level 50; Sekhemas/Chaos are interchangeable for 1st/2nd ascension"
+  },
+  {
+   "trial": "3rd ascension (endgame trial)",
+   "ascension": 3,
+   "area_id": null,
+   "points": 2,
+   "typical_char_level": 70,
+   "note": "endgame, outside campaign; level is a placeholder"
+  },
+  {
+   "trial": "4th ascension (endgame trial)",
+   "ascension": 4,
+   "area_id": null,
+   "points": 2,
+   "typical_char_level": 80,
+   "note": "endgame, outside campaign; level is a placeholder"
+  }
+ ],
+ "sources": [
+  "PoB-PoE2 src/Data/QuestRewards.lua (questPoints) and Modules/Build.lua (PoB counts them as extra points, 99 + 24 total)",
+  "tests/fixtures/campaign_ru.log: allocated-node count vs character level shows +2 jumps at exactly these quests (total 20 of 24 by end of interludes, Oswin skipped)",
+  "Ascendancy: log shows 2 ascendancy nodes after Trial of the Sekhemas (G2_13) and 2 after Trial of Chaos (G3_10); maxroll/mobalytics trial guides (2 points per ascension, 8 total)"
+ ]
+}

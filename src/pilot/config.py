@@ -11,13 +11,13 @@ DEFAULTS: dict = {
     "build_code_file": None,               # text file with a PoB2 export code
     "hud": {"x": None, "y": 24, "scale": 1.0, "opacity": 1.0},
     "hide_when_unfocused": True,
-    "hotkeys": {
+    "hotkeys": {                           # names match overlay.hotkeys.DEFAULT_HOTKEYS
         "details": "alt+q",
-        "next_step": "alt+]",
-        "prev_step": "alt+[",
-        "reset_run": "alt+r",
-        "edit_mode": "alt+e",
-        "toggle_hud": "alt+h",
+        "next": "alt+]",
+        "prev": "alt+[",
+        "reset": "alt+r",
+        "edit": "alt+e",
+        "hide": "alt+h",
     },
 }
 

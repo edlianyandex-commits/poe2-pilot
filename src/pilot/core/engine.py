@@ -24,6 +24,7 @@ LEVEL_WARN_MARGIN = 3      # warn when char level < area level - 3
 MIN_ABANDON_SAVE_S = 30.0  # don't litter history with instantly-reset runs
 MAX_TOAST = 40
 LOOKAHEAD = 6              # max steps the pointer may jump forward on a zone change
+OFF_PLAN_TOAST_GAP_S = 60.0  # min gap between "off plan" toasts
 _RE_ACT = re.compile(r"^(?:G(\d)|P(\d))_")
 
 
@@ -90,6 +91,8 @@ class RunEngine:
         self._finished_before = False
         self._reset_run_state()
         self._toasts: list[tuple[Toast, float]] = []
+        self._off_plan = 0
+        self._off_plan_toast_at: float | None = None
 
     # ---------------- public API ----------------
 
@@ -252,22 +255,35 @@ class RunEngine:
 
     def _on_level(self, ev: LevelUp) -> None:
         self._char_name, self._char_level = ev.character, ev.level
-        text = f"Ур. {ev.level}"
         hint = self.plan.hint_for(ev.level) if self.plan else None
-        if hint is not None:
-            parts = [f"+{p}" if not p.startswith(("+", "-")) else p for p in hint.passives]
-            parts += list(hint.gems)
-            if hint.note:
-                parts.append(hint.note)
-            if parts:
-                text += ": " + " · ".join(parts)
-        self._toast(text, "level")
+        if hint is None:
+            self._toast(f"Ур. {ev.level}", "level")
+            return
+        # passives and gems as separate toasts so neither gets clipped away
+        passives = [f"+{p}" if not p.startswith(("+", "-")) else p for p in hint.passives]
+        self._toast(f"Ур. {ev.level}: " + " · ".join(passives) if passives else f"Ур. {ev.level}",
+                    "level", 4.0)
+        extra = list(hint.gems) + ([hint.note] if hint.note else [])
+        if extra:
+            self._toast(" · ".join(extra), "level", 4.0)
+
+    def _ascendancy_hint(self, z: str) -> None:
+        hint = self.plan.ascendancy.get(z) if self.plan else None
+        if hint is not None and hint.passives:
+            names = [p if p.startswith("★") else f"★ {p}" for p in hint.passives]
+            self._toast(" · ".join(names), "level", 8.0)
 
     def _on_passive(self, ev: PassiveAllocated) -> None:
         if self.plan is None or not ev.allocated:
             return
-        if ev.node_id not in self.plan.planned_node_ids:
-            self._toast("Пассивка не по плану", "warn")
+        if ev.node_id in self.plan.planned_node_ids:
+            return
+        # one toast per respec burst, not one per node
+        self._off_plan += 1
+        now = self._clock()
+        if self._off_plan_toast_at is None or now - self._off_plan_toast_at >= OFF_PLAN_TOAST_GAP_S:
+            self._off_plan_toast_at = now
+            self._toast(f"Пассивки не по плану: {self._off_plan}", "warn")
 
     def _on_area(self, ev: AreaGenerated) -> None:
         z = ev.area_id
@@ -306,6 +322,7 @@ class RunEngine:
                         new = j
                         break
         self._advance_to(new, toast_idx=new if new < len(steps) and steps[new].area == z else None)
+        self._ascendancy_hint(z)
         if z == END_AREA:
             self._finish()
 
