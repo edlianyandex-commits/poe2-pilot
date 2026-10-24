@@ -94,6 +94,8 @@ class RunEngine:
         self._reset_run_state()
         self._toasts: list[tuple[Toast, float]] = []
         self._off_plan = 0
+        self._quiet = False
+        self._allocated: set[str] | None = None   # None = state unknown (no run start seen)
         self._off_plan_toast_at: float | None = None
 
     # ---------------- public API ----------------
@@ -186,6 +188,21 @@ class RunEngine:
                 self._save(status="abandoned")
             self._reset_run_state()
             self._armed = True
+
+    def allocated_nodes(self) -> set[str] | None:
+        """Passive node ids allocated since the run start; None if no run start was seen."""
+        with self._lock:
+            return None if self._allocated is None else set(self._allocated)
+
+    def set_quiet(self, on: bool) -> None:
+        """While quiet (warm start) finished/abandoned runs are not saved to the store."""
+        with self._lock:
+            self._quiet = on
+
+    def clear_toasts(self) -> None:
+        with self._lock:
+            self._toasts.clear()
+            self._off_plan_toast_at = None
 
     def upcoming(self, n: int = 3) -> list[str]:
         """Shorts of the next `n` steps after the current one."""
@@ -341,6 +358,11 @@ class RunEngine:
             self._toast(" · ".join(names), "level", 8.0)
 
     def _on_passive(self, ev: PassiveAllocated) -> None:
+        if self._allocated is not None:
+            if ev.allocated:
+                self._allocated.add(ev.node_id)
+            else:
+                self._allocated.discard(ev.node_id)
         if self.plan is None or not ev.allocated:
             return
         if ev.node_id in self.plan.planned_node_ids:
@@ -370,6 +392,7 @@ class RunEngine:
 
     def _start_run(self, ev: AreaGenerated) -> None:
         self._reset_run_state()
+        self._allocated = set()
         self._running = True
         self._armed = False
         self._started_iso = ev.ts.isoformat(timespec="seconds")
@@ -441,7 +464,7 @@ class RunEngine:
         self._toast(f"Финиш {fmt_time(total)}{tail}", "split", ttl=6.0)
 
     def _save(self, status: str) -> None:
-        if self.store is None:
+        if self.store is None or self._quiet:
             return
         if status == "abandoned" and self._elapsed < MIN_ABANDON_SAVE_S:
             return

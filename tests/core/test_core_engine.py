@@ -269,3 +269,22 @@ def test_segments_accounting():
     assert segs["G1_town"]["loading_s"] == 5.0 and segs["G1_town"]["deaths"] == 1
     assert abs(segs["G1_town"]["seconds"] - 95.0) < 1e-9
     assert abs(sum(s["seconds"] for s in rec.segments) - rec.total_s) < 1e-9
+
+
+def test_allocated_nodes():
+    eng, f, _ = make()
+    assert eng.allocated_nodes() is None
+    f.feed(PassiveAllocated, 0, "n0", "x", True)          # before any run start: ignored
+    assert eng.allocated_nodes() is None
+    f.zone("G1_1", 5, 1)
+    assert eng.allocated_nodes() == set()
+    f.feed(PassiveAllocated, 10, "a", "A", True)
+    f.feed(PassiveAllocated, 11, "b", "B", True)
+    f.feed(PassiveAllocated, 12, "a", "A", False)
+    got = eng.allocated_nodes()
+    assert got == {"b"}
+    got.add("zzz")                                         # returned copy is detached
+    assert eng.allocated_nodes() == {"b"}
+    eng.reset_run()
+    f.zone("G1_1", 100, 1)                                 # new run start resets
+    assert eng.allocated_nodes() == set()

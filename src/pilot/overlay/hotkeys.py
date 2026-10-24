@@ -27,6 +27,7 @@ DEFAULT_HOTKEYS = {
     "edit": "alt+e",
     "hide": "alt+h",
     "gems": "alt+g",
+    "tree": "alt+t",
 }
 
 _MODS = {

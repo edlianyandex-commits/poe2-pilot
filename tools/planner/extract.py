@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import collections
 import json
+import math
 import re
 import subprocess
 import sys
@@ -191,6 +192,26 @@ def extract_tree(tree_json: Path, version: str) -> dict:
             adj[nid].add(o)
             adj[o].add(nid)
 
+    # node position, as PoB's PassiveTree:ProcessNode (Lua tables are 1-based: node.group indexes
+    # the JSON groups list with an offset of 1):
+    #   angle = orbitAnglesByOrbit[orbit][orbitIndex]; r = orbitRadii[orbit]
+    #   x = group.x + r*sin(angle);  y = group.y - r*cos(angle)
+    groups = t["groups"]
+    radii = t["constants"]["orbitRadii"]
+    angles = t["constants"]["orbitAnglesByOrbit"]
+
+    def position(n: dict) -> tuple[float, float] | None:
+        g = n.get("group")
+        if not isinstance(g, int) or not (1 <= g <= len(groups)) or not groups[g - 1]:
+            return None
+        grp = groups[g - 1]
+        o, oi = n.get("orbit", 0), n.get("orbitIndex", 0)
+        try:
+            a, r = angles[o][oi], radii[o]
+        except (IndexError, TypeError):
+            return None
+        return round(grp["x"] + r * math.sin(a), 1), round(grp["y"] - r * math.cos(a), 1)
+
     nodes = {}
     for nid, n in sorted(keep.items()):
         rec = {
@@ -199,6 +220,11 @@ def extract_tree(tree_json: Path, version: str) -> dict:
             "t": node_type(n),
             "e": sorted(adj.get(nid, ())),
         }
+        pos = position(n)
+        if pos:
+            rec["x"], rec["y"] = pos
+        if rec["t"] in ("notable", "keystone") and n.get("icon"):
+            rec["ic"] = ICON_CDN + re.sub(r"\.dds$", ".webp", n["icon"], flags=re.I)
         if n.get("ascendancyName"):
             rec["a"] = n["ascendancyName"]
         if n.get("stats"):

@@ -334,6 +334,7 @@ class PlanDetail:
     root: int
     asc_root: int | None
     build: PobBuild
+    opens: dict[int, int] = field(default_factory=dict)   # jewel socket -> class start it opens
 
 
 def damage_profile(build: PobBuild) -> dict[str, float]:
@@ -580,4 +581,4 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
                      ascendancy=asc_hints, warnings=tuple(warnings), setups=setups,
                      gem_rows=gem_rows)
     return PlanDetail(plan, main_order, asc_order, alloc_level, points_used, warnings, tree, root,
-                      asc_root, build)
+                      asc_root, build, opens)

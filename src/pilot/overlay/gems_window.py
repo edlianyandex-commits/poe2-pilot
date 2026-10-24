@@ -101,16 +101,21 @@ class _Tip(QWidget):
         self.scale = 1.0
 
     def set_card(self, card: GemCard, scale: float = 1.0) -> None:
+        self.set_content(card.name, KIND_LABEL.get(card.kind, card.kind), card.description or "", scale)
+
+    def set_content(self, title: str, kind_text: str, desc: str = "", scale: float = 1.0) -> None:
+        """Bold title, dim kind line, wrapped body (lines separated by newlines)."""
         self.scale = scale
-        self.title = card.name
-        self.kind_text = KIND_LABEL.get(card.kind, card.kind)
-        self.desc = card.description or ""
+        self.title = title
+        self.kind_text = kind_text
+        self.desc = desc
         px = round(14 * scale)
         html = (f"<div style='font-size:{px}px; color:#fff'>"
                 f"<b>{_esc(self.title)}</b><br>"
                 f"<span style='color:#a8a8a8'>{_esc(self.kind_text)}</span>")
         if self.desc:
-            html += f"<br><span style='color:#e4e4e4'>{_esc(self.desc)}</span>"
+            body = "<br>".join(_esc(ln) for ln in self.desc.splitlines())
+            html += f"<br><span style='color:#e4e4e4'>{body}</span>"
         html += "</div>"
         f = QFont("Segoe UI")
         f.setPixelSize(px)

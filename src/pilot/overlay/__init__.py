@@ -36,7 +36,7 @@ def run_overlay(source, actions, config: dict) -> int:
     config keys (all optional): hotkeys{}, hide_when_unfocused, game_exes, scale, x, y,
     dim_opacity, details_provider, on_save, palette,
     gem_provider() -> tuple[GemRow], level_provider() -> int|None, icon_cache (IconCache),
-    gems_window {x, y, scale}.
+    gems_window {x, y, scale}, tree_provider() -> TreeView|None, tree_window {x, y, scale, zoom}.
     """
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
@@ -44,12 +44,14 @@ def run_overlay(source, actions, config: dict) -> int:
     from .hotkeys import HotkeyManager
     from .gems_window import GemsWindow
     from .hud import HudWindow
+    from .tree_window import TreeWindow
 
     app = QApplication.instance() or QApplication(sys.argv[:1])
     app.setQuitOnLastWindowClosed(False)
 
     hud = HudWindow(config)
     gems = GemsWindow(config)
+    tree = TreeWindow(config)
 
     def tick():
         try:
@@ -65,6 +67,7 @@ def run_overlay(source, actions, config: dict) -> int:
     vis.setInterval(250)
     vis.timeout.connect(hud.refresh_visibility)
     vis.timeout.connect(gems.refresh_visibility)
+    vis.timeout.connect(tree.refresh_visibility)
 
     def act(name):
         return lambda: getattr(actions, name)()
@@ -78,6 +81,7 @@ def run_overlay(source, actions, config: dict) -> int:
             "hide": hud.toggle_hidden,
             "details": hud.set_details_visible,
             "gems": gems.toggle,
+            "tree": tree.toggle,
         },
         config.get("hotkeys"),
     )
@@ -87,6 +91,7 @@ def run_overlay(source, actions, config: dict) -> int:
     menu = QMenu()
     menu.addAction("Edit position", hud.toggle_edit)
     menu.addAction("Gems", gems.toggle)
+    menu.addAction("Tree", tree.toggle)
     menu.addAction("Quit", app.quit)
     tray.setContextMenu(menu)
     tray.show()
@@ -104,3 +109,5 @@ def run_overlay(source, actions, config: dict) -> int:
         hud.hide()
         gems.hide()
         gems.tip.hide()
+        tree.hide()
+        tree.tip.hide()

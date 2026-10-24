@@ -93,6 +93,9 @@ class Node:
     free: bool = False
     group: int | None = None
     variants: dict | None = field(default=None, compare=False, hash=False)  # class/asc -> {n, st, a}
+    x: float | None = None     # tree coordinates (PoB units, y grows downwards)
+    y: float | None = None
+    icon: str | None = None    # icon URL (notables/keystones only)
 
 
 class PassiveTree:
@@ -110,7 +113,7 @@ class PassiveTree:
                 id=nid, sid=r.get("s", ""), name=r.get("n", ""), type=r.get("t", "small"),
                 asc=r.get("a"), stats=tuple(r.get("st", ())), adj=tuple(r.get("e", ())),
                 unlock=tuple(r.get("uc", ())), free=bool(r.get("free")), group=r.get("g"),
-                variants=r.get("sw"))
+                variants=r.get("sw"), x=r.get("x"), y=r.get("y"), icon=r.get("ic"))
         self.by_sid = {n.sid: n.id for n in self.nodes.values() if n.sid}
 
     def specialise(self, class_name: str | None, asc_name: str | None) -> "PassiveTree":

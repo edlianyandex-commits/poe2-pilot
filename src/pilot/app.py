@@ -13,13 +13,14 @@ DATA = ROOT / "data"
 
 
 def _load_plan(cfg: dict, build_arg: str | None):
+    """-> PlanDetail (plan + tree data for the tree window) or None without a build."""
     src = build_arg or cfg.get("build_code_file")
     if not src:
         return None
-    from pilot.planner import build_plan
+    from pilot.planner import build_plan_detail
     p = Path(src)
     # a file path lets the planner pick up the X.gear.json sidecar next to X.pob
-    return build_plan(p if p.exists() else src)
+    return build_plan_detail(p if p.exists() else src)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -45,8 +46,8 @@ def main(argv: list[str] | None = None) -> int:
     route_arg = args.route or cfg["route"]
     route_path = Path(route_arg) if route_arg.endswith(".json") else DATA / "routes" / f"{route_arg}.json"
     route = load_route(route_path)
-    plan = _load_plan(cfg, args.build)
-    engine = RunEngine(route, plan=plan, store=SplitStore())
+    detail = _load_plan(cfg, args.build)
+    engine = RunEngine(route, plan=detail.plan if detail else None, store=SplitStore())
     cfg["details_provider"] = engine.details
     cfg["gem_provider"] = engine.gem_rows
 
@@ -54,6 +55,11 @@ def main(argv: list[str] | None = None) -> int:
         s = engine.snapshot()
         return s.char_level or (1 if s.running else None)
     cfg["level_provider"] = current_level
+
+    if detail is not None:
+        from pilot.planner.treeview import TreeViewBuilder
+        tree = TreeViewBuilder(detail)
+        cfg["tree_provider"] = lambda: tree.view(engine.allocated_nodes(), current_level())
 
     def on_line(line: str) -> None:
         ev = parse_line(line)
@@ -69,6 +75,9 @@ def main(argv: list[str] | None = None) -> int:
         if not log.is_file():
             print("Client.txt не найден: укажите --log или log_path в конфиге", file=sys.stderr)
             return 2
+        # started mid-run: rebuild step, timer, level and passives from the log first
+        from pilot.core.warmstart import warm_start
+        warm_start(engine, log)
         watcher = LogWatcher(log, on_line, from_end=True)
         watcher.start()
 
