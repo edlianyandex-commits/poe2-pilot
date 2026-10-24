@@ -29,3 +29,12 @@ if "--windowed" in sys.argv:
     args.append("--windowed")
 
 PyInstaller.__main__.run(args)
+
+# one-click launchers next to the exe (PyInstaller recreates dist/PoE2Pilot, so write them each build)
+LAUNCHERS = {
+    "PoE2Pilot - Monk.bat": "twister_martial_artist_787prada_0_5_5.pob",
+    "PoE2Pilot - Mercenary (Travic).bat": "twister_speed_campaign_travic_0_5_5.pob",
+}
+for name, build in LAUNCHERS.items():
+    (ROOT / "dist" / "PoE2Pilot" / name).write_text(
+        f'@echo off\r\nstart "" "%~dp0PoE2Pilot.exe" --build {build}\r\n', encoding="ascii")
