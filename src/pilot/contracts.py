@@ -127,6 +127,30 @@ class LevelPlan:
         return self.gem_rows[best] if best is not None else ()
 
 
+# ---------- passive tree window (planner builds it, overlay renders it) ----------
+
+@dataclass(frozen=True)
+class TreeNodeView:
+    sid: str                      # string id, as in Client.txt
+    name: str
+    kind: str                     # small | notable | keystone | attribute | jewel | start
+    x: float                      # tree coordinates (PoB units, y grows downwards)
+    y: float
+    stats: tuple[str, ...] = ()
+    state: str = "other"          # taken | next | planned | offplan | other
+    order: int | None = None      # 1, 2, 3... for the next nodes to take
+    level: int | None = None      # character level the plan takes it at
+    icon_url: str | None = None
+
+
+@dataclass(frozen=True)
+class TreeView:
+    nodes: tuple[TreeNodeView, ...]
+    edges: tuple[tuple[str, str], ...]       # pairs of sids, only between shown nodes
+    level: int | None = None
+    points_free: int | None = None           # points the plan says should be spent but aren't
+
+
 # ---------- what the overlay renders (core/engine.py -> overlay/) ----------
 
 @dataclass(frozen=True)

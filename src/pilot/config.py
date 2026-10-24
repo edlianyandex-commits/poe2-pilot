@@ -19,6 +19,7 @@ DEFAULTS: dict = {
         "edit": "alt+e",
         "hide": "alt+h",
         "gems": "alt+g",
+        "tree": "alt+t",
     },
 }
 
