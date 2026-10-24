@@ -11,7 +11,7 @@ from pilot.config import load_config, save_config
 from pilot.paths import BUILDS, DATA
 
 # used when neither --build nor build_code_file in the config is set
-DEFAULT_BUILD = "twister_speed_campaign_travic_0_5_5.pob"
+DEFAULT_BUILD = "twister_monk_guythatdies_0_5_5.build"
 
 
 def _load_plan(cfg: dict, build_arg: str | None):
@@ -21,7 +21,7 @@ def _load_plan(cfg: dict, build_arg: str | None):
     p = Path(src)
     if not p.exists() and (BUILDS / src).exists():     # a bundled build by file name
         p = BUILDS / src
-    if not p.exists() and len(src) < 260 and src.endswith(".pob"):
+    if not p.exists() and len(src) < 260 and src.endswith((".pob", ".build")):
         print(f"Билд не найден: {src}", file=sys.stderr)
         return None
     # a file path lets the planner pick up the X.gear.json sidecar next to X.pob

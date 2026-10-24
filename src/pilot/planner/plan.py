@@ -280,8 +280,10 @@ def spread_gem_events(events: list[GemEvent], per_level: int = MAX_ITEMS) -> dic
 # ----------------------------------------------------------------------------- gear
 
 class GearLines(dict):
-    """level -> lines from a sidecar; ``pob_uniques=False`` drops "Надеть X" hints from the PoB."""
+    """level -> lines from a sidecar; ``pob_uniques=False`` drops "Надеть X" hints from the PoB;
+    ``zones``: area id -> pickup hints ("Renly: Twister")."""
     pob_uniques: bool = True
+    zones: dict[str, tuple[str, ...]] = {}
 
 
 def load_gear_file(path: str | Path) -> GearLines:
@@ -295,6 +297,9 @@ def load_gear_file(path: str | Path) -> GearLines:
     out = GearLines()
     if isinstance(raw, dict) and raw.get("pob_uniques") is False:
         out.pob_uniques = False
+    zones = raw.get("zones", {}) if isinstance(raw, dict) else {}
+    out.zones = {str(a): tuple(clip(str(x), 40) for x in (v if isinstance(v, list) else [v]) if str(x).strip())
+                 for a, v in (zones.items() if isinstance(zones, dict) else ()) if not str(a).startswith("_")}
     for k, v in (gear.items() if isinstance(gear, dict) else ()):
         if str(k).startswith("_"):
             continue

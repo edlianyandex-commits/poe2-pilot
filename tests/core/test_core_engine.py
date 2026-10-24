@@ -288,3 +288,17 @@ def test_allocated_nodes():
     eng.reset_run()
     f.zone("G1_1", 100, 1)                                 # new run start resets
     assert eng.allocated_nodes() == set()
+
+
+def test_zone_hints_on_first_visit_only():
+    plan = LevelPlan("p", "W", zone_hints={"G1_2": ("Renly: Twister", "a", "b")})
+    eng, f, _ = make(plan=plan)
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_2", 10)
+    texts = [t.text for t in eng.snapshot().toasts]
+    assert "Renly: Twister" in texts and "+1 здесь (Alt+Q)" in texts
+    assert eng.details()[:3] == ["Renly: Twister", "a", "b"]
+    eng.clear_toasts()
+    f.zone("G1_1", 20)
+    f.zone("G1_2", 30)
+    assert "Renly: Twister" not in [t.text for t in eng.snapshot().toasts]

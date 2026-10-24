@@ -38,7 +38,29 @@ def build_plan_detail(pob_code: str | Path, max_level: int = 100,
     if gear_file is None:
         gear_file = find_gear_sidecar(pob_code)
     gear = load_gear_file(gear_file) if gear_file else None
-    return build_level_plan(load_pob(pob_code), max_level=max_level, gear=gear)
+    detail = build_level_plan(load_pob(pob_code), max_level=max_level, gear=gear)
+    if gear is not None:
+        detail.plan.zone_hints = dict(getattr(gear, "zones", {}) or {})
+    if str(pob_code).lower().endswith(".build") and Path(pob_code).is_file():
+        _use_guide_gems(detail, pob_code, max_level)
+    return detail
+
+
+def _use_guide_gems(detail: PlanDetail, path: str | Path, max_level: int) -> None:
+    """.build files say exactly which gems go where per stage: use that instead of the
+    planner's availability estimate (setups, gem window rows and the gem part of hints)."""
+    from dataclasses import replace
+
+    from pilot.contracts import LevelHint
+    from .gamebuild import read_build_files, stage_gem_plan
+
+    setups, rows, gem_hints = stage_gem_plan(read_build_files(path), max_level)
+    plan = detail.plan
+    plan.setups, plan.gem_rows = setups, rows
+    hints = {lv: replace(h, gems=()) for lv, h in plan.hints.items()}
+    for lv, gems in gem_hints.items():
+        hints[lv] = replace(hints.get(lv) or LevelHint(level=lv), gems=gems)
+    plan.hints = {lv: h for lv, h in sorted(hints.items()) if h.passives or h.gems or h.gear or h.note}
 
 
 def build_plan(pob_code: str | Path, gear_file: str | Path | None = None) -> LevelPlan:

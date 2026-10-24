@@ -116,6 +116,8 @@ class LevelPlan:
 
     # same setups as structured rows for the gem window: level -> rows, main skill first
     gem_rows: dict[int, tuple[GemRow, ...]] = field(default_factory=dict)
+    # area id -> what to pick up there ("Renly: Twister"), each <= 40 chars; shown on first entry
+    zone_hints: dict[str, tuple[str, ...]] = field(default_factory=dict)
 
     def setup_for(self, level: int) -> tuple[str, ...]:
         """Gem setup that should be socketed at `level` (latest entry at or below it)."""

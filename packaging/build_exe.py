@@ -32,7 +32,7 @@ PyInstaller.__main__.run(args)
 
 # one-click launchers next to the exe (PyInstaller recreates dist/PoE2Pilot, so write them each build)
 LAUNCHERS = {
-    "PoE2Pilot - Monk.bat": "twister_martial_artist_787prada_0_5_5.pob",
+    "PoE2Pilot - Monk.bat": "twister_monk_guythatdies_0_5_5.build",
     "PoE2Pilot - Mercenary (Travic).bat": "twister_speed_campaign_travic_0_5_5.pob",
 }
 for name, build in LAUNCHERS.items():

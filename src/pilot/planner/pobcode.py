@@ -324,5 +324,11 @@ def parse_pob_xml(xml_text: str) -> PobBuild:
 
 
 def load_pob(source: str | Path) -> PobBuild:
-    """Parse a PoB export code, a file containing one, or a raw XML file/text."""
+    """Parse a PoB export code, a file containing one, or a raw XML file/text.
+
+    A ``.build`` file (the game's own build planner format) is read by ``gamebuild``.
+    """
+    if isinstance(source, (str, Path)) and str(source).lower().endswith(".build") and Path(source).is_file():
+        from .gamebuild import load_game_build
+        return load_game_build(source)
     return parse_pob_xml(_read_source(source))

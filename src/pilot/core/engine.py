@@ -215,6 +215,8 @@ class RunEngine:
         with self._lock:
             i = self._step
             lines: list[str] = []
+            if self.plan is not None and self._area_id:
+                lines.extend(self.plan.zone_hints.get(self._area_id, ())[:3])
             if i < len(self.route.steps):
                 cur = self.route.steps[i]
                 if cur.detail:
@@ -351,6 +353,14 @@ class RunEngine:
             text = f"{gear[0]} · +{len(gear) - 1} (Alt+Q)"
         self._toast(text, "gear", 5.0)
 
+    def _zone_hint(self, z: str) -> None:
+        """What to pick up in this zone (gems from NPCs and bosses): up to 2 toasts, rest in details."""
+        lines = self.plan.zone_hints.get(z, ()) if self.plan else ()
+        for text in lines[:2]:
+            self._toast(text, "zone", 6.0)
+        if len(lines) > 2:
+            self._toast(f"+{len(lines) - 2} здесь (Alt+Q)", "zone", 6.0)
+
     def _ascendancy_hint(self, z: str) -> None:
         hint = self.plan.ascendancy.get(z) if self.plan else None
         if hint is not None and hint.passives:
@@ -420,6 +430,9 @@ class RunEngine:
                         break
         self._advance_to(new, toast_idx=new if new < len(steps) and steps[new].area == z else None)
         self._ascendancy_hint(z)
+        seg = self._segs.get(z)
+        if seg is not None and seg.visits == 1:     # pickup hints only on the first visit
+            self._zone_hint(z)
         if z == END_AREA:
             self._finish()
 

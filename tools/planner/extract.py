@@ -301,6 +301,8 @@ def extract_gems(gems_lua: Path, cards: dict[str, dict] | None = None) -> dict:
             "ge": g.get("grantedEffectId", ""),
             "tags": sorted(k for k, v in (g.get("tags") or {}).items() if v is True),
         }
+        if g.get("gameId") and g["gameId"] != game_id:
+            rec["gid"] = g["gameId"]           # in-game metadata id (.build files use it)
         if g.get("gemFamily"):
             rec["fam"] = g["gemFamily"]
         if g.get("weaponRequirements"):
