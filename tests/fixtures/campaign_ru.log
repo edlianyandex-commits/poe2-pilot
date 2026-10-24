@@ -1,0 +1,1824 @@
+2025/12/12 22:10:21 219309250 2caa22da [DEBUG Client 10768] Generating level 1 area "G1_1" with seed 3976951634
+2025/12/12 22:10:22 219310187 7fbd122f [INFO Client 10768] [SCENE] Set Source [Берег реки]
+2025/12/12 22:14:00 219528250 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 2 уровня
+2025/12/12 22:14:31 219559593 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells18, name: Урон чарами
+2025/12/12 22:14:46 219574609 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 22:14:47 219575437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:14:47 219575437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:17:01 219709578 2caa22da [DEBUG Client 10768] Generating level 2 area "G1_2" with seed 4121374930
+2025/12/12 22:17:02 219710296 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:17:02 219710312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Клирфелл]
+2025/12/12 22:18:45 219813281 2caa22da [DEBUG Client 10768] Generating level 3 area "G1_3" with seed 3913995839
+2025/12/12 22:18:45 219813562 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:18:45 219813578 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грязевая нора]
+2025/12/12 22:20:15 219903484 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 3 уровня
+2025/12/12 22:20:31 219918906 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells15, name: Урон чарами
+2025/12/12 22:22:12 220020000 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/12 22:22:15 220023812 2caa22da [DEBUG Client 10768] Generating level 3 area "G1_3" with seed 3913995839
+2025/12/12 22:22:16 220023890 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:22:16 220023890 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грязевая нора]
+2025/12/12 22:24:06 220134593 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 22:24:07 220134953 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:24:07 220134953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:25:33 220221234 2caa22da [DEBUG Client 10768] Generating level 2 area "G1_2" with seed 4121374930
+2025/12/12 22:25:33 220221703 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:25:33 220221703 7fbd122f [INFO Client 10768] [SCENE] Set Source [Клирфелл]
+2025/12/12 22:27:37 220345781 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/12 22:27:40 220348500 2caa22da [DEBUG Client 10768] Generating level 2 area "G1_2" with seed 4121374930
+2025/12/12 22:27:40 220348781 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:27:40 220348781 7fbd122f [INFO Client 10768] [SCENE] Set Source [Клирфелл]
+2025/12/12 22:29:25 220453218 2caa22da [DEBUG Client 10768] Generating level 4 area "G1_4" with seed 1376433387
+2025/12/12 22:29:25 220453859 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:29:26 220453890 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грельвуд]
+2025/12/12 22:30:24 220512390 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 4 уровня
+2025/12/12 22:30:36 220524406 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spell_criticals2__, name: Урон чарами
+2025/12/12 22:33:03 220670890 2caa22da [DEBUG Client 10768] Generating level 6 area "G1_6" with seed 4102319442
+2025/12/12 22:33:03 220671656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:33:03 220671656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Мрачные заросли]
+2025/12/12 22:33:14 220682281 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 22:33:14 220682718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:33:14 220682718 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:34:21 220749500 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 22:34:30 220758546 2caa22da [DEBUG Client 10768] Generating level 6 area "G1_6" with seed 4102319442
+2025/12/12 22:34:30 220758750 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:34:30 220758750 7fbd122f [INFO Client 10768] [SCENE] Set Source [Мрачные заросли]
+2025/12/12 22:34:35 220763671 2caa22da [DEBUG Client 10768] Generating level 4 area "G1_4" with seed 1376433387
+2025/12/12 22:34:36 220764156 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:34:36 220764156 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грельвуд]
+2025/12/12 22:34:45 220773859 2caa22da [DEBUG Client 10768] Generating level 5 area "G1_5" with seed 458433587
+2025/12/12 22:34:46 220774390 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:34:46 220774406 7fbd122f [INFO Client 10768] [SCENE] Set Source [Красная Долина]
+2025/12/12 22:35:27 220815515 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/12 22:35:30 220817890 2caa22da [DEBUG Client 10768] Generating level 5 area "G1_5" with seed 458433587
+2025/12/12 22:35:30 220818093 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:35:30 220818093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Красная Долина]
+2025/12/12 22:36:33 220880937 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 5 уровня
+2025/12/12 22:36:52 220900703 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spell_criticals1, name: Урон чарами
+2025/12/12 22:40:40 221128125 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 6 уровня
+2025/12/12 22:44:15 221343421 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 22:44:15 221343859 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:44:15 221343859 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:46:10 221458671 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: witch_sorceress_notable1, name: Необузданная мощь
+2025/12/12 22:46:25 221473796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 22:46:29 221477031 2caa22da [DEBUG Client 10768] Generating level 6 area "G1_6" with seed 3447164072
+2025/12/12 22:46:29 221477578 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:46:29 221477578 7fbd122f [INFO Client 10768] [SCENE] Set Source [Мрачные заросли]
+2025/12/12 22:46:35 221482937 2caa22da [DEBUG Client 10768] Generating level 4 area "G1_4" with seed 1376433387
+2025/12/12 22:46:35 221483390 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:46:35 221483390 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грельвуд]
+2025/12/12 22:47:20 221528109 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 22:47:20 221528484 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:47:20 221528484 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:48:08 221576046 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 22:48:11 221579468 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:48:11 221579468 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 22:48:12 221580703 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 22:48:14 221582687 2caa22da [DEBUG Client 10768] Generating level 6 area "G1_6" with seed 3447164072
+2025/12/12 22:48:15 221583093 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:48:15 221583093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Мрачные заросли]
+2025/12/12 22:52:12 221820531 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 7 уровня
+2025/12/12 22:53:23 221891093 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental14, name: Урон от стихий
+2025/12/12 22:54:24 221952781 2caa22da [DEBUG Client 10768] Generating level 7 area "G1_7" with seed 302193063
+2025/12/12 22:54:25 221953656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:54:25 221953671 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 22:56:20 222068171 2caa22da [DEBUG Client 10768] Generating level 8 area "G1_8" with seed 2522397546
+2025/12/12 22:56:20 222068484 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 22:56:20 222068484 7fbd122f [INFO Client 10768] [SCENE] Set Source [Мавзолей претора]
+2025/12/12 22:57:02 222110562 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 8 уровня
+2025/12/12 22:57:20 222128312 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: cold2, name: Урон от стихий
+2025/12/12 23:01:46 222393921 2caa22da [DEBUG Client 10768] Generating level 7 area "G1_7" with seed 302193063
+2025/12/12 23:01:46 222394078 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:01:46 222394078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 23:01:49 222397437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:01:50 222397875 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:01:50 222397890 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 23:02:19 222427578 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:02:20 222427937 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:02:20 222427937 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 23:02:29 222437343 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 23:02:30 222438093 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:02:30 222438109 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 23:02:45 222453546 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:02:49 222457703 2caa22da [DEBUG Client 10768] Generating level 7 area "G1_7" with seed 501564026
+2025/12/12 23:02:50 222457875 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:02:50 222457875 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 23:03:30 222498203 2caa22da [DEBUG Client 10768] Generating level 9 area "G1_9" with seed 857255713
+2025/12/12 23:03:30 222498453 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:03:30 222498468 7fbd122f [INFO Client 10768] [SCENE] Set Source [Супружеская гробница]
+2025/12/12 23:03:55 222523390 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 9 уровня
+2025/12/12 23:04:07 222535390 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: cold34, name: Сила стихий
+2025/12/12 23:06:53 222701109 2caa22da [DEBUG Client 10768] Generating level 7 area "G1_7" with seed 302193063
+2025/12/12 23:06:53 222701281 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:06:53 222701281 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кладбище Вечных]
+2025/12/12 23:08:53 222821140 2caa22da [DEBUG Client 10768] Generating level 10 area "G1_11" with seed 3194372765
+2025/12/12 23:08:53 222821718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:08:53 222821718 7fbd122f [INFO Client 10768] [SCENE] Set Source [Охотничьи угодья]
+2025/12/12 23:09:09 222837500 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 23:09:10 222837968 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:09:10 222837968 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 23:10:39 222926937 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:10:55 222943578 2caa22da [DEBUG Client 10768] Generating level 10 area "G1_11" with seed 3488361631
+2025/12/12 23:10:55 222943843 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:10:55 222943843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Охотничьи угодья]
+2025/12/12 23:11:10 222958031 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 10 уровня
+2025/12/12 23:11:35 222983078 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: sorcerer_start2, name: Урон от стихий
+2025/12/12 23:13:43 223111000 2caa22da [DEBUG Client 10768] Generating level 11 area "G1_12" with seed 843189358
+2025/12/12 23:13:43 223111781 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:13:43 223111781 7fbd122f [INFO Client 10768] [SCENE] Set Source [Фрейторн]
+2025/12/12 23:14:27 223155078 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 11 уровня
+2025/12/12 23:15:24 223212343 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental15, name: Урон от стихий
+2025/12/12 23:18:01 223369781 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 12 уровня
+2025/12/12 23:18:23 223391859 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence15, name: Характеристика
+2025/12/12 23:22:56 223664625 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 23:22:57 223665078 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:22:57 223665078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 23:32:56 224264281 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:33:00 224268453 2caa22da [DEBUG Client 10768] Generating level 10 area "G1_11" with seed 54289263
+2025/12/12 23:33:01 224268921 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:33:01 224268921 7fbd122f [INFO Client 10768] [SCENE] Set Source [Охотничьи угодья]
+2025/12/12 23:37:21 224529546 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence16, name: Характеристика
+2025/12/12 23:38:23 224591859 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells1, name: Урон чарами
+2025/12/12 23:38:30 224598531 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 23:38:30 224598671 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:38:30 224598687 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 23:39:14 224641984 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence15, name: Характеристика
+2025/12/12 23:39:22 224650015 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence16, name: Характеристика
+2025/12/12 23:44:10 224938375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:44:15 224943015 2caa22da [DEBUG Client 10768] Generating level 10 area "G1_11" with seed 54289263
+2025/12/12 23:44:15 224943234 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:44:15 224943234 7fbd122f [INFO Client 10768] [SCENE] Set Source [Охотничьи угодья]
+2025/12/12 23:44:26 224954640 2caa22da [DEBUG Client 10768] Generating level 12 area "G1_13_1" with seed 1341894178
+2025/12/12 23:44:27 224955250 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:44:27 224955265 7fbd122f [INFO Client 10768] [SCENE] Set Source [Фермерские земли Огама]
+2025/12/12 23:46:22 225070312 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 13 уровня
+2025/12/12 23:46:37 225085546 2caa22da [DEBUG Client 10768] Generating level 13 area "IncursionHub" with seed 2732526898
+2025/12/12 23:46:37 225085781 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:46:37 225085781 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/12 23:47:03 225111156 2caa22da [DEBUG Client 10768] Generating level 13 area "IncursionTemplePresent" with seed 4194221675
+2025/12/12 23:47:03 225111828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:47:03 225111843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный храм]
+2025/12/12 23:48:17 225185265 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells3, name: Урон чарами
+2025/12/12 23:50:18 225306718 2caa22da [DEBUG Client 10768] Generating level 13 area "IncursionHub" with seed 2732526898
+2025/12/12 23:50:18 225306750 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:50:18 225306750 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/12 23:50:21 225309546 2caa22da [DEBUG Client 10768] Generating level 13 area "IncursionTemplePresent" with seed 4194221675
+2025/12/12 23:50:21 225309625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:50:21 225309625 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный храм]
+2025/12/12 23:50:23 225311812 2caa22da [DEBUG Client 10768] Generating level 13 area "IncursionHub" with seed 2732526898
+2025/12/12 23:50:23 225311843 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:50:23 225311843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/12 23:50:33 225321328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:50:36 225323875 2caa22da [DEBUG Client 10768] Generating level 12 area "G1_13_1" with seed 1341894178
+2025/12/12 23:50:36 225324328 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:50:36 225324328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Фермерские земли Огама]
+2025/12/12 23:51:05 225352953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:51:05 225353578 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:51:05 225353578 7fbd122f [INFO Client 10768] [SCENE] Set Source [Фермерские земли Огама]
+2025/12/12 23:54:02 225529921 2caa22da [DEBUG Client 10768] Generating level 13 area "G1_13_2" with seed 499471350
+2025/12/12 23:54:02 225530718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:54:02 225530734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Деревня Огам]
+2025/12/12 23:54:17 225545765 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/12 23:54:18 225546328 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:54:18 225546328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/12 23:54:39 225567078 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells12, name: Урон чарами
+2025/12/12 23:54:39 225567687 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: spells33, name: Могучее заклинание
+2025/12/12 23:56:12 225660796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:56:16 225664531 2caa22da [DEBUG Client 10768] Generating level 13 area "G1_13_2" with seed 499471350
+2025/12/12 23:56:16 225664828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:56:16 225664828 7fbd122f [INFO Client 10768] [SCENE] Set Source [Деревня Огам]
+2025/12/12 23:57:37 225744921 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/12 23:57:37 225745609 7fbd122f [INFO Client 10768] [SCENE] Set Source [Деревня Огам]
+2025/12/12 23:57:38 225745968 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/12 23:57:40 225748343 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/12 23:57:40 225748343 7fbd122f [INFO Client 10768] [SCENE] Set Source [Деревня Огам]
+2025/12/12 23:58:36 225804031 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 14 уровня
+2025/12/12 23:59:54 225882734 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence6, name: Характеристика
+2025/12/13 00:00:05 225893171 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/13 00:00:05 225893328 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:00:05 225893328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/13 00:02:01 226008906 2caa22da [DEBUG Client 10768] Generating level 13 area "G1_13_2" with seed 499471350
+2025/12/13 00:02:01 226009171 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:02:01 226009171 7fbd122f [INFO Client 10768] [SCENE] Set Source [Деревня Огам]
+2025/12/13 00:02:04 226012875 2caa22da [DEBUG Client 10768] Generating level 14 area "G1_14" with seed 3745220710
+2025/12/13 00:02:05 226013671 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:02:05 226013687 7fbd122f [INFO Client 10768] [SCENE] Set Source [Стены замка]
+2025/12/13 00:04:57 226185609 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 15 уровня
+2025/12/13 00:05:08 226196359 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: attributes21, name: Характеристика
+2025/12/13 00:06:15 226263656 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_15" with seed 748664599
+2025/12/13 00:06:16 226264718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:06:16 226264734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:09:35 226463312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/13 00:09:37 226465281 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:09:37 226465281 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:11:32 226580718 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/13 00:11:37 226584953 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:11:37 226584953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:12:57 226665578 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 16 уровня
+2025/12/13 00:13:12 226680656 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: jewel_slot1972, name: Гнездо для [Jewel|самоцвета]
+2025/12/13 00:14:36 226764203 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 00:14:39 226767046 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_15" with seed 748664599
+2025/12/13 00:14:39 226767437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:14:39 226767453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:15:47 226835687 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 00:15:50 226838484 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_15" with seed 748664599
+2025/12/13 00:15:51 226838937 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:15:51 226838953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:20:08 227096562 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 1]
+2025/12/13 00:20:10 227098031 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:20:10 227098031 7fbd122f [INFO Client 10768] [SCENE] Set Source [Замок Огам]
+2025/12/13 00:22:32 227240015 2caa22da [DEBUG Client 10768] Generating level 15 area "G1_town" with seed 1
+2025/12/13 00:22:32 227240468 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:22:32 227240484 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь Клирфелл]
+2025/12/13 00:23:05 227273109 2caa22da [DEBUG Client 10768] Generating level 16 area "G2_1" with seed 2114046893
+2025/12/13 00:23:06 227274031 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:23:06 227274046 7fbd122f [INFO Client 10768] [SCENE] Set Source [Окраины Вастири]
+2025/12/13 00:25:23 227411750 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 17 уровня
+2025/12/13 00:25:32 227420359 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence46, name: Характеристика
+2025/12/13 00:27:33 227541406 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:27:34 227542156 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:27:34 227542156 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:29:10 227638125 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:29:12 227640812 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:29:12 227640812 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:29:43 227671828 2caa22da [DEBUG Client 10768] Generating level 20 area "G2_3a" with seed 1752120583
+2025/12/13 00:29:44 227671984 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:29:44 227671984 7fbd122f [INFO Client 10768] [SCENE] Set Source [Ворота Халани]
+2025/12/13 00:29:57 227685734 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:29:57 227685859 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:29:57 227685859 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:30:10 227698031 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:30:12 227700187 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:30:12 227700187 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:30:22 227710265 2caa22da [DEBUG Client 10768] Generating level 20 area "G2_3a" with seed 1752120583
+2025/12/13 00:30:22 227710359 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:30:22 227710359 7fbd122f [INFO Client 10768] [SCENE] Set Source [Ворота Халани]
+2025/12/13 00:30:32 227720359 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:30:32 227720468 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:30:32 227720468 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:30:43 227731640 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:30:59 227747640 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:30:59 227747656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:31:02 227750734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:31:04 227752125 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:31:04 227752125 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:31:14 227762312 2caa22da [DEBUG Client 10768] Generating level 17 area "G2_10_1" with seed 1699722479
+2025/12/13 00:31:15 227763125 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:31:15 227763125 7fbd122f [INFO Client 10768] [SCENE] Set Source [Каменоломня Маудун]
+2025/12/13 00:32:55 227863156 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:32:57 227865187 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:32:57 227865203 7fbd122f [INFO Client 10768] [SCENE] Set Source [Каменоломня Маудун]
+2025/12/13 00:33:08 227876296 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 18 уровня
+2025/12/13 00:33:17 227884953 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental53, name: Урон от стихий
+2025/12/13 00:35:35 228023562 2caa22da [DEBUG Client 10768] Generating level 18 area "G2_10_2" with seed 2142703727
+2025/12/13 00:35:36 228024234 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:35:36 228024234 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шахта Маудун]
+2025/12/13 00:36:52 228099890 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 19 уровня
+2025/12/13 00:37:02 228110265 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental21, name: Урон от стихий
+2025/12/13 00:38:33 228201015 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:38:34 228202515 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:38:34 228202515 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шахта Маудун]
+2025/12/13 00:38:36 228204093 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:38:36 228204593 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:38:36 228204593 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:40:31 228319406 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:40:37 228323312 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:40:37 228323312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:41:00 228345593 2caa22da [DEBUG Client 10768] Generating level 16 area "G2_1" with seed 1326059266
+2025/12/13 00:41:00 228346109 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:41:00 228346109 7fbd122f [INFO Client 10768] [SCENE] Set Source [Окраины Вастири]
+2025/12/13 00:41:26 228372437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:41:29 228375390 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:41:30 228375515 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:41:30 228375515 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:41:40 228385703 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:41:42 228388250 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:41:42 228388250 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:41:51 228397000 2caa22da [DEBUG Client 10768] Generating level 19 area "G2_2" with seed 1609096325
+2025/12/13 00:41:52 228397828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:41:52 228397828 7fbd122f [INFO Client 10768] [SCENE] Set Source [Тропа Изменницы]
+2025/12/13 00:43:50 228516125 2caa22da [DEBUG Client 10768] Generating level 20 area "IncursionHub" with seed 1933154414
+2025/12/13 00:43:50 228516312 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:43:50 228516312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/13 00:43:54 228519609 2caa22da [DEBUG Client 10768] Generating level 19 area "G2_2" with seed 1609096325
+2025/12/13 00:43:54 228519875 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:43:54 228519875 7fbd122f [INFO Client 10768] [SCENE] Set Source [Тропа Изменницы]
+2025/12/13 00:46:34 228679578 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 20 уровня
+2025/12/13 00:47:12 228718328 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental34, name: Эффект восприимчивости
+2025/12/13 00:47:32 228737468 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: elemental34, name: Эффект восприимчивости
+2025/12/13 00:47:45 228750812 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence57, name: Характеристика
+2025/12/13 00:49:37 228863343 2caa22da [DEBUG Client 10768] Generating level 20 area "G2_3" with seed 3058296912
+2025/12/13 00:49:38 228864140 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:49:38 228864156 7fbd122f [INFO Client 10768] [SCENE] Set Source [Ворота Халани]
+2025/12/13 00:52:36 229041515 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 21 уровня
+2025/12/13 00:52:48 229054437 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: infusion19_, name: Урон насыщенных чар
+2025/12/13 00:55:49 229235031 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 00:55:50 229235484 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:55:50 229235500 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:56:49 229294734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:56:49 229295171 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:56:49 229295171 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:56:53 229299093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 00:57:01 229306656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:57:01 229306656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 00:57:35 229340968 2caa22da [DEBUG Client 10768] Generating level 21 area "G2_4_1" with seed 1820389449
+2025/12/13 00:57:36 229341640 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 00:57:36 229341656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кет]
+2025/12/13 01:00:21 229507375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:00:26 229512078 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:00:26 229512078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Кет]
+2025/12/13 01:00:36 229521500 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 22 уровня
+2025/12/13 01:00:54 229539500 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: infusion25, name: Предел шока
+2025/12/13 01:02:16 229621515 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: infusion24, name: Предел жара
+2025/12/13 01:03:02 229667609 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental34, name: Эффект восприимчивости
+2025/12/13 01:03:14 229680437 2caa22da [DEBUG Client 10768] Generating level 22 area "G2_4_2" with seed 3040245610
+2025/12/13 01:03:15 229680828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:03:15 229680828 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный город]
+2025/12/13 01:03:23 229689234 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:03:24 229689859 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:03:24 229689859 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:03:59 229725281 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:04:00 229725796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:04:00 229725796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:04:04 229730125 2caa22da [DEBUG Client 10768] Generating level 22 area "G2_4_2" with seed 3040245610
+2025/12/13 01:04:04 229730343 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:04:04 229730343 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный город]
+2025/12/13 01:07:23 229928468 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:07:25 229930625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:07:25 229930625 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный город]
+2025/12/13 01:07:29 229934937 2caa22da [DEBUG Client 10768] Generating level 23 area "G2_4_3" with seed 1678099272
+2025/12/13 01:07:29 229935437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:07:30 229935453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Захоронённые святилища]
+2025/12/13 01:08:33 229999062 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 23 уровня
+2025/12/13 01:09:30 230055734 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence47, name: Характеристика
+2025/12/13 01:10:12 230097984 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:10:13 230098937 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:10:13 230098937 7fbd122f [INFO Client 10768] [SCENE] Set Source [Захоронённые святилища]
+2025/12/13 01:10:17 230102718 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:10:20 230106093 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:10:20 230106093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Захоронённые святилища]
+2025/12/13 01:11:53 230199390 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:11:54 230199921 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:11:54 230199937 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:16:08 230453625 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:16:10 230456312 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:16:10 230456312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:16:32 230478203 2caa22da [DEBUG Client 10768] Generating level 24 area "G2_6" with seed 1426995956
+2025/12/13 01:16:33 230478828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:16:33 230478843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Долина Титанов]
+2025/12/13 01:17:11 230517031 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 01:17:14 230520281 2caa22da [DEBUG Client 10768] Generating level 24 area "G2_6" with seed 1426995956
+2025/12/13 01:17:15 230520546 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:17:15 230520562 7fbd122f [INFO Client 10768] [SCENE] Set Source [Долина Титанов]
+2025/12/13 01:17:38 230543859 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 01:17:40 230546250 2caa22da [DEBUG Client 10768] Generating level 24 area "G2_6" with seed 1426995956
+2025/12/13 01:17:41 230546500 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:17:41 230546500 7fbd122f [INFO Client 10768] [SCENE] Set Source [Долина Титанов]
+2025/12/13 01:21:33 230778453 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 24 уровня
+2025/12/13 01:22:41 230846500 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: attributes78, name: Характеристика
+2025/12/13 01:22:43 230849234 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: attributes78, name: Характеристика
+2025/12/13 01:22:48 230853828 2caa22da [DEBUG Client 10768] Generating level 25 area "G2_7" with seed 4101411293
+2025/12/13 01:22:49 230854937 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:22:49 230854937 7fbd122f [INFO Client 10768] [SCENE] Set Source [Грот Титанов]
+2025/12/13 01:27:49 231155328 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:27:50 231155890 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:27:50 231155906 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:29:14 231240078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:29:28 231254109 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:29:28 231254109 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:29:37 231263046 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:29:39 231265093 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:29:39 231265093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:29:49 231275062 2caa22da [DEBUG Client 10768] Generating level 26 area "G2_5_1" with seed 1743258996
+2025/12/13 01:29:50 231275625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:29:50 231275640 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бесплодные земли мастодонтов]
+2025/12/13 01:31:03 231348921 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 25 уровня
+2025/12/13 01:31:26 231371484 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: orb1, name: Чары: урон и скорость сотворения
+2025/12/13 01:32:57 231463421 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 01:33:00 231466046 2caa22da [DEBUG Client 10768] Generating level 26 area "G2_5_1" with seed 1743258996
+2025/12/13 01:33:00 231466312 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:33:00 231466328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бесплодные земли мастодонтов]
+2025/12/13 01:33:02 231468171 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:33:03 231468546 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:33:03 231468546 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бесплодные земли мастодонтов]
+2025/12/13 01:35:24 231610093 2caa22da [DEBUG Client 10768] Generating level 22 area "Abyss_Intro" with seed 627160983
+2025/12/13 01:35:24 231610421 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:35:24 231610437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бессветный проход]
+2025/12/13 01:35:31 231617109 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:35:34 231620250 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:35:34 231620250 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бессветный проход]
+2025/12/13 01:35:57 231643171 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 26 уровня
+2025/12/13 01:36:00 231646265 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: orb3, name: Чары: урон и скорость сотворения
+2025/12/13 01:38:54 231819671 2caa22da [DEBUG Client 10768] Generating level 22 area "Abyss_Hub" with seed 2339084713
+2025/12/13 01:38:54 231819796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:38:54 231819796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Колодец душ]
+2025/12/13 01:40:05 231891296 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:40:10 231895453 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:40:10 231895453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Колодец душ]
+2025/12/13 01:40:11 231896609 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:40:23 231909062 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:40:23 231909062 7fbd122f [INFO Client 10768] [SCENE] Set Source [Колодец душ]
+2025/12/13 01:40:29 231914921 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:40:29 231915437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:40:29 231915437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:40:45 231930593 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:40:47 231932781 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:40:47 231932781 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:41:20 231966343 2caa22da [DEBUG Client 10768] Generating level 26 area "G2_5_1" with seed 1743258996
+2025/12/13 01:41:21 231966875 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:41:21 231966875 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бесплодные земли мастодонтов]
+2025/12/13 01:41:30 231976093 2caa22da [DEBUG Client 10768] Generating level 22 area "Abyss_Intro" with seed 627160983
+2025/12/13 01:41:30 231976375 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:41:30 231976390 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бессветный проход]
+2025/12/13 01:41:33 231979359 2caa22da [DEBUG Client 10768] Generating level 26 area "G2_5_1" with seed 1743258996
+2025/12/13 01:41:34 231979656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:41:34 231979656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Бесплодные земли мастодонтов]
+2025/12/13 01:42:27 232033218 2caa22da [DEBUG Client 10768] Generating level 27 area "G2_5_2" with seed 2796180054
+2025/12/13 01:42:28 232033609 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:42:28 232033609 7fbd122f [INFO Client 10768] [SCENE] Set Source [Костяные ямы]
+2025/12/13 01:47:39 232345390 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:47:40 232345765 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:47:40 232345765 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:49:00 232425953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:49:07 232432984 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:49:07 232432984 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:50:59 232544484 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:51:02 232548406 2caa22da [DEBUG Client 10768] Generating level 26 area "G2_6" with seed 1204110275
+2025/12/13 01:51:03 232549015 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:51:03 232549031 7fbd122f [INFO Client 10768] [SCENE] Set Source [Долина Титанов]
+2025/12/13 01:51:33 232578906 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:51:37 232582984 2caa22da [DEBUG Client 10768] Generating level 19 area "G2_2" with seed 2640605255
+2025/12/13 01:51:37 232583421 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:51:37 232583421 7fbd122f [INFO Client 10768] [SCENE] Set Source [Тропа Изменницы]
+2025/12/13 01:51:40 232585984 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:51:42 232588296 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:51:42 232588296 7fbd122f [INFO Client 10768] [SCENE] Set Source [Тропа Изменницы]
+2025/12/13 01:51:46 232591687 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 01:51:46 232592250 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:51:46 232592250 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:52:22 232627843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 01:52:25 232630609 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:52:25 232630609 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 01:53:27 232693062 2caa22da [DEBUG Client 10768] Generating level 28 area "G2_8" with seed 3822738163
+2025/12/13 01:53:28 232694078 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:53:28 232694078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дешар]
+2025/12/13 01:55:32 232817812 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 27 уровня
+2025/12/13 01:55:39 232824890 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: orb4, name: Чары: урон и скорость сотворения
+2025/12/13 01:56:04 232850187 2caa22da [DEBUG Client 10768] Generating level 29 area "IncursionHub" with seed 4136860155
+2025/12/13 01:56:04 232850359 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:56:04 232850375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/13 01:56:28 232874359 2caa22da [DEBUG Client 10768] Generating level 27 area "IncursionTemplePresent" with seed 1970182517
+2025/12/13 01:56:29 232874718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:56:29 232874734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Затерянный храм]
+2025/12/13 01:58:34 232999593 2caa22da [DEBUG Client 10768] Generating level 29 area "IncursionHub" with seed 4136860155
+2025/12/13 01:58:34 232999625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:58:34 232999625 7fbd122f [INFO Client 10768] [SCENE] Set Source [Руины ваал]
+2025/12/13 01:58:41 233006984 2caa22da [DEBUG Client 10768] Generating level 28 area "G2_8" with seed 3822738163
+2025/12/13 01:58:42 233007796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 01:58:42 233007796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дешар]
+2025/12/13 02:00:18 233103593 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:00:22 233107562 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:00:22 233107562 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дешар]
+2025/12/13 02:00:25 233111171 2caa22da [DEBUG Client 10768] Generating level 29 area "G2_9_1" with seed 869388673
+2025/12/13 02:00:26 233111703 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:00:26 233111718 7fbd122f [INFO Client 10768] [SCENE] Set Source [Путь скорби]
+2025/12/13 02:00:38 233123546 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:00:41 233126531 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:00:41 233126531 7fbd122f [INFO Client 10768] [SCENE] Set Source [Путь скорби]
+2025/12/13 02:00:47 233133046 2caa22da [DEBUG Client 10768] Generating level 28 area "G2_8" with seed 3822738163
+2025/12/13 02:00:48 233133578 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:00:48 233133578 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дешар]
+2025/12/13 02:01:18 233164343 2caa22da [DEBUG Client 10768] Generating level 29 area "G2_9_1" with seed 869388673
+2025/12/13 02:01:19 233164656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:01:19 233164671 7fbd122f [INFO Client 10768] [SCENE] Set Source [Путь скорби]
+2025/12/13 02:04:17 233343140 2caa22da [DEBUG Client 10768] Generating level 30 area "G2_9_2" with seed 4187597925
+2025/12/13 02:04:18 233343953 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:04:18 233343953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:05:40 233425812 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 28 уровня
+2025/12/13 02:06:01 233447281 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: orb5, name: Секреты сфер
+2025/12/13 02:07:20 233525656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:07:32 233537515 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:07:32 233537515 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:08:13 233578453 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:08:15 233581187 2caa22da [DEBUG Client 10768] Generating level 30 area "G2_9_2" with seed 4187597925
+2025/12/13 02:08:16 233581562 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:08:16 233581562 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:08:22 233588359 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:08:23 233588796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:08:23 233588796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:10:41 233726640 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:10:43 233729062 2caa22da [DEBUG Client 10768] Generating level 30 area "G2_9_2" with seed 4187597925
+2025/12/13 02:10:43 233729437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:10:44 233729453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:12:18 233824312 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 29 уровня
+2025/12/13 02:13:18 233884390 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence35_, name: Характеристика
+2025/12/13 02:14:33 233958953 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:14:41 233966750 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:14:41 233966750 7fbd122f [INFO Client 10768] [SCENE] Set Source [Шпили Дешара]
+2025/12/13 02:14:52 233978156 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 02:14:53 233978671 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:14:53 233978687 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 02:15:27 234012562 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence83, name: Характеристика
+2025/12/13 02:15:36 234021828 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: exploiting_elemental_ailments3, name: Урон по врагам с состояниями
+2025/12/13 02:18:06 234172390 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:18:08 234173843 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:18:08 234173843 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 02:18:27 234192531 2caa22da [DEBUG Client 10768] Generating level 31 area "G2_12_1" with seed 3798558125
+2025/12/13 02:18:27 234193031 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:18:27 234193046 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дредноут]
+2025/12/13 02:19:07 234232859 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 02:19:07 234233015 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:19:07 234233015 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 02:19:33 234258453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 02:19:33 234259109 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:19:33 234259109 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 02:20:05 234291078 2caa22da [DEBUG Client 10768] Generating level 31 area "G2_12_1" with seed 3798558125
+2025/12/13 02:20:05 234291328 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:20:05 234291328 7fbd122f [INFO Client 10768] [SCENE] Set Source [Дредноут]
+2025/12/13 02:22:22 234428031 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:22:23 234428750 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:22:23 234428750 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:22:35 234440703 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 30 уровня
+2025/12/13 02:22:51 234456906 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: exploiting_elemental_ailments4, name: Урон по врагам с состояниями
+2025/12/13 02:27:40 234746125 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:27:41 234746531 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:27:46 234751640 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:27:46 234751796 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:27:46 234752312 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:27:59 234764562 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:27:59 234764718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:28:01 234766906 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:28:01 234767046 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:28:03 234768515 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:29:49 234874515 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:29:51 234877046 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:29:51 234877375 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:29:51 234877375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:31:21 234967156 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:31:21 234967421 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:31:24 234969734 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:31:24 234969906 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:31:24 234970390 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:33:44 235110062 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:33:48 235113734 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:33:48 235114062 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:33:48 235114078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:35:26 235212171 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:35:26 235212406 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:35:28 235214187 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:35:28 235214328 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:35:29 235214812 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:37:04 235309718 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:37:06 235312390 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:37:07 235312734 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:37:07 235312734 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:38:36 235401796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:38:36 235402031 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:38:38 235403718 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:38:38 235403890 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_12_2" with seed 3436374109
+2025/12/13 02:38:38 235404375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Авангард Дредноута]
+2025/12/13 02:40:48 235533453 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 02:40:48 235534437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:40:48 235534437 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 02:42:42 235647968 2caa22da [DEBUG Client 10768] Generating level 33 area "G3_1" with seed 3455091615
+2025/12/13 02:42:44 235649593 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:42:44 235649609 7fbd122f [INFO Client 10768] [SCENE] Set Source [Занесённое песком болото]
+2025/12/13 02:45:30 235815890 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 3]
+2025/12/13 02:45:30 235816406 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:45:30 235816406 7fbd122f [INFO Client 10768] [SCENE] Set Source [Занесённое песком болото]
+2025/12/13 02:46:29 235874609 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 31 уровня
+2025/12/13 02:46:40 235886093 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: exploiting_elemental_ailments5, name: Урон по врагам с состояниями
+2025/12/13 02:47:58 235964000 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 02:47:58 235964187 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:47:59 235964484 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 02:56:45 236491328 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 02:56:46 236491500 2caa22da [DEBUG Client 10768] Generating level 33 area "G3_1" with seed 3455091615
+2025/12/13 02:56:46 236492171 7fbd122f [INFO Client 10768] [SCENE] Set Source [Занесённое песком болото]
+2025/12/13 02:57:07 236513156 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: exploiting_elemental_ailments4, name: Урон по врагам с состояниями
+2025/12/13 02:57:08 236513593 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: exploiting_elemental_ailments3, name: Урон по врагам с состояниями
+2025/12/13 02:57:08 236513921 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: intelligence83, name: Характеристика
+2025/12/13 02:57:09 236515359 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: intelligence35_, name: Характеристика
+2025/12/13 02:57:56 236562265 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: infusion25, name: Предел шока
+2025/12/13 02:57:57 236562578 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: infusion24, name: Предел жара
+2025/12/13 02:57:57 236563031 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: infusion19_, name: Урон насыщенных чар
+2025/12/13 02:58:00 236566093 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: intelligence57, name: Характеристика
+2025/12/13 02:58:03 236568593 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: elemental34, name: Эффект восприимчивости
+2025/12/13 02:58:04 236569812 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: elemental21, name: Урон от стихий
+2025/12/13 02:58:05 236570859 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: elemental53, name: Урон от стихий
+2025/12/13 02:58:46 236611562 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence86, name: Характеристика
+2025/12/13 02:59:09 236635343 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: area_spells8_, name: Чары: область действия
+2025/12/13 02:59:10 236636031 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: area_spells9, name: Чары: область действия
+2025/12/13 02:59:10 236636359 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: area_spells11, name: Чары: область действия
+2025/12/13 02:59:11 236636640 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: area_spells24, name: Бушевание
+2025/12/13 02:59:21 236646640 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence84, name: Характеристика
+2025/12/13 02:59:22 236647453 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration46, name: Эффективность расхода маны
+2025/12/13 02:59:22 236647765 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration45, name: Эффективность расхода маны
+2025/12/13 02:59:23 236648484 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration50_, name: Эффективное сотворение
+2025/12/13 02:59:25 236651281 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: mana_regeneration50_, name: Эффективное сотворение
+2025/12/13 02:59:26 236651890 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: mana_regeneration45, name: Эффективность расхода маны
+2025/12/13 02:59:27 236653281 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: mana_regeneration46, name: Эффективность расхода маны
+2025/12/13 02:59:29 236654953 f4ab5af9 [INFO Client 10768] Successfully unallocated passive skill id: intelligence84, name: Характеристика
+2025/12/13 02:59:30 236656171 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental60, name: Урон от стихий
+2025/12/13 02:59:31 236656921 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental58_, name: Эффект восприимчивости
+2025/12/13 02:59:31 236657296 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental59, name: Эффект восприимчивости
+2025/12/13 02:59:33 236659140 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: elemental61_, name: Сорванная защита
+2025/12/13 02:59:40 236665531 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence84, name: Характеристика
+2025/12/13 02:59:40 236666281 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration46, name: Эффективность расхода маны
+2025/12/13 03:02:11 236817250 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 31 уровня
+2025/12/13 03:02:16 236822250 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration45, name: Эффективность расхода маны
+2025/12/13 03:07:09 237115390 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 03:07:12 237118234 2caa22da [DEBUG Client 10768] Generating level 33 area "G3_1" with seed 3455091615
+2025/12/13 03:07:13 237118843 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:07:13 237118859 7fbd122f [INFO Client 10768] [SCENE] Set Source [Занесённое песком болото]
+2025/12/13 03:07:56 237162390 2caa22da [DEBUG Client 10768] Generating level 44 area "G3_town" with seed 1
+2025/12/13 03:07:59 237164828 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:07:59 237164828 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 03:10:30 237315546 2caa22da [DEBUG Client 10768] Generating level 34 area "G3_3" with seed 4026388458
+2025/12/13 03:10:30 237316125 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:10:30 237316140 7fbd122f [INFO Client 10768] [SCENE] Set Source [Развалины в джунглях]
+2025/12/13 03:11:14 237360000 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 32 уровня
+2025/12/13 03:11:26 237371671 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: mana_regeneration50_, name: Эффективное сотворение
+2025/12/13 03:17:11 237717140 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence48, name: Характеристика
+2025/12/13 03:17:13 237718906 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: attributes33, name: Характеристика
+2025/12/13 03:17:44 237750156 2caa22da [DEBUG Client 10768] Generating level 35 area "G3_2_1" with seed 1643862925
+2025/12/13 03:17:45 237751031 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:17:45 237751046 7fbd122f [INFO Client 10768] [SCENE] Set Source [Заражённые земли]
+2025/12/13 03:19:11 237837265 3ef232c2 [INFO Client 10768] : TestExile (Чародейка) достигает 33 уровня
+2025/12/13 03:19:16 237842328 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence49, name: Характеристика
+2025/12/13 03:19:38 237864093 3ef232c2 [INFO Client 10768] : TestExile был повержен.
+2025/12/13 03:19:41 237867062 2caa22da [DEBUG Client 10768] Generating level 35 area "G3_2_1" with seed 1643862925
+2025/12/13 03:19:42 237867625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:19:42 237867625 7fbd122f [INFO Client 10768] [SCENE] Set Source [Заражённые земли]
+2025/12/13 03:19:49 237874703 2caa22da [DEBUG Client 10768] Generating level 44 area "G3_town" with seed 1
+2025/12/13 03:19:51 237876625 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:19:51 237876640 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 03:20:50 237936031 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 3]
+2025/12/13 03:20:53 237938968 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 03:20:59 237945328 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 03:21:00 237945968 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:21:00 237945968 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 03:21:17 237963093 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 03:21:37 237983078 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:21:37 237983078 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 03:21:47 237992625 2caa22da [DEBUG Client 10768] Generating level 22 area "G2_13" with seed 2107777221
+2025/12/13 03:21:47 237992906 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:21:47 237992921 7fbd122f [INFO Client 10768] [SCENE] Set Source [Испытание Сехем]
+2025/12/13 03:21:56 238001859 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 03:21:57 238002593 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:21:57 238002593 7fbd122f [INFO Client 10768] [SCENE] Set Source [Испытание Сехем]
+2025/12/13 03:22:30 238036000 2caa22da [DEBUG Client 10768] Generating level 22 area "Sanctum_1_Foyer_1" with seed 496161200
+2025/12/13 03:22:33 238038484 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:22:33 238038484 7fbd122f [INFO Client 10768] [SCENE] Set Source [Испытание Сехем]
+2025/12/13 03:29:39 238464453 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: AscendancySorceress1Small3, name: Шанс критического удара чарами
+2025/12/13 03:29:39 238464953 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: AscendancySorceress1Notable3, name: Зовущая бурю
+2025/12/13 03:29:48 238473734 2caa22da [DEBUG Client 10768] Generating level 22 area "G2_13" with seed 2444364605
+2025/12/13 03:29:48 238473796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:29:48 238473796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Испытание Сехем]
+2025/12/13 03:29:59 238485406 2caa22da [DEBUG Client 10768] Generating level 32 area "G2_town" with seed 1
+2025/12/13 03:30:00 238485796 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:30:00 238485796 7fbd122f [INFO Client 10768] [SCENE] Set Source [Караван Ардура]
+2025/12/13 03:30:43 238528750 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 2]
+2025/12/13 03:30:45 238530656 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 3]
+2025/12/13 03:30:47 238533031 2caa22da [DEBUG Client 10768] Generating level 35 area "G3_2_1" with seed 1643862925
+2025/12/13 03:30:48 238534015 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:30:48 238534031 7fbd122f [INFO Client 10768] [SCENE] Set Source [Заражённые земли]
+2025/12/13 03:33:07 238672828 2caa22da [DEBUG Client 10768] Generating level 36 area "G3_7" with seed 2591077482
+2025/12/13 03:33:08 238673656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:33:08 238673671 7fbd122f [INFO Client 10768] [SCENE] Set Source [Болото Азак]
+2025/12/13 03:36:43 238888546 2caa22da [DEBUG Client 10768] Generating level 44 area "G3_town" with seed 1
+2025/12/13 03:36:44 238890359 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:36:44 238890375 7fbd122f [INFO Client 10768] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 03:37:31 238936921 7fbd122f [INFO Client 10768] [SCENE] Set Source [Акт 3]
+2025/12/13 03:37:33 238939437 2caa22da [DEBUG Client 10768] Generating level 35 area "G3_2_1" with seed 1643862925
+2025/12/13 03:37:34 238940250 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:37:34 238940265 7fbd122f [INFO Client 10768] [SCENE] Set Source [Заражённые земли]
+2025/12/13 03:38:36 239002140 3ef232c2 [INFO Client 10768] : TestExile (Ткач бурь) достигает 34 уровня
+2025/12/13 03:39:20 239046062 f4ab5a9a [INFO Client 10768] Successfully allocated passive skill id: intelligence2, name: Характеристика
+2025/12/13 03:40:41 239127359 2caa22da [DEBUG Client 10768] Generating level 36 area "G3_5" with seed 3168840912
+2025/12/13 03:40:43 239128453 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:40:43 239128468 7fbd122f [INFO Client 10768] [SCENE] Set Source [Топи химеридов]
+2025/12/13 03:42:55 239260937 2caa22da [DEBUG Client 10768] Generating level 38 area "G3_10_Airlock" with seed 803508957
+2025/12/13 03:42:55 239261437 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:42:55 239261453 7fbd122f [INFO Client 10768] [SCENE] Set Source [Храм Хаоса]
+2025/12/13 03:43:05 239270734 2caa22da [DEBUG Client 10768] Generating level 36 area "G3_5" with seed 3168840912
+2025/12/13 03:43:05 239271187 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:43:05 239271187 7fbd122f [INFO Client 10768] [SCENE] Set Source [Топи химеридов]
+2025/12/13 03:46:36 239482312 7fbd122f [INFO Client 10768] [SCENE] Set Source [(null)]
+2025/12/13 03:46:37 239482656 7fbd122f [INFO Client 10768] [SCENE] Set Source [(unknown)]
+2025/12/13 12:55:40 272426015 7fbd122f [INFO Client 6664] [SCENE] Set Source [(unknown)]
+2025/12/13 12:56:02 272448390 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 12:56:03 272448578 2caa22da [DEBUG Client 6664] Generating level 36 area "G3_5" with seed 3168840912
+2025/12/13 12:56:04 272450312 7fbd122f [INFO Client 6664] [SCENE] Set Source [Топи химеридов]
+2025/12/13 12:58:19 272584703 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 35 уровня
+2025/12/13 12:58:30 272595515 2caa22da [DEBUG Client 6664] Generating level 37 area "G3_6_1" with seed 2897232399
+2025/12/13 12:58:30 272596312 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 12:58:30 272596328 7fbd122f [INFO Client 6664] [SCENE] Set Source [Машинариум Джиквани]
+2025/12/13 12:58:55 272621359 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: passive_keystone_wildsurge_incantation, name: Заклинание бушующей природы
+2025/12/13 12:59:08 272633640 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 12:59:08 272634187 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 12:59:08 272634187 7fbd122f [INFO Client 6664] [SCENE] Set Source [Машинариум Джиквани]
+2025/12/13 12:59:10 272635828 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 12:59:13 272638593 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 12:59:13 272638593 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:00:24 272709875 2caa22da [DEBUG Client 6664] Generating level 32 area "G2_town" with seed 1
+2025/12/13 13:00:25 272710828 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:00:25 272710828 7fbd122f [INFO Client 6664] [SCENE] Set Source [Караван Ардура]
+2025/12/13 13:00:52 272737562 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 2]
+2025/12/13 13:00:55 272741093 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:00:59 272745062 2caa22da [DEBUG Client 6664] Generating level 37 area "G3_6_1" with seed 3209947488
+2025/12/13 13:01:00 272745515 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:01:00 272745531 7fbd122f [INFO Client 6664] [SCENE] Set Source [Машинариум Джиквани]
+2025/12/13 13:01:04 272750093 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:01:06 272751750 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:01:06 272751765 7fbd122f [INFO Client 6664] [SCENE] Set Source [Машинариум Джиквани]
+2025/12/13 13:01:10 272756203 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 13:01:12 272757968 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:01:12 272757984 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:03:39 272904484 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:03:39 272905109 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:03:39 272905109 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:07:25 273130562 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:07:28 273133609 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:07:28 273133609 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:07:32 273138109 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:07:35 273140750 2caa22da [DEBUG Client 6664] Generating level 37 area "G3_6_1" with seed 3209947488
+2025/12/13 13:07:35 273140968 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:07:35 273140968 7fbd122f [INFO Client 6664] [SCENE] Set Source [Машинариум Джиквани]
+2025/12/13 13:17:15 273721343 2caa22da [DEBUG Client 6664] Generating level 38 area "G3_6_2" with seed 3885816327
+2025/12/13 13:17:16 273721703 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:17:16 273721703 7fbd122f [INFO Client 6664] [SCENE] Set Source [Святилище Джиквани]
+2025/12/13 13:18:44 273810406 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 36 уровня
+2025/12/13 13:19:05 273830640 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence57, name: Характеристика
+2025/12/13 13:26:24 274270343 2caa22da [DEBUG Client 6664] Generating level 39 area "IncursionHub" with seed 2076105524
+2025/12/13 13:26:25 274270531 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:26:25 274270531 7fbd122f [INFO Client 6664] [SCENE] Set Source [Руины ваал]
+2025/12/13 13:26:54 274299875 2caa22da [DEBUG Client 6664] Generating level 36 area "IncursionTemplePresent" with seed 310459616
+2025/12/13 13:26:54 274300187 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:26:54 274300187 7fbd122f [INFO Client 6664] [SCENE] Set Source [Затерянный храм]
+2025/12/13 13:28:33 274398609 2caa22da [DEBUG Client 6664] Generating level 39 area "IncursionHub" with seed 2076105524
+2025/12/13 13:28:33 274398640 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:28:33 274398640 7fbd122f [INFO Client 6664] [SCENE] Set Source [Руины ваал]
+2025/12/13 13:28:40 274406156 2caa22da [DEBUG Client 6664] Generating level 38 area "G3_6_2" with seed 3885816327
+2025/12/13 13:28:41 274406578 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:28:41 274406578 7fbd122f [INFO Client 6664] [SCENE] Set Source [Святилище Джиквани]
+2025/12/13 13:30:50 274535578 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:30:52 274538328 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:30:52 274538328 7fbd122f [INFO Client 6664] [SCENE] Set Source [Святилище Джиквани]
+2025/12/13 13:33:18 274684062 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 13:33:20 274685937 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:33:20 274685937 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:34:12 274738218 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:34:15 274740859 2caa22da [DEBUG Client 6664] Generating level 35 area "G3_2_1" with seed 796725138
+2025/12/13 13:34:16 274742140 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:34:16 274742140 7fbd122f [INFO Client 6664] [SCENE] Set Source [Заражённые земли]
+2025/12/13 13:34:30 274756062 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:34:37 274762906 2caa22da [DEBUG Client 6664] Generating level 34 area "G3_3" with seed 1120726689
+2025/12/13 13:34:37 274763359 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:34:37 274763359 7fbd122f [INFO Client 6664] [SCENE] Set Source [Развалины в джунглях]
+2025/12/13 13:34:44 274770343 2caa22da [DEBUG Client 6664] Generating level 35 area "G3_4" with seed 1001499039
+2025/12/13 13:34:45 274770859 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:34:45 274770875 7fbd122f [INFO Client 6664] [SCENE] Set Source [Ядовитые крипты]
+2025/12/13 13:37:05 274910875 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 37 уровня
+2025/12/13 13:38:09 274974921 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence56, name: Характеристика
+2025/12/13 13:38:21 274987156 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 13:38:23 274989125 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:38:23 274989125 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:40:39 275125390 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:40:44 275130218 2caa22da [DEBUG Client 6664] Generating level 35 area "G3_2_1" with seed 796725138
+2025/12/13 13:40:45 275131078 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:40:45 275131078 7fbd122f [INFO Client 6664] [SCENE] Set Source [Заражённые земли]
+2025/12/13 13:40:57 275143359 2caa22da [DEBUG Client 6664] Generating level 39 area "G3_2_2" with seed 2573466917
+2025/12/13 13:40:58 275144093 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:40:58 275144109 7fbd122f [INFO Client 6664] [SCENE] Set Source [Водотоки Матлан]
+2025/12/13 13:42:02 275208093 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 13:42:09 275214593 2caa22da [DEBUG Client 6664] Generating level 39 area "G3_2_2" with seed 2573466917
+2025/12/13 13:42:09 275215093 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:42:09 275215109 7fbd122f [INFO Client 6664] [SCENE] Set Source [Водотоки Матлан]
+2025/12/13 13:42:49 275255281 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 13:42:52 275258406 2caa22da [DEBUG Client 6664] Generating level 39 area "G3_2_2" with seed 2573466917
+2025/12/13 13:42:53 275258890 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:42:53 275258890 7fbd122f [INFO Client 6664] [SCENE] Set Source [Водотоки Матлан]
+2025/12/13 13:45:42 275427875 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 38 уровня
+2025/12/13 13:45:51 275436703 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence45, name: Характеристика
+2025/12/13 13:50:38 275723968 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 13:50:42 275728312 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:50:42 275728312 7fbd122f [INFO Client 6664] [SCENE] Set Source [Водотоки Матлан]
+2025/12/13 13:50:46 275732421 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 13:50:49 275734812 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:50:49 275734828 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:55:24 276009859 2caa22da [DEBUG Client 6664] Generating level 40 area "G3_8" with seed 2794880980
+2025/12/13 13:55:25 276011171 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:55:25 276011171 7fbd122f [INFO Client 6664] [SCENE] Set Source [Затопленный город]
+2025/12/13 13:57:01 276107218 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 13:57:03 276108765 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:57:03 276108781 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 13:57:13 276118859 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence57, name: Характеристика
+2025/12/13 13:57:19 276124468 2caa22da [DEBUG Client 6664] Generating level 40 area "G3_8" with seed 2794880980
+2025/12/13 13:57:19 276125093 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 13:57:19 276125093 7fbd122f [INFO Client 6664] [SCENE] Set Source [Затопленный город]
+2025/12/13 13:58:06 276171765 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 39 уровня
+2025/12/13 13:58:11 276177296 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence58, name: Характеристика
+2025/12/13 14:00:55 276341250 2caa22da [DEBUG Client 6664] Generating level 41 area "G3_9" with seed 420718283
+2025/12/13 14:00:56 276342093 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:00:56 276342109 7fbd122f [INFO Client 6664] [SCENE] Set Source [Расплавленные залы]
+2025/12/13 14:01:03 276349375 2caa22da [DEBUG Client 6664] Generating level 40 area "G3_8" with seed 2794880980
+2025/12/13 14:01:04 276350156 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:01:04 276350171 7fbd122f [INFO Client 6664] [SCENE] Set Source [Затопленный город]
+2025/12/13 14:01:52 276397812 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 40 уровня
+2025/12/13 14:02:09 276414484 2caa22da [DEBUG Client 6664] Generating level 41 area "G3_11" with seed 2832535354
+2025/12/13 14:02:10 276415593 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:02:10 276415609 7fbd122f [INFO Client 6664] [SCENE] Set Source [Осквернённая вершина]
+2025/12/13 14:02:41 276447375 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence59, name: Характеристика
+2025/12/13 14:03:19 276485062 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 14:03:30 276495562 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:03:30 276495562 7fbd122f [INFO Client 6664] [SCENE] Set Source [Осквернённая вершина]
+2025/12/13 14:08:00 276765562 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:08:03 276768937 2caa22da [DEBUG Client 6664] Generating level 41 area "G3_11" with seed 2832535354
+2025/12/13 14:08:04 276769671 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:08:04 276769687 7fbd122f [INFO Client 6664] [SCENE] Set Source [Осквернённая вершина]
+2025/12/13 14:09:28 276854421 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:09:32 276857656 2caa22da [DEBUG Client 6664] Generating level 41 area "G3_11" with seed 2832535354
+2025/12/13 14:09:32 276858375 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:09:32 276858375 7fbd122f [INFO Client 6664] [SCENE] Set Source [Осквернённая вершина]
+2025/12/13 14:11:24 276970437 3ef232c2 [INFO Client 6664] : TestExile (Ткач бурь) достигает 41 уровня
+2025/12/13 14:11:50 276996250 f4ab5a9a [INFO Client 6664] Successfully allocated passive skill id: intelligence102, name: Интеллект
+2025/12/13 14:12:35 277040859 2caa22da [DEBUG Client 6664] Generating level 44 area "G3_town" with seed 1
+2025/12/13 14:12:37 277043390 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:12:37 277043406 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 14:14:00 277126328 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 3]
+2025/12/13 14:14:01 277127062 7fbd122f [INFO Client 6664] [SCENE] Set Source [Акт 2]
+2025/12/13 14:14:08 277133953 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:14:08 277133953 7fbd122f [INFO Client 6664] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 14:15:52 277237890 2caa22da [DEBUG Client 6664] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:15:53 277239140 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:15:53 277239140 7fbd122f [INFO Client 6664] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:16:21 277266781 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:16:24 277269843 2caa22da [DEBUG Client 6664] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:16:24 277270359 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:16:24 277270375 7fbd122f [INFO Client 6664] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:16:39 277284671 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:16:42 277287796 2caa22da [DEBUG Client 6664] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:16:42 277288281 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:16:42 277288281 7fbd122f [INFO Client 6664] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:17:47 277353078 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:17:50 277356015 2caa22da [DEBUG Client 6664] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:17:51 277356531 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:17:51 277356546 7fbd122f [INFO Client 6664] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:22:00 277605640 3ef232c2 [INFO Client 6664] : TestExile был повержен.
+2025/12/13 14:22:03 277608453 2caa22da [DEBUG Client 6664] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:22:03 277609000 7fbd122f [INFO Client 6664] [SCENE] Set Source [(null)]
+2025/12/13 14:22:03 277609000 7fbd122f [INFO Client 6664] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:23:08 277673890 7fbd122f [INFO Client 5760] [SCENE] Set Source [(unknown)]
+2025/12/13 14:23:19 277685140 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:23:19 277685312 2caa22da [DEBUG Client 5760] Generating level 42 area "G3_12" with seed 3121388845
+2025/12/13 14:23:21 277686515 7fbd122f [INFO Client 5760] [SCENE] Set Source [Храм Копека]
+2025/12/13 14:25:01 277786671 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_town" with seed 1
+2025/12/13 14:25:03 277789093 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:25:03 277789109 7fbd122f [INFO Client 5760] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 14:26:15 277860687 2caa22da [DEBUG Client 5760] Generating level 43 area "G3_14" with seed 2789440453
+2025/12/13 14:26:16 277861921 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:26:16 277861921 7fbd122f [INFO Client 5760] [SCENE] Set Source [Утцааль]
+2025/12/13 14:28:39 278005015 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 3]
+2025/12/13 14:28:42 278007593 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:28:42 278007593 7fbd122f [INFO Client 5760] [SCENE] Set Source [Утцааль]
+2025/12/13 14:29:52 278078265 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:29:56 278081828 2caa22da [DEBUG Client 5760] Generating level 43 area "G3_14" with seed 2789440453
+2025/12/13 14:29:56 278082406 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:29:56 278082406 7fbd122f [INFO Client 5760] [SCENE] Set Source [Утцааль]
+2025/12/13 14:30:38 278123687 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:30:41 278126984 2caa22da [DEBUG Client 5760] Generating level 43 area "G3_14" with seed 2789440453
+2025/12/13 14:30:42 278127531 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:30:42 278127546 7fbd122f [INFO Client 5760] [SCENE] Set Source [Утцааль]
+2025/12/13 14:32:43 278248656 3ef232c2 [INFO Client 5760] : TestExile (Ткач бурь) достигает 42 уровня
+2025/12/13 14:32:51 278256625 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: intelligence101_, name: Изобретательность
+2025/12/13 14:32:55 278261265 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:32:58 278264046 2caa22da [DEBUG Client 5760] Generating level 43 area "G3_14" with seed 2789440453
+2025/12/13 14:32:59 278264671 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:32:59 278264687 7fbd122f [INFO Client 5760] [SCENE] Set Source [Утцааль]
+2025/12/13 14:34:12 278337609 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_16" with seed 718964813
+2025/12/13 14:34:13 278338906 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:34:13 278338921 7fbd122f [INFO Client 5760] [SCENE] Set Source [Аггорат]
+2025/12/13 14:34:23 278348687 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_town" with seed 1
+2025/12/13 14:34:25 278351078 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:34:25 278351093 7fbd122f [INFO Client 5760] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 14:35:39 278424671 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_16" with seed 718964813
+2025/12/13 14:35:40 278425531 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:35:40 278425546 7fbd122f [INFO Client 5760] [SCENE] Set Source [Аггорат]
+2025/12/13 14:38:54 278620265 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:38:57 278622859 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_16" with seed 718964813
+2025/12/13 14:38:58 278623687 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:38:58 278623687 7fbd122f [INFO Client 5760] [SCENE] Set Source [Аггорат]
+2025/12/13 14:41:01 278746546 3ef232c2 [INFO Client 5760] : TestExile (Ткач бурь) достигает 43 уровня
+2025/12/13 14:41:31 278777000 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: intelligence60, name: Характеристика
+2025/12/13 14:43:38 278903453 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: mana_regeneration32, name: Регенерация маны
+2025/12/13 14:43:38 278903734 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: mana_regeneration34, name: Регенерация маны
+2025/12/13 14:45:06 278991562 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:45:07 278992484 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:45:07 278992500 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:45:20 279005968 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_town" with seed 1
+2025/12/13 14:45:22 279008375 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:45:22 279008375 7fbd122f [INFO Client 5760] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 14:48:51 279217218 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:48:52 279217562 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:48:52 279217562 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:50:49 279334843 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:50:52 279337781 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:50:52 279338093 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:50:52 279338109 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:51:53 279399250 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:51:56 279402406 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:51:57 279402765 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:51:57 279402765 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:53:19 279485421 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:53:22 279488296 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:53:23 279488640 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:53:23 279488656 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:55:52 279637562 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:55:54 279640046 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:55:54 279640375 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:55:54 279640375 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:58:37 279803281 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:58:40 279806234 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:58:41 279806515 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:58:41 279806531 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 14:59:50 279876156 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 14:59:53 279878656 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 14:59:53 279878968 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 14:59:53 279878968 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 15:01:13 279959015 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:01:13 279959328 7fbd122f [INFO Client 5760] [SCENE] Set Source [(unknown)]
+2025/12/13 15:01:16 279961453 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:01:16 279961640 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 15:01:16 279962062 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 15:01:28 279974203 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:01:28 279974375 7fbd122f [INFO Client 5760] [SCENE] Set Source [(unknown)]
+2025/12/13 15:01:30 279976281 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:01:31 279976468 2caa22da [DEBUG Client 5760] Generating level 45 area "G3_17" with seed 2996726175
+2025/12/13 15:01:31 279976875 7fbd122f [INFO Client 5760] [SCENE] Set Source [Чёрные залы]
+2025/12/13 15:04:40 280165718 2caa22da [DEBUG Client 5760] Generating level 44 area "G3_town" with seed 1
+2025/12/13 15:04:42 280168187 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:04:42 280168203 7fbd122f [INFO Client 5760] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 15:05:55 280240546 2caa22da [DEBUG Client 5760] Generating level 53 area "G4_town" with seed 1
+2025/12/13 15:05:56 280242281 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:05:56 280242281 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:07:48 280353781 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:07:48 280354109 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:07:48 280354109 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:12:05 280611156 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:12:13 280619000 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:12:13 280619000 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:12:13 280619234 2caa22da [DEBUG Client 5760] Generating level 46 area "G4_2_1" with seed 3193421838
+2025/12/13 15:12:15 280620843 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:12:15 280620843 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кеджский залив]
+2025/12/13 15:13:32 280698328 3ef232c2 [INFO Client 5760] : TestExile (Ткач бурь) достигает 44 уровня
+2025/12/13 15:13:49 280714640 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: mana_regeneration40, name: Поток эфира
+2025/12/13 15:16:49 280894828 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 15:16:52 280897890 2caa22da [DEBUG Client 5760] Generating level 46 area "G4_2_1" with seed 3193421838
+2025/12/13 15:16:53 280898578 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:16:53 280898593 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кеджский залив]
+2025/12/13 15:18:45 281010781 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:18:49 281014625 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:18:49 281014625 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кеджский залив]
+2025/12/13 15:19:16 281041671 2caa22da [DEBUG Client 5760] Generating level 47 area "G4_2_2" with seed 3679108882
+2025/12/13 15:19:17 281042921 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:19:17 281042921 7fbd122f [INFO Client 5760] [SCENE] Set Source [Конец странствия]
+2025/12/13 15:20:42 281128125 2caa22da [DEBUG Client 5760] Generating level 48 area "IncursionHub" with seed 771721228
+2025/12/13 15:20:42 281128375 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:20:42 281128390 7fbd122f [INFO Client 5760] [SCENE] Set Source [Руины ваал]
+2025/12/13 15:21:39 281184671 2caa22da [DEBUG Client 5760] Generating level 44 area "IncursionTemple" with seed 1414411380
+2025/12/13 15:21:39 281184906 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:21:39 281184906 7fbd122f [INFO Client 5760] [SCENE] Set Source [Храм Атзири]
+2025/12/13 15:22:35 281240515 2caa22da [DEBUG Client 5760] Generating level 48 area "IncursionHub" with seed 771721228
+2025/12/13 15:22:35 281240546 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:22:35 281240546 7fbd122f [INFO Client 5760] [SCENE] Set Source [Руины ваал]
+2025/12/13 15:23:03 281269187 2caa22da [DEBUG Client 5760] Generating level 47 area "G4_2_2" with seed 3679108882
+2025/12/13 15:23:04 281270406 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:23:04 281270406 7fbd122f [INFO Client 5760] [SCENE] Set Source [Конец странствия]
+2025/12/13 15:24:53 281378750 2caa22da [DEBUG Client 5760] Generating level 47 area "G4_2_2" with seed 3679108882
+2025/12/13 15:24:54 281379453 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:24:54 281379468 7fbd122f [INFO Client 5760] [SCENE] Set Source [Конец странствия]
+2025/12/13 15:25:49 281435406 3ef232c2 [INFO Client 5760] : TestExile (Ткач бурь) достигает 45 уровня
+2025/12/13 15:27:27 281533046 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: duration12, name: Увеличение длительности
+2025/12/13 15:32:43 281848500 2caa22da [DEBUG Client 5760] Generating level 53 area "G4_town" with seed 1
+2025/12/13 15:32:44 281850312 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:32:44 281850328 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:35:22 282007796 f4ab5af9 [INFO Client 5760] Successfully unallocated passive skill id: passive_keystone_wildsurge_incantation, name: Заклинание бушующей природы
+2025/12/13 15:35:23 282008640 f4ab5af9 [INFO Client 5760] Successfully unallocated passive skill id: intelligence2, name: Характеристика
+2025/12/13 15:35:24 282009671 f4ab5af9 [INFO Client 5760] Successfully unallocated passive skill id: intelligence49, name: Характеристика
+2025/12/13 15:35:24 282010296 f4ab5af9 [INFO Client 5760] Successfully unallocated passive skill id: attributes33, name: Характеристика
+2025/12/13 15:35:25 282010750 f4ab5af9 [INFO Client 5760] Successfully unallocated passive skill id: intelligence48, name: Характеристика
+2025/12/13 15:35:44 282029578 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: cast_speed10, name: Скорость сотворения чар
+2025/12/13 15:35:44 282030234 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: cast_speed36_, name: Привычные знаки
+2025/12/13 15:35:45 282031125 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: cast_speed15_, name: Скорость сотворения чар
+2025/12/13 15:35:47 282032953 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: witch_sorceress_notable2, name: Чистая энергия
+2025/12/13 15:36:19 282065093 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: elemental53, name: Урон от стихий
+2025/12/13 15:37:42 282147687 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:37:44 282149671 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 3]
+2025/12/13 15:37:52 282157984 2caa22da [DEBUG Client 5760] Generating level 38 area "G3_10_Airlock" with seed 1321322371
+2025/12/13 15:37:52 282158281 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:37:52 282158281 7fbd122f [INFO Client 5760] [SCENE] Set Source [Храм Хаоса]
+2025/12/13 15:38:09 282174500 2caa22da [DEBUG Client 5760] Generating level 38 area "G3_10" with seed 2634690830
+2025/12/13 15:38:10 282175781 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:38:10 282175781 7fbd122f [INFO Client 5760] [SCENE] Set Source [Испытание Хаоса]
+2025/12/13 15:46:16 282661796 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 15:46:18 282663875 2caa22da [DEBUG Client 5760] Generating level 38 area "G3_10_Airlock" with seed 1321322371
+2025/12/13 15:46:18 282664062 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:46:18 282664062 7fbd122f [INFO Client 5760] [SCENE] Set Source [Храм Хаоса]
+2025/12/13 15:46:29 282675125 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 3]
+2025/12/13 15:46:32 282677468 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:46:35 282680843 2caa22da [DEBUG Client 5760] Generating level 53 area "G4_town" with seed 1
+2025/12/13 15:46:36 282682421 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:46:36 282682421 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:47:11 282717015 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:47:18 282723562 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:47:18 282723562 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:47:42 282747875 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:47:44 282749859 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:47:44 282749859 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:47:48 282753750 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:47:50 282755859 2caa22da [DEBUG Client 5760] Generating level 47 area "G4_2_2" with seed 1524162068
+2025/12/13 15:47:51 282757015 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:47:51 282757015 7fbd122f [INFO Client 5760] [SCENE] Set Source [Конец странствия]
+2025/12/13 15:48:41 282807312 3ef232c2 [INFO Client 5760] : TestExile был повержен.
+2025/12/13 15:48:44 282810359 2caa22da [DEBUG Client 5760] Generating level 47 area "G4_2_2" with seed 1524162068
+2025/12/13 15:48:45 282810937 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:48:45 282810953 7fbd122f [INFO Client 5760] [SCENE] Set Source [Конец странствия]
+2025/12/13 15:50:36 282922296 7fbd122f [INFO Client 5760] [SCENE] Set Source [Акт 4]
+2025/12/13 15:50:39 282924578 2caa22da [DEBUG Client 5760] Generating level 53 area "G4_town" with seed 1
+2025/12/13 15:50:40 282926156 7fbd122f [INFO Client 5760] [SCENE] Set Source [(null)]
+2025/12/13 15:50:40 282926156 7fbd122f [INFO Client 5760] [SCENE] Set Source [Кингсмарш]
+2025/12/13 15:52:24 283029890 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: elemental21, name: Урон от стихий
+2025/12/13 15:52:25 283030500 f4ab5a9a [INFO Client 5760] Successfully allocated passive skill id: elemental35, name: Эффект восприимчивости
+2025/12/13 16:16:17 284463046 7fbd122f [INFO Client 15700] [SCENE] Set Source [(unknown)]
+2025/12/13 16:23:52 284918265 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:23:53 284918453 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 16:23:55 284920515 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 16:24:52 284978281 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:25:09 284995109 2caa22da [DEBUG Client 15700] Generating level 47 area "G4_3_1" with seed 447288974
+2025/12/13 16:25:11 284996781 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:25:11 284996781 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:27:06 285112109 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 16:27:09 285114937 2caa22da [DEBUG Client 15700] Generating level 47 area "G4_3_1" with seed 447288974
+2025/12/13 16:27:10 285115921 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:27:10 285115937 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:27:23 285129343 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:27:28 285133546 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:27:28 285133546 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:29:22 285247750 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 46 уровня
+2025/12/13 16:29:38 285264234 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 16:29:42 285268109 2caa22da [DEBUG Client 15700] Generating level 47 area "G4_3_1" with seed 447288974
+2025/12/13 16:29:43 285268968 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:29:43 285268984 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:30:05 285290734 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: elemental36, name: Сверхвосприимчивость
+2025/12/13 16:35:10 285595796 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:35:12 285598390 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:35:12 285598390 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:35:14 285599890 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:35:15 285600921 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:35:15 285600921 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Вакапану]
+2025/12/13 16:36:50 285695625 2caa22da [DEBUG Client 15700] Generating level 48 area "G4_3_2" with seed 1074939489
+2025/12/13 16:36:51 285696953 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:36:51 285696968 7fbd122f [INFO Client 15700] [SCENE] Set Source [Поющие пещеры]
+2025/12/13 16:37:06 285711765 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 16:37:07 285713156 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:37:07 285713156 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 16:40:01 285886625 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:40:02 285887562 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:40:02 285887562 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 16:40:10 285895468 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:40:14 285899656 2caa22da [DEBUG Client 15700] Generating level 48 area "G4_3_2" with seed 1074939489
+2025/12/13 16:40:14 285899984 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:40:14 285899984 7fbd122f [INFO Client 15700] [SCENE] Set Source [Поющие пещеры]
+2025/12/13 16:44:06 286131781 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 47 уровня
+2025/12/13 16:44:57 286182656 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: remnant6, name: Дальность подбора сгустков
+2025/12/13 16:50:38 286523859 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 16:50:39 286524687 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:50:39 286524703 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 16:53:14 286680187 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 16:53:25 286691093 2caa22da [DEBUG Client 15700] Generating level 48 area "G4_1_1" with seed 3670509959
+2025/12/13 16:53:26 286692265 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 16:53:26 286692265 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Рода]
+2025/12/13 17:01:14 287160281 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 48 уровня
+2025/12/13 17:01:53 287198515 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_1_2" with seed 4138893870
+2025/12/13 17:01:54 287199484 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:01:54 287199500 7fbd122f [INFO Client 15700] [SCENE] Set Source [Вулканические лабиринты]
+2025/12/13 17:02:15 287221203 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: duration10, name: Увеличение длительности
+2025/12/13 17:03:37 287303265 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:03:40 287306015 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_1_2" with seed 4138893870
+2025/12/13 17:03:40 287306359 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:03:40 287306359 7fbd122f [INFO Client 15700] [SCENE] Set Source [Вулканические лабиринты]
+2025/12/13 17:07:04 287509734 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:07:07 287512796 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_1_2" with seed 4138893870
+2025/12/13 17:07:07 287513156 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:07:07 287513171 7fbd122f [INFO Client 15700] [SCENE] Set Source [Вулканические лабиринты]
+2025/12/13 17:08:52 287618296 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:08:55 287621296 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_1_2" with seed 4138893870
+2025/12/13 17:08:56 287621640 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:08:56 287621656 7fbd122f [INFO Client 15700] [SCENE] Set Source [Вулканические лабиринты]
+2025/12/13 17:11:10 287756000 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:11:25 287770734 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:11:25 287770734 7fbd122f [INFO Client 15700] [SCENE] Set Source [Вулканические лабиринты]
+2025/12/13 17:11:37 287783375 2caa22da [DEBUG Client 15700] Generating level 48 area "G4_1_1" with seed 3670509959
+2025/12/13 17:11:38 287784187 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:11:38 287784203 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Рода]
+2025/12/13 17:12:53 287858546 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:12:56 287861734 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:12:56 287861734 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров Рода]
+2025/12/13 17:14:25 287950765 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 17:14:26 287952296 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:14:26 287952312 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 17:17:05 288110515 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:17:29 288135265 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:17:30 288136203 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:17:30 288136203 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:18:33 288199390 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:18:36 288201984 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:18:36 288202375 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:18:36 288202375 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:19:56 288281796 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:19:58 288284359 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:19:59 288284750 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:19:59 288284750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:20:56 288342312 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 49 уровня
+2025/12/13 17:21:05 288350875 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: duration6, name: Сохранение
+2025/12/13 17:24:47 288572671 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 17:24:48 288574343 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:24:48 288574359 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 17:25:49 288634546 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:25:49 288634953 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:25:49 288634953 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:26:00 288645562 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 17:26:00 288646328 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:26:00 288646343 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 17:27:15 288721296 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:27:16 288721656 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:27:16 288721671 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:28:09 288774906 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:28:09 288775281 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:28:09 288775281 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:28:27 288793187 2caa22da [DEBUG Client 15700] Generating level 49 area "G4_5_1" with seed 661033875
+2025/12/13 17:28:28 288793562 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:28:28 288793578 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:33:46 289111953 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:33:49 289114578 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:33:49 289114578 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:33:50 289115687 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:33:52 289118234 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:33:52 289118234 7fbd122f [INFO Client 15700] [SCENE] Set Source [Заброшенная тюрьма]
+2025/12/13 17:33:55 289120671 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:33:56 289121718 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:33:56 289121734 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:35:44 289230218 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 50 уровня
+2025/12/13 17:37:39 289344921 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: remnant7, name: Дальность подбора сгустков
+2025/12/13 17:38:44 289409593 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:38:49 289414531 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:38:49 289414531 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:41:47 289592531 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:41:49 289595187 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:41:50 289595609 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:41:50 289595625 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:43:50 289716031 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:43:53 289718671 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:43:53 289719093 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:43:53 289719109 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:46:18 289863828 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:46:21 289866515 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:46:21 289866953 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:46:21 289866953 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:49:32 290058406 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:49:35 290060953 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:49:35 290061421 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:49:35 290061437 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:51:59 290205031 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:52:02 290207687 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_5_2" with seed 2127123217
+2025/12/13 17:52:02 290208125 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:52:02 290208140 7fbd122f [INFO Client 15700] [SCENE] Set Source [Одиночные камеры]
+2025/12/13 17:55:13 290399421 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 17:55:15 290401015 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:55:15 290401015 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 17:57:41 290547125 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 17:57:48 290553953 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_7" with seed 3255673808
+2025/12/13 17:57:50 290556000 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:57:50 290556000 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров криков]
+2025/12/13 17:59:48 290673953 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 17:59:51 290676953 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_7" with seed 3255673808
+2025/12/13 17:59:52 290678250 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 17:59:52 290678265 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров криков]
+2025/12/13 18:00:24 290709671 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:00:27 290713437 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_7" with seed 3255673808
+2025/12/13 18:00:29 290714734 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:00:29 290714750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров криков]
+2025/12/13 18:01:32 290777609 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:01:35 290780828 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_7" with seed 3255673808
+2025/12/13 18:01:36 290782125 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:01:36 290782140 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров криков]
+2025/12/13 18:01:54 290800375 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 18:01:56 290802375 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:01:56 290802390 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 18:02:10 290816312 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:02:12 290817750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 3]
+2025/12/13 18:02:14 290820390 2caa22da [DEBUG Client 15700] Generating level 38 area "G3_10_Airlock" with seed 671425950
+2025/12/13 18:02:15 290820734 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:02:15 290820750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Храм Хаоса]
+2025/12/13 18:02:31 290837406 2caa22da [DEBUG Client 15700] Generating level 38 area "G3_10" with seed 2611978044
+2025/12/13 18:02:33 290838781 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:02:33 290838796 7fbd122f [INFO Client 15700] [SCENE] Set Source [Испытание Хаоса]
+2025/12/13 18:09:30 291255531 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: AscendancySorceress1Small4, name: Шанс критического удара чарами
+2025/12/13 18:09:30 291255953 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: AscendancySorceress1Notable4, name: Множащиеся шквалы
+2025/12/13 18:09:39 291264593 2caa22da [DEBUG Client 15700] Generating level 44 area "G3_town" with seed 1
+2025/12/13 18:09:42 291268015 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:09:42 291268031 7fbd122f [INFO Client 15700] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 18:10:03 291288515 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 3]
+2025/12/13 18:10:04 291289468 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:10:06 291291890 2caa22da [DEBUG Client 15700] Generating level 50 area "G4_7" with seed 3255673808
+2025/12/13 18:10:08 291293671 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:10:08 291293671 7fbd122f [INFO Client 15700] [SCENE] Set Source [Остров криков]
+2025/12/13 18:16:27 291673187 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 18:16:28 291674437 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:16:29 291674453 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 18:17:50 291755671 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: intelligence59, name: Характеристика
+2025/12/13 18:18:05 291771406 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: intelligence58, name: Характеристика
+2025/12/13 18:18:08 291774421 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: intelligence45, name: Характеристика
+2025/12/13 18:18:11 291777156 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: intelligence56, name: Характеристика
+2025/12/13 18:22:26 292031484 2caa22da [DEBUG Client 15700] Generating level 44 area "G3_town" with seed 1
+2025/12/13 18:22:28 292033859 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:22:28 292033859 7fbd122f [INFO Client 15700] [SCENE] Set Source [Лагерь на зиккурате]
+2025/12/13 18:22:59 292064781 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 3]
+2025/12/13 18:23:01 292067031 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:23:04 292070250 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 18:23:05 292071031 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:23:05 292071031 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 18:24:11 292137000 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:24:22 292147609 2caa22da [DEBUG Client 15700] Generating level 51 area "G4_4_1" with seed 4035558483
+2025/12/13 18:24:24 292150093 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:24:24 292150093 7fbd122f [INFO Client 15700] [SCENE] Set Source [Глаз Хинекоры]
+2025/12/13 18:25:38 292224156 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 51 уровня
+2025/12/13 18:25:48 292234359 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: remnant9, name: Оживляющие сгустки
+2025/12/13 18:27:21 292327171 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:27:24 292330062 2caa22da [DEBUG Client 15700] Generating level 51 area "G4_4_1" with seed 4035558483
+2025/12/13 18:27:25 292331406 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:27:25 292331421 7fbd122f [INFO Client 15700] [SCENE] Set Source [Глаз Хинекоры]
+2025/12/13 18:29:04 292430390 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:29:07 292432765 2caa22da [DEBUG Client 15700] Generating level 51 area "G4_4_1" with seed 4035558483
+2025/12/13 18:29:08 292433859 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:29:08 292433875 7fbd122f [INFO Client 15700] [SCENE] Set Source [Глаз Хинекоры]
+2025/12/13 18:33:34 292699859 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_4_2" with seed 24738842
+2025/12/13 18:33:35 292700593 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:33:35 292700640 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:33:38 292704312 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:33:43 292709062 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:33:43 292709062 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:33:45 292710562 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:33:49 292715250 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:33:49 292715250 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:35:26 292811796 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:35:29 292814750 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:35:29 292814750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:36:11 292857093 2caa22da [DEBUG Client 15700] Generating level 53 area "IncursionHub" with seed 4268791867
+2025/12/13 18:36:11 292857328 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:36:11 292857343 7fbd122f [INFO Client 15700] [SCENE] Set Source [Руины ваал]
+2025/12/13 18:36:28 292873781 2caa22da [DEBUG Client 15700] Generating level 51 area "IncursionTemple" with seed 2420573514
+2025/12/13 18:36:28 292873968 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:36:28 292873968 7fbd122f [INFO Client 15700] [SCENE] Set Source [Храм Атзири]
+2025/12/13 18:37:02 292908000 2caa22da [DEBUG Client 15700] Generating level 53 area "IncursionHub" with seed 4268791867
+2025/12/13 18:37:02 292908046 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:37:02 292908046 7fbd122f [INFO Client 15700] [SCENE] Set Source [Руины ваал]
+2025/12/13 18:37:09 292915218 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 3]
+2025/12/13 18:37:10 292915593 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:37:10 292915609 7fbd122f [INFO Client 15700] [SCENE] Set Source [Руины ваал]
+2025/12/13 18:37:14 292919562 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_4_2" with seed 24738842
+2025/12/13 18:37:15 292920468 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:37:15 292920484 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:38:51 293016984 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 52 уровня
+2025/12/13 18:38:56 293021468 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: remnant10, name: Колдовские сгустки
+2025/12/13 18:42:05 293210531 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:42:07 293213296 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_4_2" with seed 24738842
+2025/12/13 18:42:08 293213750 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:42:08 293213765 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:43:24 293290390 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:43:28 293293640 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_4_2" with seed 24738842
+2025/12/13 18:43:28 293294046 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:43:28 293294062 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:44:42 293368187 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:44:44 293369750 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:44:44 293369750 7fbd122f [INFO Client 15700] [SCENE] Set Source [Залы мёртвых]
+2025/12/13 18:45:02 293387921 2caa22da [DEBUG Client 15700] Generating level 51 area "G4_4_3" with seed 2968712101
+2025/12/13 18:45:03 293388578 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:45:03 293388578 7fbd122f [INFO Client 15700] [SCENE] Set Source [Испытание предков]
+2025/12/13 18:46:00 293445781 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: energy_shield46_, name: Энергетический щит
+2025/12/13 18:46:00 293446109 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: energy_shield33_, name: Устойчивый барьер
+2025/12/13 18:46:10 293455640 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 18:46:11 293457312 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:46:11 293457312 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 18:47:13 293518500 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:47:43 293548500 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_11_1a" with seed 1124924960
+2025/12/13 18:47:44 293550359 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:47:44 293550359 7fbd122f [INFO Client 15700] [SCENE] Set Source [Нгакану]
+2025/12/13 18:48:55 293620750 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 18:48:56 293621500 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:48:56 293621515 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 18:49:14 293639562 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:49:31 293656531 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_8b" with seed 3442171864
+2025/12/13 18:49:33 293658843 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:49:33 293658843 7fbd122f [INFO Client 15700] [SCENE] Set Source [Арастас]
+2025/12/13 18:50:37 293722718 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:50:38 293723843 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:50:38 293723843 7fbd122f [INFO Client 15700] [SCENE] Set Source [Арастас]
+2025/12/13 18:52:00 293806125 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:52:02 293807937 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:52:02 293807937 7fbd122f [INFO Client 15700] [SCENE] Set Source [Арастас]
+2025/12/13 18:56:44 294089796 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_10" with seed 2133737001
+2025/12/13 18:56:45 294091359 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:56:45 294091375 7fbd122f [INFO Client 15700] [SCENE] Set Source [Раскопки]
+2025/12/13 18:57:10 294115796 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_10" with seed 2133737001
+2025/12/13 18:57:10 294116062 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:57:10 294116062 7fbd122f [INFO Client 15700] [SCENE] Set Source [Раскопки]
+2025/12/13 18:57:43 294148828 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 18:57:44 294150375 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:57:44 294150375 7fbd122f [INFO Client 15700] [SCENE] Set Source [Раскопки]
+2025/12/13 18:59:49 294274484 3ef232c2 [INFO Client 15700] : TestExile был повержен.
+2025/12/13 18:59:52 294277484 2caa22da [DEBUG Client 15700] Generating level 52 area "G4_10" with seed 2133737001
+2025/12/13 18:59:52 294277703 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 18:59:52 294277718 7fbd122f [INFO Client 15700] [SCENE] Set Source [Раскопки]
+2025/12/13 19:00:32 294318000 3ef232c2 [INFO Client 15700] : TestExile (Ткач бурь) достигает 53 уровня
+2025/12/13 19:03:54 294520359 f4ab5a9a [INFO Client 15700] Successfully allocated passive skill id: energy_shield10_, name: Перезарядка энергетического щита
+2025/12/13 19:05:53 294638828 7fbd122f [INFO Client 15700] [SCENE] Set Source [Акт 4]
+2025/12/13 19:05:54 294639484 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 19:05:54 294639484 7fbd122f [INFO Client 15700] [SCENE] Set Source [Раскопки]
+2025/12/13 19:07:40 294745828 2caa22da [DEBUG Client 15700] Generating level 53 area "G4_town" with seed 1
+2025/12/13 19:07:41 294747437 7fbd122f [INFO Client 15700] [SCENE] Set Source [(null)]
+2025/12/13 19:07:42 294747453 7fbd122f [INFO Client 15700] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:28:08 299573546 7fbd122f [INFO Client 9828] [SCENE] Set Source [(unknown)]
+2025/12/13 20:28:22 299588203 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:28:22 299588406 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_town" with seed 1
+2025/12/13 20:28:24 299590312 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:29:50 299676125 7fbd122f [INFO Client 9828] [SCENE] Set Source [Акт 4]
+2025/12/13 20:30:09 299694968 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_13" with seed 1713417131
+2025/12/13 20:30:10 299695671 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:30:10 299695671 7fbd122f [INFO Client 9828] [SCENE] Set Source [Мыс грабителя]
+2025/12/13 20:34:27 299953062 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 20:34:28 299953484 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_town" with seed 1
+2025/12/13 20:34:28 299954250 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:34:28 299954265 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:34:45 299971187 7fbd122f [INFO Client 9828] [SCENE] Set Source [Акт 4]
+2025/12/13 20:35:07 299992953 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:35:09 299994500 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:35:09 299994500 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:35:49 300035234 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:35:50 300035578 7fbd122f [INFO Client 9828] [SCENE] Set Source [(unknown)]
+2025/12/13 20:36:00 300046015 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:36:00 300046156 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:36:01 300046921 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:36:12 300058312 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:36:13 300059046 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:36:13 300059062 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:38:02 300168046 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 20:38:05 300170468 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:38:05 300171265 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:38:05 300171281 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:40:02 300287937 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_town" with seed 1
+2025/12/13 20:40:04 300289921 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:40:04 300289937 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:40:47 300333093 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:40:48 300333812 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:40:48 300333812 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:41:26 300371765 3ef232c2 [INFO Client 9828] : TestExile (Ткач бурь) достигает 54 уровня
+2025/12/13 20:41:35 300380921 7fbd122f [INFO Client 9828] [SCENE] Set Source [Акт 4]
+2025/12/13 20:41:38 300384156 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:41:38 300384156 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:42:02 300408187 f4ab5a9a [INFO Client 9828] Successfully allocated passive skill id: energy_shield37, name: Подавляющий щит
+2025/12/13 20:43:51 300517046 2caa22da [DEBUG Client 9828] Generating level 54 area "Abyss_Depths3" with seed 3217824840
+2025/12/13 20:43:51 300517390 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:43:51 300517406 7fbd122f [INFO Client 9828] [SCENE] Set Source [Глубины Бездны]
+2025/12/13 20:46:52 300697546 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 20:46:53 300699062 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:46:54 300699781 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:46:54 300699796 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:47:13 300719312 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_town" with seed 1
+2025/12/13 20:47:15 300721031 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:47:15 300721046 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:48:27 300793359 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_1b" with seed 2835791706
+2025/12/13 20:48:28 300794093 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:48:28 300794109 7fbd122f [INFO Client 9828] [SCENE] Set Source [Нгакану]
+2025/12/13 20:48:53 300819093 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_11_2" with seed 3991106591
+2025/12/13 20:48:55 300821171 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:48:55 300821187 7fbd122f [INFO Client 9828] [SCENE] Set Source [Сердце племени]
+2025/12/13 20:51:22 300968359 7fbd122f [INFO Client 9828] [SCENE] Set Source [Акт 4]
+2025/12/13 20:51:25 300971343 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:51:25 300971343 7fbd122f [INFO Client 9828] [SCENE] Set Source [Сердце племени]
+2025/12/13 20:51:32 300978046 3ef232c2 [INFO Client 9828] : TestExile (Ткач бурь) достигает 55 уровня
+2025/12/13 20:52:18 301024078 f4ab5a9a [INFO Client 9828] Successfully allocated passive skill id: energy_shield_recovery24, name: Задержка энергетического щита
+2025/12/13 20:57:43 301348500 2caa22da [DEBUG Client 9828] Generating level 53 area "G4_town" with seed 1
+2025/12/13 20:57:44 301350281 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:57:44 301350296 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:59:30 301456406 7fbd122f [INFO Client 9828] [SCENE] Set Source [Акт 4]
+2025/12/13 20:59:44 301469984 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:59:44 301469984 7fbd122f [INFO Client 9828] [SCENE] Set Source [Кингсмарш]
+2025/12/13 20:59:51 301476937 2caa22da [DEBUG Client 9828] Generating level 64 area "P1_Town" with seed 1
+2025/12/13 20:59:52 301478046 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 20:59:52 301478062 7fbd122f [INFO Client 9828] [SCENE] Set Source [Пристанище]
+2025/12/13 21:01:05 301551031 2caa22da [DEBUG Client 9828] Generating level 54 area "P1_1" with seed 1866312068
+2025/12/13 21:01:06 301551984 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:01:06 301551984 7fbd122f [INFO Client 9828] [SCENE] Set Source [Выжженные фермерские земли]
+2025/12/13 21:01:23 301568718 7fbd122f [INFO Client 9828] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:01:28 301573562 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:01:28 301573578 7fbd122f [INFO Client 9828] [SCENE] Set Source [Выжженные фермерские земли]
+2025/12/13 21:03:50 301716421 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 21:03:53 301719125 2caa22da [DEBUG Client 9828] Generating level 54 area "P1_1" with seed 1866312068
+2025/12/13 21:03:53 301719375 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:03:53 301719375 7fbd122f [INFO Client 9828] [SCENE] Set Source [Выжженные фермерские земли]
+2025/12/13 21:06:18 301864234 2caa22da [DEBUG Client 9828] Generating level 54 area "P1_2" with seed 2060917850
+2025/12/13 21:06:19 301864671 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:06:19 301864687 7fbd122f [INFO Client 9828] [SCENE] Set Source [Камни Серли]
+2025/12/13 21:07:41 301946562 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 21:07:43 301949375 2caa22da [DEBUG Client 9828] Generating level 54 area "P1_2" with seed 2060917850
+2025/12/13 21:07:44 301949500 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:07:44 301949515 7fbd122f [INFO Client 9828] [SCENE] Set Source [Камни Серли]
+2025/12/13 21:09:57 302082859 3ef232c2 [INFO Client 9828] : TestExile (Ткач бурь) достигает 56 уровня
+2025/12/13 21:10:26 302111890 f4ab5a9a [INFO Client 9828] Successfully allocated passive skill id: energy_shield_recovery14, name: Скорая перезарядка
+2025/12/13 21:13:15 302280500 2caa22da [DEBUG Client 9828] Generating level 54 area "P1_1" with seed 1866312068
+2025/12/13 21:13:15 302281078 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:13:15 302281078 7fbd122f [INFO Client 9828] [SCENE] Set Source [Выжженные фермерские земли]
+2025/12/13 21:13:28 302293546 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_3" with seed 1453519316
+2025/12/13 21:13:28 302293921 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:13:28 302293937 7fbd122f [INFO Client 9828] [SCENE] Set Source [Чернолесье]
+2025/12/13 21:15:48 302434343 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_4" with seed 3652696632
+2025/12/13 21:15:50 302435781 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:15:50 302435781 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:15:54 302440390 7fbd122f [INFO Client 9828] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:16:02 302447625 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:16:02 302447625 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:16:09 302454531 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_4" with seed 3652696632
+2025/12/13 21:16:09 302455093 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:16:09 302455109 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:16:20 302465781 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_4" with seed 3652696632
+2025/12/13 21:16:20 302466250 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:16:20 302466250 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:17:30 302535578 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 21:17:33 302538796 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_4" with seed 3652696632
+2025/12/13 21:17:33 302539296 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:17:33 302539296 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:19:00 302626031 3ef232c2 [INFO Client 9828] : TestExile был повержен.
+2025/12/13 21:19:03 302629265 2caa22da [DEBUG Client 9828] Generating level 55 area "P1_4" with seed 3652696632
+2025/12/13 21:19:04 302629734 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:19:04 302629750 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:21:54 302799671 3ef232c2 [INFO Client 9828] : TestExile (Ткач бурь) достигает 57 уровня
+2025/12/13 21:21:59 302804562 7fbd122f [INFO Client 9828] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:22:02 302807921 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:22:02 302807921 7fbd122f [INFO Client 9828] [SCENE] Set Source [Холтен]
+2025/12/13 21:23:06 302872406 f4ab5a9a [INFO Client 9828] Successfully allocated passive skill id: lightning6, name: Урон насыщенных чар
+2025/12/13 21:24:55 302981296 2caa22da [DEBUG Client 9828] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:24:56 302982156 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:24:56 302982171 7fbd122f [INFO Client 9828] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:25:24 303009968 7fbd122f [INFO Client 9828] [SCENE] Set Source [(null)]
+2025/12/13 21:25:24 303010390 7fbd122f [INFO Client 9828] [SCENE] Set Source [(unknown)]
+2025/12/13 21:25:52 303038390 7fbd122f [INFO Client 11768] [SCENE] Set Source [(unknown)]
+2025/12/13 21:26:06 303052359 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:26:07 303052531 2caa22da [DEBUG Client 11768] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:26:07 303053171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:26:50 303095640 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 21:26:52 303098031 2caa22da [DEBUG Client 11768] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:26:52 303098312 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:26:52 303098312 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:28:25 303190484 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:28:25 303190703 7fbd122f [INFO Client 11768] [SCENE] Set Source [(unknown)]
+2025/12/13 21:28:41 303206531 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:28:41 303206703 2caa22da [DEBUG Client 11768] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:28:41 303206968 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:30:47 303333296 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 21:30:50 303335718 2caa22da [DEBUG Client 11768] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:30:50 303335984 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:30:50 303335984 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:32:00 303405640 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 21:32:02 303408156 2caa22da [DEBUG Client 11768] Generating level 56 area "P1_6" with seed 1815700238
+2025/12/13 21:32:02 303408421 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:32:02 303408421 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:36:49 303694515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:36:52 303697812 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:36:52 303697812 7fbd122f [INFO Client 11768] [SCENE] Set Source [Поместье Холтен]
+2025/12/13 21:39:02 303827562 2caa22da [DEBUG Client 11768] Generating level 64 area "P1_Town" with seed 1
+2025/12/13 21:39:03 303828812 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:39:03 303828828 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пристанище]
+2025/12/13 21:40:58 303943531 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:41:02 303947828 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:41:02 303947828 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пристанище]
+2025/12/13 21:41:07 303952890 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 21:41:08 303953625 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:41:08 303953625 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 21:42:53 304059375 2caa22da [DEBUG Client 11768] Generating level 57 area "P2_1" with seed 3591096577
+2025/12/13 21:42:56 304061812 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:42:56 304061812 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:43:11 304077265 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:43:15 304080515 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:43:15 304080515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:43:59 304125125 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 58 уровня
+2025/12/13 21:44:12 304138187 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning34, name: Глубокое насыщение
+2025/12/13 21:44:25 304151375 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 21:44:26 304151500 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:44:26 304151515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 21:44:34 304159812 2caa22da [DEBUG Client 11768] Generating level 57 area "P2_1" with seed 3591096577
+2025/12/13 21:44:35 304161109 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:44:35 304161109 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:50:42 304528359 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:50:48 304533609 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:50:48 304533609 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:53:58 304723593 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:54:14 304740437 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:54:14 304740437 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:54:41 304767390 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:54:42 304768328 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:54:42 304768328 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:55:49 304835250 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 161115785
+2025/12/13 21:55:51 304836703 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:55:51 304836734 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 21:55:58 304844187 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:56:01 304846687 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:56:01 304846687 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 21:56:05 304850703 2caa22da [DEBUG Client 11768] Generating level 57 area "P2_1" with seed 3591096577
+2025/12/13 21:56:06 304851921 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:56:06 304851937 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:56:14 304860296 2caa22da [DEBUG Client 11768] Generating level 58 area "P2_2" with seed 1771308374
+2025/12/13 21:56:15 304861156 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:56:15 304861171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воды Хаталя]
+2025/12/13 21:56:27 304872609 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:56:43 304888593 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:56:43 304888593 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воды Хаталя]
+2025/12/13 21:56:49 304894562 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:57:03 304909437 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:57:03 304909437 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воды Хаталя]
+2025/12/13 21:57:06 304911890 2caa22da [DEBUG Client 11768] Generating level 57 area "P2_1" with seed 3591096577
+2025/12/13 21:57:07 304913078 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:57:07 304913078 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:58:59 305024843 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 21:59:23 305048500 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:59:23 305048500 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский перевал]
+2025/12/13 21:59:28 305054046 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 21:59:29 305054765 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 21:59:29 305054796 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 21:59:49 305074937 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: fire3, name: Шанс наложения стихийных состояний
+2025/12/13 21:59:49 305075234 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: fire32, name: Принудительные состояния
+2025/12/13 22:01:04 305149828 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:01:12 305157968 2caa22da [DEBUG Client 11768] Generating level 58 area "P2_2" with seed 1771308374
+2025/12/13 22:01:12 305158421 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:01:12 305158421 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воды Хаталя]
+2025/12/13 22:02:09 305214718 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 59 уровня
+2025/12/13 22:04:42 305367968 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:04:43 305368984 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:04:43 305368984 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воды Хаталя]
+2025/12/13 22:04:46 305371562 2caa22da [DEBUG Client 11768] Generating level 58 area "P2_3" with seed 1967265040
+2025/12/13 22:04:46 305372156 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:04:46 305372171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Храм Селхари]
+2025/12/13 22:05:07 305393234 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning51, name: Урон от молнии и регенерация маны
+2025/12/13 22:09:44 305670328 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 22:09:45 305671312 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:09:45 305671312 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 22:10:04 305690250 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: attributes21, name: Характеристика
+2025/12/13 22:10:06 305691593 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence6, name: Характеристика
+2025/12/13 22:10:09 305694718 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence16, name: Характеристика
+2025/12/13 22:10:11 305697015 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence15, name: Характеристика
+2025/12/13 22:10:55 305740671 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence46, name: Характеристика
+2025/12/13 22:10:57 305742843 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence46, name: Характеристика
+2025/12/13 22:11:08 305754359 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence47, name: Характеристика
+2025/12/13 22:11:13 305758968 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence47, name: Характеристика
+2025/12/13 22:11:54 305799484 2caa22da [DEBUG Client 11768] Generating level 58 area "P2_3" with seed 1967265040
+2025/12/13 22:11:54 305799687 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:11:54 305799703 7fbd122f [INFO Client 11768] [SCENE] Set Source [Храм Селхари]
+2025/12/13 22:12:48 305854312 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:12:51 305857156 2caa22da [DEBUG Client 11768] Generating level 58 area "P2_3" with seed 1967265040
+2025/12/13 22:12:51 305857343 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:12:51 305857343 7fbd122f [INFO Client 11768] [SCENE] Set Source [Храм Селхари]
+2025/12/13 22:13:54 305920046 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 22:13:55 305920984 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:13:55 305920984 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 22:14:09 305935390 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:14:15 305940500 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:14:15 305941140 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:14:15 305941140 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:15:17 306003234 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:15:20 306006312 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:15:21 306006640 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:15:21 306006656 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:15:40 306026203 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:15:43 306029156 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:15:43 306029437 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:15:43 306029437 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:16:45 306090843 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:16:48 306093875 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:16:48 306094171 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:16:48 306094171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:18:59 306225281 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 60 уровня
+2025/12/13 22:19:10 306236328 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning46, name: Урон от молнии и регенерация маны
+2025/12/13 22:19:56 306282296 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:19:57 306283390 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:19:57 306283390 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:20:20 306306328 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:20:23 306309109 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:20:23 306309375 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:20:23 306309390 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:20:35 306320812 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 22:20:36 306321625 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:20:36 306321625 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 22:21:31 306376906 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:21:31 306377234 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:21:31 306377234 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:22:23 306429140 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:22:26 306432000 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:22:26 306432281 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:22:26 306432296 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:24:06 306531687 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:24:09 306535421 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_5" with seed 925504129
+2025/12/13 22:24:10 306535718 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:24:10 306535718 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ворота Галаи]
+2025/12/13 22:26:12 306657484 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_6" with seed 3416883255
+2025/12/13 22:26:12 306658359 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:26:12 306658375 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кима]
+2025/12/13 22:27:09 306715281 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:27:13 306718515 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_6" with seed 3416883255
+2025/12/13 22:27:13 306718750 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:27:13 306718765 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кима]
+2025/12/13 22:28:11 306777390 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:28:16 306781453 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:28:16 306781453 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кима]
+2025/12/13 22:29:10 306835546 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:29:18 306843593 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:29:18 306843593 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кима]
+2025/12/13 22:29:20 306846046 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:29:21 306847375 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:29:21 306847375 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кима]
+2025/12/13 22:31:31 306977328 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_7" with seed 4129489258
+2025/12/13 22:31:33 306978546 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:31:33 306978562 7fbd122f [INFO Client 11768] [SCENE] Set Source [Водохранилище Кима]
+2025/12/13 22:32:19 307025109 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 61 уровня
+2025/12/13 22:32:25 307030687 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning52, name: Урон от молнии и регенерация маны
+2025/12/13 22:37:24 307329484 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 22:37:24 307330406 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:37:24 307330421 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 22:38:29 307395171 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: attributes78, name: Характеристика
+2025/12/13 22:38:34 307400218 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: intelligence60, name: Характеристика
+2025/12/13 22:38:40 307405984 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_7" with seed 4129489258
+2025/12/13 22:38:40 307406281 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:38:40 307406281 7fbd122f [INFO Client 11768] [SCENE] Set Source [Водохранилище Кима]
+2025/12/13 22:39:47 307472453 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:39:50 307475687 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_7" with seed 4129489258
+2025/12/13 22:39:50 307475953 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:39:50 307475968 7fbd122f [INFO Client 11768] [SCENE] Set Source [Водохранилище Кима]
+2025/12/13 22:40:59 307544671 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:41:02 307547593 2caa22da [DEBUG Client 11768] Generating level 59 area "P2_7" with seed 4129489258
+2025/12/13 22:41:02 307547859 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:41:02 307547875 7fbd122f [INFO Client 11768] [SCENE] Set Source [Водохранилище Кима]
+2025/12/13 22:43:51 307717109 2caa22da [DEBUG Client 11768] Generating level 64 area "P2_Town" with seed 1
+2025/12/13 22:43:52 307718046 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:43:52 307718062 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кхарийский базар]
+2025/12/13 22:45:07 307793125 2caa22da [DEBUG Client 11768] Generating level 64 area "P3_Town" with seed 1
+2025/12/13 22:45:08 307793500 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:45:08 307793515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Опушка]
+2025/12/13 22:47:06 307911656 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_1" with seed 1330255236
+2025/12/13 22:47:06 307912265 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:47:06 307912281 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пепельный лес]
+2025/12/13 22:48:49 308015062 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:48:55 308021015 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:48:55 308021015 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пепельный лес]
+2025/12/13 22:49:56 308082046 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:49:59 308084546 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_1" with seed 1330255236
+2025/12/13 22:49:59 308084765 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:49:59 308084781 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пепельный лес]
+2025/12/13 22:51:15 308161421 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:51:18 308163593 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_1" with seed 1330255236
+2025/12/13 22:51:18 308163828 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:51:18 308163843 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пепельный лес]
+2025/12/13 22:51:36 308182109 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:51:38 308184234 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:51:38 308184250 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:51:55 308200484 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:51:57 308202781 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:51:57 308202781 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:52:24 308229609 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:52:27 308232500 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:52:28 308233750 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:52:28 308233765 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:53:40 308305468 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:53:42 308308109 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:53:43 308309296 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:53:43 308309296 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:54:17 308343125 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:54:20 308346015 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:54:21 308347187 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:54:21 308347203 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:55:00 308386031 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:55:03 308388859 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:55:04 308390015 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:55:04 308390031 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:58:23 308588859 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 22:58:25 308591015 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:58:25 308591015 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 22:58:55 308620734 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 22:58:59 308624984 2caa22da [DEBUG Client 11768] Generating level 61 area "P3_2" with seed 216377429
+2025/12/13 22:59:00 308626156 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 22:59:00 308626171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Деревня Криар]
+2025/12/13 23:00:56 308741500 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_3" with seed 1483587106
+2025/12/13 23:00:57 308742578 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:00:57 308742593 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:01:09 308754890 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:01:15 308761062 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:01:15 308761062 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:01:17 308762765 2caa22da [DEBUG Client 11768] Generating level 64 area "P3_Town" with seed 1
+2025/12/13 23:01:18 308763750 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:01:18 308763750 7fbd122f [INFO Client 11768] [SCENE] Set Source [Опушка]
+2025/12/13 23:02:31 308836578 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_3" with seed 1483587106
+2025/12/13 23:02:31 308837000 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:02:31 308837015 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:03:02 308867734 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 62 уровня
+2025/12/13 23:03:12 308877578 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning53, name: Урон от молнии и регенерация маны
+2025/12/13 23:03:25 308890515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:03:33 308899015 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:03:33 308899015 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:03:37 308902781 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_4" with seed 1637896977
+2025/12/13 23:03:38 308903453 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:03:38 308903453 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воющие пещеры]
+2025/12/13 23:06:49 309094968 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:06:52 309098453 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:06:53 309098453 7fbd122f [INFO Client 11768] [SCENE] Set Source [Воющие пещеры]
+2025/12/13 23:07:10 309115984 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_3" with seed 1483587106
+2025/12/13 23:07:10 309116390 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:07:10 309116406 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:07:27 309133109 2caa22da [DEBUG Client 11768] Generating level 64 area "P3_Town" with seed 1
+2025/12/13 23:07:28 309133796 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:07:28 309133812 7fbd122f [INFO Client 11768] [SCENE] Set Source [Опушка]
+2025/12/13 23:07:46 309152078 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: lightning54, name: Архонт бури
+2025/12/13 23:08:10 309175921 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: spell_criticals8, name: Критический урон чарами
+2025/12/13 23:08:33 309198593 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_3" with seed 1483587106
+2025/12/13 23:08:33 309199015 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:08:33 309199015 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:09:51 309277046 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:09:54 309279843 2caa22da [DEBUG Client 11768] Generating level 62 area "P3_3" with seed 1483587106
+2025/12/13 23:09:54 309280250 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:09:54 309280265 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:09:58 309283984 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:09:59 309285234 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:09:59 309285234 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:11:05 309350859 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:11:07 309353187 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:11:07 309353187 7fbd122f [INFO Client 11768] [SCENE] Set Source [Ледниковое озеро]
+2025/12/13 23:11:12 309357546 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_5" with seed 2210840798
+2025/12/13 23:11:14 309360093 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:11:14 309360093 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пики Криар]
+2025/12/13 23:11:24 309369718 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:11:25 309371171 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:11:25 309371171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пики Криар]
+2025/12/13 23:14:44 309570312 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:14:47 309573421 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_5" with seed 2210840798
+2025/12/13 23:14:49 309575281 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:14:49 309575281 7fbd122f [INFO Client 11768] [SCENE] Set Source [Пики Криар]
+2025/12/13 23:17:07 309712843 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_6" with seed 311581912
+2025/12/13 23:17:08 309714062 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:17:08 309714078 7fbd122f [INFO Client 11768] [SCENE] Set Source [Высеченное ущелье]
+2025/12/13 23:17:53 309759015 3ef232c2 [INFO Client 11768] : TestExile (Ткач бурь) достигает 63 уровня
+2025/12/13 23:18:16 309781906 f4ab5a9a [INFO Client 11768] Successfully allocated passive skill id: spell_criticals13, name: Шанс критического удара чарами
+2025/12/13 23:18:57 309823250 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:19:00 309825921 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_6" with seed 311581912
+2025/12/13 23:19:01 309826687 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:19:01 309826703 7fbd122f [INFO Client 11768] [SCENE] Set Source [Высеченное ущелье]
+2025/12/13 23:23:26 310092171 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:23:30 310095906 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:23:30 310095906 7fbd122f [INFO Client 11768] [SCENE] Set Source [Высеченное ущелье]
+2025/12/13 23:23:38 310104421 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_7" with seed 1932995399
+2025/12/13 23:23:39 310105265 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:23:39 310105265 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:23:52 310118156 2caa22da [DEBUG Client 11768] Generating level 64 area "P3_Town" with seed 1
+2025/12/13 23:23:53 310118859 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:23:53 310118875 7fbd122f [INFO Client 11768] [SCENE] Set Source [Опушка]
+2025/12/13 23:25:42 310228312 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_7" with seed 1932995399
+2025/12/13 23:25:43 310228515 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:25:43 310228531 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:26:06 310251546 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:26:08 310254343 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:26:08 310254343 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:26:43 310289078 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:26:46 310291796 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_7" with seed 1932995399
+2025/12/13 23:26:46 310292031 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:26:46 310292031 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:31:06 310552187 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:31:09 310554984 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_7" with seed 1932995399
+2025/12/13 23:31:09 310555250 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:31:09 310555250 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:31:18 310564265 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:31:21 310566765 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:31:21 310566765 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:33:23 310688468 3ef232c2 [INFO Client 11768] : TestExile был повержен.
+2025/12/13 23:33:25 310690640 2caa22da [DEBUG Client 11768] Generating level 63 area "P3_7" with seed 1932995399
+2025/12/13 23:33:25 310690843 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:33:25 310690843 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:35:38 310824343 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:35:40 310825968 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:35:40 310825968 7fbd122f [INFO Client 11768] [SCENE] Set Source [Убежище Куачик]
+2025/12/13 23:35:42 310827765 2caa22da [DEBUG Client 11768] Generating level 64 area "P3_Town" with seed 1
+2025/12/13 23:35:42 310828359 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:35:42 310828359 7fbd122f [INFO Client 11768] [SCENE] Set Source [Опушка]
+2025/12/13 23:37:34 310940265 7fbd122f [INFO Client 11768] [SCENE] Set Source [Интерлюдия]
+2025/12/13 23:37:37 310942656 7fbd122f [INFO Client 11768] [SCENE] Set Source [Акт 4]
+2025/12/13 23:37:40 310945828 2caa22da [DEBUG Client 11768] Generating level 53 area "G4_town" with seed 1
+2025/12/13 23:37:42 310947515 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:37:42 310947515 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кингсмарш]
+2025/12/13 23:38:52 311017859 7fbd122f [INFO Client 11768] [SCENE] Set Source [Акт 4]
+2025/12/13 23:39:05 311030515 7fbd122f [INFO Client 11768] [SCENE] Set Source [(null)]
+2025/12/13 23:39:05 311030531 7fbd122f [INFO Client 11768] [SCENE] Set Source [Кингсмарш]
+2025/12/13 23:39:14 311040093 2caa22da [DEBUG Client 11768] Generating level 65 area "G_Endgame_Town" with seed 1
