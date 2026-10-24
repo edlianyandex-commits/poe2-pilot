@@ -248,6 +248,18 @@ def format_passives(tree: PassiveTree, nids: list[int], build: PobBuild) -> tupl
     return tuple(shown) + (f"+{rest} ещё",)
 
 
+def _component(tree: PassiveTree, root: int, nodes: set[int]) -> set[int]:
+    """Nodes of ``nodes`` connected to ``root`` through ``nodes`` only."""
+    seen = {root}
+    stack = [root]
+    while stack:
+        for o in tree.nodes[stack.pop()].adj:
+            if o in nodes and o not in seen:
+                seen.add(o)
+                stack.append(o)
+    return seen - {root}
+
+
 def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
                      max_level: int = MAX_LEVEL) -> PlanDetail:
     warnings: list[str] = []
@@ -277,7 +289,33 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
         warnings.append(f"{len(stray)} nodes of another ascendancy ignored")
 
     all_wanted = main_targets | asc_targets
-    steiner, unreachable = steiner_tree(tree, root, main_targets, unlocked=lambda n: n in all_wanted)
+    # Split Personality-like jewels: the part of the tree grown from another class start is
+    # reachable only after the socket holding the jewel is allocated
+    opens: dict[int, int] = {}
+    own = _component(tree, root, main_targets)
+    for sock, cls in spec.start_jewels.items():
+        s = tree.start_for(cls)
+        if s is None or sock not in own:   # socket must be reachable before the jewel helps
+            warnings.append(f"start jewel ({cls}) in socket {sock} ignored")
+        else:
+            opens[sock] = s
+    jewel_stage: dict[int, int] = {}
+    if opens:
+        steiner, unreachable = steiner_tree(tree, root, own,
+                                            unlocked=lambda n: n in all_wanted)
+        rest = main_targets - steiner
+        for s in dict.fromkeys(opens.values()):
+            part, unreachable = steiner_tree(tree, s, rest, unlocked=lambda n: n in all_wanted)
+            part.discard(s)
+            jewel_stage.update({n: 1 for n in part})
+            steiner |= part
+            rest = unreachable
+        unreachable = rest
+        for sock, s in opens.items():
+            warnings.append(f"{tree.nodes[s].name.title()} start via jewel in socket {sock}")
+    else:
+        steiner, unreachable = steiner_tree(tree, root, main_targets,
+                                            unlocked=lambda n: n in all_wanted)
     if unreachable:
         warnings.append(f"{len(unreachable)} target nodes unreachable from class start")
     extra = steiner - main_targets - {root}
@@ -300,11 +338,13 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
     if others:
         last = len(others)
         stage = {n: stage.get(n, last) for n in steiner}
+    if jewel_stage:  # the path to the jewel socket always comes first
+        stage = {n: jewel_stage.get(n, 0) * 1000 + stage.get(n, 0) for n in steiner}
 
     valuer = NodeValuer(damage_profile(build))
     vcache = {n: valuer.value(tree.nodes[n]) for n in steiner | asc_targets}
     main_order = allocation_order(tree, root, steiner, vcache.__getitem__, stage,
-                                  extra_unlocked=asc_targets)
+                                  extra_unlocked=asc_targets, opens=opens)
     leftover = steiner - set(main_order) - {root}
     if leftover:
         warnings.append(f"{len(leftover)} nodes could not be ordered")
@@ -380,7 +420,9 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
         if not nodes and not gems_ev:
             continue
         note = None
-        if any(e.is_main for e in gems_ev) and lvl > 1:
+        if any(n in opens for n in nodes):
+            note = "Самоцвет в гнездо"
+        if any(e.is_main for e in gems_ev) and lvl > 1 and note is None:
             note = clip(f"Основной скилл: {main_name}") if note is None else note
         hints[lvl] = LevelHint(level=lvl, passives=format_passives(tree, nodes, build),
                                gems=tuple(e.text for e in gems_ev), note=note)

@@ -159,6 +159,22 @@ class PassiveTree:
             raise KeyError(f"unknown class {class_name!r}")
         return int(c["start"])
 
+    # jewel texts use PoE1 class names for the shared start positions
+    _START_ALIASES = {"shadow": "SIX", "marauder": "MARAUDER", "duelist": "DUELIST",
+                      "templar": "TEMPLAR", "ranger": "RANGER", "witch": "WITCH"}
+
+    def start_for(self, class_name: str) -> int | None:
+        """Start node for a class name as written on an item ("Ranger", "Shadow", ...)."""
+        try:
+            return self.class_start(class_name)
+        except KeyError:
+            pass
+        alias = self._START_ALIASES.get(class_name.lower())
+        for n in self.nodes.values():
+            if n.type == "class_start" and n.name == alias:
+                return n.id
+        return None
+
     def asc_start(self, asc_name: str) -> int | None:
         for c in self.classes.values():
             a = c["ascendancies"].get(asc_name)
@@ -284,9 +300,15 @@ class NodeValuer:
 def allocation_order(tree: PassiveTree, root: int, to_alloc: set[int],
                      value: Callable[[int], float], stage: dict[int, int] | None = None,
                      cost: Callable[[int], int] = lambda _n: 1,
-                     extra_unlocked: set[int] | None = None) -> list[int]:
-    """Order ``to_alloc`` so every node is adjacent to root/an earlier node (greedy value/cost)."""
+                     extra_unlocked: set[int] | None = None,
+                     opens: dict[int, int] | None = None) -> list[int]:
+    """Order ``to_alloc`` so every node is adjacent to root/an earlier node (greedy value/cost).
+
+    ``opens`` maps a node to an extra start that becomes allocated once that node is taken
+    (a jewel socket holding Split Personality opens another class's starting point).
+    """
     stage = stage or {}
+    opens = opens or {}
     allocated = {root}
     order: list[int] = []
     remaining = set(to_alloc) - {root}
@@ -340,4 +362,6 @@ def allocation_order(tree: PassiveTree, root: int, to_alloc: set[int],
             order.append(n)
             allocated.add(n)
             remaining.discard(n)
+            if n in opens:
+                allocated.add(opens[n])
     return order

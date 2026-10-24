@@ -56,6 +56,8 @@ class TreeSpec:
     ascendancy_internal_id: str = ""
     nodes: list[int] = field(default_factory=list)
     weapon_sets: dict[int, list[int]] = field(default_factory=dict)
+    # socket node -> class whose starting point the socketed jewel opens (Split Personality)
+    start_jewels: dict[int, str] = field(default_factory=dict)
     attribute_choice: dict[int, str] = field(default_factory=dict)  # node -> "str" | "dex" | "int"
 
 
@@ -208,6 +210,20 @@ def _parse_skills(root: ET.Element) -> list[SkillGroup]:
     return groups
 
 
+_START_POINT_RE = re.compile(r"Can Allocate Passive Skills from the (\w+)'s starting point", re.I)
+
+
+def _start_point_items(root: ET.Element) -> dict[str, str]:
+    """item id -> class name, for jewels like Split Personality that open another class start."""
+    out: dict[str, str] = {}
+    items = root.find("Items")
+    for it in items.findall("Item") if items is not None else []:
+        m = _START_POINT_RE.search("".join(it.itertext()))
+        if m and it.get("id"):
+            out[it.get("id")] = m.group(1)
+    return out
+
+
 def parse_pob_xml(xml_text: str) -> PobBuild:
     if len(xml_text) > MAX_XML_BYTES:
         raise PobDecodeError("build XML too large")
@@ -224,7 +240,15 @@ def parse_pob_xml(xml_text: str) -> PobBuild:
         raise PobDecodeError("missing <Build>")
     asc = b.get("ascendClassName")
     tree = root.find("Tree")
-    specs = [_parse_spec(s) for s in tree.findall("Spec")] if tree is not None else []
+    spec_els = tree.findall("Spec") if tree is not None else []
+    specs = [_parse_spec(s) for s in spec_els]
+    start_items = _start_point_items(root)
+    for el, spec in zip(spec_els, specs):
+        for sock in el.iter("Socket"):
+            cls = start_items.get(sock.get("itemId", ""))
+            node = _int(sock.get("nodeId"))
+            if cls and node is not None:
+                spec.start_jewels[node] = cls
     active = (_int(tree.get("activeSpec"), 1) or 1) - 1 if tree is not None else 0
     return PobBuild(
         class_name=b.get("className", "") or "",
