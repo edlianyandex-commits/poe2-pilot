@@ -34,16 +34,19 @@
       "act": 1,
       "area": "G1_2",
       "short": "◆ Клирфелл",
-      "detail": "WP в зоне",
-      "kind": "wp"
+      "detail": "WP в зоне. Опц.: Beira в центре (+10% к сопр. холоду)",
+      "kind": "wp",
+      "_source": "https://poe2db.tw/us/Act_1"
     },
     {
       "id": "a1-005",
       "act": 1,
       "area": "G1_3",
-      "short": "→ Грязевая нора",
-      "detail": "Без WP",
-      "kind": "move"
+      "short": "⚔ The Devourer",
+      "detail": "Опц. Без WP. Камень поддержки и 100 золота; Грельвуд доступен и без норы",
+      "kind": "boss",
+      "reward": "Uncut Support Gem",
+      "_source": "https://poe2db.tw/us/Act_1"
     },
     {
       "id": "a1-006",
