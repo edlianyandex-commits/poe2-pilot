@@ -95,6 +95,7 @@ class RunEngine:
         self._finished_before = False
         self._tentative = False
         self._pending_new: tuple | None = None   # (Riverbank AreaGenerated, game time then)
+        self._riverbank: tuple | None = None     # the last Riverbank entry, same shape
         n = len(route.steps)
         self._marks = tuple(k / n for k, st in enumerate(route.steps) if st.split) if n else ()
         self._reset_run_state()
@@ -203,12 +204,24 @@ class RunEngine:
             self._done.discard(self._step)
 
     def reset_run(self) -> None:
-        """Abandon the current run (saved if it lasted long enough) and wait for the next start."""
+        """Abandon the current run (saved if it lasted long enough) and wait for the next start.
+
+        Pressed in the Riverbank, the new run starts from that entry at once: a character
+        already standing there would never generate the Riverbank again.
+        """
         with self._lock:
+            entry = self._riverbank if self._running and self._area_id == START_AREA else None
+            since = max(0.0, self._elapsed - entry[1]) if entry else 0.0
             if self._running:
                 self._save(status="abandoned")
             self._reset_run_state()
             self._armed = True
+            if entry:
+                self._restart_from(entry[0], since)
+                log.info("run reset (Alt+R): restarted from Riverbank at %s", entry[0].ts)
+            else:
+                self._toast("Сброс: забег начнётся в Riverbank", "zone", 5.0)
+                log.info("run reset (Alt+R): waiting for the Riverbank")
 
     def allocated_nodes(self) -> set[str] | None:
         """Passive node ids allocated since the run start; None if no run start was seen."""
@@ -401,19 +414,8 @@ class RunEngine:
             entry_ev, entry_elapsed = self._pending_new
             self._pending_new = None
             if ev.level <= 2 and self._running:   # a new character took over mid-run
-                since = max(0.0, self._elapsed - entry_elapsed)
-                area, level, name = self._area_id, self._area_level, self._area_name
-                self._start_run(entry_ev)
-                # replay the new run's zones: Riverbank (its step and split at 0:00) ...
-                self._enter_zone(START_AREA)
-                self._on_zone_in_run(START_AREA)
-                self._elapsed = since             # the new run's clock starts at its Riverbank
+                self._restart_from(entry_ev, max(0.0, self._elapsed - entry_elapsed))
                 log.info("new character %s: run restarted from Riverbank at %s", ev.character, entry_ev.ts)
-                if area and area != START_AREA:   # ... then where the level-up happened
-                    self._account()               # Riverbank segment gets its seconds
-                    self._enter_zone(area)
-                    self._on_zone_in_run(area)
-                self._area_id, self._area_level, self._area_name = area, level, name
         self._char_name, self._char_level = ev.character, ev.level
         hint = self.plan.hint_for(ev.level) if self.plan else None
         if hint is None:
@@ -488,10 +490,27 @@ class RunEngine:
             self._pending_new = (ev, self._elapsed)
             self._toast("Новый персонаж? Забег — с ур. 2", "zone", 8.0)
             log.info("Riverbank at %s during a run: waiting for level-up to decide", ev.ts)
+        if z == START_AREA:
+            self._riverbank = (ev, self._elapsed)
         self._enter_zone(z)
         if is_hideout(z):
             return
         self._on_zone_in_run(z)
+
+    def _restart_from(self, entry_ev: AreaGenerated, since: float) -> None:
+        """Start a new run at an earlier Riverbank entry, `since` game seconds ago."""
+        area, level, name = self._area_id, self._area_level, self._area_name
+        self._start_run(entry_ev)
+        # replay the new run's zones: Riverbank (its step and split at 0:00) ...
+        self._enter_zone(START_AREA)
+        self._on_zone_in_run(START_AREA)
+        self._elapsed = since                 # the new run's clock starts at its Riverbank
+        self._riverbank = (entry_ev, 0.0)
+        if area and area != START_AREA:       # ... then the zone we are in now
+            self._account()                   # Riverbank segment gets its seconds
+            self._enter_zone(area)
+            self._on_zone_in_run(area)
+        self._area_id, self._area_level, self._area_name = area, level, name
 
     def _start_run(self, ev: AreaGenerated) -> None:
         self._reset_run_state()

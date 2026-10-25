@@ -109,11 +109,28 @@ def test_manual_steps_and_reset():
     for _ in range(10):
         eng.next_step()
     assert eng.snapshot().step_index == 4
+    f.zone("G1_2", 50)
     eng.reset_run()
     s = eng.snapshot()
     assert not s.running and s.step_index == 0 and s.run_time_s == 0
+    assert any("Riverbank" in t.text for t in s.toasts)
     f.zone("G1_1", 100, 1)                      # restarts even if char level was high
     assert eng.snapshot().running
+
+
+def test_reset_in_riverbank_restarts_from_that_entry():
+    """A new character already in the Riverbank never generates it again: start from it."""
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_2", 100)
+    f.zone("G1_1", 300)                         # back in the Riverbank (same or new character)
+    f.feed(FocusChanged, 340, True)
+    eng.reset_run()
+    s = eng.snapshot()
+    assert s.running and s.step_index == 0
+    assert 35 <= s.run_time_s <= 40             # counted from the Riverbank entry, not 0:00 now
+    f.zone("G1_2", 400)
+    assert eng.snapshot().running and eng.split_times()["a"] == 0.0
 
 
 def test_live_clock_extrapolation_and_toast_expiry():
