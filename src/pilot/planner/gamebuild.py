@@ -125,14 +125,24 @@ def _linked(tree: PassiveTree, start: int, nodes: set[int]) -> set[int]:
     return seen | {n for n in nodes if tree.nodes[n].asc}
 
 
-def _class_of(tree: PassiveTree, sids: list[str]) -> str | None:
-    """Class whose start node touches the allocated passives."""
+def _class_of(tree: PassiveTree, sids: list[str], hint: str = "") -> str | None:
+    """Class whose start node touches the allocated passives.
+
+    Two classes share each start (Ranger/Huntress, Witch/Sorceress): the ascendancy nodes
+    decide, else a class name in the build's name/link (e.g. "Twister Monk"), else the first.
+    """
     nodes = {tree.by_sid[s] for s in sids if s in tree.by_sid}
-    for cls in tree.classes:
-        start = tree.class_start(cls)
-        if any(o in nodes for o in tree.nodes[start].adj):
+    cands = [cls for cls in tree.classes
+             if any(o in nodes for o in tree.nodes[tree.class_start(cls)].adj)]
+    if len(cands) <= 1:
+        return cands[0] if cands else None
+    for n in nodes:
+        asc = tree.nodes[n].asc
+        cls = tree.class_of_ascendancy(asc) if asc else None
+        if cls in cands:
             return cls
-    return None
+    low = hint.lower()
+    return next((c for c in cands if c.lower() in low), cands[0])
 
 
 def load_game_build(path: str | Path, class_name: str | None = None) -> PobBuild:
@@ -142,7 +152,7 @@ def load_game_build(path: str | Path, class_name: str | None = None) -> PobBuild
     tree = PassiveTree.load()
     final = stages[-1]
     sids = [p["id"] for p in final.get("passives") or () if isinstance(p, dict) and p.get("id")]
-    cls = class_name or _class_of(tree, sids)
+    cls = class_name or _class_of(tree, sids, f"{final.get('name', '')} {final.get('link', '')}")
     if cls is None:
         raise ValueError("cannot tell the class from the passives; pass class_name")
     asc = None

@@ -12,7 +12,7 @@ from typing import Iterator
 
 from pilot.contracts import LevelUp
 from pilot.core.engine import RunEngine
-from pilot.core.parser import parse_line
+from pilot.core.parser import parse_line, parse_line_or_tick
 
 _CHUNK = 4 << 20
 _RE_START = re.compile(rb'area "G1_1" with seed')
@@ -111,8 +111,14 @@ def find_run_start(path: str | Path, max_bytes: int = 200_000_000) -> int | None
         return best
 
 
-def warm_start(engine: RunEngine, path: str | Path, max_bytes: int = 200_000_000) -> bool:
-    """Feed the last run found in `path` into `engine`. True if a run was found."""
+def warm_start(engine: RunEngine, path: str | Path, max_bytes: int = 200_000_000,
+               end: list[int] | None = None) -> bool:
+    """Feed the last run found in `path` into `engine`. True if a run was found.
+
+    `end`, if given, receives the byte offset just after the last complete line fed, so a
+    LogWatcher can continue exactly there (nothing written meanwhile is lost; a line still
+    being written is read whole later).
+    """
     try:
         start = find_run_start(path, max_bytes)
     except OSError:
@@ -120,6 +126,7 @@ def warm_start(engine: RunEngine, path: str | Path, max_bytes: int = 200_000_000
     if start is None:
         return False
     engine.set_quiet(True)
+    pos = start
     try:
         with open(path, "rb") as f:
             f.seek(start)
@@ -131,10 +138,13 @@ def warm_start(engine: RunEngine, path: str | Path, max_bytes: int = 200_000_000
                 parts = (tail + chunk).split(b"\n")
                 tail = parts.pop()
                 for raw in parts:
-                    ev = parse_line(_decode(raw))
+                    pos += len(raw) + 1
+                    ev = parse_line_or_tick(_decode(raw))
                     if ev is not None:
                         engine.feed(ev)
     finally:
         engine.set_quiet(False)
         engine.clear_toasts()
+        if end is not None:
+            end.append(pos)
     return True

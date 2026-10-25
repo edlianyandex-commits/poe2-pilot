@@ -237,3 +237,18 @@ def test_hud_details_provider(qapp):
     assert hud._details[-2:] == ["l1", "l2"]
     hud.set_details_visible(False)
     assert hud.height() == h0
+
+
+def test_hotkeys_released_while_another_app_is_in_front(qapp, monkeypatch):
+    calls = []
+    monkeypatch.setattr(hotkeys.winapi, "IS_WIN", True)
+    monkeypatch.setattr(hotkeys.winapi, "register_hotkey", lambda i, m, vk: calls.append(("reg", i)) or True)
+    monkeypatch.setattr(hotkeys.winapi, "unregister_hotkey", lambda i: calls.append(("unreg", i)))
+    hk = hotkeys.HotkeyManager({})
+    hk.set_active(True)
+    n = len(hk._ids)
+    assert n and all(c[0] == "reg" for c in calls)
+    hk.set_active(False)                       # browser in front: Alt+E / Alt+H are free again
+    assert not hk._ids and sum(c[0] == "unreg" for c in calls) == n
+    hk.set_active(False)                       # idempotent
+    assert sum(c[0] == "unreg" for c in calls) == n

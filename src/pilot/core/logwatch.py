@@ -18,8 +18,10 @@ class LogWatcher:
     """Poll `path` and call `on_line(line)` for every new complete line (no newline)."""
 
     def __init__(self, path: str | Path, on_line: Callable[[str], None],
-                 from_end: bool = True, poll_interval: float = 0.2) -> None:
+                 from_end: bool = True, poll_interval: float = 0.2,
+                 start_offset: int | None = None) -> None:
         self.path = Path(path)
+        self.start_offset = start_offset     # continue a warm start exactly where it stopped
         self.on_line = on_line
         self.from_end = from_end
         self.poll_interval = poll_interval
@@ -39,7 +41,9 @@ class LogWatcher:
         try:
             st = self.path.stat()
             self._ident = (st.st_dev, st.st_ino)
-            if self.from_end:
+            if self.start_offset is not None and self.start_offset <= st.st_size:
+                self._pos = self.start_offset
+            elif self.from_end:
                 self._pos = st.st_size
         except OSError:
             pass

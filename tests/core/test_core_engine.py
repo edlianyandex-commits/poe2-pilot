@@ -385,3 +385,52 @@ def test_focus_lost_pauses_timer():
     assert abs(eng.snapshot().run_time_s - t_lost) < 1.0
     f.zone("G1_2", 460)
     assert abs(eng.snapshot().run_time_s - (t_lost + 60)) <= 1.5
+
+
+def test_new_character_restart_counts_its_riverbank():
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.feed(LevelUp, 60, "Old", "Monk", 4)
+    for i, z in enumerate(("G1_2", "G1_3", "G1_4")):
+        f.zone(z, 100 + i * 100)
+    f.zone("G1_1", 1000, 1)
+    f.feed(LevelUp, 1150, "New", "Monk", 2)        # still in Riverbank
+    s = eng.snapshot()
+    assert s.step_index == 0 and eng.split_times() == {"a": 0.0}
+    f.zone("G1_2", 1300)
+    rec = eng.current_record()
+    segs = {sg["area_id"]: sg for sg in rec.segments}
+    assert 290 <= segs["G1_1"]["seconds"] <= 310     # Riverbank 1000..1300
+    assert eng.snapshot().next_short != "→ a"        # Riverbank step is done, no stale reminder
+
+
+def test_cancelled_tentative_run_forgets_passives():
+    eng, f, _ = make()
+    f.feed(LevelUp, 0, "Old", "Monk", 30)
+    f.zone("G1_1", 10, 1)
+    assert eng.allocated_nodes() == set()
+    f.feed(LevelUp, 50, "Old", "Monk", 31)
+    assert eng.allocated_nodes() is None
+
+
+def test_heartbeat_keeps_long_zone_stay_counted():
+    from pilot.contracts import Tick
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    for k in range(1, 21):                          # 20 minutes, a log line every minute
+        f.feed(Tick, 60 * k)
+    f.zone("G1_2", 1260)
+    assert eng.snapshot().run_time_s >= 1250
+
+
+def test_loading_not_taken_back_when_it_was_not_counted():
+    from pilot.contracts import FocusChanged
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.feed(AreaGenerated, 100, "G1_2", 2, 1)         # load starts ...
+    f.feed(FocusChanged, 101, False)                # ... player alt-tabs during it
+    f.feed(FocusChanged, 124, True)
+    t0 = eng.snapshot().run_time_s
+    f.feed(LoadingScreen, 125, "G1_2", 25.0)         # load ends: only 1+1 s of it were counted
+    assert eng.snapshot().run_time_s >= t0 - 2.0 - 1e-6
+    assert eng.snapshot().run_time_s >= 99.0

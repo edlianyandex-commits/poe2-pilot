@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from pilot.contracts import AreaGenerated  # noqa: E402
 from pilot.core.engine import RunEngine, is_hideout, is_town  # noqa: E402
 from pilot.core.logpath import find_client_log  # noqa: E402
-from pilot.core.parser import parse_line  # noqa: E402
+from pilot.core.parser import parse_line_or_tick as parse_line  # noqa: E402
 from pilot.core.route import load_route, route_area  # noqa: E402
 from pilot.core.splits import SplitStore  # noqa: E402
 

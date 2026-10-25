@@ -11,7 +11,7 @@ from pilot.contracts import (
     AreaGenerated, Death, Event, FocusChanged, GameClosed, HudState, LevelPlan,
     LevelUp, LoadingScreen, PassiveAllocated, SceneEntered, Toast,
 )
-from pilot.core.parser import parse_line
+from pilot.core.parser import parse_line_or_tick
 from pilot.core.route import Route, route_area
 from pilot.core.splits import RunRecord, SplitStore, ZoneSegment
 
@@ -91,6 +91,7 @@ class RunEngine:
         # time base
         self._last_ts = None
         self._last_clock = 0.0
+        self._counted_since_zone = 0.0       # timer seconds added since the last zone generation
         # run
         self._armed = False
         self._finished_before = False
@@ -109,7 +110,7 @@ class RunEngine:
 
     def feed_line(self, line: str) -> None:
         """Convenience: parse a raw log line and feed the resulting event."""
-        ev = parse_line(line)
+        ev = parse_line_or_tick(line)
         if ev is not None:
             self.feed(ev)
 
@@ -118,6 +119,8 @@ class RunEngine:
             self._advance_time(ev)
             self._account()
             if isinstance(ev, AreaGenerated):
+                # the load runs from this line to the [LOADING SCREEN] line that ends it
+                self._counted_since_zone = 0.0
                 self._on_area(ev)
             elif isinstance(ev, SceneEntered):
                 if self._awaiting_scene:
@@ -127,7 +130,10 @@ class RunEngine:
                         self._seg.area_name = ev.name
             elif isinstance(ev, LoadingScreen):
                 if self._running:
-                    self._elapsed = max(0.0, self._elapsed - ev.seconds)
+                    # only take back what the timer really counted (not paused / AFK / closed)
+                    took = min(ev.seconds, self._counted_since_zone)
+                    self._elapsed = max(0.0, self._elapsed - took)
+                    self._counted_since_zone = 0.0
                     if self._seg is not None:
                         self._seg.loading_s += ev.seconds
                     self._account()
@@ -321,7 +327,9 @@ class RunEngine:
         if self._last_ts is not None and self._running:
             dt = (ev.ts - self._last_ts).total_seconds()
             if not self._closed and not self._focus_paused() and 0 < dt <= self._afk:
-                self._elapsed += max(0.0, dt - self._manual_overlap(self._last_clock, now))
+                added = max(0.0, dt - self._manual_overlap(self._last_clock, now))
+                self._elapsed += added
+                self._counted_since_zone += added
         if self._closed:           # first event after the game was closed = restarted
             self._closed = False
             self._focused = True
@@ -389,20 +397,25 @@ class RunEngine:
             if ev.level > 2:                      # not a fresh character: there was no run
                 self._reset_run_state()
                 self._toasts.clear()
+                self._allocated = None            # the old character's passives are unknown
                 log.info("tentative run cancelled: %s is level %s", ev.character, ev.level)
         if self._pending_new is not None:
             entry_ev, entry_elapsed = self._pending_new
             self._pending_new = None
             if ev.level <= 2 and self._running:   # a new character took over mid-run
                 since = max(0.0, self._elapsed - entry_elapsed)
-                area, level = self._area_id, self._area_level
+                area, level, name = self._area_id, self._area_level, self._area_name
                 self._start_run(entry_ev)
+                # replay the new run's zones: Riverbank (its step and split at 0:00) ...
+                self._enter_zone(START_AREA)
+                self._on_zone_in_run(START_AREA)
                 self._elapsed = since             # the new run's clock starts at its Riverbank
                 log.info("new character %s: run restarted from Riverbank at %s", ev.character, entry_ev.ts)
-                if area and area != START_AREA:
-                    self._area_id, self._area_level = area, level
+                if area and area != START_AREA:   # ... then where the level-up happened
+                    self._account()               # Riverbank segment gets its seconds
                     self._enter_zone(area)
                     self._on_zone_in_run(area)
+                self._area_id, self._area_level, self._area_name = area, level, name
         self._char_name, self._char_level = ev.character, ev.level
         hint = self.plan.hint_for(ev.level) if self.plan else None
         if hint is None:

@@ -107,3 +107,22 @@ def test_warm_start_speed_big_file(tmp_path):
     print(f"warm start: fixture {fixture_s:.3f}s, {p.stat().st_size / 1e6:.0f}MB {big_s:.3f}s")
     assert big_s < 3.0 and fixture_s < 1.0
     _same(eng, _direct(LINES[:300]))
+
+
+def test_warm_start_end_offset_lets_the_watcher_continue(tmp_path):
+    from pilot.core.logwatch import LogWatcher
+    src = Path(__file__).resolve().parents[1] / "fixtures" / "campaign_ru.log"
+    lines = src.read_text(encoding="utf-8").splitlines(keepends=True)[:300]
+    log = tmp_path / "Client.txt"
+    log.write_bytes(("".join(lines) + "2025/12/12 23:59:59 1 2 [INFO Client 1] : Tes").encode("utf-8"))
+    eng = RunEngine(ROUTE)
+    end: list[int] = []
+    assert warm_start(eng, log, end=end)
+    assert end and end[0] == len("".join(lines).encode("utf-8"))      # stops before the partial line
+    got = []
+    w = LogWatcher(log, got.append, start_offset=end[0])
+    w.start(); w.stop(); w._stop.clear()       # fix the start position, then poll by hand
+    with log.open("ab") as f:
+        f.write(b"tExile (Monk) is now level 9\n")
+    w.poll_once()
+    assert got[-1].endswith(": TestExile (Monk) is now level 9")      # the partial line, whole

@@ -17,7 +17,7 @@ from PySide6.QtWidgets import QApplication  # noqa: E402
 
 from pilot.contracts import AreaGenerated, LevelUp  # noqa: E402
 from pilot.core.engine import RunEngine  # noqa: E402
-from pilot.core.parser import parse_line  # noqa: E402
+from pilot.core.parser import parse_line_or_tick as parse_line  # noqa: E402
 from pilot.core.route import load_route  # noqa: E402
 from pilot.core.splits import SplitStore  # noqa: E402
 from pilot.overlay.hud import HudWindow as _Hud  # noqa: E402

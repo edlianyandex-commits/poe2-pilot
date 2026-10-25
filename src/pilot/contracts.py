@@ -72,6 +72,11 @@ class GameClosed(Event):
     pass
 
 
+@dataclass(frozen=True)
+class Tick(Event):
+    """Any other timestamped line: the game is alive (keeps long zone stays from looking AFK)."""
+
+
 # ---------- planner output (planner/) ----------
 
 @dataclass(frozen=True)

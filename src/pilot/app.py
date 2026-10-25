@@ -51,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
     from pilot.core.engine import RunEngine
     from pilot.core.logpath import find_client_log
     from pilot.core.logwatch import LogWatcher, replay
-    from pilot.core.parser import parse_line
+    from pilot.core.parser import parse_line_or_tick
     from pilot.core.route import load_route
     from pilot.core.splits import SplitStore
     from pilot.overlay import run_overlay
@@ -80,12 +80,15 @@ def main(argv: list[str] | None = None) -> int:
         cfg["tree_provider"] = lambda: tree.view(engine.allocated_nodes(), current_level())
 
     def on_line(line: str) -> None:
-        ev = parse_line(line)
+        ev = parse_line_or_tick(line)
         if ev is not None:
             engine.feed(ev)
 
     if args.replay:
+        # demo only: keep the HUD visible, but never write that into the user's config
+        saved_hide = cfg.get("hide_when_unfocused", True)
         cfg["hide_when_unfocused"] = False
+        cfg["on_save"] = lambda c: save_config({**c, "hide_when_unfocused": saved_hide})
         threading.Thread(target=replay, args=(args.replay, on_line, args.speed), daemon=True).start()
         watcher = None
     else:
@@ -95,8 +98,9 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         # started mid-run: rebuild step, timer, level and passives from the log first
         from pilot.core.warmstart import warm_start
-        warm_start(engine, log)
-        watcher = LogWatcher(log, on_line, from_end=True)
+        end: list[int] = []
+        warm_start(engine, log, end=end)
+        watcher = LogWatcher(log, on_line, from_end=True, start_offset=end[0] if end else None)
         watcher.start()
 
     try:

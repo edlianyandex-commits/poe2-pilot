@@ -128,6 +128,8 @@ class HotkeyManager:
         self._details_down = False
         self._timer: QTimer | None = None
         self._filter: _Filter | None = None
+        self._active = False      # combinations registered with Windows
+        self._polling = True      # hold-to-show polling (off while another app is in front)
 
     # ---- lifecycle
     def start(self) -> None:
@@ -135,25 +137,43 @@ class HotkeyManager:
         if winapi.IS_WIN:
             self._filter = _Filter(self)
             QCoreApplication.instance().installNativeEventFilter(self._filter)
-            for i, (name, (mods, vk)) in enumerate(self.parsed.items(), start=1):
-                if name == "details":
-                    continue  # polled, not registered
-                if winapi.register_hotkey(0xB000 + i, mods | MOD_NOREPEAT, vk):
-                    self._ids[0xB000 + i] = name
-                else:
-                    self.failed.append(name)
-                    log.warning("hotkey %s (%s) is taken by another app", name, self.specs[name])
+        self.set_active(True)
         self._timer = QTimer()
         self._timer.setInterval(self.POLL_MS)
         self._timer.timeout.connect(self.poll)
         self._timer.start()
 
+    def set_active(self, on: bool) -> None:
+        """Hold the key combinations only while the game (or our window) is in front.
+
+        RegisterHotKey reserves a combination system-wide, so keeping it while the user is in a
+        browser or editor would swallow their Alt+E / Alt+H menu shortcuts.
+        """
+        self._polling = on
+        if on == self._active:
+            return
+        self._active = on
+        if not winapi.IS_WIN:
+            return
+        if not on:
+            for hk_id in list(self._ids):
+                winapi.unregister_hotkey(hk_id)
+            self._ids.clear()
+            return
+        self.failed = []
+        for i, (name, (mods, vk)) in enumerate(self.parsed.items(), start=1):
+            if name == "details":
+                continue  # polled, not registered
+            if winapi.register_hotkey(0xB000 + i, mods | MOD_NOREPEAT, vk):
+                self._ids[0xB000 + i] = name
+            else:
+                self.failed.append(name)
+                log.warning("hotkey %s (%s) is taken by another app", name, self.specs[name])
+
     def stop(self) -> None:
         if self._timer:
             self._timer.stop()
-        for hk_id in list(self._ids):
-            winapi.unregister_hotkey(hk_id)
-        self._ids.clear()
+        self.set_active(False)
         if self._filter is not None:
             from PySide6.QtCore import QCoreApplication
             app = QCoreApplication.instance()
@@ -189,7 +209,7 @@ class HotkeyManager:
         combo = self.parsed.get("details")
         if combo is None:
             return
-        down = self.is_combo_down(*combo)
+        down = self._polling and self.is_combo_down(*combo)
         if down != self._details_down:
             self._details_down = down
             cb = self.callbacks.get("details")

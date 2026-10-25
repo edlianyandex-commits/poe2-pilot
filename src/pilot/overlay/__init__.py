@@ -41,6 +41,7 @@ def run_overlay(source, actions, config: dict) -> int:
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
+    from . import winapi
     from .hotkeys import HotkeyManager
     from .gems_window import GemsWindow
     from .hud import HudWindow
@@ -68,6 +69,13 @@ def run_overlay(source, actions, config: dict) -> int:
     vis.timeout.connect(hud.refresh_visibility)
     vis.timeout.connect(gems.refresh_visibility)
     vis.timeout.connect(tree.refresh_visibility)
+
+    def hotkeys_follow_game():
+        if not config.get("hide_when_unfocused", True):
+            hotkeys.set_active(True)
+            return
+        fg = winapi.foreground_info()
+        hotkeys.set_active(winapi.is_game_foreground(fg, config.get("game_exes") or winapi.GAME_EXES))
 
     def act(name):
         return lambda: getattr(actions, name)()
@@ -102,6 +110,7 @@ def run_overlay(source, actions, config: dict) -> int:
     poll.start()
     vis.start()
     hotkeys.start()
+    vis.timeout.connect(hotkeys_follow_game)
     try:
         return app.exec()
     finally:

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import threading
+from concurrent.futures import ThreadPoolExecutor
 import urllib.request
 from pathlib import Path
 from typing import Callable
@@ -17,6 +18,7 @@ from pilot.config import config_dir
 ALLOWED_HOSTS = {"cdn.poe2db.tw"}
 MAX_BYTES = 512 * 1024
 TIMEOUT_S = 8
+WORKERS = 4          # a few downloads at a time: polite to the CDN, cheap while the game runs
 
 
 class IconCache:
@@ -27,6 +29,7 @@ class IconCache:
         self._lock = threading.Lock()
         self._pending: set[str] = set()
         self._failed: set[str] = set()
+        self._pool = ThreadPoolExecutor(max_workers=WORKERS, thread_name_prefix="icons")
 
     def path_for(self, url: str) -> Path:
         suffix = Path(urlparse(url).path).suffix.lower() or ".img"
@@ -43,7 +46,7 @@ class IconCache:
             if url in self._pending or url in self._failed:
                 return None
             self._pending.add(url)
-        threading.Thread(target=self._download, args=(url, p, on_ready), daemon=True).start()
+        self._pool.submit(self._download, url, p, on_ready)
         return None
 
     def _download(self, url: str, p: Path, on_ready) -> None:

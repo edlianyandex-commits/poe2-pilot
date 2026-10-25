@@ -27,3 +27,16 @@ def test_zone_hints_from_sidecar():
     p = build_plan(BUILD)
     assert p.zone_hints["G1_town"] == ("Renly: Twister",)
     assert all(len(s) <= 40 for v in p.zone_hints.values() for s in v)
+
+
+def test_shared_start_class_from_name():
+    """Ranger/Huntress share a start: without ascendancy nodes the build name decides."""
+    from pilot.planner.gamebuild import _class_of
+    from pilot.planner.tree import PassiveTree
+    t = PassiveTree.load()
+    start = t.class_start("Huntress")
+    near = [t.nodes[o].sid for o in t.nodes[start].adj if t.nodes[o].sid and not t.nodes[o].asc][:1]
+    asc = [t.nodes[o].sid for o in t.nodes[start].adj if t.nodes[o].asc == "Amazon"]
+    assert _class_of(t, near + asc, "Lightning Arrow Ranger") == "Huntress"   # ascendancy wins
+    assert _class_of(t, near, "Spear Huntress levelling") == "Huntress"
+    assert _class_of(t, near, "Lightning Arrow Ranger") == "Ranger"

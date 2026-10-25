@@ -10,7 +10,7 @@ from datetime import datetime
 
 from pilot.contracts import (
     AreaGenerated, Death, Event, FocusChanged, GameClosed, LevelUp,
-    LoadingScreen, PassiveAllocated, SceneEntered,
+    LoadingScreen, PassiveAllocated, SceneEntered, Tick,
 )
 
 _RE_AREA = re.compile(r'Generating level (\d+) area "([^"]+)" with seed (\d+)')
@@ -56,6 +56,15 @@ def parse_line(line: str) -> Event | None:
     if ts is None:
         return None
     return ev(ts)
+
+
+def parse_line_or_tick(line: str) -> Event | None:
+    """Like parse_line, but any other timestamped line becomes a Tick (game alive)."""
+    ev = parse_line(line)
+    if ev is not None:
+        return ev
+    ts = parse_ts(line)
+    return Tick(ts) if ts is not None else None
 
 
 def _classify(msg: str):
