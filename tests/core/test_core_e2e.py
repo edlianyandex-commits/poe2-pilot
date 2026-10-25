@@ -113,3 +113,20 @@ def test_any_order_skipped_steps_and_reminders():
     assert eng.details()[:2] == ["d2", "Награда: R"]
     eng.feed(AreaGenerated(t, "G1_4", 4, 1))           # revisit: that zone's (done) step
     assert eng.snapshot().step_short == "→ s3"
+
+
+def test_optional_trial_is_not_a_reminder():
+    from datetime import datetime
+    from pilot.contracts import AreaGenerated
+    steps = (Step("a", 2, "G2_1", "→ a", "move"),
+             Step("t", 2, "G2_13", "✦ Trial", "trial", optional=True),
+             Step("b", 2, "G2_2", "⚔ Boss", "boss"),
+             Step("c", 2, "G2_4_1", "→ c", "move"))
+    eng = RunEngine(Route("w", "w", steps))
+    t = datetime(2025, 1, 1, 12, 0, 0)
+    eng.feed(AreaGenerated(t, "G1_1", 1, 1))           # run start (not in this route)
+    eng.feed(AreaGenerated(t, "G2_4_1", 21, 1))        # trial and boss skipped
+    s = eng.snapshot()
+    assert s.next_short == "⚔ Boss"                    # required boss stays a reminder, trial doesn't
+    eng.feed(AreaGenerated(t, "G2_town", 32, 1))
+    assert eng.snapshot().step_short == "⚔ Boss"

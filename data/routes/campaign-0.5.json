@@ -250,7 +250,8 @@
       "area": "G2_13",
       "short": "✦ Испытание Сехем",
       "detail": "Trial of the Sekhemas. Опционально",
-      "kind": "trial"
+      "kind": "trial",
+      "optional": true
     },
     {
       "id": "a2-008",
@@ -427,7 +428,7 @@
     {
       "id": "a2-029",
       "act": 2,
-      "area": "G2_12_1",
+      "area": "G2_12",
       "short": "◆ Дредноут",
       "detail": "WP",
       "kind": "wp"
@@ -435,7 +436,7 @@
     {
       "id": "a2-030",
       "act": 2,
-      "area": "G2_12_2",
+      "area": "G2_12",
       "short": "⚔ Jamanra, the Abomination",
       "detail": "Обязательный. Финал Акта 2; бой в конце Авангарда Дредноута",
       "kind": "boss",

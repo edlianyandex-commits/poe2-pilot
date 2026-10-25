@@ -23,8 +23,6 @@ AFK_GAP_S = 900.0          # gaps between log events longer than this = game was
 LEVEL_WARN_MARGIN = 3      # warn when char level < area level - 3
 MIN_ABANDON_SAVE_S = 30.0  # don't litter history with instantly-reset runs
 MAX_TOAST = 40
-# steps a player may skip on the way; they count as done once a later step of the act is reached
-SKIPPABLE_KINDS = {"move", "wp", "town", "skip", "boss_opt"}
 OFF_PLAN_TOAST_GAP_S = 60.0  # min gap between "off plan" toasts
 _RE_ACT = re.compile(r"^(?:G(\d)|P(\d))_")
 
@@ -523,7 +521,7 @@ class RunEngine:
         newly = [k] if k not in self._done else []
         for j in range(k):
             if j not in self._done and steps[j].act == steps[k].act \
-                    and steps[j].display_kind in SKIPPABLE_KINDS:
+                    and steps[j].skippable:
                 newly.append(j)
         for j in sorted(newly):
             self._done.add(j)
@@ -532,9 +530,9 @@ class RunEngine:
     def _on_zone_in_run(self, z: str) -> None:
         """Show the step of the zone the player is in, in any order; elsewhere the next open one.
 
-        Entering a route zone completes its step (kills aren't logged) and the pass-through
-        steps (move/wp/town/skip/optional boss) skipped before it in the same act; skipped
-        must-kill bosses, quests and trials stay open as reminders.
+        Entering a route zone completes its step (kills aren't logged) and the skippable steps
+        (move/wp/town/skip, anything marked optional) passed before it in the same act; skipped
+        required bosses, quests and trials stay open as reminders.
         """
         steps = self.route.steps
         rz = route_area(z)
@@ -545,7 +543,7 @@ class RunEngine:
             # a town step only when it is due: nothing but required leftovers before it
             if open_here:
                 k = open_here[0]
-                due = all(steps[j].display_kind not in SKIPPABLE_KINDS
+                due = all(not steps[j].skippable
                           for j in range(k) if j not in self._done and steps[j].act == steps[k].act)
                 if due:
                     self._complete(k, toast=True)

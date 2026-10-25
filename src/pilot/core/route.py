@@ -38,6 +38,11 @@ class Step:
     optional: bool = False             # not needed to progress (optional bosses keep a dim icon)
 
     @property
+    def skippable(self) -> bool:
+        """May be passed by: pass-through kinds and anything marked optional."""
+        return self.optional or self.display_kind in SKIPPABLE_KINDS
+
+    @property
     def display_kind(self) -> str:
         """Kind for the HUD icon: an optional boss is "boss_opt", not a must-kill "boss"."""
         return "boss_opt" if self.kind == "boss" and self.optional else self.kind
@@ -92,10 +97,14 @@ def parse_route(data: object, source: str = "<dict>") -> Route:
     return Route(rid, data.get("title", ""), merge_same_area(steps), data.get("patch", ""))
 
 
+# steps a player may skip on the way; they count as done once a later step of the act is reached
+SKIPPABLE_KINDS = frozenset({"move", "wp", "town", "skip", "boss_opt"})
+
 # the game logs some zones under another id than the route uses (layout versions, patches)
 AREA_ALIASES = {
     "G2_3": "G2_3a",       # The Halani Gates, second version
-    "G2_12": "G2_12_1",    # The Dreadnought (0.5 id)
+    "G2_12_1": "G2_12",    # The Dreadnought: two zones in older patches, one (G2_12) in 0.5
+    "G2_12_2": "G2_12",
 }
 
 
