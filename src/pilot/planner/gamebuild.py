@@ -134,6 +134,9 @@ def _class_of(tree: PassiveTree, sids: list[str], hint: str = "") -> str | None:
     nodes = {tree.by_sid[s] for s in sids if s in tree.by_sid}
     cands = [cls for cls in tree.classes
              if any(o in nodes for o in tree.nodes[tree.class_start(cls)].adj)]
+    if not cands:          # no tree in the file (written from a text guide): the name says
+        low = hint.lower()
+        return next((c for c in tree.classes if c.lower() in low), None)
     if len(cands) <= 1:
         return cands[0] if cands else None
     for n in nodes:

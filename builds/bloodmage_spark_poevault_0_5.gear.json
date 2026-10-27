@@ -1,0 +1,41 @@
+{
+  "_source": "https://www.poe-vault.com/poe2/witch/blood-mage/crit-spark-leveling-build",
+  "_note": "PoE Vault Spark Blood Mage levelling (0.5, updated 2026-09-04), paraphrased. The page has no PoB or build file: the .build is written by tools/make_spark_bloodmage.py from the guide's gem lists; its tree is only the shortest path to Secrets of the Orb. Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas at level 20-30 gives Blood Mage; Venom Crypts (a3-012) is left to the player",
+    "require": ["a2-007"]
+  },
+  "ascendancy": {
+    "_order": "Sanguimancy -> Sunder the Flesh -> Grasping Wounds (the guide's order)",
+    "G2_13": ["Sanguimancy", "Sunder the Flesh"],
+    "G3_10": ["Grasping Wounds"]
+  },
+  "gear": {
+    "_lines": "at most 2 per level are shown (toast and Alt+Q)",
+    "1": ["Посох: Lightning Bolt + Zenith I", "Первый гем: Spark + Frost Bomb"],
+    "2": ["1-я поддержка: Unleash → Spark", "Ботинки: скорость передвижения"],
+    "6": ["Orb of Storms: комбо со Spark", "Пачка: Orb рядом, затем Spark"],
+    "12": ["Посох Voltaic до конца Act 1", "Не гамблить посох"],
+    "16": ["Оруж. набор 2: только Frost Bomb"],
+    "20": ["Сехемы 20–30 ур.: Blood Mage"],
+    "23": ["Secrets of the Orb: 3 шара", "Unleash → Orb of Storms"],
+    "26": ["Босс: Orb → Wall → Frost Bomb", "Spark раз в ~2 с, не спамить"],
+    "41": ["Elemental Equilibrium", "Flame Wall можно убрать"],
+    "45": ["Spark + Projectile Accel. I"],
+    "55": ["Spark + Projectile Accel. II"]
+  },
+  "zones": {
+    "G1_town": ["Купить элементальный посох (Voltaic)"],
+    "G1_2": ["Frost Bomb до Beira"],
+    "G1_4": ["Areagne: поддержка + улучшение фласки"],
+    "G1_12": ["Finn: Sapphire Charm"],
+    "G2_1": ["Лагерь: поддержка ур. 2 (Considered C.)"],
+    "G2_5_1": ["Мастодонт: гарант. Jeweller's Orb"],
+    "G2_6": ["Алтарь: +30% к длительности чарма"],
+    "G2_13": ["Восхождение: Sanguimancy, Sunder"],
+    "G3_4": ["Venom Draught: +30% порог состояний"],
+    "G4_4_1": ["+5% ко всем сопротивлениям"],
+    "G4_11_1a": ["Ngakanu: Greater Jeweller's → Spark"]
+  }
+}

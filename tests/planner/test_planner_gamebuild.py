@@ -61,3 +61,16 @@ def test_lvl_stage_names_and_ice_shot_switch():
     early = {r.skill.name for r in p.gem_rows_for(22)}
     assert {"Lightning Arrow", "Lightning Rod"} <= early and "Ice Shot" not in early
     assert "Ice Shot" in {r.skill.name for r in p.gem_rows_for(31)}
+
+
+def test_text_guide_build_without_tree_class_from_name():
+    """A .build written from a text guide: class from the name, gems per act, guide ascendancy."""
+    from pilot.planner import build_plan_detail
+    d = build_plan_detail(BUILD.with_name("bloodmage_spark_poevault_0_5.build"))
+    p = d.plan
+    assert p.char_class == "Witch" and not p.warnings
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Spark", "Frost Bomb", "Flame Wall"}
+    assert "Orb of Storms" in {r.skill.name for r in p.gem_rows_for(6)}
+    assert "Flame Wall" not in {r.skill.name for r in p.gem_rows_for(45)}
+    assert p.ascendancy["G2_13"].passives == ("Sanguimancy", "Sunder the Flesh")
+    assert p.route_require == ("a2-007",)
