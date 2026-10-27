@@ -21,7 +21,7 @@ PRIORITY = [
     ("Raw Power", 0), ("Practiced Signs", 0), ("Breath of Ice", 0), ("Life from Death", 1),
     ("Echoing Frost", 1), ("Vigorous Remnants", 1), ("Endless Blizzard", 2), ("Glaciation", 2),
     ("Spiral into Insanity", 2), ("Lingering Horror", 2), ("Dark Entries", 3), ("Brain Freeze", 3),
-    ("Thin Ice", 3), ("Night's Bite", 3), ("Inescapable Cold", 4), ("Rhythm of Ice", 4),
+    ("Thin Ice", 3), ("Inescapable Cold", 4), ("Rhythm of Ice", 4),
     ("Critical Overload", 4), ("Void", 4),
 ]
 

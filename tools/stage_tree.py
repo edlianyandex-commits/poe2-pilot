@@ -7,7 +7,7 @@ from pilot.planner.tree import steiner_tree
 
 
 def _dist(t, start):
-    nb = t.walker(start, lambda n: True)
+    nb = t.walker(start, lambda n: False)    # Oracle-only areas stay locked for everyone else
     d, q = {start: 0}, [start]
     for c in q:
         for o in nb(c):
@@ -24,6 +24,9 @@ def stage_trees(t, start, priority, budgets):
     size = lambda k, extra=(): len(steiner_tree(  # noqa: E731
         t, start, [n for n, s in stage_of.items() if s <= k] + list(extra))[0]) - 1
     for nm, first in priority:
+        if not any(t.nodes[n].name == nm for n in d):
+            print("  not reachable (locked area):", nm)
+            continue
         n = node(nm)
         for k in range(first, len(budgets)):
             if all(size(j, [n]) <= budgets[j] for j in range(k, len(budgets))):

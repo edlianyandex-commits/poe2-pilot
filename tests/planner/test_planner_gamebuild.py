@@ -96,3 +96,18 @@ def test_ice_nova_contagion_build():
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
     assert at["Breath of Ice"] <= 15 and at["Endless Blizzard"] <= 44
     assert not any("Power of the Dead" in x for x in at)
+
+
+def test_warbringer_bone_spells_build():
+    """The user's own plan: slams first, bone spells from 6, Bonestorm from Act 2, Warrior tree."""
+    from pilot.planner import build_plan_detail
+    p = build_plan_detail(BUILD.with_name("warbringer_bone_spells_0_5_5.build")).plan
+    assert p.char_class == "Warrior" and not p.warnings
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Rolling Slam", "Boneshatter"}
+    assert {r.skill.name for r in p.gem_rows_for(15)} == {"Bone Cage", "Bonestorm", "Scavenged Plating"}
+    dd = {r.skill.name: [s.name for s in r.supports] for r in p.gem_rows_for(45)}["Detonate Dead"]
+    assert not any(s.startswith("Brutality") for s in dd)     # it also deals fire damage
+    assert p.ascendancy["G2_13"].passives == ("Anvil's Weight",)
+    at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
+    assert at["Defender's Resolve"] <= 15 and at["Cruel Methods"] <= 31
+    assert "Powerful Casting" not in at and "Deadly Thorns" not in at   # Oracle-only nodes
