@@ -74,3 +74,7 @@ def test_text_guide_build_without_tree_class_from_name():
     assert "Flame Wall" not in {r.skill.name for r in p.gem_rows_for(45)}
     assert p.ascendancy["G2_13"].passives == ("Sanguimancy", "Sunder the Flesh")
     assert p.route_require == ("a2-007",)
+    at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
+    assert at["Secrets of the Orb"] <= 25                     # the guide's ~23
+    assert 38 <= at["Elemental Equilibrium"] <= 48            # the guide's ~41
+    assert not any("Power of the Dead" in x for x in at)      # no minion notables on the way

@@ -1,6 +1,6 @@
 {
   "_source": "https://www.poe-vault.com/poe2/witch/blood-mage/crit-spark-leveling-build",
-  "_note": "PoE Vault Spark Blood Mage levelling (0.5, updated 2026-09-04), paraphrased. The page has no PoB or build file: the .build is written by tools/make_spark_bloodmage.py from the guide's gem lists; its tree is only the shortest path to Secrets of the Orb. Self-found: no uniques.",
+  "_note": "PoE Vault Spark Blood Mage levelling (0.5, updated 2026-09-04), paraphrased. The page has no PoB or build file: the .build is written by tools/make_spark_bloodmage.py from the guide's gem lists; its tree is poe2-pilot's own pick (spell damage and cast speed, Secrets of the Orb in Act 2, spell crit, Psychic Fragmentation and Elemental Equilibrium in Act 3, life from kills and remnants), not the author's. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas at level 20-30 gives Blood Mage; Venom Crypts (a3-012) is left to the player",
