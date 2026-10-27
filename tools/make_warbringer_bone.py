@@ -35,35 +35,35 @@ for k, r in data.gems_data().items():
     _BY_NAME.setdefault(r["n"], r.get("gid") or k)
 
 
-def sk(name, sups=(), frm=1, to=100):
-    """sups: names, or (name, first level) for a support that comes later than the skill."""
-    sups = [(s, frm) if isinstance(s, str) else s for s in sups]
+def sk(name, frm=1, to=100, sups=()):
+    """sups: (name, first level) or (name, first level, last level) - one or two gems a level."""
     return {"id": _BY_NAME[name], "level_interval": [frm, to],
-            "support_skills": [{"id": _BY_NAME[s], "level_interval": [lv, to]} for s, lv in sups]}
+            "support_skills": [{"id": _BY_NAME[x[0]], "level_interval": [x[1], x[2] if len(x) > 2 else to]}
+                               for x in sups]}
 
 
-act1 = [sk("Rolling Slam", (), 1, 8), sk("Boneshatter", (), 1, 8),
-        sk("Bone Cage", ("Astral Projection", "Brutality I"), 6)]
-act2 = [sk("Bone Cage", ("Astral Projection", "Brutality I", ("Bone Shrapnel", 18))),
-        sk("Bonestorm", ("Brutality I", "Rapid Casting I")),
-        sk("Scavenged Plating", ("Prolonged Duration I",))]
-act3 = [sk("Bonestorm", ("Brutality II", "Rapid Casting I", "Concentrated Area")),
-        sk("Bone Cage", ("Brutality II", "Astral Projection", "Bone Shrapnel", "Magnified Area I")),
-        sk("Vulnerability", ("Heightened Curse", "Prolonged Duration II")),
-        sk("Detonate Dead", ("Corpse Conservation", "Magnified Area I")),
-        sk("Scavenged Plating", ("Prolonged Duration I",))]
-# Detonate Dead deals fire as well as physical damage, and Brutality drops all non-physical
-# damage, so it gets area and corpse supports instead (Brutality II only if testing shows it pays)
-act4 = [sk("Bonestorm", ("Brutality II", "Rapid Casting I", "Concentrated Area", "Physical Mastery")),
-        sk("Bone Cage", ("Brutality II", "Astral Projection", "Bone Shrapnel", "Magnified Area II")),
-        sk("Vulnerability", ("Heightened Curse", "Prolonged Duration II", "Focused Curse")),
-        sk("Detonate Dead", ("Corpse Conservation", "Magnified Area II", "Heft")),
-        sk("Scavenged Plating", ("Prolonged Duration I",))]
+# One schedule for the whole campaign, at most 2-3 new gems a level, in order of importance:
+# Bone Cage carries Act 1, Bonestorm takes bosses from Act 2 and gets its supports first;
+# the tier 7 gems (Vulnerability, Detonate Dead) come in Act 3. Detonate Dead deals fire as
+# well as physical damage and Brutality drops all non-physical damage, so it gets area and
+# corpse supports instead (Brutality II only if testing shows it pays).
+GEMS = [
+    sk("Rolling Slam", 1, 8), sk("Boneshatter", 1, 8),
+    sk("Bone Cage", 6, sups=[("Brutality I", 6, 19), ("Astral Projection", 7), ("Bone Shrapnel", 18),
+                             ("Brutality II", 20), ("Magnified Area I", 26, 44), ("Magnified Area II", 45)]),
+    sk("Bonestorm", 15, sups=[("Brutality I", 15, 19), ("Rapid Casting I", 16), ("Brutality II", 20),
+                              ("Concentrated Area", 22), ("Physical Mastery", 24)]),
+    sk("Scavenged Plating", 17, sups=[("Prolonged Duration I", 17)]),
+    sk("Vulnerability", 29, sups=[("Heightened Curse", 29), ("Prolonged Duration II", 33),
+                                  ("Focused Curse", 40)]),
+    sk("Detonate Dead", 31, sups=[("Corpse Conservation", 31), ("Magnified Area I", 33, 44),
+                                  ("Heft", 36), ("Magnified Area II", 45)]),
+]
 
 trees = stage_trees(t, start, PRIORITY, BUDGETS)
-stages = [("Level 1-14 (Act 1)", trees[0], act1), ("Level 15-28 (Act 2)", trees[1], act2),
-          ("Level 29-44 (Act 3)", trees[2], act3), ("Level 45-54 (Act 4)", trees[3], act4),
-          ("Level 55-65 (Interludes)", trees[4], act4)]
+stages = [(name, tree, GEMS) for name, tree in zip(
+    ("Level 1-14 (Act 1)", "Level 15-28 (Act 2)", "Level 29-44 (Act 3)", "Level 45-54 (Act 4)",
+     "Level 55-65 (Interludes)"), trees)]
 buf = io.BytesIO()
 with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
     for name, passives, skills in stages:
