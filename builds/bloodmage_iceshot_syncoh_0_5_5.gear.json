@@ -1,6 +1,6 @@
 {
   "_source": "https://mobalytics.gg/poe-2/builds/bleed-ice-shot-blood-mage-syncoh",
-  "_note": "Sync Oh Bleeding Ice Shot Blood Mage (0.5.5), paraphrased. The PoB is the level 96 setup; levelling stages and the ascendancy order come from the guide text. Self-found: no uniques.",
+  "_note": "Sync Oh Bleeding Ice Shot Blood Mage (0.5.5), paraphrased. Gems per stage come from the .build; tips, quests and the ascendancy order from the guide text. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas: first ascendancy (Blood Barbs) before the Ice Shot switch; Bog Witch: +30 Spirit",
@@ -12,9 +12,7 @@
     "G3_10": ["Grasping Wounds"]
   },
   "gear": {
-    "1": ["Lightning Arrow + Rapid Att. I", "Lightning Rod + Multishot I"],
     "2": ["Боссы: Rod под ноги, затем Arrow", "War Banner — только на боссах"],
-    "6": ["Ice-Tipped Arrows"],
     "10": ["Гир: flat cold, Bleed+Ailment", "Жизнь, ES, резисты; +proj. gems"],
     "31": ["Смена: Ice Shot + Snipe", "Freezing Mark обязателен", "Life Remnants + Harmonic I"],
     "40": ["2-й Trial: Grasping Wounds"],

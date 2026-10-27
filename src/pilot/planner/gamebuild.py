@@ -60,10 +60,10 @@ def _gem_name(game_id: str) -> str:
 
 
 def stage_starts(stages: list[dict]) -> list[int]:
-    """First character level of each stage, from names like 'Level 15-28 (Act 2)'."""
+    """First character level of each stage, from names like 'Level 15-28 (Act 2)' or 'Lvl 31'."""
     out = []
     for i, st in enumerate(stages):
-        m = re.search(r"Level\s+(\d+)", st.get("name", ""))
+        m = re.search(r"\b(?:Level|Lvl)\.?\s*(\d+)", st.get("name", ""), re.I)
         out.append(int(m.group(1)) if m else (1 if i == 0 else out[-1] + 1))
     out[0] = 1
     return out

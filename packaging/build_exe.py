@@ -34,7 +34,7 @@ PyInstaller.__main__.run(args)
 LAUNCHERS = {
     "PoE2Pilot - Monk.bat": "twister_monk_guythatdies_0_5_5.build",
     "PoE2Pilot - Mercenary (Travic).bat": "twister_speed_campaign_travic_0_5_5.pob",
-    "PoE2Pilot - Blood Mage.bat": "bloodmage_iceshot_syncoh_0_5_5.pob",
+    "PoE2Pilot - Blood Mage.bat": "bloodmage_iceshot_syncoh_0_5_5.build",
 }
 for name, build in LAUNCHERS.items():
     (ROOT / "dist" / "PoE2Pilot" / name).write_text(

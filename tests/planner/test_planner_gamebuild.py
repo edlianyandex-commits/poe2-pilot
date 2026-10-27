@@ -44,10 +44,20 @@ def test_shared_start_class_from_name():
 
 def test_sidecar_route_profile_and_ascendancy_override():
     from pilot.planner import build_plan_detail
-    d = build_plan_detail(BUILD.with_name("bloodmage_iceshot_syncoh_0_5_5.pob"))
+    d = build_plan_detail(BUILD.with_name("bloodmage_iceshot_syncoh_0_5_5.build"))
     p = d.plan
     assert p.char_class == "Witch"
     assert p.route_require == ("a2-007", "a3-005")
     assert p.ascendancy["G2_13"].passives == ("Blood Barbs",)    # guide's order, not the PoB's
     assert p.zone_hints["G1_12"] == ("King in the Mists: +30 Spirit",)
     assert not any(g.startswith("Надеть") for h in p.hints.values() for g in h.gear)
+
+
+def test_lvl_stage_names_and_ice_shot_switch():
+    from pilot.planner.gamebuild import stage_starts
+    assert stage_starts([{"name": "Lvl 1-22 - X"}, {"name": "Lvl 31 (Ice Shot Switch)"},
+                         {"name": "END GAME CRIT SWAP (Level 92+)"}]) == [1, 31, 92]
+    p = build_plan(BUILD.with_name("bloodmage_iceshot_syncoh_0_5_5.build"))
+    early = {r.skill.name for r in p.gem_rows_for(22)}
+    assert {"Lightning Arrow", "Lightning Rod"} <= early and "Ice Shot" not in early
+    assert "Ice Shot" in {r.skill.name for r in p.gem_rows_for(31)}
