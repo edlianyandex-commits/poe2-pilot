@@ -81,15 +81,16 @@ def test_text_guide_build_without_tree_class_from_name():
 
 
 def test_ice_nova_contagion_build():
-    """Our own write-up (no guide has both skills): Spark only at the start, boss skill from Act 1."""
+    """Our own write-up (no guide has both skills): Ice Nova from level 1, no Spark, boss skill in Act 1."""
     from pilot.planner import build_plan_detail
     d = build_plan_detail(BUILD.with_name("witch_ice_nova_contagion_0_5_5.build"))
     p = d.plan
     assert p.char_class == "Witch" and not p.warnings
-    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Spark", "Frost Bomb"}
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Ice Nova", "Frost Bomb"}
     lv7 = {r.skill.name: [s.name for s in r.supports] for r in p.gem_rows_for(7)}
-    assert "Spark" not in lv7 and lv7["Ice Nova"] == ["Magnified Area I", "Rapid Casting I", "Unleash"]
+    assert lv7["Ice Nova"] == ["Magnified Area I", "Rapid Casting I", "Unleash"]
     assert {"Contagion", "Frost Darts"} <= set(lv7)
+    assert not any(r.skill.name == "Spark" for lv in range(1, 66) for r in p.gem_rows_for(lv))
     assert "Blasphemy" in {r.skill.name for r in p.gem_rows_for(29)}
     assert p.route_require == ("a2-007",)
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}

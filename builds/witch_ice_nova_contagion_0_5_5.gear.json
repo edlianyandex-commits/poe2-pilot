@@ -13,8 +13,8 @@
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Гемы: Spark, затем Frost Bomb", "Посох: холод, скорость каста"],
-    "3": ["Ice Nova — пачки, Darts — боссы", "Ботинки: скорость передвижения"],
+    "1": ["Первый гем: Ice Nova (без Spark)", "Посох: холод, скорость каста"],
+    "3": ["Боссы: Frost Darts, пачки: Nova", "Ботинки: скорость передвижения"],
     "6": ["Пачка: Contagion, затем Nova", "Мана: Rapid Casting I/Zenith I"],
     "15": ["Босс: Frost Bomb → Frost Darts", "Elemental Weakness — на боссов"],
     "20": ["Сехемы 20–30 ур.: Blood Mage", "Profanity — пачки, Agony — боссы"],
@@ -23,7 +23,7 @@
     "45": ["Siphon Elements + Clarity I"]
   },
   "zones": {
-    "G1_2": ["Frost Bomb до Beira", "Ice Nova — лагерь Клирфелла"],
+    "G1_2": ["Frost Bomb — лагерь, до Beira"],
     "G1_4": ["Areagne: Unleash → Ice Nova"],
     "G2_1": ["Considered Casting — лагерь G2_1"],
     "G2_13": ["Восхождение: Sanguimancy, Sunder"],

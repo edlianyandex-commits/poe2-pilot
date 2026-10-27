@@ -38,12 +38,11 @@ def sk(name, sups=(), frm=1):
             "support_skills": [{"id": _BY_NAME[s], "level_interval": [lv, 100]} for s, lv in sups]}
 
 
-act1 = [sk("Spark", (), 1), sk("Frost Bomb", ("Prolonged Duration I",)),
-        sk("Ice Nova", ("Magnified Area I", ("Rapid Casting I", 5), ("Unleash", 7)), 3),  # Unleash: Areagne
+act1 = [sk("Ice Nova", ("Magnified Area I", ("Rapid Casting I", 5), ("Unleash", 7))),  # Unleash: Areagne
+        sk("Frost Bomb", ("Prolonged Duration I",)),
         sk("Frost Darts", (("Deep Freeze", 10),), 3),
         sk("Contagion", ("Magnified Area I", "Profanity I"), 6),
         sk("Mana Remnants", (), 10)]
-act1[0]["level_interval"] = [1, 4]                       # Spark only until Ice Nova is in
 act2 = [sk("Ice Nova", ("Considered Casting", "Magnified Area I", "Unleash")),
         sk("Frost Darts", ("Deep Freeze", "Rapid Casting I")),
         sk("Contagion", ("Profanity I", "Intense Agony")),
