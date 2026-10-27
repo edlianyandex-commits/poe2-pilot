@@ -14,9 +14,9 @@
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
     "1": ["Булава + щит: Rolling Slam", "Проходные узлы: +Int, не Str"],
-    "4": ["Ренли/Уна: палочка +1 физ. чары", "Амулет Lapis (Int)"],
+    "4": ["Амулет Lapis (Int)"],
     "6": ["Bone Cage: ~35 Int, пачки", "Щит: Raise Shield на боссах"],
-    "9": ["Слэмы убрать, только кости"],
+    "9": ["Палочка вместо булавы (+1 физ.)", "Слэмы убрать, только кости"],
     "15": ["Bonestorm — боссы, Cage — пачки", "Scavenged Plating: 30 Spirit"],
     "18": ["Bone Shrapnel → Bone Cage"],
     "24": ["Один сет: палочка + щит", "Очки сетов: Defensive Stance"],
@@ -27,7 +27,7 @@
     "70": ["4-й Trial: Jade Heritage"]
   },
   "zones": {
-    "G1_town": ["Ренли/Уна: палочка и амулет на Int"],
+    "G1_town": ["Ренли/Уна: амулет на Int"],
     "G1_12": ["King in the Mists: +30 Spirit"],
     "G2_13": ["Восхождение: Anvil's Weight"],
     "G3_10": ["Восхождение: Imploding Impacts"]
