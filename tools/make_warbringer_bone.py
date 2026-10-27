@@ -1,6 +1,7 @@
 """Write builds/warbringer_bone_spells_0_5_5.build from the user's own plan ("Bone Warbringer").
 
-Warrior -> Warbringer casting physical bone spells (Bone Cage, Bonestorm) with a shield.
+Warrior -> Warbringer casting physical bone spells (Bone Cage, Bonestorm) with a shield;
+levels 1-8 dual-wield two one-handed maces with slams and strikes.
 The plan was checked against poe2-pilot's gem and tree data; the tree is its notable order.
 The campaign is played with one weapon set (wand + shield). Weapon set passives are not
 modelled by the planner, so the notables for those points are HUD hints
@@ -48,9 +49,11 @@ def sk(name, frm=1, to=100, sups=()):
 # well as physical damage and Brutality drops all non-physical damage, so it gets area and
 # corpse supports instead (Brutality II only if testing shows it pays).
 GEMS = [
-    # the first (tier 1) supports go on the slams, then move to Bone Cage
-    sk("Rolling Slam", 1, 8, sups=[("Magnified Area I", 4, 7)]),
-    sk("Boneshatter", 1, 8, sups=[("Brutality I", 2, 5)]),
+    # levels 1-8 with two one-handed maces: Rolling Slam primes for stun, Boneshatter's Heavy
+    # Stun makes a shockwave and Impact Shockwave adds an aftershock; Fist of War boosts a slam
+    # every few seconds. Brutality I and Magnified Area I then move to Bone Cage.
+    sk("Rolling Slam", 1, 8, sups=[("Magnified Area I", 4, 7), ("Fist of War I", 5)]),
+    sk("Boneshatter", 1, 8, sups=[("Brutality I", 2, 5), ("Impact Shockwave", 3)]),
     sk("Bone Cage", 6, sups=[("Brutality I", 6, 19), ("Astral Projection", 7), ("Magnified Area I", 8, 44),
                              ("Rapid Casting I", 10, 15), ("Bone Shrapnel", 18), ("Brutality II", 20),
                              ("Magnified Area II", 45)]),

@@ -106,7 +106,8 @@ def test_warbringer_bone_spells_build():
     assert p.char_class == "Warrior" and not p.warnings
     assert {r.skill.name for r in p.gem_rows_for(1)} == {"Rolling Slam", "Boneshatter"}
     lv5 = {r.skill.name: [s.name for s in r.supports] for r in p.gem_rows_for(5)}
-    assert lv5 == {"Rolling Slam": ["Magnified Area I"], "Boneshatter": ["Brutality I"]}   # supports from the start
+    assert lv5 == {"Rolling Slam": ["Magnified Area I", "Fist of War I"],                # two maces, supports
+                   "Boneshatter": ["Brutality I", "Impact Shockwave"]}                  # from the start
     assert {r.skill.name for r in p.gem_rows_for(15)} == {"Bone Cage", "Bonestorm"}
     dd = {r.skill.name: [s.name for s in r.supports] for r in p.gem_rows_for(45)}["Detonate Dead"]
     assert not any(s.startswith("Brutality") for s in dd)     # it also deals fire damage

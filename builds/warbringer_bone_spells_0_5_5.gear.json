@@ -1,6 +1,6 @@
 {
   "_source": "the user's own plan \"Bone Warbringer\" (2026-10-27), checked against poe2-pilot's gem and tree data",
-  "_note": "Warrior -> Warbringer with physical bone spells and a shield; no guide, untested in game. The .build is written by tools/make_warbringer_bone.py. Played with one weapon set (wand + shield): weapon set points all go to it, and since the planner does not model them their notables (Defensive Stance, Sudden Escalation, Constricting, Radial Force: 20 points) are hints here. Corrections to the plan: Eroding Chains breaks 50% of armour per Pin (not 100%); Detonate Dead gets no Brutality (it also deals fire damage); Renly's Training needs a shield; Powerful Casting, Deadly Thorns and Shelter from the Rain are Oracle-only nodes, replaced by Defensive Reflexes and Constricting. Self-found: no uniques.",
+  "_note": "Warrior -> Warbringer with physical bone spells and a shield (two one-handed maces with slams for levels 1-8); no guide, untested in game. The .build is written by tools/make_warbringer_bone.py. Played with one weapon set (wand + shield): weapon set points all go to it, and since the planner does not model them their notables (Defensive Stance, Sudden Escalation, Constricting, Radial Force: 20 points) are hints here. Corrections to the plan: Eroding Chains breaks 50% of armour per Pin (not 100%); Detonate Dead gets no Brutality (it also deals fire damage); Renly's Training needs a shield; Powerful Casting, Deadly Thorns and Shelter from the Rain are Oracle-only nodes, replaced by Defensive Reflexes and Constricting. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Warbringer (Anvil's Weight) before Bonestorm carries bosses",
@@ -13,10 +13,11 @@
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Булава + щит: Rolling Slam", "Проходные узлы: +Int, не Str"],
+    "1": ["Две одноручные булавы", "Проходные узлы: +Int, не Str"],
+    "3": ["Rolling Slam, затем Boneshatter"],
     "4": ["Амулет Lapis (Int)"],
-    "6": ["Bone Cage: ~35 Int, пачки", "Щит: Raise Shield на боссах"],
-    "9": ["Палочка вместо булавы (+1 физ.)", "Слэмы убрать, только кости"],
+    "6": ["Bone Cage: ~35 Int, пачки", "Без щита: перекат от ударов"],
+    "9": ["Палочка + щит вместо булав", "Слэмы убрать, только кости"],
     "15": ["Bonestorm — боссы, Cage — пачки"],
     "17": ["Scavenged Plating: 30 Spirit"],
     "24": ["Один сет: палочка + щит", "Очки сетов: Defensive Stance"],
