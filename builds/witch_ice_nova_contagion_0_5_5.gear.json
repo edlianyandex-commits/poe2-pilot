@@ -1,0 +1,34 @@
+{
+  "_source": "docs/run-reviews/build-witch-ice-nova-contagion.md",
+  "_note": "Ice Nova + Contagion Witch (Blood Mage), 0.5.5. No guide combines the two: gems per act are the run-review session's write-up from PoE Vault's Ice Nova Snap, Chaos Witch (Essence Drain + Contagion) and Ice Nova Comet Blood Mage guides and poe2db; untested in game. The .build is written by tools/make_icenova_contagion.py; its tree is poe2-pilot's own pick (spell damage, cold penetration, life on kill, +1 cold and chaos skill levels, freeze). Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas at level 20-30 gives Blood Mage; Venom Crypts (a3-012) stays skipped (player's choice)",
+    "require": ["a2-007"]
+  },
+  "ascendancy": {
+    "_order": "Sanguimancy -> Sunder the Flesh -> Grasping Wounds (Ice Nova Comet Blood Mage guide)",
+    "G2_13": ["Sanguimancy", "Sunder the Flesh"],
+    "G3_10": ["Grasping Wounds"]
+  },
+  "gear": {
+    "_lines": "at most 2 per level are shown (toast and Alt+Q)",
+    "1": ["Гемы: Spark, затем Frost Bomb", "Посох: холод, скорость каста"],
+    "3": ["Ice Nova — пачки, Darts — боссы", "Ботинки: скорость передвижения"],
+    "6": ["Пачка: Contagion, затем Nova", "Мана: Rapid Casting I/Zenith I"],
+    "15": ["Босс: Frost Bomb → Frost Darts", "Elemental Weakness — на боссов"],
+    "20": ["Сехемы 20–30 ур.: Blood Mage", "Profanity — пачки, Agony — боссы"],
+    "29": ["Mana → Life Remnants", "Chaotic Freeze → Contagion"],
+    "36": ["Gelid Staff (ilvl 36): +ур. хол."],
+    "45": ["Siphon Elements + Clarity I"]
+  },
+  "zones": {
+    "G1_2": ["Frost Bomb до Beira", "Ice Nova — лагерь Клирфелла"],
+    "G1_4": ["Areagne: Unleash → Ice Nova"],
+    "G2_1": ["Considered Casting — лагерь G2_1"],
+    "G2_13": ["Восхождение: Sanguimancy, Sunder"],
+    "G3_7": ["Blasphemy — Bog Witch (Act 3)"],
+    "G3_10": ["Восхождение: Grasping Wounds"],
+    "G4_11_1a": ["Greater Jeweller's на Ice Nova — Нгакану"]
+  }
+}

@@ -4,7 +4,8 @@ Run from the repo root: python tools/make_spark_bloodmage.py
 """
 import io, json, sys, zipfile
 sys.path.insert(0, "src")
-from pilot.planner.tree import PassiveTree, steiner_tree
+from pilot.planner.tree import PassiveTree
+from stage_tree import stage_trees
 
 t = PassiveTree.load()
 start = t.class_start("Witch")
@@ -13,8 +14,6 @@ start = t.class_start("Witch")
 # spell damage and cast speed first, Secrets of the Orb in Act 2 (third orb, the guide's ~23),
 # spell crit, extra Spark projectiles and Elemental Equilibrium in Act 3 (the guide's ~41),
 # life on kill / from remnants (Blood Mage pays skills with life), then crit and lightning.
-# Each notable, in priority order, goes into the earliest stage (not before its own) where the
-# stage's tree still fits its passive points; stages are nested, so nothing is ever refunded.
 BUDGETS = [15, 31, 50, 63, 80]          # points by the end of Act 1, 2, 3, 4, Interludes
 PRIORITY = [                             # (notable, earliest stage index)
     ("Raw Power", 0), ("Practiced Signs", 0), ("Secrets of the Orb", 1),
@@ -24,39 +23,6 @@ PRIORITY = [                             # (notable, earliest stage index)
     ("Critical Exploit", 3), ("Echoing Thunder", 3), ("All Natural", 3),
     ("Lightning Storm", 4), ("Flow Like Water", 4), ("Moment of Truth", 4), ("Cruel Fate", 4),
 ]
-
-
-def _dist():
-    nb = t.walker(start, lambda n: True)
-    d, q = {start: 0}, [start]
-    for c in q:
-        for o in nb(c):
-            if o not in d and not t.nodes[o].asc:
-                d[o] = d[c] + 1
-                q.append(o)
-    return d
-
-
-def stage_trees():
-    d = _dist()
-    node = lambda nm: min((n for n in d if t.nodes[n].name == nm), key=d.get)  # noqa: E731
-    stage_of: dict[int, int] = {}
-    size = lambda k, extra=(): len(steiner_tree(  # noqa: E731
-        t, start, [n for n, s in stage_of.items() if s <= k] + list(extra))[0]) - 1
-    for nm, first in PRIORITY:
-        n = node(nm)
-        for k in range(first, len(BUDGETS)):
-            if all(size(j, [n]) <= BUDGETS[j] for j in range(k, len(BUDGETS))):
-                stage_of[n] = k
-                break
-        else:
-            print("  does not fit:", nm)
-    out = []
-    for k, budget in enumerate(BUDGETS):
-        nodes = steiner_tree(t, start, [n for n, s in stage_of.items() if s <= k])[0]
-        print(k, len(nodes) - 1, "/", budget, [t.nodes[n].name for n, s in stage_of.items() if s == k])
-        out.append([{"id": t.nodes[n].sid} for n in sorted(nodes) if n != start])
-    return out
 
 
 G = "Metadata/Items/Gems/"
@@ -91,7 +57,7 @@ act3 = [sk("Spark", ("Considered Casting", "Rapid Casting I", "Unleash")),
         sk("Arctic Armour", ("Freeze", "Knockback"))]
 act4 = [dict(act3[0], support_skills=act3[0]["support_skills"] + [{"id": SUP["Projectile Acceleration I"], "level_interval": [1, 100]}])] + [s for s in act3[1:] if s["id"] != SK["Flame Wall"]]
 inter = [dict(act4[0], support_skills=act4[0]["support_skills"][:3] + [{"id": SUP["Projectile Acceleration II"], "level_interval": [1, 100]}])] + act4[1:]
-trees = stage_trees()
+trees = stage_trees(t, start, PRIORITY, BUDGETS)
 stages = [
     ("Level 1-14 (Act 1)", trees[0], [sk("Spark", ("Unleash", "Rapid Casting I")),
                                 sk("Frost Bomb", ("Prolonged Duration I",)),

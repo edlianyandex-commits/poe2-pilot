@@ -36,6 +36,7 @@ LAUNCHERS = {
     "PoE2Pilot - Mercenary (Travic).bat": "twister_speed_campaign_travic_0_5_5.pob",
     "PoE2Pilot - Blood Mage.bat": "bloodmage_iceshot_syncoh_0_5_5.build",
     "PoE2Pilot - Blood Mage (Spark).bat": "bloodmage_spark_poevault_0_5.build",
+    "PoE2Pilot - Witch (Ice Nova).bat": "witch_ice_nova_contagion_0_5_5.build",
 }
 for name, build in LAUNCHERS.items():
     (ROOT / "dist" / "PoE2Pilot" / name).write_text(
