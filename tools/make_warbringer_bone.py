@@ -2,7 +2,8 @@
 
 Warrior -> Warbringer casting physical bone spells (Bone Cage, Bonestorm) with a shield.
 The plan was checked against poe2-pilot's gem and tree data; the tree is its notable order.
-Weapon set passives are not modelled by the planner, so their notables are HUD hints
+The campaign is played with one weapon set (wand + shield). Weapon set passives are not
+modelled by the planner, so the notables for those points are HUD hints
 (builds/warbringer_bone_spells_0_5_5.gear.json), not part of this tree.
 Run from the repo root: python tools/make_warbringer_bone.py
 """
@@ -19,8 +20,8 @@ start = t.class_start("Warrior")
 # Armour in Act 2-3; out to the Witch side for more spell damage, block and spell crit last.
 # The plan's Powerful Casting and Deadly Thorns (and Shelter from the Rain) are Oracle-only
 # nodes, so Defensive Reflexes takes their points. Potent Incantation is the costliest detour (7
-# points). Defensive Stance, Sudden Escalation, Draiocht Cleansing, Constricting (set 1) and
-# Radial Force, Roil (set 2) go on weapon set points.
+# points). Defensive Stance, Sudden Escalation, Constricting and Radial Force (20 points) go on
+# the weapon set points, all on the one set.
 BUDGETS = [15, 31, 50, 63, 80]
 PRIORITY = [
     ("Defender's Resolve", 0), ("Unstoppable Barrier", 0), ("Cruel Methods", 0), ("Eroding Chains", 0),

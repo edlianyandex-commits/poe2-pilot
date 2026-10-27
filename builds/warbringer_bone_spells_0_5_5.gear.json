@@ -1,6 +1,6 @@
 {
   "_source": "the user's own plan \"Bone Warbringer\" (2026-10-27), checked against poe2-pilot's gem and tree data",
-  "_note": "Warrior -> Warbringer with physical bone spells and a shield; no guide, untested in game. The .build is written by tools/make_warbringer_bone.py. Weapon set passives are not modelled, so their notables are hints here. Corrections to the plan: Eroding Chains breaks 50% of armour per Pin (not 100%); Detonate Dead gets no Brutality (it also deals fire damage); Renly's Training needs a shield, so both weapon sets carry one; Powerful Casting, Deadly Thorns and Shelter from the Rain are Oracle-only nodes, replaced by Defensive Reflexes and Constricting (set 1). Self-found: no uniques.",
+  "_note": "Warrior -> Warbringer with physical bone spells and a shield; no guide, untested in game. The .build is written by tools/make_warbringer_bone.py. Played with one weapon set (wand + shield): weapon set points all go to it, and since the planner does not model them their notables (Defensive Stance, Sudden Escalation, Constricting, Radial Force: 20 points) are hints here. Corrections to the plan: Eroding Chains breaks 50% of armour per Pin (not 100%); Detonate Dead gets no Brutality (it also deals fire damage); Renly's Training needs a shield; Powerful Casting, Deadly Thorns and Shelter from the Rain are Oracle-only nodes, replaced by Defensive Reflexes and Constricting. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Warbringer (Anvil's Weight) before Bonestorm carries bosses",
@@ -19,11 +19,11 @@
     "9": ["Слэмы убрать, только кости"],
     "15": ["Bonestorm — боссы, Cage — пачки", "Scavenged Plating: 30 Spirit"],
     "18": ["Bone Shrapnel → Bone Cage"],
-    "24": ["Сет 1: Defensive Stance", "Сет 2: Radial Force, Roil"],
+    "24": ["Один сет: палочка + щит", "Очки сетов: Defensive Stance"],
     "29": ["Vulnerability — на боссов", "Detonate Dead без Brutality"],
-    "36": ["Сет 1: Sudden Escalation", "Сет 1: Draiocht, Constricting"],
-    "45": ["Bonestorm + Physical Mastery"],
-    "60": ["3-й Trial: Renly's Training", "Щит в обоих сетах оружия"],
+    "36": ["Очки сетов: Sudden Escalation", "Очки сетов: Constricting"],
+    "45": ["Bonestorm + Physical Mastery", "Очки сетов: Radial Force"],
+    "60": ["3-й Trial: Renly's Training"],
     "70": ["4-й Trial: Jade Heritage"]
   },
   "zones": {
