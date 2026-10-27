@@ -113,6 +113,22 @@ def route_area(area_id: str) -> str:
     return AREA_ALIASES.get(area_id, area_id)
 
 
+def require_steps(route: Route, ids) -> Route:
+    """Build profile: these steps become must-do (not optional; a skipped one becomes a quest)."""
+    want = set(ids or ())
+    if not want:
+        return route
+    out = []
+    for s in route.steps:
+        if want.intersection(s.all_ids) and (s.optional or s.kind == "skip"):
+            short = s.short
+            if s.kind == "skip":
+                short = "! " + short[2:] if short.startswith("✕ ") else short
+            s = replace(s, optional=False, kind="quest" if s.kind == "skip" else s.kind, short=short)
+        out.append(s)
+    return replace(route, steps=tuple(out))
+
+
 # a must-kill boss leads its zone; an optional one only when nothing else happens there
 _KIND_PRIORITY = {"boss": 7, "trial": 6, "quest": 5, "town": 4, "wp": 3, "move": 2, "boss_opt": 1, "skip": 0}
 

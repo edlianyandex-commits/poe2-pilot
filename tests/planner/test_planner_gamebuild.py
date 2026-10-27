@@ -40,3 +40,14 @@ def test_shared_start_class_from_name():
     assert _class_of(t, near + asc, "Lightning Arrow Ranger") == "Huntress"   # ascendancy wins
     assert _class_of(t, near, "Spear Huntress levelling") == "Huntress"
     assert _class_of(t, near, "Lightning Arrow Ranger") == "Ranger"
+
+
+def test_sidecar_route_profile_and_ascendancy_override():
+    from pilot.planner import build_plan_detail
+    d = build_plan_detail(BUILD.with_name("bloodmage_iceshot_syncoh_0_5_5.pob"))
+    p = d.plan
+    assert p.char_class == "Witch"
+    assert p.route_require == ("a2-007", "a3-005")
+    assert p.ascendancy["G2_13"].passives == ("Blood Barbs",)    # guide's order, not the PoB's
+    assert p.zone_hints["G1_12"] == ("King in the Mists: +30 Spirit",)
+    assert not any(g.startswith("Надеть") for h in p.hints.values() for g in h.gear)

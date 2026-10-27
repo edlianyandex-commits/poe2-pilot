@@ -52,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
     from pilot.core.logpath import find_client_log
     from pilot.core.logwatch import LogWatcher, replay
     from pilot.core.parser import parse_line_or_tick
-    from pilot.core.route import load_route
+    from pilot.core.route import load_route, require_steps
     from pilot.core.splits import SplitStore
     from pilot.overlay import run_overlay
 
@@ -64,7 +64,10 @@ def main(argv: list[str] | None = None) -> int:
     route_path = Path(route_arg) if route_arg.endswith(".json") else DATA / "routes" / f"{route_arg}.json"
     route = load_route(route_path)
     detail = _load_plan(cfg, args.build)
+    if detail is not None:
+        route = require_steps(route, detail.plan.route_require)   # the build's must-do steps
     engine = RunEngine(route, plan=detail.plan if detail else None, store=SplitStore(),
+                       afk_gap_s=float(cfg.get("afk_pause_s", 300)),
                        pause_when_unfocused=cfg.get("pause_when_unfocused", True))
     cfg["details_provider"] = engine.details
     cfg["gem_provider"] = engine.gem_rows

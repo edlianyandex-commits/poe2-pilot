@@ -1,0 +1,31 @@
+{
+  "_source": "https://mobalytics.gg/poe-2/builds/bleed-ice-shot-blood-mage-syncoh",
+  "_note": "Sync Oh Bleeding Ice Shot Blood Mage (0.5.5), paraphrased. The PoB is the level 96 setup; levelling stages and the ascendancy order come from the guide text. Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas: first ascendancy (Blood Barbs) before the Ice Shot switch; Bog Witch: +30 Spirit",
+    "require": ["a2-007", "a3-005"]
+  },
+  "ascendancy": {
+    "_order": "Blood Barbs -> Grasping Wounds -> Whispers of the Flesh -> Crimson Power",
+    "G2_13": ["Blood Barbs"],
+    "G3_10": ["Grasping Wounds"]
+  },
+  "gear": {
+    "1": ["Lightning Arrow + Rapid Att. I", "Lightning Rod + Multishot I"],
+    "2": ["Боссы: Rod под ноги, затем Arrow", "War Banner — только на боссах"],
+    "6": ["Ice-Tipped Arrows"],
+    "10": ["Гир: flat cold, Bleed+Ailment", "Жизнь, ES, резисты; +proj. gems"],
+    "31": ["Смена: Ice Shot + Snipe", "Freezing Mark обязателен", "Life Remnants + Harmonic I"],
+    "40": ["2-й Trial: Grasping Wounds"],
+    "60": ["3-й Trial: Whispers of the Flesh"]
+  },
+  "zones": {
+    "G1_2": ["Beira: +10% к сопр. холоду"],
+    "G1_12": ["King in the Mists: +30 Spirit"],
+    "G2_13": ["Восхождение: Blood Barbs"],
+    "G3_7": ["Bog Witch: +30 Spirit"],
+    "G3_6_1": ["Blackjaw: +10% к сопр. огню"],
+    "G3_4": ["Venom Crypts: +25% порог оглушения"]
+  }
+}

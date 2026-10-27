@@ -451,3 +451,42 @@ def test_loading_not_taken_back_when_it_was_not_counted():
     f.feed(LoadingScreen, 125, "G1_2", 25.0)         # load ends: only 1+1 s of it were counted
     assert eng.snapshot().run_time_s >= t0 - 2.0 - 1e-6
     assert eng.snapshot().run_time_s >= 99.0
+
+
+def test_afk_gap_from_config_and_idle_shows_paused():
+    clk = Clock()
+    eng = RunEngine(ROUTE, clock=clk, afk_gap_s=300)
+    f = Feeder(eng)
+    f.zone("G1_1", 0, 1)
+    f.feed(FocusChanged, 400, True)              # 6+ min of silence: AFK, not counted
+    assert eng.snapshot().run_time_s == 1.0
+    clk.t = 301
+    s = eng.snapshot()
+    assert s.paused and s.run_time_s == 1.0 + 300   # live clock stops at the gap
+
+
+def test_off_route_toast_but_not_for_the_zone_you_came_back_to():
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_2", 10)
+    f.zone("G1_town", 20)
+    f.zone("G1_2", 30)                           # back through the portal: fine
+    assert not any("Вне маршрута" in t.text for t in eng.snapshot().toasts)
+    f.zone("G1_1", 40)                           # done zone, not where we came from
+    toasts = [t for t in eng.snapshot().toasts if "Вне маршрута" in t.text]
+    assert toasts and toasts[0].kind == "warn" and "→ c" in toasts[0].text
+    f.zone("G9_side", 50)                        # not on the route at all
+    assert sum("Вне маршрута" in t.text for t in eng.snapshot().toasts) == 2
+
+
+def test_town_visits_counted_and_long_one_toasted():
+    eng, f, _ = make()
+    f.zone("G1_1", 0, 1)
+    f.zone("G1_town", 10)
+    f.zone("G1_2", 30)                           # 20 s: no toast
+    assert not any(t.text.startswith("Город") for t in eng.snapshot().toasts)
+    f.zone("G1_town", 40)
+    f.zone("G1_3", 100)                          # 60 s: toast with the total
+    t = [t for t in eng.snapshot().toasts if t.text.startswith("Город")]
+    assert t and t[0].text == "Город 1:00 · всего 1:20" and t[0].kind == "warn"
+    assert "Города: 2 · 1:20" in eng.details()

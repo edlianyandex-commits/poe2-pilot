@@ -70,3 +70,18 @@ def test_optional_boss_does_not_lead_its_zone():
     ]})
     kinds = [s.display_kind for s in r.steps]
     assert kinds == ["wp", "boss", "boss_opt"]       # wp leads G1_3; must-kill keeps "boss"
+
+
+def test_require_steps_makes_optional_and_skipped_steps_due():
+    from pilot.core.route import Route, Step, require_steps
+    r = Route("r", "T", (
+        Step("t", 2, "G2_13", "✦ Trial", "trial", optional=True, merged_ids=("t",)),
+        Step("s", 3, "G3_7", "✕ Bog", "skip", merged_ids=("s",)),
+        Step("x", 3, "G3_8", "✕ Other", "skip", merged_ids=("x",)),
+    ))
+    out = require_steps(r, ("t", "s"))
+    t, s, x = out.steps
+    assert not t.optional and not t.skippable and t.kind == "trial"
+    assert s.kind == "quest" and s.short == "! Bog" and not s.skippable
+    assert x == r.steps[2]
+    assert require_steps(r, ()) is r

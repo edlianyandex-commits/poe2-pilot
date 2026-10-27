@@ -57,9 +57,10 @@ def test_pill_colors_default_and_colorblind():
 
 def test_zone_pill_amber_rule():
     assert fmt.zone_pill(None, 5) is None
-    assert fmt.zone_pill(19, 17) == fmt.ZonePill("зона 19", False)
-    assert fmt.zone_pill(20, 17).amber is False                # diff 3 is fine
-    assert fmt.zone_pill(21, 17).amber is True                 # diff 4
+    assert fmt.zone_pill(18, 17) == fmt.ZonePill("зона 18", False)
+    assert fmt.zone_pill(18, 17).amber is False                # diff 1 is fine
+    assert fmt.zone_pill(19, 17).amber and not fmt.zone_pill(19, 17).red   # diff 2: amber
+    assert fmt.zone_pill(20, 17).red is True                   # diff 3: red
     assert fmt.zone_pill(30, None).amber is False              # unknown char level: neutral
     assert fmt.level_text(17) == "ур 17" and fmt.level_text(None) is None
 

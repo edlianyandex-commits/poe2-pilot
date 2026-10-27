@@ -12,6 +12,7 @@ DEFAULTS: dict = {
     "hud": {"x": None, "y": 24, "scale": 1.0, "opacity": 1.0},
     "hide_when_unfocused": True,
     "pause_when_unfocused": True,          # timer stops while the game window has no focus
+    "afk_pause_s": 300,                    # a log silent this long = AFK: that stretch is not counted
     "hotkeys": {                           # names match overlay.hotkeys.DEFAULT_HOTKEYS
         "details": "alt+q",
         "next": "alt+]",

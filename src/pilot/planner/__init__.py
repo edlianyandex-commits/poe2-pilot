@@ -41,6 +41,10 @@ def build_plan_detail(pob_code: str | Path, max_level: int = 100,
     detail = build_level_plan(load_pob(pob_code), max_level=max_level, gear=gear)
     if gear is not None:
         detail.plan.zone_hints = dict(getattr(gear, "zones", {}) or {})
+        detail.plan.route_require = tuple(getattr(gear, "require", ()) or ())
+        from pilot.contracts import LevelHint
+        for area, nodes in (getattr(gear, "ascendancy", {}) or {}).items():
+            detail.plan.ascendancy[area] = LevelHint(0, passives=nodes)   # the guide's order
     if str(pob_code).lower().endswith(".build") and Path(pob_code).is_file():
         _use_guide_gems(detail, pob_code, max_level)
     return detail

@@ -46,6 +46,7 @@ PALETTES: dict[str, dict[str, object]] = {
 PILL_EVEN = ((235, 235, 235), (80, 80, 80, 235))
 ZONE_NEUTRAL = ((228, 228, 228), (255, 255, 255, 46))
 ZONE_AMBER = ((255, 240, 200), (176, 122, 8, 240))
+ZONE_RED = ((255, 228, 228), (186, 38, 38, 240))
 
 
 def palette(name: str | None) -> dict[str, object]:

@@ -24,6 +24,7 @@ LEVEL_WARN_MARGIN = 3      # warn when char level < area level - 3
 MIN_ABANDON_SAVE_S = 30.0  # don't litter history with instantly-reset runs
 MAX_TOAST = 40
 OFF_PLAN_TOAST_GAP_S = 60.0  # min gap between "off plan" toasts
+TOWN_WARN_S = 45.0         # a town visit longer than this gets a toast on the way out
 _RE_ACT = re.compile(r"^(?:G(\d)|P(\d))_")
 
 
@@ -271,6 +272,8 @@ class RunEngine:
                 if gear_lv is not None:
                     lines.extend(self.plan.hints[gear_lv].gear[:2])
                 lines.extend(self.plan.setup_for(level)[:3])
+            if self._running and self._town_visits:
+                lines.append(f"Города: {self._town_visits} · {fmt_time(self._town_s)}")
             return (lines + self.upcoming(3))[:10]
 
     def gem_rows(self) -> tuple:
@@ -308,6 +311,10 @@ class RunEngine:
         self._segs: dict[str, ZoneSegment] = {}
         self._seg: ZoneSegment | None = None
         self._seg_mark = 0.0
+        self._prev_field: str | None = None   # route area of the last zone outside towns
+        self._town_at: float | None = None    # run time when the current town visit began
+        self._town_visits = 0
+        self._town_s = 0.0
 
     def _account(self) -> None:
         """Attribute game time elapsed since the last call to the current zone segment."""
@@ -359,7 +366,11 @@ class RunEngine:
         return sum(max(0.0, min(b, y) - max(a, x)) for x, y in spans)
 
     def _paused(self) -> bool:
-        return self._mpause_start is not None or self._focus_paused()
+        return self._mpause_start is not None or self._focus_paused() or self._idle()
+
+    def _idle(self) -> bool:
+        """No log line for longer than the AFK gap: that stretch will not be counted."""
+        return not self._closed and self._clock() - self._last_clock > self._afk
 
     def _run_time_now(self) -> float:
         if not self._running:
@@ -492,10 +503,22 @@ class RunEngine:
             log.info("Riverbank at %s during a run: waiting for level-up to decide", ev.ts)
         if z == START_AREA:
             self._riverbank = (ev, self._elapsed)
+        if self._running:
+            self._town_visit(z)
         self._enter_zone(z)
         if is_hideout(z):
             return
         self._on_zone_in_run(z)
+
+    def _town_visit(self, z: str) -> None:
+        """Count town visits and their time; a long one gets a toast once the player leaves."""
+        if self._town_at is not None:
+            dur = max(0.0, self._elapsed - self._town_at)
+            self._town_visits += 1
+            self._town_s += dur
+            if dur > TOWN_WARN_S and not is_town(z):
+                self._toast(f"Город {fmt_time(dur)} · всего {fmt_time(self._town_s)}", "warn", 5.0)
+        self._town_at = self._elapsed if is_town(z) else None
 
     def _restart_from(self, entry_ev: AreaGenerated, since: float) -> None:
         """Start a new run at an earlier Riverbank entry, `since` game seconds ago."""
@@ -557,6 +580,11 @@ class RunEngine:
         rz = route_area(z)
         here = [k for k, s in enumerate(steps) if s.area == rz]
         open_here = [k for k in here if k not in self._done]
+        field = not is_town(z) and not is_hideout(z)
+        # not a route zone, or one already done (other than the one the player came back to)
+        off_route = field and not open_here and rz != self._prev_field
+        if field:
+            self._prev_field = rz
         shown = None
         if is_town(z):
             # a town step only when it is due: nothing but required leftovers before it
@@ -575,6 +603,10 @@ class RunEngine:
         if shown is None:
             shown = self._first_open()
         self._step = len(steps) if shown is None else shown
+        if off_route:
+            nxt = self._first_open()
+            if nxt is not None:
+                self._toast(f"Вне маршрута → {steps[nxt].short}", "warn", 5.0)
         self._ascendancy_hint(z)
         seg = self._segs.get(z)
         if seg is not None and seg.visits == 1:     # pickup hints only on the first visit

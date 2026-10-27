@@ -150,9 +150,13 @@ def pill_style(delta_s: float | None, palette: str | None = "default") -> PillSt
 class ZonePill(NamedTuple):
     text: str
     amber: bool
+    red: bool = False
 
 
-AMBER_GAP = 3
+# zone level above the character level: amber from 2, red from 3 (12 of 15 deaths in a
+# reviewed run came at a 1-2 gap, the worst zones at 4)
+AMBER_GAP = 2
+RED_GAP = 3
 
 
 def level_text(char_level: int | None) -> str | None:
@@ -160,11 +164,11 @@ def level_text(char_level: int | None) -> str | None:
 
 
 def zone_pill(area_level: int | None, char_level: int | None) -> ZonePill | None:
-    """'зона 19', amber when the zone is more than 3 levels above the character."""
+    """'зона 19': amber when the zone is 2 levels above the character, red from 3."""
     if area_level is None:
         return None
-    amber = char_level is not None and area_level - char_level > AMBER_GAP
-    return ZonePill(f"зона {area_level}", amber)
+    gap = area_level - char_level if char_level is not None else 0
+    return ZonePill(f"зона {area_level}", gap >= AMBER_GAP, gap >= RED_GAP)
 
 
 class Segment(NamedTuple):

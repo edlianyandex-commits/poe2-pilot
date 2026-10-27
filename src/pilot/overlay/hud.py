@@ -506,7 +506,8 @@ class HudWindow(QWidget):
                 self._text(p, L["lv_x"], L["base2"], L["lv"], self.f2, WHITE, 0.85)
             zp = L["zone"]
             if zp:
-                fg, bg = theme.ZONE_AMBER if zp.amber else theme.ZONE_NEUTRAL
+                fg, bg = (theme.ZONE_RED if zp.red else theme.ZONE_AMBER if zp.amber
+                          else theme.ZONE_NEUTRAL)
                 self._pill(p, L["zone_rect"], zp.text, fg, bg, self.f3, self.m3)
         # ---- details panel
         if det is not None:
