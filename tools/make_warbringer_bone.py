@@ -48,9 +48,12 @@ def sk(name, frm=1, to=100, sups=()):
 # well as physical damage and Brutality drops all non-physical damage, so it gets area and
 # corpse supports instead (Brutality II only if testing shows it pays).
 GEMS = [
-    sk("Rolling Slam", 1, 8), sk("Boneshatter", 1, 8),
-    sk("Bone Cage", 6, sups=[("Brutality I", 6, 19), ("Astral Projection", 7), ("Bone Shrapnel", 18),
-                             ("Brutality II", 20), ("Magnified Area I", 26, 44), ("Magnified Area II", 45)]),
+    # the first (tier 1) supports go on the slams, then move to Bone Cage
+    sk("Rolling Slam", 1, 8, sups=[("Magnified Area I", 4, 7)]),
+    sk("Boneshatter", 1, 8, sups=[("Brutality I", 2, 5)]),
+    sk("Bone Cage", 6, sups=[("Brutality I", 6, 19), ("Astral Projection", 7), ("Magnified Area I", 8, 44),
+                             ("Rapid Casting I", 10, 15), ("Bone Shrapnel", 18), ("Brutality II", 20),
+                             ("Magnified Area II", 45)]),
     sk("Bonestorm", 15, sups=[("Brutality I", 15, 19), ("Rapid Casting I", 16), ("Brutality II", 20),
                               ("Concentrated Area", 22), ("Physical Mastery", 24)]),
     sk("Scavenged Plating", 17, sups=[("Prolonged Duration I", 17)]),
