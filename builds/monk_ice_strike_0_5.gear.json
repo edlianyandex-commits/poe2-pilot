@@ -13,16 +13,17 @@
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Квотерстафф: высокий DPS", "Боссы: Staff Strike + Bell"],
+    "1": ["Квотерстафф: высокий DPS"],
     "4": ["Пачки: Killing Palm → Thunder"],
+    "6": ["Боссы: Staff Strike + Bell"],
     "12": ["Hollow Palm: оружие не нужно", "Перчатки, кольца: плоский урон"],
-    "13": ["Ice Strike — всё время на ходу"],
-    "14": ["Сильные: + Frost Bomb, Bell"],
+    "14": ["Ice Strike — всё время на ходу"],
+    "15": ["Сильные: + Frost Bomb, Bell"],
     "20": ["Сехемы: Runic Meridians"],
     "25": ["Босс: EW → Frost Bomb → Mark"],
-    "28": ["Frenzy: заряды при заморозке"],
+    "28": ["Frenzy: заряды при заморозке", "Мало Spirit: Frenzy после болота"],
     "33": ["Charged Staff: гем 9-го уровня"],
-    "38": ["Shattering Palm: прыжок в пачку"],
+    "41": ["Shattering Palm: прыжок в пачку"],
     "48": ["Heavy Frost: Frost Bomb не нужен", "Убрать EW и Freezing Mark"]
   },
   "zones": {

@@ -41,30 +41,32 @@ def sk(name, frm=1, to=100, sups=()):
 
 
 # Act 1 before Ice Strike: Quarterstaff Strike + Tempest Bell for single targets, Killing Palm
-# builds Power Charges and Falling Thunder spends them on packs. Ice Strike from 13 (Leitis,
-# after the Executioner), then it carries the rest with Frost Bomb and Tempest Bell on bosses.
+# builds Power Charges and Falling Thunder spends them on packs; they stay until Ice Strike is
+# usable. Ice Strike is tier 5: the Executioner's reward (Leitis, char ~13) is usable from 14
+# (data/planner/gem_rules.json); then it carries the rest with Frost Bomb and Tempest Bell on
+# bosses. Shattering Palm is tier 11, usable from 41.
 # Frost Bomb, Elemental Weakness and Freezing Mark go once Heavy Frost is in (47 in this tree).
 GEMS = [
-    sk("Quarterstaff Strike", 1, 12, [("Rapid Attacks I", 2), ("Rage I", 3)]),
-    sk("Falling Thunder", 3, 12, [("Elemental Armament I", 4), ("Perpetual Charge", 5)]),
-    sk("Killing Palm", 4, 12, [("Charge Profusion I", 5)]),
+    sk("Quarterstaff Strike", 1, 13, [("Rapid Attacks I", 2), ("Rage I", 3)]),
+    sk("Falling Thunder", 3, 13, [("Elemental Armament I", 4), ("Perpetual Charge", 5)]),
+    sk("Killing Palm", 4, 13, [("Charge Profusion I", 5)]),
     sk("Tempest Bell", 6, sups=[("Overabundance I", 6, 44), ("Rage I", 7, 44), ("Heavy Swing", 32),
                                 ("Rageforged I", 46, 54), ("Ancestral Call I", 47, 54),
                                 ("Close Combat I", 47, 54), ("Rageforged II", 55), ("Ancestral Call II", 56)]),
     sk("Herald of Ice", 10, sups=[("Magnified Area I", 10, 30), ("Cold Attunement", 20),
                                   ("Magnified Area II", 31)]),
-    sk("Ice Strike", 13, sups=[("Rapid Attacks I", 13, 44), ("Elemental Armament I", 13, 15),
+    sk("Ice Strike", 14, sups=[("Rapid Attacks I", 14, 44), ("Elemental Armament I", 14, 15),
                                ("Elemental Armament II", 16), ("Ice Bite II", 31, 44),
                                ("Rapid Attacks II", 45), ("Rage II", 45), ("Crescendo II", 46),
                                ("Close Combat II", 55)]),
-    sk("Frost Bomb", 14, 47, [("Overabundance I", 14), ("Potent Exposure", 18), ("Spell Echo", 32)]),
+    sk("Frost Bomb", 15, 47, [("Overabundance I", 15), ("Potent Exposure", 18), ("Spell Echo", 32)]),
     sk("Elemental Weakness", 23, 47, [("Heightened Curse", 23)]),
     sk("Freezing Mark", 25, 47, [("Mark of Siphoning", 25), ("Prolonged Duration I", 26)]),
     sk("Combat Frenzy", 28, sups=[("Charge Profusion I", 34)]),
     sk("Charged Staff", 33, sups=[("Prolonged Duration II", 33), ("Perpetual Charge", 33),
                                   ("Heightened Charges", 34)]),
     sk("Wind Dancer", 37, sups=[("Maim", 37), ("Blind I", 37), ("Pin I", 48)]),
-    sk("Shattering Palm", 38, sups=[("Ice Bite II", 38, 47), ("Freeze", 38), ("Ancestral Call I", 39, 55),
+    sk("Shattering Palm", 41, sups=[("Ice Bite II", 41, 47), ("Freeze", 41), ("Ancestral Call I", 42, 55),
                                     ("Magnified Area II", 48, 55), ("Ice Bite II", 56),
                                     ("Ancestral Call II", 56), ("Elemental Armament II", 57)]),
 ]
