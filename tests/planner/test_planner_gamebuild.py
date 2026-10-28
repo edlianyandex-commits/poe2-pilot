@@ -164,3 +164,5 @@ def test_minion_witch_build():
     assert "Spectre" in {r.skill.name for r in p.gem_rows_for(45)}       # "Spectre: {0}" shown plainly
     assert "Summon Infernal Hound" not in {r.skill.name for r in p.gem_rows_for(24)}
     assert p.ascendancy["G2_13"].passives[-1] == "Loyal Hellhound"
+    at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
+    assert at["Emboldening Lead"] <= 12 and at["Lord of Horrors"] <= 50   # tree from the Witch start

@@ -1,6 +1,6 @@
 {
   "_source": "https://mobalytics.gg/poe-2/profile/mattjestic-multigaming/builds/copy-of-0-5-fastest-minions-leveling-and-mapping-druid-build",
-  "_note": "Mattjestic \"0.5 FASTEST Minions Leveling & Mapping Witch Build!\" (Infernalist, Speed Leveling, updated 2026-05-29, tagged 0.5.5 FR). Gems and tree from the author's build file (Download Build File, 2026-10-28), prepared by tools/prep_minion_witch.py: the first three of seven variants, stage levels, Infernalist nodes only (the page still holds a Druid copy's Shaman nodes), gems at most two a level. Ascendancy order from the file: Loyal Hellhound is in the 10-30 stage, Altered Flesh only after Act 3. Self-found: no uniques.",
+  "_note": "Mattjestic \"0.5 FASTEST Minions Leveling & Mapping Witch Build!\" (Infernalist, Speed Leveling, updated 2026-05-29, tagged 0.5.5 FR). Gems and tree from the author's build file (Download Build File, 2026-10-28), prepared by tools/prep_minion_witch.py: the first three of seven variants, stage levels, the tree rebuilt from the Witch start through the author's minion notables (the page is a Druid copy: its tree starts at the Druid start and holds Shaman nodes), Infernalist nodes only, gems at most two a level. Ascendancy order from the file: Loyal Hellhound is in the 10-30 stage, Altered Flesh only after Act 3. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Infernalist (Loyal Hellhound)",
