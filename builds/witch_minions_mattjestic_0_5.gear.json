@@ -14,9 +14,9 @@
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
     "1": ["Скипетр + щит: Spirit миньонам", "Unearth: кости из трупов"],
-    "3": ["Skeletal Sniper — основной урон", "Узлы +5 атрибут: брать Int"],
+    "3": ["Skeletal Sniper — основной урон"],
     "5": ["Снайперы стреляют сквозь Wall"],
-    "10": ["Arsonist вместо Sniper"],
+    "10": ["Arsonist вместо Sniper", "Узлы +5 атрибут: брать Int"],
     "14": ["Pain Offering: сила миньонам"],
     "25": ["Сехемы: Loyal Hellhound"],
     "45": ["Spectre: Vaal Guard из Act 3"]

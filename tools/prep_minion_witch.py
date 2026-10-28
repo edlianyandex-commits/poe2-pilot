@@ -8,8 +8,9 @@ passives, so sorting by passive count would put them first):
 - "Early lvl 1-10", "Early lvl 10-30" and "After Act 3 With Vaal Guard" (from 45, Act 4);
 - the page was copied from a Druid build: its tree starts at the Druid start, which a Witch
   cannot use, and it holds Shaman nodes. So the tree is rebuilt from the Witch start through
-  the author's own minion notables in the author's stages (plus minion life, damage and
-  resistances to fill the later points), and only Infernalist ascendancy nodes are kept;
+  the author's own minion notables in the author's stages, with spell damage (Raw Power) first
+  for the early spells and minion life, damage and resistances to fill the later points; only
+  Infernalist ascendancy nodes are kept;
 - Raise Shield and the default unarmed attack come with the items, not as gems;
 - new gems come at most two a level and a new skill at most every two levels (the player has
   few gems early); the Infernal Hound waits for the first ascendancy (Sekhemas).
@@ -26,7 +27,11 @@ AFTER_TRIAL = {"Metadata/Items/Gem/SkillGemAscendancySummonInfernalHound": 25}
 
 BUDGETS = [10, 50, 80]                   # points by 9, 44, 65
 PRIORITY = [                             # (notable, earliest stage): the author's, then fillers
-    ("Emboldening Lead", 0), ("Restless Dead", 0), ("Gravedigger", 1), ("Necrotised Flesh", 1),
+    # first spell and minion damage: for a Witch, Raw Power is Raw Destruction (spell and minion
+    # damage) and Elemental Force is Power of the Dead (minion damage and speed), both on the
+    # way to the minion cluster, so levels 2-9 all go into minions and spells
+    ("Raw Power", 0), ("Elemental Force", 0),
+    ("Emboldening Lead", 1), ("Restless Dead", 1), ("Gravedigger", 1), ("Necrotised Flesh", 1),
     ("Relentless Fallen", 1), ("Growing Swarm", 1), ("Splintering Force", 1), ("Grip of Evil", 1),
     ("Expendable Army", 1), ("Lord of Horrors", 1), ("Empowering Remains", 1),
     ("Deadly Swarm", 2), ("Crystalline Flesh", 2), ("Infused Flesh", 2), ("Dead can Dance", 2),
