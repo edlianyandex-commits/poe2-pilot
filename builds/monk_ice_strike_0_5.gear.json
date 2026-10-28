@@ -1,0 +1,37 @@
+{
+  "_source": "https://www.poe-vault.com/poe2/monk/martial-artist/ice-strike-leveling-build",
+  "_note": "Lollash, PoE Vault \"Ice Strike Monk Leveling Build (Martial Artist)\", patch 0.5 (updated 2026-05-27, not marked 0.5.5), paraphrased via docs/run-reviews/guide-monk-ice-strike-acts.md. Gems per stage from the guide's planner, spread to at most three a level; in Act 4 and Interludes the planner lists supports flat, so which skill gets which is the write-up's reading. The page shows the tree as an image: the tree is poe2-pilot's own pick around the guide's named nodes (Hollow Palm Technique first, Resonance, Heavy Frost). One tree, no weapon sets. Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas gives Martial Artist; Ignagduk in the Azak Bog gives +30 Spirit for Combat Frenzy",
+    "require": ["a2-007", "a3-005"]
+  },
+  "ascendancy": {
+    "_order": "Runic Meridians -> Hollow Focus Technique (the guide's Martial Artist)",
+    "G2_13": ["Runic Meridians"],
+    "G3_10": ["Hollow Focus Technique"]
+  },
+  "gear": {
+    "_lines": "at most 2 per level are shown (toast and Alt+Q)",
+    "1": ["Квотерстафф: высокий DPS", "Боссы: Staff Strike + Bell"],
+    "4": ["Пачки: Killing Palm → Thunder"],
+    "12": ["Hollow Palm: оружие не нужно", "Перчатки, кольца: плоский урон"],
+    "13": ["Ice Strike — всё время на ходу"],
+    "14": ["Сильные: + Frost Bomb, Bell"],
+    "20": ["Сехемы: Runic Meridians"],
+    "25": ["Босс: EW → Frost Bomb → Mark"],
+    "28": ["Frenzy: заряды при заморозке"],
+    "33": ["Charged Staff: гем 9-го уровня"],
+    "38": ["Shattering Palm: прыжок в пачку"],
+    "48": ["Heavy Frost: Frost Bomb не нужен", "Убрать EW и Freezing Mark"]
+  },
+  "zones": {
+    "G1_12": ["King in the Mists: Herald of Ice"],
+    "G1_13_2": ["После Палача: Ice Strike (Leitis)"],
+    "G2_13": ["Восхождение: Runic Meridians"],
+    "G3_1": ["Lesser Jeweller's → Ice Strike"],
+    "G3_7": ["Ignagduk: +30 Spirit"],
+    "G3_10": ["Восхождение: Hollow Focus Technique"],
+    "G4_11_1a": ["Нгакану: ещё один вендор оружия"]
+  }
+}

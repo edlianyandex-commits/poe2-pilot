@@ -134,3 +134,18 @@ def test_hollow_palm_monk_build():
     assert at["Hollow Palm Technique"] <= 14                    # the guide's ~13
     assert all(len(h.gems) <= 3 for h in p.hints.values())      # 22 and 31 swaps spread out
     assert p.route_require == ("a2-007", "a3-005")
+
+
+def test_ice_strike_monk_build():
+    """PoE Vault's planner gems, our tree: Hollow Palm first, Ice Strike from 13, no weapon sets."""
+    from pilot.planner import build_plan_detail
+    p = build_plan_detail(BUILD.with_name("monk_ice_strike_0_5.build")).plan
+    assert p.char_class == "Monk" and not p.warnings
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Quarterstaff Strike"}
+    lv13 = {r.skill.name for r in p.gem_rows_for(13)}
+    assert "Ice Strike" in lv13 and "Killing Palm" not in lv13
+    assert "Frost Bomb" not in {r.skill.name for r in p.gem_rows_for(50)}     # after Heavy Frost
+    assert all(len(h.gems) <= 3 for h in p.hints.values())
+    at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
+    assert at["Hollow Palm Technique"] <= 14 and at["Heavy Frost"] <= 48
+    assert p.route_require == ("a2-007", "a3-005")

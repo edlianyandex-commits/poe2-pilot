@@ -34,9 +34,11 @@ def stage_trees(t, start, priority, budgets):
                 break
         else:
             print("  does not fit:", nm)
-    out = []
+    # each stage grows from the one before (its nodes stay targets), so the final tree keeps
+    # the early paths and the planner allocates an early notable the way this stage reaches it
+    out, nodes = [], {start}
     for k, budget in enumerate(budgets):
-        nodes = steiner_tree(t, start, [n for n, s in stage_of.items() if s <= k])[0]
+        nodes = steiner_tree(t, start, sorted(nodes - {start}) + [n for n, s in stage_of.items() if s == k])[0]
         print(k, len(nodes) - 1, "/", budget, [t.nodes[n].name for n, s in stage_of.items() if s == k])
         out.append([{"id": t.nodes[n].sid} for n in sorted(nodes) if n != start])
     return out
