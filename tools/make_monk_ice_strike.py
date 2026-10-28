@@ -44,7 +44,8 @@ def sk(name, frm=1, to=100, sups=()):
 # builds Power Charges and Falling Thunder spends them on packs; they stay until Ice Strike is
 # usable. Ice Strike is tier 5: the Executioner's reward (Leitis, char ~13) is usable from 14
 # (data/planner/gem_rules.json); then it carries the rest with Frost Bomb and Tempest Bell on
-# bosses. Shattering Palm is tier 11, usable from 41.
+# bosses. Shattering Palm is tier 11, usable from 41. Frost Bomb (tier 1, Clearfell camp) comes
+# from 3 rather than with Ice Strike, for Exposure on the Act 1 bosses.
 # Frost Bomb, Elemental Weakness and Freezing Mark go once Heavy Frost is in (47 in this tree).
 GEMS = [
     sk("Quarterstaff Strike", 1, 13, [("Rapid Attacks I", 2), ("Rage I", 3)]),
@@ -59,7 +60,7 @@ GEMS = [
                                ("Elemental Armament II", 16), ("Ice Bite II", 31, 44),
                                ("Rapid Attacks II", 45), ("Rage II", 45), ("Crescendo II", 46),
                                ("Close Combat II", 55)]),
-    sk("Frost Bomb", 15, 47, [("Overabundance I", 15), ("Potent Exposure", 18), ("Spell Echo", 32)]),
+    sk("Frost Bomb", 3, 47, [("Overabundance I", 15), ("Potent Exposure", 18), ("Spell Echo", 32)]),
     sk("Elemental Weakness", 23, 47, [("Heightened Curse", 23)]),
     sk("Freezing Mark", 25, 47, [("Mark of Siphoning", 25), ("Prolonged Duration I", 26)]),
     sk("Combat Frenzy", 28, sups=[("Charge Profusion I", 34)]),

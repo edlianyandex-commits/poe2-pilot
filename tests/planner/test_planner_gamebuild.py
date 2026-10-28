@@ -142,6 +142,7 @@ def test_ice_strike_monk_build():
     p = build_plan_detail(BUILD.with_name("monk_ice_strike_0_5.build")).plan
     assert p.char_class == "Monk" and not p.warnings
     assert {r.skill.name for r in p.gem_rows_for(1)} == {"Quarterstaff Strike"}
+    assert "Frost Bomb" in {r.skill.name for r in p.gem_rows_for(3)}             # Exposure on Act 1 bosses
     assert "Quarterstaff Strike" in {r.skill.name for r in p.gem_rows_for(13)}   # no gap before Ice Strike
     lv14 = {r.skill.name for r in p.gem_rows_for(14)}
     assert "Ice Strike" in lv14 and "Killing Palm" not in lv14                  # tier 5: usable from 14

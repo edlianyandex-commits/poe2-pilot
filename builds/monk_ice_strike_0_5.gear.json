@@ -1,6 +1,6 @@
 {
   "_source": "https://www.poe-vault.com/poe2/monk/martial-artist/ice-strike-leveling-build",
-  "_note": "Lollash, PoE Vault \"Ice Strike Monk Leveling Build (Martial Artist)\", patch 0.5 (updated 2026-05-27, not marked 0.5.5), paraphrased via docs/run-reviews/guide-monk-ice-strike-acts.md. Gems per stage from the guide's planner, spread to at most three a level; in Act 4 and Interludes the planner lists supports flat, so which skill gets which is the write-up's reading. The page shows the tree as an image: the tree is poe2-pilot's own pick around the guide's named nodes (Hollow Palm Technique first, Resonance, Heavy Frost). One tree, no weapon sets. Self-found: no uniques.",
+  "_note": "Lollash, PoE Vault \"Ice Strike Monk Leveling Build (Martial Artist)\", patch 0.5 (updated 2026-05-27, not marked 0.5.5), paraphrased via docs/run-reviews/guide-monk-ice-strike-acts.md. Gems per stage from the guide's planner (Frost Bomb moved up to 3 for the Act 1 bosses), spread to at most three a level; in Act 4 and Interludes the planner lists supports flat, so which skill gets which is the write-up's reading. The page shows the tree as an image: the tree is poe2-pilot's own pick around the guide's named nodes (Hollow Palm Technique first, Resonance, Heavy Frost). One tree, no weapon sets. Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Martial Artist; Ignagduk in the Azak Bog gives +30 Spirit for Combat Frenzy",
@@ -15,10 +15,10 @@
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
     "1": ["Квотерстафф: высокий DPS"],
     "4": ["Пачки: Killing Palm → Thunder"],
-    "6": ["Боссы: Staff Strike + Bell"],
+    "6": ["Боссы: Bomb → Strike + Bell"],
     "12": ["Hollow Palm: оружие не нужно", "Перчатки, кольца: плоский урон"],
     "14": ["Ice Strike — всё время на ходу"],
-    "15": ["Сильные: + Frost Bomb, Bell"],
+    "15": ["Сильные: Frost Bomb, Bell"],
     "20": ["Сехемы: Runic Meridians"],
     "25": ["Босс: EW → Frost Bomb → Mark"],
     "28": ["Frenzy: заряды при заморозке", "Мало Spirit: Frenzy после болота"],
@@ -27,6 +27,7 @@
     "48": ["Heavy Frost: Frost Bomb не нужен", "Убрать EW и Freezing Mark"]
   },
   "zones": {
+    "G1_2": ["Лагерь: Frost Bomb для боссов"],
     "G1_12": ["King in the Mists: Herald of Ice"],
     "G1_13_2": ["После Палача: Ice Strike (Leitis)"],
     "G2_13": ["Восхождение: Runic Meridians"],
