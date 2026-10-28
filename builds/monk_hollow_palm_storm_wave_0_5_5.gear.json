@@ -1,6 +1,6 @@
 {
   "_source": "https://mobalytics.gg/poe-2/builds/ice-strike-storm-wave-league-starter-level-1-to-endgame-deadrabb1t",
-  "_note": "DEADRABB1T \"[0.5.5] Hollow Palm / Storm Wave League Starter (Level 1 to Endgame)\", 0.5.5 FR, Verified, updated 2026-10-26. Gems and tree from the author's build file (Download Build File, 2026-10-28), prepared by tools/prep_hollow_palm_monk.py: stage levels added, weapon set 2 passives dropped (one weapon set), Hollow Palm Technique first. Tips from the guide text via docs/run-reviews/guide-monk-hollow-palm-storm-wave.md; ascendancy order from PoE Vault's Ice Strike Martial Artist (the author gives none). Self-found: no uniques.",
+  "_note": "DEADRABB1T \"[0.5.5] Hollow Palm / Storm Wave League Starter (Level 1 to Endgame)\", 0.5.5 FR, Verified, updated 2026-10-26. Gems and tree from the author's build file (Download Build File, 2026-10-28), prepared by tools/prep_hollow_palm_monk.py: stage levels added, weapon set 2 passives dropped (one weapon set), Hollow Palm Technique first, new gems at most three a level. Tips from the guide text via docs/run-reviews/guide-monk-hollow-palm-storm-wave.md; ascendancy order from PoE Vault's Ice Strike Martial Artist (the author gives none). Self-found: no uniques.",
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Martial Artist; Bog Witch gives War Banner and +30 Spirit (player's choice)",

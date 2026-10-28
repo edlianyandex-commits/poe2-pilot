@@ -132,4 +132,5 @@ def test_hollow_palm_monk_build():
     assert "Hand of Chayula" in {r.skill.name for r in p.gem_rows_for(31)}
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
     assert at["Hollow Palm Technique"] <= 14                    # the guide's ~13
+    assert all(len(h.gems) <= 3 for h in p.hints.values())      # 22 and 31 swaps spread out
     assert p.route_require == ("a2-007", "a3-005")
