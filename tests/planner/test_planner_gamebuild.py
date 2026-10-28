@@ -116,3 +116,20 @@ def test_warbringer_bone_spells_build():
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
     assert at["Defender's Resolve"] <= 15 and at["Cruel Methods"] <= 31
     assert "Powerful Casting" not in at and "Deadly Thorns" not in at   # Oracle-only nodes
+
+
+def test_hollow_palm_monk_build():
+    """DEADRABB1T's file, prepared: stage levels, one weapon set, Hollow Palm Technique first."""
+    from pilot.planner import build_plan_detail
+    from pilot.planner.gamebuild import read_build_files
+    path = BUILD.with_name("monk_hollow_palm_storm_wave_0_5_5.build")
+    assert not any(p.get("weapon_set") == 2 for st in read_build_files(path) for p in st["passives"])
+    p = build_plan_detail(path).plan
+    assert p.char_class == "Monk" and not p.warnings
+    assert "Glacial Cascade" in {r.skill.name for r in p.gem_rows_for(10)}
+    lv22 = {r.skill.name for r in p.gem_rows_for(22)}
+    assert "Storm Wave" in lv22 and "Glacial Cascade" not in lv22
+    assert "Hand of Chayula" in {r.skill.name for r in p.gem_rows_for(31)}
+    at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
+    assert at["Hollow Palm Technique"] <= 14                    # the guide's ~13
+    assert p.route_require == ("a2-007", "a3-005")
