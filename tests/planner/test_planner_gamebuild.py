@@ -166,5 +166,5 @@ def test_minion_witch_build():
     assert p.ascendancy["G2_13"].passives[-1] == "Loyal Hellhound"
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
     assert at["Raw Destruction"] <= 8 and at["Power of the Dead"] <= 10  # Witch variants: minion damage
-    assert at["Necrotised Flesh"] <= 16 and at["Lord of Horrors"] <= 50   # tree from the Witch start
+    assert at["Relentless Fallen"] <= 16 and at["Potent Incantation"] <= 30   # damage first
     assert not any(x.startswith("+5") for lv, h in p.hints.items() if lv < 10 for x in h.passives)

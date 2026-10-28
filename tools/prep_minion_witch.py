@@ -8,9 +8,8 @@ passives, so sorting by passive count would put them first):
 - "Early lvl 1-10", "Early lvl 10-30" and "After Act 3 With Vaal Guard" (from 45, Act 4);
 - the page was copied from a Druid build: its tree starts at the Druid start, which a Witch
   cannot use, and it holds Shaman nodes. So the tree is rebuilt from the Witch start through
-  the author's own minion notables in the author's stages, with spell damage (Raw Power) first
-  for the early spells and minion life, damage and resistances to fill the later points; only
-  Infernalist ascendancy nodes are kept;
+  minion and spell damage first (for campaign speed), then the author's other minion notables;
+  only Infernalist ascendancy nodes are kept;
 - Raise Shield and the default unarmed attack come with the items, not as gems;
 - new gems come at most two a level and a new skill at most every two levels (the player has
   few gems early); the Infernal Hound waits for the first ascendancy (Sekhemas).
@@ -26,16 +25,17 @@ ITEM_SKILLS = {"Metadata/Items/Gem/SkillGemShieldBlock", "Metadata/Items/Gem/Ski
 AFTER_TRIAL = {"Metadata/Items/Gem/SkillGemAscendancySummonInfernalHound": 25}
 
 BUDGETS = [10, 50, 80]                   # points by 9, 44, 65
-PRIORITY = [                             # (notable, earliest stage): the author's, then fillers
-    # first spell and minion damage: for a Witch, Raw Power is Raw Destruction (spell and minion
-    # damage) and Elemental Force is Power of the Dead (minion damage and speed), both on the
-    # way to the minion cluster, so levels 2-9 all go into minions and spells
+PRIORITY = [                             # (notable, earliest stage), damage first for speed
+    # for a Witch, Raw Power is Raw Destruction (spell and minion damage) and Elemental Force is
+    # Power of the Dead (minion damage and speed), so levels 2-9 all go into damage
     ("Raw Power", 0), ("Elemental Force", 0),
-    ("Emboldening Lead", 1), ("Restless Dead", 1), ("Gravedigger", 1), ("Necrotised Flesh", 1),
-    ("Relentless Fallen", 1), ("Growing Swarm", 1), ("Splintering Force", 1), ("Grip of Evil", 1),
-    ("Expendable Army", 1), ("Lord of Horrors", 1), ("Empowering Remains", 1),
-    ("Deadly Swarm", 2), ("Crystalline Flesh", 2), ("Infused Flesh", 2), ("Dead can Dance", 2),
-    ("Necrotic Touch", 2), ("Vile Mending", 2),
+    # then the minion cluster (damage, speed, one life notable) and the cheap damage next to the
+    # path; notables far behind attribute nodes (Bringer of Order) are left out
+    ("Emboldening Lead", 1), ("Relentless Fallen", 1), ("Necrotised Flesh", 1),
+    ("Splintering Force", 1), ("Potent Incantation", 1), ("Deadly Swarm", 1), ("Necrotic Touch", 1),
+    ("Grip of Evil", 1),
+    ("Gravedigger", 2), ("Restless Dead", 2), ("Entropic Incarnation", 2), ("Crystalline Flesh", 2),
+    ("Lord of Horrors", 2), ("Dead can Dance", 2), ("Vile Mending", 2),   # fill the last points
 ]
 
 t = PassiveTree.load()
