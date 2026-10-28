@@ -141,11 +141,11 @@ def test_ice_strike_monk_build():
     from pilot.planner import build_plan_detail
     p = build_plan_detail(BUILD.with_name("monk_ice_strike_0_5.build")).plan
     assert p.char_class == "Monk" and not p.warnings
-    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Quarterstaff Strike"}
-    assert "Frost Bomb" in {r.skill.name for r in p.gem_rows_for(3)}             # Exposure on Act 1 bosses
-    assert "Quarterstaff Strike" in {r.skill.name for r in p.gem_rows_for(13)}   # no gap before Ice Strike
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Whirling Slash"}
+    assert {r.skill.name for r in p.gem_rows_for(9)} == {"Whirling Slash", "Twister"}   # few gems early
+    assert "Twister" in {r.skill.name for r in p.gem_rows_for(13)}               # no gap before Ice Strike
     lv14 = {r.skill.name for r in p.gem_rows_for(14)}
-    assert "Ice Strike" in lv14 and "Killing Palm" not in lv14                  # tier 5: usable from 14
+    assert "Ice Strike" in lv14 and "Twister" not in lv14                       # tier 5: usable from 14
     assert "Frost Bomb" not in {r.skill.name for r in p.gem_rows_for(50)}     # after Heavy Frost
     assert all(len(h.gems) <= 3 for h in p.hints.values())
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
