@@ -40,6 +40,7 @@ LAUNCHERS = {
     "PoE2Pilot - Warbringer (Bone).bat": "warbringer_bone_spells_0_5_5.build",
     "PoE2Pilot - Monk (Hollow Palm).bat": "monk_hollow_palm_storm_wave_0_5_5.build",
     "PoE2Pilot - Monk (Ice Strike).bat": "monk_ice_strike_0_5.build",
+    "PoE2Pilot - Witch (Minions).bat": "witch_minions_mattjestic_0_5.build",
 }
 for name, build in LAUNCHERS.items():
     (ROOT / "dist" / "PoE2Pilot" / name).write_text(

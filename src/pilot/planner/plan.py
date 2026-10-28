@@ -69,7 +69,8 @@ def gem_info(g: GemEntry) -> GemInfo:
                        icon=_data.gem_icons().get(g.name))
     # poe2db listing map first (checked), PoB-derived skill icon as fallback
     icon = _data.gem_icons().get(rec["n"]) or rec.get("i")
-    return GemInfo(rec["n"], rec["k"], int(rec.get("tier") or 0), tuple(rec.get("tags", ())),
+    # "Spectre: {0}" is a name template (the monster goes in later): show "Spectre"
+    return GemInfo(rec["n"].replace(": {0}", ""), rec["k"], int(rec.get("tier") or 0), tuple(rec.get("tags", ())),
                    weapon=rec.get("w", ""), color=rec.get("c", "none"),
                    description=rec.get("d", ""), icon=icon)
 

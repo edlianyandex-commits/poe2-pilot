@@ -15,9 +15,9 @@ DEADRABB1T's file is used as is except for two things the planner cannot read:
 import io, json, sys, zipfile
 sys.path.insert(0, "src")
 from pilot.planner.tree import PassiveTree
+from build_prep import stagger
 
 HOLLOW_PALM = "passive_keystone_hollow_palm_technique"
-PER_LEVEL = 3
 
 START = {"ACT 1/2": "Level 1-21 (Act 1-2)", "ACT 2 (LVL 22)": "Level 22 (Act 2)",
          "ACT 3": "Level 31 (Act 3)", "ACT 4": "Level 45 (Act 4 - Endgame)"}
@@ -39,26 +39,6 @@ def path_in(t: PassiveTree, sids: set[str], goal: str) -> list[str]:
         out.append(t.nodes[n].sid)
         n = prev[n]
     return out[::-1]
-
-
-def stagger(st: dict, start: int, prev: dict | None) -> None:
-    """Delay the stage's new skills and supports so at most PER_LEVEL start on one level."""
-    old = {sk["id"]: {x["id"] for x in sk.get("support_skills") or ()} for sk in (prev or {}).get("skills") or ()}
-    used: dict[int, int] = {}
-
-    def place(item: dict, earliest: int) -> int:
-        lv = max(earliest, item["level_interval"][0])
-        while used.get(lv, 0) >= PER_LEVEL:
-            lv += 1
-        used[lv] = used.get(lv, 0) + 1
-        item["level_interval"] = [lv, item["level_interval"][1]]
-        return lv
-
-    for sk in st["skills"]:
-        lv = place(sk, start) if sk["id"] not in old else start
-        for sup in sk.get("support_skills") or ():
-            if sup["id"] not in old.get(sk["id"], ()):
-                place(sup, lv)
 
 
 src = zipfile.ZipFile(sys.argv[1])

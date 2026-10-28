@@ -151,3 +151,16 @@ def test_ice_strike_monk_build():
     at = {x: lv for lv, h in sorted(p.hints.items()) for x in h.passives}
     assert at["Hollow Palm Technique"] <= 14 and at["Heavy Frost"] <= 48
     assert p.route_require == ("a2-007", "a3-005")
+
+
+def test_minion_witch_build():
+    """Mattjestic's file, prepared: three campaign variants, Infernalist only, few gems early."""
+    from pilot.planner import build_plan_detail
+    p = build_plan_detail(BUILD.with_name("witch_minions_mattjestic_0_5.build")).plan
+    assert p.char_class == "Witch" and not p.warnings
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Unearth"}
+    assert len(p.gem_rows_for(9)) == 4                                   # four skills by 9
+    assert all(len(h.gems) <= 2 for h in p.hints.values())
+    assert "Spectre" in {r.skill.name for r in p.gem_rows_for(45)}       # "Spectre: {0}" shown plainly
+    assert "Summon Infernal Hound" not in {r.skill.name for r in p.gem_rows_for(24)}
+    assert p.ascendancy["G2_13"].passives[-1] == "Loyal Hellhound"

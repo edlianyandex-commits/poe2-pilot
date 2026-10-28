@@ -1,0 +1,28 @@
+{
+  "_source": "https://mobalytics.gg/poe-2/profile/mattjestic-multigaming/builds/copy-of-0-5-fastest-minions-leveling-and-mapping-druid-build",
+  "_note": "Mattjestic \"0.5 FASTEST Minions Leveling & Mapping Witch Build!\" (Infernalist, Speed Leveling, updated 2026-05-29, tagged 0.5.5 FR). Gems and tree from the author's build file (Download Build File, 2026-10-28), prepared by tools/prep_minion_witch.py: the first three of seven variants, stage levels, Infernalist nodes only (the page still holds a Druid copy's Shaman nodes), gems at most two a level. Ascendancy order from the file: Loyal Hellhound is in the 10-30 stage, Altered Flesh only after Act 3. Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas gives Infernalist (Loyal Hellhound)",
+    "require": ["a2-007"]
+  },
+  "ascendancy": {
+    "_order": "Loyal Hellhound -> Altered Flesh (the author's stages)",
+    "G2_13": ["Minion Life", "Loyal Hellhound"],
+    "G3_10": ["Life", "Altered Flesh"]
+  },
+  "gear": {
+    "_lines": "at most 2 per level are shown (toast and Alt+Q)",
+    "1": ["Скипетр + щит: Spirit миньонам", "Unearth: кости из трупов"],
+    "3": ["Skeletal Sniper — основной урон"],
+    "5": ["Снайперы стреляют сквозь Wall"],
+    "10": ["Arsonist вместо Sniper"],
+    "14": ["Pain Offering: сила миньонам"],
+    "25": ["Сехемы: Loyal Hellhound"],
+    "45": ["Spectre: Vaal Guard из Act 3"]
+  },
+  "zones": {
+    "G2_13": ["Восхождение: Loyal Hellhound"],
+    "G3_10": ["Восхождение: Altered Flesh"]
+  }
+}
