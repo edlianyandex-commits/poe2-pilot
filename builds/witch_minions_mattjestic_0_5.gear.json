@@ -14,7 +14,7 @@
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
     "1": ["Скипетр + щит: Spirit миньонам", "Unearth: кости из трупов"],
-    "3": ["Skeletal Sniper — основной урон"],
+    "3": ["Skeletal Sniper — основной урон", "Узлы +5 атрибут: брать Int"],
     "5": ["Снайперы стреляют сквозь Wall"],
     "10": ["Arsonist вместо Sniper"],
     "14": ["Pain Offering: сила миньонам"],
