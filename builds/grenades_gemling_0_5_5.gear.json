@@ -1,0 +1,34 @@
+{
+  "_source": "https://mobalytics.gg/poe-2/builds/deadrabbit-grenades-gemling-league-starter",
+  "_note": "DEADRABB1T \"[0.5.5] Grenades Gemling League Starter (Level 1 to Endgame)\", 0.5.5 FR, Beginner / Speed Leveling / Verified, updated 2026-10-26. Gems and tree from the author's build file (Download Build File, 2026-10-29), prepared by tools/prep_grenades_gemling.py: the four campaign stages with levels, gems at most two a level, Virtuous Barrier after Sekhemas and Attrition after Ignagduk. Tips and pickups from docs/run-reviews/guide-grenades-gemling-acts.md. The file has no weapon set passives. Self-found: no uniques.",
+  "pob_uniques": false,
+  "route": {
+    "_why": "Sekhemas gives Gemling (Essence of Virtue); Ignagduk in the Azak Bog gives +30 Spirit for Attrition",
+    "require": ["a2-007", "a3-005"]
+  },
+  "gear": {
+    "_lines": "at most 2 per level are shown (toast and Alt+Q)",
+    "1": ["Арбалет — главный приоритет", "Explosive Grenade в пачку"],
+    "6": ["Flash Grenade: оглушение"],
+    "8": ["Pounce: прыжок к пачке"],
+    "10": ["Herald of Ash: поджог пачек"],
+    "14": ["Gas → Explosive: подрыв облака"],
+    "22": ["Сехемы: Essence of Virtue"],
+    "31": ["Oil Grenade: масло → поджог"],
+    "48": ["Demolitionist: чередуй гранаты"],
+    "55": ["Cluster Grenade: гем 13 ур."]
+  },
+  "zones": {
+    "G1_town": ["Renly: Explosive Grenade"],
+    "G1_2": ["Лагерь: Frost Bomb"],
+    "G1_5": ["Red Vale: стойки → Tense Crossbow"],
+    "G1_12": ["King in the Mists: Herald of Ash"],
+    "G1_13_2": ["После Палача: Gas Grenade (Leitis)"],
+    "G2_4_3": ["Lesser Jeweller's → Explosive Grenade"],
+    "G2_13": ["Восхождение: Essence of Virtue"],
+    "G3_1": ["Lesser Jeweller's → Gas Grenade"],
+    "G3_7": ["Ignagduk: +30 Spirit → Attrition"],
+    "G3_10": ["Восхождение: Implanted Gems"],
+    "G4_11_1a": ["Нгакану: Greater Jeweller's → Explosive"]
+  }
+}

@@ -168,3 +168,16 @@ def test_minion_witch_build():
     assert at["Raw Destruction"] <= 8 and at["Power of the Dead"] <= 10  # Witch variants: minion damage
     assert at["Relentless Fallen"] <= 16 and at["Potent Incantation"] <= 30   # damage first
     assert not any(x.startswith("+5") for lv, h in p.hints.items() if lv < 10 for x in h.passives)
+
+
+def test_grenades_gemling_build():
+    """DEADRABB1T's file, campaign stages with levels; Attrition waits for Ignagduk's Spirit."""
+    from pilot.planner import build_plan_detail
+    p = build_plan_detail(BUILD.with_name("grenades_gemling_0_5_5.build")).plan
+    assert p.char_class == "Mercenary" and not p.warnings
+    assert {r.skill.name for r in p.gem_rows_for(1)} == {"Explosive Grenade"}
+    assert "Gas Grenade" in {r.skill.name for r in p.gem_rows_for(14)}
+    assert "Attrition" not in {r.skill.name for r in p.gem_rows_for(35)}
+    assert "Cluster Grenade" in {r.skill.name for r in p.gem_rows_for(55)}
+    assert all(len(h.gems) <= 2 for h in p.hints.values())
+    assert p.route_require == ("a2-007", "a3-005")
