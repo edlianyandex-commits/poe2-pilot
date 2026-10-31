@@ -1,10 +1,12 @@
-"""Start window: a departure board of builds, a boarding pass for the chosen one, take-off.
+"""Start window: pick a class at its gate, then a build on its departure board, then take off.
 
   ┌ title bar: mark · POE2 PILOT · flap "ВЫЛЕТЫ" · flap clock · — ✕ ─────────────────┐
-  │ board: РЕЙС  НАПРАВЛЕНИЕ  СТАТУС         │ boarding pass (paper, stamp, barcode) │
-  │   one flap row per build + its skills    │ [ ВЗЛЁТ ]                             │
-  └ footer: content version · update news [Обновить] ────────────────────────────────┘
-Keys: ↑ ↓ PgUp PgDn Home End pick, Enter take off, Esc quit. Double click a row takes off too.
+  │ page 1: eight class gates, a pictogram each (classes.py)                           │
+  │ page 2: board РЕЙС НАПРАВЛЕНИЕ СТАТУС    │ boarding pass (paper, stamp, barcode) │
+  │   one flap row per build of the class    │ [ ВЗЛЁТ ]                             │
+  └ footer: [← Классы] content version · update news [Обновить] · keys ────────────────┘
+Keys, gates: arrows pick, Enter opens, Esc quits. Board: ↑ ↓ PgUp PgDn Home End pick, Enter takes
+off, Esc / Backspace back to the gates. Double click a row takes off too.
 """
 from __future__ import annotations
 
@@ -16,15 +18,16 @@ from typing import Callable
 from PySide6.QtCore import QObject, QPointF, QRectF, Qt, QTimer, QUrl, QVariantAnimation, Signal
 from PySide6.QtGui import (QColor, QDesktopServices, QFont, QFontMetrics, QLinearGradient, QPainter,
                            QPainterPath, QPen)
-from PySide6.QtWidgets import (QAbstractButton, QHBoxLayout, QLabel, QPushButton, QVBoxLayout,
-                               QWidget)
+from PySide6.QtWidgets import (QAbstractButton, QHBoxLayout, QLabel, QPushButton, QStackedWidget,
+                               QVBoxLayout, QWidget)
 
 from pilot import __version__, brand
 from pilot.catalog import Catalog, Entry
 
+from .classes import SIGN_INK, ClassPicker, draw_glyph, flights
 from .flaps import FlapLine, draw_flaps, tile_font
+from .flaps import ui_font as font
 
-FONT = "Bahnschrift"
 BG = QColor(12, 13, 16)
 EDGE = QColor(42, 45, 51)
 ROW_SEL = QColor(30, 27, 20)
@@ -52,18 +55,9 @@ TW, TH, TG = 16, 26, 2              # flap tile width, height, gap
 COLS = (("РЕЙС", 6), ("НАПРАВЛЕНИЕ", 24), ("СТАТУС", 8))
 COL_GAP = 14
 PAD_L = 22
-HEAD_H = 30
+HEAD_H = 62                          # class line + column labels
 ROW_H = 64
 FLIP_MS = 38
-
-
-def font(px: int, weight: QFont.Weight = QFont.Normal, spacing: float = 0) -> QFont:
-    f = QFont(FONT)
-    f.setPixelSize(px)
-    f.setWeight(weight)
-    if spacing:
-        f.setLetterSpacing(QFont.AbsoluteSpacing, spacing)
-    return f
 
 
 def status_of(e: Entry) -> tuple:
@@ -186,9 +180,16 @@ class Board(QWidget):
     def __init__(self, entries: tuple[Entry, ...], last: str | None, parent: QWidget):
         super().__init__(parent)
         self.setMouseTracking(True)
-        self.entries = entries
         self.last = last
-        self.sel = next((i for i, e in enumerate(entries) if e.file == last), 0)
+        self.flipper = _Flipper(self, lambda: [ln for row in self.rows for ln in row])
+        self.set_entries(entries)
+        w = PAD_L + sum(n for _, n in COLS) * (TW + TG) + COL_GAP * (len(COLS) - 1) + 18
+        self.setMinimumWidth(w)
+
+    def set_entries(self, entries: tuple[Entry, ...], cls: str = "") -> None:
+        """Show these builds; the rows flip in from blank, top to bottom."""
+        self.entries, self.cls = entries, cls
+        self.sel = next((i for i, e in enumerate(entries) if e.file == self.last), 0)
         self.hover = -1
         self.top = 0
         self.rows = [tuple(FlapLine(w) for _, w in COLS) for _ in entries]
@@ -198,10 +199,8 @@ class Board(QWidget):
             code.set(e.code, spins)
             title.set(e.title, spins)
             status.set(self._status(i)[0], spins)
-        self.flipper = _Flipper(self, lambda: [ln for row in self.rows for ln in row])
         self.flipper.kick()
-        w = PAD_L + sum(n for _, n in COLS) * (TW + TG) + COL_GAP * (len(COLS) - 1) + 18
-        self.setMinimumWidth(w)
+        self.update()
 
     def _status(self, i: int) -> tuple[str, QColor]:
         if i == self.sel:
@@ -234,11 +233,24 @@ class Board(QWidget):
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
+        if self.cls:
+            sign = QRectF(PAD_L, 2, 28, 28)
+            p.setPen(Qt.NoPen)
+            p.setBrush(AMBER)
+            p.drawRoundedRect(sign, 6, 6)
+            draw_glyph(p, self.cls, sign.adjusted(4, 4, -4, -4), SIGN_INK, AMBER)
+            p.setFont(font(19, QFont.Bold, 2))
+            p.setPen(INK)
+            p.drawText(QPointF(PAD_L + 40, 24), self.cls.upper())
+            w = p.fontMetrics().horizontalAdvance(self.cls.upper())
+            p.setFont(font(13))
+            p.setPen(DIM)
+            p.drawText(QPointF(PAD_L + 52 + w, 24), flights(len(self.entries)))
         x = PAD_L
         p.setFont(font(11, QFont.DemiBold, 2))
         p.setPen(AMBER.darker(125))
         for label, n in COLS:
-            p.drawText(QPointF(x, 18), label)
+            p.drawText(QPointF(x, HEAD_H - 12), label)
             x += n * (TW + TG) + COL_GAP
         p.setPen(QPen(EDGE, 1))
         p.drawLine(0, HEAD_H - 4, self.width(), HEAD_H - 4)
@@ -279,7 +291,7 @@ class Board(QWidget):
         p.setFont(font(11))
         p.setPen(DIM)
         if self.top > 0:
-            p.drawText(QPointF(self.width() - 60, 18), "▲ ещё")
+            p.drawText(QPointF(self.width() - 60, HEAD_H - 12), "▲ ещё")
         if self.top + self.visible_rows() < len(self.entries):
             p.drawText(QPointF(self.width() - 60, self.height() - 4), "▼ ещё")
 
@@ -580,26 +592,40 @@ class BoardWindow(QWidget):
         self._open_url: str | None = None
 
         self.bar = TitleBar(self)
-        self.board = Board(catalog.entries, last, self)
+        prev = catalog.find(last)
+        self.gates = ClassPicker(catalog, prev.cls if prev else None, self, AMBER, INK, DIM, FAINT, EDGE)
+        self.gates.opened.connect(self.open_class)
+        self.gate_flips = _Flipper(self.gates, self.gates.lines)
+        self.gate_flips.kick()
+        self.board = Board((), last, self)
         self.ticket = BoardingPass(catalog, self)
         self.go = TakeoffButton(self)
-        self.go.setEnabled(bool(catalog.entries))
         self.go.clicked.connect(self.take_off)
-        self.board.selected.connect(lambda i: self.ticket.set_entry(catalog.entries[i]))
+        self.board.selected.connect(lambda i: self.ticket.set_entry(self.board.entries[i]))
         self.board.activated.connect(lambda i: self.take_off())
-        if catalog.entries:
-            self.ticket.set_entry(catalog.entries[self.board.sel])
 
         side = QVBoxLayout()
         side.setSpacing(14)
         side.addWidget(self.ticket)
         side.addWidget(self.go)
         side.addStretch(1)
-        body = QHBoxLayout()
+        flight = QWidget(self)
+        body = QHBoxLayout(flight)
         body.setContentsMargins(14, 12, 18, 6)
         body.setSpacing(16)
         body.addWidget(self.board, 1)
         body.addLayout(side)
+        gate_page = QWidget(self)
+        gl = QVBoxLayout(gate_page)
+        gl.setContentsMargins(22, 16, 22, 8)
+        gl.setSpacing(12)
+        hint = QLabel("Выбери класс — откроется табло его рейсов", gate_page)
+        hint.setStyleSheet("color:#80858e;font:13px 'Bahnschrift';")
+        gl.addWidget(hint)
+        gl.addWidget(self.gates, 1)
+        self.pages = QStackedWidget(self)
+        self.pages.addWidget(gate_page)
+        self.pages.addWidget(flight)
 
         self.info = QLabel(f"контент {content_version or '—'}  ·  игра {catalog.game or '—'}", self)
         self.news = QLabel("", self)
@@ -610,26 +636,32 @@ class BoardWindow(QWidget):
         self.action.setCursor(Qt.PointingHandCursor)
         self.action.hide()
         self.action.clicked.connect(self._act)
-        keys = QLabel("↑ ↓ выбрать   ·   Enter взлёт   ·   Esc выход", self)
-        keys.setStyleSheet("color:#464a52;font:12px 'Bahnschrift';")
+        self.keys = QLabel(self)
+        self.keys.setStyleSheet("color:#464a52;font:12px 'Bahnschrift';")
+        self.back = QPushButton("← Классы", self)
+        self.back.setStyleSheet(BUTTON_CSS)
+        self.back.setCursor(Qt.PointingHandCursor)
+        self.back.clicked.connect(self.show_gates)
         foot = QHBoxLayout()
         foot.setContentsMargins(22, 4, 22, 14)
         foot.setSpacing(12)
+        foot.addWidget(self.back)
         foot.addWidget(self.info)
         foot.addStretch(1)
         foot.addWidget(self.news)
         foot.addWidget(self.action)
         foot.addSpacing(18)
-        foot.addWidget(keys)
+        foot.addWidget(self.keys)
 
         root = QVBoxLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
         root.addWidget(self.bar)
-        root.addLayout(body, 1)
+        root.addWidget(self.pages, 1)
         root.addLayout(foot)
         self.resize(1190, 720)
         self.setMinimumSize(1100, 640)
+        self.show_gates()
 
         if updater is not None:
             self.news.setText("проверяю обновления…")
@@ -677,14 +709,46 @@ class BoardWindow(QWidget):
         self.restart = True
         QTimer.singleShot(700, self.close)
 
+    # -- pages
+    def show_gates(self) -> None:
+        self.pages.setCurrentIndex(0)
+        self.back.hide()
+        self.keys.setText("← → ↑ ↓ выбрать   ·   Enter открыть   ·   Esc выход")
+
+    def open_class(self, cls: str) -> None:
+        entries = tuple(e for e in self.cat.entries if e.cls == cls)
+        if not entries:
+            return
+        self.board.set_entries(entries, cls)
+        self.ticket.set_entry(entries[self.board.sel])
+        self.pages.setCurrentIndex(1)
+        self.back.show()
+        self.keys.setText("↑ ↓ выбрать   ·   Enter взлёт   ·   Esc назад")
+
+    @property
+    def on_board(self) -> bool:
+        return self.pages.currentIndex() == 1
+
     # -- take-off and keys
     def take_off(self) -> None:
-        if self.cat.entries:
-            self.result = self.cat.entries[self.board.sel].file
+        if self.on_board and self.board.entries:
+            self.result = self.board.entries[self.board.sel].file
             self.close()
 
     def keyPressEvent(self, e):
-        k, b = e.key(), self.board
+        k = e.key()
+        if not self.on_board:
+            arrows = {Qt.Key_Left: (-1, 0), Qt.Key_Right: (1, 0), Qt.Key_Up: (0, -1), Qt.Key_Down: (0, 1)}
+            if k in arrows:
+                self.gates.move_focus(*arrows[k])
+            elif k in (Qt.Key_Return, Qt.Key_Enter):
+                self.gates.open()
+            elif k == Qt.Key_Escape:
+                self.close()
+            else:
+                super().keyPressEvent(e)
+            return
+        b = self.board
         step = {Qt.Key_Up: -1, Qt.Key_Down: 1, Qt.Key_PageUp: -b.visible_rows(),
                 Qt.Key_PageDown: b.visible_rows()}
         if k in step:
@@ -692,11 +756,11 @@ class BoardWindow(QWidget):
         elif k == Qt.Key_Home:
             b.select(0)
         elif k == Qt.Key_End:
-            b.select(len(self.cat.entries) - 1)
+            b.select(len(b.entries) - 1)
         elif k in (Qt.Key_Return, Qt.Key_Enter):
             self.take_off()
-        elif k == Qt.Key_Escape:
-            self.close()
+        elif k in (Qt.Key_Escape, Qt.Key_Backspace):
+            self.show_gates()
         else:
             super().keyPressEvent(e)
 

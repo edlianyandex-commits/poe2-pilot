@@ -60,6 +60,16 @@ class FlapLine:
         return self.busy
 
 
+def ui_font(px: int, weight: QFont.Weight = QFont.Normal, spacing: float = 0) -> QFont:
+    """The start window's type: Bahnschrift, the DIN-like face that ships with Windows."""
+    f = QFont("Bahnschrift")
+    f.setPixelSize(px)
+    f.setWeight(weight)
+    if spacing:
+        f.setLetterSpacing(QFont.AbsoluteSpacing, spacing)
+    return f
+
+
 def tile_font(px: int) -> QFont:
     f = QFont("Bahnschrift")
     f.setPixelSize(px)
@@ -73,6 +83,7 @@ def draw_flaps(p: QPainter, line: FlapLine, x: float, y: float, w: float, h: flo
     p.setFont(font or tile_font(int(h * 0.68)))
     seam = QPen(QColor(6, 7, 9), 1.2)
     gloss = QPen(QColor(0, 0, 0, 70), 1)
+    rim = QPen(QColor(255, 255, 255, 22), 1)
     for i, ch in enumerate(line.shown):
         r = QRectF(x + i * (w + gap), y, w, h)
         g = QLinearGradient(r.topLeft(), r.bottomLeft())
@@ -81,9 +92,9 @@ def draw_flaps(p: QPainter, line: FlapLine, x: float, y: float, w: float, h: flo
         g.setColorAt(0.5, QColor(29, 31, 36))
         g.setColorAt(0.5001, QColor(22, 24, 28))
         g.setColorAt(1, QColor(17, 18, 21))
-        p.setPen(Qt.NoPen)
+        p.setPen(rim)                   # the rim keeps the lower half visible on dark cards
         p.setBrush(g)
-        p.drawRoundedRect(r, 2.5, 2.5)
+        p.drawRoundedRect(r.adjusted(0.5, 0.5, -0.5, -0.5), 2.5, 2.5)
         p.setPen(seam)                  # under the letter: a seam across 'I' would read as '!'
         p.drawLine(r.left() + 0.5, r.center().y(), r.right() - 0.5, r.center().y())
         if ch != " ":
