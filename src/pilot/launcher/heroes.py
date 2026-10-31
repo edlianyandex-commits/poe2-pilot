@@ -1,7 +1,7 @@
 """First page of the start window: one hero card per class, our chibi art on each.
 
-Art: data/ui/classes/<class>.png if present, else <class>.svg (tools/make_class_art.py); the small
-round badge in the corner carries the class pictogram (draw_glyph).
+Art: data/ui/classes/<class>.png, .jpg or .svg (square, face in the upper half); the small round
+badge in the corner carries the class pictogram (draw_glyph).
 """
 from __future__ import annotations
 
@@ -26,9 +26,10 @@ GAP = 18
 @lru_cache(maxsize=64)
 def class_art(cls: str, size: int) -> QPixmap | None:
     base = DATA / "ui" / "classes" / cls.lower()
-    png, svg = base.with_suffix(".png"), base.with_suffix(".svg")
-    if png.is_file():
-        pm = QPixmap(str(png))
+    svg = base.with_suffix(".svg")
+    raster = next((f for f in (base.with_suffix(".png"), base.with_suffix(".jpg")) if f.is_file()), None)
+    if raster is not None:
+        pm = QPixmap(str(raster))
         return None if pm.isNull() else pm.scaled(size, size, Qt.KeepAspectRatioByExpanding,
                                                   Qt.SmoothTransformation)
     if svg.is_file():

@@ -324,7 +324,7 @@ class HeroCard(QWidget):
         art = class_art(e.cls, side)
         if art is not None:
             p.setOpacity(0.35 + 0.65 * t)
-            p.drawPixmap(QPointF(banner.left(), banner.top() - side * 0.24 + (1 - t) * 12), art)
+            p.drawPixmap(QPointF(banner.left(), banner.top() - side * 0.13 + (1 - t) * 12), art)
             p.setOpacity(1.0)
         shade = QRadialGradient(banner.left(), banner.top(), banner.width() * 0.55)
         shade.setColorAt(0, QColor(20, 10, 40, 150))       # keeps the badge and stars readable on any scene
