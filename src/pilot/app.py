@@ -10,7 +10,7 @@ from pilot.config import load_config, save_config
 
 from pilot.paths import BUILDS, DATA
 
-# used when neither --build nor build_code_file in the config is set
+# replay demos without --build and no build chosen yet
 DEFAULT_BUILD = "twister_monk_guythatdies_0_5_5.build"
 
 
@@ -39,10 +39,17 @@ def _setup_logging() -> None:
                   logging.FileHandler(config_dir() / "pilot.log", mode="w", encoding="utf-8")])
 
 
+def _alert(text: str) -> None:
+    """A message box: the windowed exe has no console to print to."""
+    from PySide6.QtWidgets import QApplication, QMessageBox
+    QApplication.instance() or QApplication(sys.argv[:1])
+    QMessageBox.warning(None, "PoE2 Pilot", text)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="poe2-pilot")
-    ap.add_argument("--route", help="route id in data/routes or path to a .json")
-    ap.add_argument("--build", help="PoB2 export code or a file containing it")
+    ap.add_argument("--route", help="route id in data/routes or path to a .json (default: the catalog's)")
+    ap.add_argument("--build", help="PoB2 export code or a file containing it (skips the start window)")
     ap.add_argument("--log", help="path to Client.txt (default: auto-detect)")
     ap.add_argument("--replay", help="replay a Client.txt instead of tailing the live one")
     ap.add_argument("--speed", type=float, default=60.0, help="replay speed multiplier")
@@ -60,10 +67,20 @@ def main(argv: list[str] | None = None) -> int:
     cfg["on_save"] = save_config
     _setup_logging()
 
-    route_arg = args.route or cfg["route"]
+    build = args.build
+    if build is None and not args.replay:
+        from pilot.launcher import pick_build
+        build = pick_build(cfg)
+        if build is None:
+            return 0
+        cfg["build_code_file"] = build
+        save_config(cfg)
+
+    from pilot.catalog import load_catalog
+    route_arg = args.route or load_catalog().route or "campaign-0.5"
     route_path = Path(route_arg) if route_arg.endswith(".json") else DATA / "routes" / f"{route_arg}.json"
     route = load_route(route_path)
-    detail = _load_plan(cfg, args.build)
+    detail = _load_plan(cfg, build)
     if detail is not None:
         route = require_steps(route, detail.plan.route_require)   # the build's must-do steps
     engine = RunEngine(route, plan=detail.plan if detail else None, store=SplitStore(),
@@ -76,6 +93,9 @@ def main(argv: list[str] | None = None) -> int:
         s = engine.snapshot()
         return s.char_level or (1 if s.running else None)
     cfg["level_provider"] = current_level
+    if not args.replay:
+        from pilot.launcher import relaunch
+        cfg["on_switch_build"] = relaunch
 
     if detail is not None:
         from pilot.planner.treeview import TreeViewBuilder
@@ -97,7 +117,10 @@ def main(argv: list[str] | None = None) -> int:
     else:
         log = Path(args.log or cfg["log_path"] or find_client_log() or "")
         if not log.is_file():
-            print("Client.txt не найден: укажите --log или log_path в конфиге", file=sys.stderr)
+            msg = "Client.txt не найден: укажите --log или log_path в конфиге"
+            print(msg, file=sys.stderr)
+            _alert("Не найден лог игры Client.txt.\n\nЗапустите Path of Exile 2 хотя бы раз или укажите "
+                   "log_path в %APPDATA%\\poe2-pilot\\config.json.")
             return 2
         # started mid-run: rebuild step, timer, level and passives from the log first
         from pilot.core.warmstart import warm_start

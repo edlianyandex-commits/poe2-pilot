@@ -6,3 +6,7 @@ vendor/
 *.egg-info/
 dist/
 build/
+
+# personal run reviews stay local
+docs/run-reviews/
+*.spec

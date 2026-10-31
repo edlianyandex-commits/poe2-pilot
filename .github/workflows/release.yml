@@ -1,0 +1,29 @@
+name: release
+
+# push a tag vX.Y.Z equal to pilot.__version__ -> tests, PoE2Pilot.exe, zip on the release page
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -e .[dev] pyinstaller
+      - name: tag matches the app version
+        run: python -c "import pilot, sys; sys.exit('v' + pilot.__version__ != '${{ github.ref_name }}')"
+      - run: python -m pytest -q
+      - run: python packaging/build_exe.py --windowed
+      - run: Compress-Archive -Path dist/PoE2Pilot -DestinationPath PoE2Pilot-${{ github.ref_name }}.zip
+        shell: pwsh
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: PoE2Pilot-${{ github.ref_name }}.zip
+          generate_release_notes: true

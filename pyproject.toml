@@ -1,8 +1,11 @@
 [project]
 name = "poe2-pilot"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Glanceable campaign overlay for Path of Exile 2: route, splits, level plan"
 requires-python = ">=3.12"
+readme = "README.md"
+license = "MIT"
+authors = [{name = "edlianyandex-commits"}]
 dependencies = ["PySide6>=6.7", "keyboard>=0.13"]
 
 [project.optional-dependencies]
@@ -12,8 +15,11 @@ dev = ["pytest>=8"]
 poe2-pilot = "pilot.app:main"
 
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "pilot.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]

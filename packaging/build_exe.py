@@ -2,6 +2,7 @@
 
 usage: python packaging/build_exe.py [--windowed]
 --windowed hides the console; without it errors are visible in the console window (test builds).
+One exe for every build: the start window picks the build (no per-build shortcuts).
 """
 import sys
 from pathlib import Path
@@ -20,6 +21,8 @@ args = [
     "--specpath", str(ROOT / "build"),
     "--add-data", f"{ROOT / 'data'};data",
     "--add-data", f"{ROOT / 'builds'};builds",
+    "--add-data", f"{ROOT / 'content.json'};.",       # the bundled content version (pilot.paths)
+    "--icon", str(ROOT / "packaging" / "pilot.ico"),
     # Qt parts the app never uses
     *[a for m in ("PySide6.QtWebEngineCore", "PySide6.QtWebEngineWidgets", "PySide6.QtQml",
                   "PySide6.QtQuick", "PySide6.Qt3DCore", "PySide6.QtMultimedia", "PySide6.QtCharts",
@@ -30,19 +33,3 @@ if "--windowed" in sys.argv:
 
 PyInstaller.__main__.run(args)
 
-# one-click launchers next to the exe (PyInstaller recreates dist/PoE2Pilot, so write them each build)
-LAUNCHERS = {
-    "PoE2Pilot - Monk.bat": "twister_monk_guythatdies_0_5_5.build",
-    "PoE2Pilot - Mercenary (Travic).bat": "twister_speed_campaign_travic_0_5_5.pob",
-    "PoE2Pilot - Blood Mage.bat": "bloodmage_iceshot_syncoh_0_5_5.build",
-    "PoE2Pilot - Blood Mage (Spark).bat": "bloodmage_spark_poevault_0_5.build",
-    "PoE2Pilot - Witch (Ice Nova).bat": "witch_ice_nova_contagion_0_5_5.build",
-    "PoE2Pilot - Warbringer (Bone).bat": "warbringer_bone_spells_0_5_5.build",
-    "PoE2Pilot - Monk (Hollow Palm).bat": "monk_hollow_palm_storm_wave_0_5_5.build",
-    "PoE2Pilot - Monk (Ice Strike).bat": "monk_ice_strike_0_5.build",
-    "PoE2Pilot - Witch (Minions).bat": "witch_minions_mattjestic_0_5.build",
-    "PoE2Pilot - Mercenary (Grenades).bat": "grenades_gemling_0_5_5.build",
-}
-for name, build in LAUNCHERS.items():
-    (ROOT / "dist" / "PoE2Pilot" / name).write_text(
-        f'@echo off\r\nstart "" "%~dp0PoE2Pilot.exe" --build {build}\r\n', encoding="ascii")

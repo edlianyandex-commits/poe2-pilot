@@ -1,0 +1,4 @@
+# data/ and builds/ are hashed into content.json for the in-app update: keep the bytes as committed
+data/** -text
+builds/** -text
+content.json -text

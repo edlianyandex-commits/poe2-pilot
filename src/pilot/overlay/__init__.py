@@ -9,37 +9,19 @@ log = logging.getLogger(__name__)
 __all__ = ["run_overlay"]
 
 
-def _tray_icon():
-    from PySide6.QtCore import Qt
-    from PySide6.QtGui import QColor, QIcon, QPainter, QPixmap
-
-    pm = QPixmap(32, 32)
-    pm.fill(Qt.transparent)
-    p = QPainter(pm)
-    p.setRenderHint(QPainter.Antialiasing)
-    p.setBrush(QColor(20, 20, 20))
-    p.setPen(QColor(255, 216, 74))
-    p.drawRoundedRect(2, 2, 28, 28, 7, 7)
-    p.setPen(QColor(255, 255, 255))
-    f = p.font()
-    f.setBold(True)
-    f.setPixelSize(16)
-    p.setFont(f)
-    p.drawText(pm.rect(), Qt.AlignCenter, "P2")
-    p.end()
-    return QIcon(pm)
-
-
 def run_overlay(source, actions, config: dict) -> int:
     """Show the HUD, poll `source.snapshot()` at 10 Hz, serve hotkeys. Blocks until Quit.
 
     config keys (all optional): hotkeys{}, hide_when_unfocused, game_exes, scale, x, y,
     dim_opacity, details_provider, on_save, palette,
     gem_provider() -> tuple[GemRow], level_provider() -> int|None, icon_cache (IconCache),
-    gems_window {x, y, scale}, tree_provider() -> TreeView|None, tree_window {x, y, scale, zoom}.
+    gems_window {x, y, scale}, tree_provider() -> TreeView|None, tree_window {x, y, scale, zoom},
+    on_switch_build() (starts the start window again; the overlay then quits).
     """
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
+
+    from pilot.brand import logo_icon
 
     from . import winapi
     from .hotkeys import HotkeyManager
@@ -95,13 +77,21 @@ def run_overlay(source, actions, config: dict) -> int:
         config.get("hotkeys"),
     )
 
-    tray = QSystemTrayIcon(_tray_icon())
+    def switch_build():
+        config["on_switch_build"]()
+        app.quit()
+
+    tray = QSystemTrayIcon(logo_icon())
     tray.setToolTip("PoE2 Pilot")
     menu = QMenu()
-    menu.addAction("Edit position", hud.toggle_edit)
-    menu.addAction("Gems", gems.toggle)
-    menu.addAction("Tree", tree.toggle)
-    menu.addAction("Quit", app.quit)
+    if config.get("on_switch_build"):
+        menu.addAction("Сменить билд…", switch_build)
+        menu.addSeparator()
+    menu.addAction("Положение HUD", hud.toggle_edit)
+    menu.addAction("Гемы", gems.toggle)
+    menu.addAction("Дерево", tree.toggle)
+    menu.addSeparator()
+    menu.addAction("Выход", app.quit)
     tray.setContextMenu(menu)
     tray.show()
 
