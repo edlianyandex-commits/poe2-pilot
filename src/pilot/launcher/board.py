@@ -28,15 +28,15 @@ from pilot.catalog import Catalog, Entry
 from . import style as S
 from .heroes import HeroPicker, badge, class_art
 
-ROW_H = 84
-ROW_GAP = 10
-HEAD_H = 54
+ROW_H = 72
+ROW_GAP = 8
+HEAD_H = 48
 TWINKLE_MS = 90
 
 
 # ---------------------------------------------------------------- title bar
 class TitleBar(QWidget):
-    H = 64
+    H = 56
 
     def __init__(self, parent: QWidget):
         super().__init__(parent)
@@ -55,27 +55,27 @@ class TitleBar(QWidget):
 
     def _buttons(self) -> dict[str, QRectF]:
         r = self.width() - 20
-        return {"close": QRectF(r - 32, 16, 32, 32), "min": QRectF(r - 72, 16, 32, 32)}
+        return {"close": QRectF(r - 30, 13, 30, 30), "min": QRectF(r - 68, 13, 30, 30)}
 
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        brand.draw_logo(p, QRectF(22, 14, 36, 36))
-        f = S.font(22, QFont.ExtraBold, 0.5)
+        brand.draw_logo(p, QRectF(20, 12, 32, 32))
+        f = S.font(19, QFont.ExtraBold, 0.5)
         path = QPainterPath()
-        path.addText(QPointF(70, 34), f, "PoE2 Pilot")
+        path.addText(QPointF(62, 29), f, "PoE2 Pilot")
         p.setPen(Qt.NoPen)
         p.setBrush(S.gradient(path.boundingRect(), S.PINK, QColor(130, 90, 255), horizontal=True))
         p.drawPath(path)
         p.setPen(S.DIM)
-        p.setFont(S.font(11.5, QFont.Bold))
-        p.drawText(QPointF(71, 51), f"штурман кампании  ·  v{__version__}")
+        p.setFont(S.font(10.5, QFont.Bold))
+        p.drawText(QPointF(63, 44), f"штурман кампании  ·  v{__version__}")
 
         if self.title:
-            tf = S.font(19, QFont.ExtraBold, 1)
+            tf = S.font(16.5, QFont.ExtraBold, 1)
             tw = QFontMetricsF(tf).horizontalAdvance(self.title)
-            pill = QRectF((self.width() - tw) / 2 - 46, 13, tw + 92, 38)
-            S.soft_card(p, pill, 19, QColor(255, 255, 255, 215), S.WHITE, 1.5, shadow=False)
+            pill = QRectF((self.width() - tw) / 2 - 42, 11, tw + 84, 34)
+            S.soft_card(p, pill, 17, QColor(255, 255, 255, 215), S.WHITE, 1.5, shadow=False)
             p.setFont(tf)
             p.setPen(S.INK)
             p.drawText(pill, Qt.AlignCenter, self.title)
@@ -84,9 +84,9 @@ class TitleBar(QWidget):
                 S.sparkle(p, QPointF(cx, pill.center().y()), 7, S.PINK if dx < 0 else S.GOLD)
 
         bx = self._buttons()
-        clock = QRectF(bx["min"].left() - 92, 16, 80, 32)
-        S.soft_card(p, clock, 16, QColor(255, 255, 255, 200), None, shadow=False)
-        p.setFont(S.font(15, QFont.ExtraBold, 1))
+        clock = QRectF(bx["min"].left() - 84, 13, 72, 30)
+        S.soft_card(p, clock, 15, QColor(255, 255, 255, 200), None, shadow=False)
+        p.setFont(S.font(13.5, QFont.ExtraBold, 1))
         p.setPen(S.INK)
         p.drawText(clock, Qt.AlignCenter, time.strftime("%H:%M"))
         for name, r in bx.items():
@@ -150,7 +150,7 @@ class BuildList(QWidget):
         self.sel = 0
         self.hover = -1
         self.top = 0
-        self.setMinimumWidth(560)
+        self.setMinimumWidth(480)
 
     def set_entries(self, entries: tuple[Entry, ...], cls: str = "") -> None:
         self.entries, self.cls = entries, cls
@@ -186,13 +186,13 @@ class BuildList(QWidget):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
         if self.cls:
-            badge(p, self.cls, QPointF(30, 24), 20)
-            p.setFont(S.font(24, QFont.ExtraBold, 0.5))
+            badge(p, self.cls, QPointF(28, 22), 18)
+            p.setFont(S.font(21, QFont.ExtraBold, 0.5))
             p.setPen(S.INK)
-            p.drawText(QPointF(60, 33), self.cls)
+            p.drawText(QPointF(56, 30), self.cls)
             w = QFontMetricsF(p.font()).horizontalAdvance(self.cls)
-            S.chip(p, 72 + w, 13, S.builds_word(len(self.entries)), S.font(12, QFont.Bold), S.WHITE,
-                   S.class_color(self.cls), h=24)
+            S.chip(p, 66 + w, 11, S.builds_word(len(self.entries)), S.font(11.5, QFont.Bold), S.WHITE,
+                   S.class_color(self.cls), h=22)
         for k in range(self.visible_rows()):
             i = self.top + k
             if i >= len(self.entries):
@@ -216,30 +216,30 @@ class BuildList(QWidget):
                 p.drawRoundedRect(r.adjusted(-k, -k, k, k), 18 + k, 18 + k)
         border = S.PINK if sel else QColor(200, 185, 255) if hov else S.WHITE
         S.soft_card(p, r, 18, QColor(255, 255, 255, 240 if sel else 215), border, 2.5 if sel else 1.5)
-        rarity_badge(p, QRectF(r.left() + 14, r.top() + 14, 56, 56), e)
+        rarity_badge(p, QRectF(r.left() + 12, r.top() + 12, 48, 48), e)
 
-        x = r.left() + 86
-        right = r.right() - 150
-        p.setFont(S.font(17, QFont.ExtraBold))
+        x = r.left() + 74
+        right = r.right() - 124
+        p.setFont(S.font(15.5, QFont.ExtraBold))
         p.setPen(S.INK)
         fm = QFontMetricsF(p.font())
         title = fm.elidedText(e.title, Qt.ElideRight, right - x - 10)
-        p.drawText(QPointF(x, r.top() + 33), title)
+        p.drawText(QPointF(x, r.top() + 28), title)
         if e.file == self.last:
-            S.chip(p, x + fm.horizontalAdvance(title) + 10, r.top() + 15, "последний",
+            S.chip(p, x + fm.horizontalAdvance(title) + 10, r.top() + 12, "последний",
                    S.font(10.5, QFont.Bold), S.WHITE, S.PINK, h=20)
-        S.chips(p, QRectF(x, r.top() + 44, right - x, 24), [e.role, *e.skills], S.font(11.5, QFont.Bold),
-                S.INK, S.LAVENDER, h=24)
+        S.chips(p, QRectF(x, r.top() + 38, right - x, 22), [e.role, *e.skills], S.font(11, QFont.Bold),
+                S.INK, S.LAVENDER, h=22)
 
         tag, n, label = S.rarity(e)[:3]
-        sx = r.right() - 132
-        S.stars(p, sx, r.top() + 30, 7.5, n)
+        sx = r.right() - 110
+        S.stars(p, sx, r.top() + 24, 6.5, n)
         p.setFont(S.font(12, QFont.Bold))
         p.setPen(S.PINK.darker(115) if tag == "SSR" else S.DIM)
-        p.drawText(QRectF(sx, r.top() + 44, 120, 18), Qt.AlignLeft, label)
+        p.drawText(QRectF(sx, r.top() + 36, 104, 18), Qt.AlignLeft, label)
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
-        p.drawText(QRectF(sx, r.top() + 60, 120, 16), Qt.AlignLeft, f"патч {e.patch}")
+        p.drawText(QRectF(sx, r.top() + 52, 104, 16), Qt.AlignLeft, f"патч {e.patch}")
         if sel:
             tip = QPainterPath(QPointF(r.left() - 12, r.center().y() - 9))
             tip.lineTo(QPointF(r.left() - 3, r.center().y()))
@@ -279,8 +279,8 @@ class BuildList(QWidget):
 
 # ---------------------------------------------------------------- hero card of the build
 class HeroCard(QWidget):
-    W, H = 384, 548
-    BANNER = 214
+    W, H = 330, 462
+    BANNER = 168
 
     def __init__(self, catalog: Catalog, parent: QWidget):
         super().__init__(parent)
@@ -345,49 +345,49 @@ class HeroCard(QWidget):
         p.drawText(QRectF(banner.left() + 14, banner.top() + 80, 160, 20), Qt.AlignLeft, S.rarity(e)[2].upper())
 
         L, R = card.left() + 22, card.right() - 22
-        y = banner.bottom() + 36
-        p.setFont(S.font(22, QFont.ExtraBold))
+        y = banner.bottom() + 30
+        p.setFont(S.font(19, QFont.ExtraBold))
         p.setPen(S.INK)
         p.drawText(QPointF(L, y), QFontMetricsF(p.font()).elidedText(e.role, Qt.ElideRight, R - L))
-        p.setFont(S.font(13, QFont.Bold))
+        p.setFont(S.font(12, QFont.Bold))
         p.setPen(S.DIM)
         sub = e.title if not e.ascendancy else f"{e.title}  ·  {e.cls}"
-        p.drawText(QPointF(L, y + 22), QFontMetricsF(p.font()).elidedText(sub, Qt.ElideRight, R - L))
+        p.drawText(QPointF(L, y + 19), QFontMetricsF(p.font()).elidedText(sub, Qt.ElideRight, R - L))
 
-        y += 40
+        y += 32
         third = (R - L) / 3
         for k, (lab, val) in enumerate((("автор", e.author), ("патч", e.patch), ("версия", str(e.rev)))):
             x = L + k * third
             p.setFont(S.font(11, QFont.Bold))
             p.setPen(S.DIM)
             p.drawText(QPointF(x, y + 12), lab)
-            p.setFont(S.font(14, QFont.ExtraBold))
+            p.setFont(S.font(13, QFont.ExtraBold))
             p.setPen(S.INK)
-            p.drawText(QPointF(x, y + 32), QFontMetricsF(p.font()).elidedText(val, Qt.ElideRight, third - 8))
+            p.drawText(QPointF(x, y + 29), QFontMetricsF(p.font()).elidedText(val, Qt.ElideRight, third - 8))
 
-        y += 46
+        y += 38
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
         p.drawText(QPointF(L, y + 10), "скиллы")
-        y += 16 + S.chips(p, QRectF(L, y + 16, R - L, 54), e.skills, S.font(12, QFont.Bold), S.INK, S.LAVENDER,
-                          h=24)
-        y += 12
+        y += 14 + S.chips(p, QRectF(L, y + 15, R - L, 48), e.skills, S.font(11, QFont.Bold), S.INK, S.LAVENDER,
+                          h=22)
+        y += 10
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
         p.drawText(QPointF(L, y + 10), "обязательно пройти")
-        y += 16 + S.chips(p, QRectF(L, y + 16, R - L, 54), e.musts or ("ничего",), S.font(12, QFont.Bold),
-                          S.PINK.darker(110), QColor(255, 236, 246), S.PINK, h=24)
+        y += 14 + S.chips(p, QRectF(L, y + 15, R - L, 48), e.musts or ("ничего",), S.font(11, QFont.Bold),
+                          S.PINK.darker(110), QColor(255, 236, 246), S.PINK, h=22)
         if e.note:
-            p.setFont(S.font(12))
+            p.setFont(S.font(11.5))
             p.setPen(S.DIM)
-            p.drawText(QRectF(L, y + 12, R - L, card.bottom() - y - 46), Qt.TextWordWrap, e.note)
+            p.drawText(QRectF(L, y + 10, R - L, card.bottom() - y - 40), Qt.TextWordWrap, e.note)
 
         self.link = QRectF()
         if e.source:
-            p.setFont(S.font(13, QFont.ExtraBold))
+            p.setFont(S.font(12, QFont.ExtraBold))
             txt = "открыть гайд ↗"
             w = QFontMetricsF(p.font()).horizontalAdvance(txt)
-            self.link = QRectF(R - w, card.bottom() - 34, w, 22)
+            self.link = QRectF(R - w, card.bottom() - 30, w, 20)
             p.setPen(S.PINK)
             p.drawText(self.link, Qt.AlignLeft | Qt.AlignVCenter, txt)
 
@@ -403,7 +403,7 @@ class HeroCard(QWidget):
 class StartButton(QAbstractButton):
     def __init__(self, parent: QWidget):
         super().__init__(parent)
-        self.setFixedHeight(66)
+        self.setFixedHeight(58)
         self.setCursor(Qt.PointingHandCursor)
         self.phase = 0.0
 
@@ -442,7 +442,7 @@ class StartButton(QAbstractButton):
             p.setBrush(QColor(255, 255, 255, 70))
             p.drawPath(shine)
             p.restore()
-        p.setFont(S.font(23, QFont.ExtraBold, 4))
+        p.setFont(S.font(20, QFont.ExtraBold, 4))
         p.setPen(S.WHITE)
         p.drawText(r, Qt.AlignCenter, "СТАРТ")
         tw = QFontMetricsF(p.font()).horizontalAdvance("СТАРТ")
@@ -519,13 +519,13 @@ class BoardWindow(QWidget):
         side.addStretch(1)
         flight = QWidget(self)
         body = QHBoxLayout(flight)
-        body.setContentsMargins(18, 8, 18, 4)
-        body.setSpacing(18)
+        body.setContentsMargins(14, 6, 14, 2)
+        body.setSpacing(12)
         body.addWidget(self.builds, 1)
         body.addLayout(side)
         hero_page = QWidget(self)
         hl = QVBoxLayout(hero_page)
-        hl.setContentsMargins(22, 10, 22, 6)
+        hl.setContentsMargins(18, 8, 18, 4)
         hl.addWidget(self.heroes, 1)
         self.pages = QStackedWidget(self)
         self.pages.addWidget(hero_page)
@@ -547,14 +547,14 @@ class BoardWindow(QWidget):
         self.action.clicked.connect(self._act)
         self.back.clicked.connect(self.show_heroes)
         foot = QHBoxLayout()
-        foot.setContentsMargins(24, 2, 24, 14)
-        foot.setSpacing(12)
+        foot.setContentsMargins(20, 2, 20, 12)
+        foot.setSpacing(10)
         foot.addWidget(self.back)
         foot.addWidget(self.info)
         foot.addStretch(1)
         foot.addWidget(self.news)
         foot.addWidget(self.action)
-        foot.addSpacing(16)
+        foot.addSpacing(10)
         foot.addWidget(self.keys)
 
         root = QVBoxLayout(self)
@@ -563,8 +563,8 @@ class BoardWindow(QWidget):
         root.addWidget(self.bar)
         root.addWidget(self.pages, 1)
         root.addLayout(foot)
-        self.resize(1190, 720)
-        self.setMinimumSize(1100, 660)
+        self.resize(980, 640)
+        self.setMinimumSize(900, 640)
         self.show_heroes()
 
         self.timer = QTimer(self)                         # twinkles and the start button's shine

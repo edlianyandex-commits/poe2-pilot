@@ -20,7 +20,7 @@ from . import style as S
 # every class of the game, in the order of the character select screen; builds decide which light up
 CLASSES = ("Warrior", "Ranger", "Huntress", "Mercenary", "Monk", "Witch", "Sorceress", "Druid")
 COLS = 4
-GAP = 18
+GAP = 14
 
 
 @lru_cache(maxsize=64)
@@ -207,7 +207,7 @@ class HeroPicker(QWidget):
         clip.addRoundedRect(r.adjusted(3, 3, -3, -3), 18, 18)
         p.save()
         p.setClipPath(clip)
-        plate_h = 58
+        plate_h = 52
         side = int(max(r.width(), r.height()))            # the scene fills the card, the face stays in view
         art = class_art(c, side) if live else class_art_grey(c, side)
         if art is not None:
@@ -223,18 +223,18 @@ class HeroPicker(QWidget):
 
         plate = QRectF(r.left() + 10, r.bottom() - plate_h - 6, r.width() - 20, plate_h)
         S.soft_card(p, plate, 14, QColor(255, 255, 255, 240), None, shadow=False)
-        p.setFont(S.font(19, QFont.ExtraBold, 0.5))
+        p.setFont(S.font(16.5, QFont.ExtraBold, 0.5))
         p.setPen(S.INK if live else S.FAINT)
-        p.drawText(plate.adjusted(14, 6, -10, -26), Qt.AlignLeft | Qt.AlignVCenter, c)
-        p.setFont(S.font(12, QFont.Bold))
+        p.drawText(plate.adjusted(12, 5, -10, -23), Qt.AlignLeft | Qt.AlignVCenter, c)
+        p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.class_color(c).darker(125) if live else S.FAINT)
-        p.drawText(plate.adjusted(14, 30, -10, -6), Qt.AlignLeft | Qt.AlignVCenter, S.builds_word(len(builds)))
+        p.drawText(plate.adjusted(12, 27, -10, -5), Qt.AlignLeft | Qt.AlignVCenter, S.builds_word(len(builds)))
         if live:
             best = max(S.rarity(e)[1] for e in builds)
-            S.stars(p, plate.right() - 14 - 5 * 4.5 * 2.3, plate.top() + 41, 4.5, best)
-        badge(p, c, QPointF(r.left() + 26, r.top() + 26), 17, live)
+            S.stars(p, plate.right() - 12 - 5 * 4 * 2.3, plate.top() + 37, 4, best)
+        badge(p, c, QPointF(r.left() + 22, r.top() + 22), 15, live)
         if not live:
-            S.chip(p, r.right() - 70, r.top() + 14, "скоро", S.font(12, QFont.Bold), S.WHITE,
+            S.chip(p, r.right() - 62, r.top() + 11, "скоро", S.font(11, QFont.Bold), S.WHITE,
                    QColor(170, 164, 190))
 
     def mouseMoveEvent(self, e):
