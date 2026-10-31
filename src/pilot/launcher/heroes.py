@@ -9,7 +9,7 @@ import math
 from functools import lru_cache
 
 from PySide6.QtCore import QPointF, QRectF, QSize, Qt, Signal
-from PySide6.QtGui import QColor, QFont, QPainter, QPainterPath, QPen, QPixmap, QRadialGradient
+from PySide6.QtGui import QColor, QFont, QImage, QPainter, QPainterPath, QPen, QPixmap
 from PySide6.QtWidgets import QWidget
 
 from pilot.catalog import Catalog
@@ -44,6 +44,13 @@ def class_art(cls: str, size: int) -> QPixmap | None:
         p.end()
         return pm
     return None
+
+
+@lru_cache(maxsize=16)
+def class_art_grey(cls: str, size: int) -> QPixmap | None:
+    """The art in greys, for classes that have no builds yet."""
+    art = class_art(cls, size)
+    return None if art is None else QPixmap.fromImage(art.toImage().convertToFormat(QImage.Format_Grayscale8))
 
 
 # ---------------------------------------------------------------- pictograms (class badge)
@@ -199,18 +206,12 @@ class HeroPicker(QWidget):
         clip.addRoundedRect(r.adjusted(3, 3, -3, -3), 18, 18)
         p.save()
         p.setClipPath(clip)
-        glow = QRadialGradient(r.center().x(), r.top() + r.height() * 0.42, r.width() * 0.6)
-        glow.setColorAt(0, QColor(255, 255, 255, 170))
-        glow.setColorAt(1, QColor(255, 255, 255, 0))
-        p.setPen(Qt.NoPen)
-        p.setBrush(glow)
-        p.drawRect(r)
         plate_h = 58
-        side = int(min(r.width() - 10, r.height() - plate_h + 6))
-        art = class_art(c, side)
+        side = int(max(r.width(), r.height()))            # the scene fills the card, the face stays in view
+        art = class_art(c, side) if live else class_art_grey(c, side)
         if art is not None:
-            p.setOpacity(1.0 if live else 0.3)
-            p.drawPixmap(QPointF(r.center().x() - side / 2, r.bottom() - plate_h - side + 14), art)
+            p.setOpacity(1.0 if live else 0.45)
+            p.drawPixmap(QPointF(r.center().x() - side / 2, r.top() - side * 0.04), art)
             p.setOpacity(1.0)
         if lit:
             for k, (fx, fy, s) in enumerate(((0.16, 0.22, 7), (0.86, 0.30, 9), (0.78, 0.12, 5), (0.24, 0.55, 5))):

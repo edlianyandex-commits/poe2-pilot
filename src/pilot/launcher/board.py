@@ -319,28 +319,19 @@ class HeroCard(QWidget):
         clip.addRoundedRect(banner, 18, 18)
         p.save()
         p.setClipPath(clip)
-        p.fillPath(clip, S.gradient(banner, col.lighter(170), col.lighter(115)))
-        hub = QPointF(banner.right() - 100, banner.bottom() - 30)
-        p.setPen(Qt.NoPen)
-        p.setBrush(QColor(255, 255, 255, 34))
-        for k in range(9):                                 # light rays from behind the hero
-            a = math.radians(100 + k * 20 + self.phase * 4)
-            ray = QPainterPath(hub)
-            ray.lineTo(hub + QPointF(420 * math.cos(a - 0.06), -420 * math.sin(a - 0.06)))
-            ray.lineTo(hub + QPointF(420 * math.cos(a + 0.06), -420 * math.sin(a + 0.06)))
-            ray.closeSubpath()
-            p.drawPath(ray)
-        glow = QRadialGradient(hub, banner.width() * 0.5)
-        glow.setColorAt(0, QColor(255, 255, 255, 200))
-        glow.setColorAt(1, QColor(255, 255, 255, 0))
-        p.setBrush(glow)
-        p.drawRect(banner)
-        side = int(self.BANNER + 6)
+        p.fillPath(clip, S.gradient(banner, col.lighter(150), col))
+        side = int(banner.width())                         # the scene fills the banner, cropped round the face
         art = class_art(e.cls, side)
         if art is not None:
             p.setOpacity(0.35 + 0.65 * t)
-            p.drawPixmap(QPointF(banner.right() - side + 14 + (1 - t) * 30, banner.bottom() - side + 10), art)
+            p.drawPixmap(QPointF(banner.left(), banner.top() - side * 0.24 + (1 - t) * 12), art)
             p.setOpacity(1.0)
+        shade = QRadialGradient(banner.left(), banner.top(), banner.width() * 0.55)
+        shade.setColorAt(0, QColor(20, 10, 40, 150))       # keeps the badge and stars readable on any scene
+        shade.setColorAt(1, QColor(20, 10, 40, 0))
+        p.setPen(Qt.NoPen)
+        p.setBrush(shade)
+        p.drawRect(banner)
         for k, (fx, fy, s) in enumerate(((0.12, 0.70, 6), (0.40, 0.18, 8), (0.30, 0.86, 5), (0.92, 0.12, 6))):
             a = int(160 + 90 * math.sin(self.phase * 2 + k * 1.3))
             S.sparkle(p, QPointF(banner.left() + fx * banner.width(), banner.top() + fy * banner.height()), s,
