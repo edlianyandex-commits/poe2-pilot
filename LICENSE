@@ -21,9 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ---
-Not covered by this license:
+Not covered by this license (the class art in data/ui/classes is ours and is):
 - builds/: build plans belong to their authors (see builds/SOURCES.md); they are
   included with attribution and links to the original guides.
+- assets/fonts/: M PLUS Rounded 1c, SIL Open Font License 1.1 (assets/fonts/OFL.txt).
 - data/planner/: derived from Path of Building Community (PoE2), MIT; see
   data/planner/ATTRIBUTION.md. Game data (c) Grinding Gear Games.
 This project is not affiliated with or endorsed by Grinding Gear Games.

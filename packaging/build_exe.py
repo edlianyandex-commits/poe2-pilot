@@ -22,6 +22,7 @@ args = [
     "--add-data", f"{ROOT / 'data'};data",
     "--add-data", f"{ROOT / 'builds'};builds",
     "--add-data", f"{ROOT / 'content.json'};.",       # the bundled content version (pilot.paths)
+    "--add-data", f"{ROOT / 'assets'};assets",         # fonts of the start window
     "--icon", str(ROOT / "packaging" / "pilot.ico"),
     # Qt parts the app never uses
     *[a for m in ("PySide6.QtWebEngineCore", "PySide6.QtWebEngineWidgets", "PySide6.QtQml",

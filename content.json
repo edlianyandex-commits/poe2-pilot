@@ -1,5 +1,5 @@
 {
- "version": "2026.10.31",
+ "version": "2026.10.31.2",
  "min_app": "0.9.0",
  "files": {
   "data/areas/areas.json": "456bf6f71ab4fe8819937bb20b32fc7721118d3068067fb6bbb6a62dbad64d24",
@@ -12,6 +12,14 @@
   "data/planner/quest_points.json": "92032dcef507ffcc1448b6bbbb3e3a99fae07b8ce5395199775240dd71c8f582",
   "data/planner/tree_0_5.json": "cf3e3aacb811a49994e37a3aa5293ec09e7bf34bbb43affe7f67f48e934be70f",
   "data/routes/campaign-0.5.json": "f5040f824fff377dbc0d54386dfd67c3b321cd5fe5fd0e4f203e726cf6c7b6d3",
+  "data/ui/classes/druid.svg": "eeefff21edb793af5b5827a4e64ca38da1f4bccc2339e42fad6c1a927aa93520",
+  "data/ui/classes/huntress.svg": "5fc57d35b05ceec5846b6ef91c67903f687b2fa24a68e35edcc5f66fbfbc3da0",
+  "data/ui/classes/mercenary.svg": "77eaa42534b3d7c95f2e129c304d2cf5165ad623411ce07ee8a2ea43db2fbbf8",
+  "data/ui/classes/monk.svg": "6273f936997cc6769703149cb350d95d9ba00ae7f8855365bf9d7493f7ac4fef",
+  "data/ui/classes/ranger.svg": "1d4c1aee2823eb55e41be9cb2683fbfa26dca771fd76950c3182a094aba40ec1",
+  "data/ui/classes/sorceress.svg": "683f84609c27b87b059cae2532542668f5dce548009ac9fbdcd3cf83983d2b46",
+  "data/ui/classes/warrior.svg": "638420e4b2144210623d8082f63cf19973314d05712f27e79d7907791e562ed6",
+  "data/ui/classes/witch.svg": "ab49ec89a0f4cda01d7da432aa2d60aad374fbb94e18f7b58a3c4cfc0881de3b",
   "builds/bloodmage_iceshot_syncoh_0_5_5.build": "9c0f956b42512262985a4eeb38edeae00b14efb39cab1a0072f2ee4fe9d9adab",
   "builds/bloodmage_iceshot_syncoh_0_5_5.gear.json": "4765fb40310f52bc7ab33a338862f0018b23be43beab5f9be6b33ead102af2a7",
   "builds/bloodmage_spark_poevault_0_5.build": "1f171af7b5afcbab982d5632b81f28fb60a2294fec613939a5d418f989ccdf37",

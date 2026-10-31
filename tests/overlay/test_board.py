@@ -1,7 +1,6 @@
-"""Start window: class gates, flap rows, picking, take-off, update news."""
+"""Start window: hero cards, build list, start, update news, art and font."""
 from __future__ import annotations
 
-import random
 from pathlib import Path
 
 from PySide6.QtCore import QRectF, Qt
@@ -9,42 +8,39 @@ from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtTest import QTest
 
 from pilot.catalog import load_catalog
-from pilot.launcher.board import BOARDING, BoardWindow
-from pilot.launcher.classes import CLASSES, draw_glyph, flights
-from pilot.launcher.flaps import FlapLine
+from pilot.launcher import style as S
+from pilot.launcher.board import BoardWindow
+from pilot.launcher.heroes import CLASSES, class_art, draw_glyph
 from pilot.updates import Check
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def settle(*lines):
-    while any([line.step() for line in lines]):
-        pass
+def test_builds_word_in_russian():
+    assert [S.builds_word(n) for n in (0, 1, 2, 4, 5, 11, 21, 22)] == [
+        "скоро", "1 билд", "2 билда", "4 билда", "5 билдов", "11 билдов", "21 билд", "22 билда"]
 
 
-def test_flaps_flip_forward_to_the_target_and_leave_still_tiles_alone():
-    line = FlapLine(6, random.Random(1))
-    line.set("mr 202")
-    assert line.busy and line.shown == list("      ")
-    settle(line)
-    assert "".join(line.shown) == "MR 202" and line.text == "MR 202"
-    line.set("MR 203")
-    assert line.left[:5] == [0] * 5 and line.left[5] > 0
-    settle(line)
-    assert "".join(line.shown) == "MR 203"
+def test_status_is_shown_as_rarity():
+    cat = load_catalog(ROOT / "builds")
+    tags = {e.status: S.rarity(e)[:2] for e in cat.entries}
+    assert tags == {"verified": ("SSR", 5), "guide": ("SR", 4), "custom": ("R", 3)}
 
 
-def test_flights_in_russian():
-    assert [flights(n) for n in (0, 1, 2, 4, 5, 11, 21, 22)] == [
-        "рейсов нет", "1 рейс", "2 рейса", "4 рейса", "5 рейсов", "11 рейсов", "21 рейс", "22 рейса"]
+def test_bundled_font_loads(qapp):
+    assert S.load_fonts() == S.FAMILY
 
 
-def test_every_class_has_a_pictogram(qapp):
-    pm = QPixmap(64, 64)
+def test_every_class_has_art_and_a_pictogram(qapp):
     for c in CLASSES:
-        pm.fill(QColor(255, 178, 62))
+        art = class_art(c, 96)
+        assert art is not None and not art.isNull(), c
+        img = art.toImage()
+        assert img.pixelColor(48, 48).alpha() > 0, c          # the face is in the middle
+        pm = QPixmap(64, 64)
+        pm.fill(QColor(255, 255, 255))
         p = QPainter(pm)
-        draw_glyph(p, c, QRectF(8, 8, 48, 48), QColor(0, 0, 0), QColor(255, 178, 62))
+        draw_glyph(p, c, QRectF(8, 8, 48, 48), QColor(0, 0, 0), QColor(255, 255, 255))
         p.end()
         img = pm.toImage()
         dark = sum(img.pixelColor(x, y).red() < 100 for x in range(0, 64, 2) for y in range(0, 64, 2))
@@ -57,37 +53,34 @@ def _window(qapp, **kw):
     return w
 
 
-def test_opens_on_the_gates_with_the_last_class_in_focus(qapp):
+def test_opens_on_the_heroes_with_the_last_class_in_focus(qapp):
     w = _window(qapp, last="grenades_gemling_0_5_5.build")
-    assert not w.on_board and CLASSES[w.gates.focus] == "Mercenary"
+    assert not w.on_board and CLASSES[w.heroes.focus] == "Mercenary"
     QTest.keyClick(w, Qt.Key_Return)
-    assert w.on_board and {e.cls for e in w.board.entries} == {"Mercenary"}
-    sel = w.board.sel
-    assert w.board.entries[sel].file == "grenades_gemling_0_5_5.build"
-    assert w.board.rows[sel][2].text == BOARDING[0]
-    assert w.ticket.entry.file == "grenades_gemling_0_5_5.build"
+    assert w.on_board and {e.cls for e in w.builds.entries} == {"Mercenary"}
+    assert w.builds.entries[w.builds.sel].file == "grenades_gemling_0_5_5.build"
+    assert w.card.entry.file == "grenades_gemling_0_5_5.build"
     w.close()
 
 
-def test_a_gate_without_builds_stays_shut(qapp):
+def test_a_hero_without_builds_stays_shut(qapp):
     w = _window(qapp)
-    w.gates.focus = CLASSES.index("Druid")
+    w.heroes.focus = CLASSES.index("Druid")
     QTest.keyClick(w, Qt.Key_Return)
     assert not w.on_board
     w.close()
 
 
-def test_keys_pick_and_enter_takes_off(qapp):
+def test_keys_pick_and_enter_starts(qapp):
     w = _window(qapp)
     w.open_class("Witch")
     QTest.keyClick(w, Qt.Key_Down)
     QTest.keyClick(w, Qt.Key_Down)
-    assert w.board.sel == 2 and w.ticket.entry is w.board.entries[2]
-    assert w.board.rows[0][2].text != BOARDING[0]
+    assert w.builds.sel == 2 and w.card.entry is w.builds.entries[2]
     QTest.keyClick(w, Qt.Key_End)
-    assert w.board.sel == len(w.board.entries) - 1
+    assert w.builds.sel == len(w.builds.entries) - 1
     QTest.keyClick(w, Qt.Key_Return)
-    assert w.result == w.board.entries[-1].file and w.result.startswith("witch_minions")
+    assert w.result == w.builds.entries[-1].file and w.result.startswith("witch_minions")
     assert not w.isVisible()
 
 
@@ -96,11 +89,18 @@ def test_escape_goes_back_then_quits(qapp):
     w.open_class("Monk")
     QTest.keyClick(w, Qt.Key_Escape)
     assert not w.on_board and w.isVisible()
-    QTest.keyClick(w, Qt.Key_Return)                 # Enter on the gates only opens a class
+    QTest.keyClick(w, Qt.Key_Return)                 # Enter on the heroes only opens a class
     assert w.on_board and w.result is None
     QTest.keyClick(w, Qt.Key_Backspace)
     QTest.keyClick(w, Qt.Key_Escape)
     assert w.result is None and not w.isVisible()
+
+
+def test_twinkle_tick_reaches_the_animated_parts(qapp):
+    w = _window(qapp)
+    w._twinkle()
+    assert w.heroes.phase == w.card.phase == w.go.phase > 0
+    w.close()
 
 
 class FakeUpdater:

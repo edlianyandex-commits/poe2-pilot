@@ -1,155 +1,106 @@
-"""Start window: pick a class at its gate, then a build on its departure board, then take off.
+"""Start window, pastel gacha style: pick a hero (class), then one of its builds, then start.
 
-  ┌ title bar: mark · POE2 PILOT · flap "ВЫЛЕТЫ" · flap clock · — ✕ ─────────────────┐
-  │ page 1: eight class gates, a pictogram each (classes.py)                           │
-  │ page 2: board РЕЙС НАПРАВЛЕНИЕ СТАТУС    │ boarding pass (paper, stamp, barcode) │
-  │   one flap row per build of the class    │ [ ВЗЛЁТ ]                             │
-  └ footer: [← Классы] content version · update news [Обновить] · keys ────────────────┘
-Keys, gates: arrows pick, Enter opens, Esc quits. Board: ↑ ↓ PgUp PgDn Home End pick, Enter takes
-off, Esc / Backspace back to the gates. Double click a row takes off too.
+  ┌ title bar: mark · PoE2 Pilot · ✦ page title ✦ · clock · — ✕ ──────────────────────┐
+  │ page 1: eight hero cards with our chibi art (heroes.py)                           │
+  │ page 2: build list (rarity SSR/SR/R, stars) │ hero card of the build │ [ СТАРТ ]   │
+  └ footer: [← Герои] content version · update news [Обновить] · keys ────────────────┘
+Keys, heroes: arrows pick, Enter opens, Esc quits. Builds: ↑ ↓ PgUp PgDn Home End pick, Enter
+starts, Esc / Backspace back to the heroes. Double click a build starts it too.
+Build status shows as rarity: verified SSR 5★, guide SR 4★, custom R 3★, older patch OLD.
 """
 from __future__ import annotations
 
-import hashlib
+import math
+import random
 import threading
 import time
 from typing import Callable
 
 from PySide6.QtCore import QObject, QPointF, QRectF, Qt, QTimer, QUrl, QVariantAnimation, Signal
-from PySide6.QtGui import (QColor, QDesktopServices, QFont, QFontMetrics, QLinearGradient, QPainter,
-                           QPainterPath, QPen)
+from PySide6.QtGui import (QColor, QDesktopServices, QFont, QFontMetricsF, QPainter, QPainterPath,
+                           QPen, QRadialGradient)
 from PySide6.QtWidgets import (QAbstractButton, QHBoxLayout, QLabel, QPushButton, QStackedWidget,
                                QVBoxLayout, QWidget)
 
 from pilot import __version__, brand
 from pilot.catalog import Catalog, Entry
 
-from .classes import SIGN_INK, ClassPicker, draw_glyph, flights
-from .flaps import FlapLine, draw_flaps, tile_font
-from .flaps import ui_font as font
+from . import style as S
+from .heroes import HeroPicker, badge, class_art
 
-BG = QColor(12, 13, 16)
-EDGE = QColor(42, 45, 51)
-ROW_SEL = QColor(30, 27, 20)
-ROW_HOVER = QColor(20, 21, 25)
-INK = QColor(242, 234, 215)
-DIM = QColor(128, 133, 142)
-FAINT = QColor(70, 74, 82)
-AMBER = brand.AMBER
-GREEN = QColor(98, 217, 139)
-RED = QColor(255, 93, 79)
-PAPER = QColor(239, 229, 207)
-PAPER_INK = QColor(34, 32, 27)
-PAPER_DIM = QColor(125, 116, 98)
-
-# status -> (board text, board ink, stamp text, stamp ink)
-STATUS = {
-    "verified": ("ПРОВЕРЕН", GREEN, "ПРОВЕРЕН", QColor(40, 122, 76)),
-    "guide": ("ПО ГАЙДУ", INK, "ПО ГАЙДУ", QColor(44, 88, 150)),
-    "custom": ("ТЕСТОВЫЙ", AMBER, "ТЕСТОВЫЙ РЕЙС", QColor(184, 69, 47)),
-}
-OUTDATED = ("ЗАДЕРЖАН", RED, "ЖДЁТ ПАТЧА", QColor(184, 40, 40))
-BOARDING = ("ПОСАДКА", AMBER)
-
-TW, TH, TG = 16, 26, 2              # flap tile width, height, gap
-COLS = (("РЕЙС", 6), ("НАПРАВЛЕНИЕ", 24), ("СТАТУС", 8))
-COL_GAP = 14
-PAD_L = 22
-HEAD_H = 62                          # class line + column labels
-ROW_H = 64
-FLIP_MS = 38
-
-
-def status_of(e: Entry) -> tuple:
-    return OUTDATED if e.outdated else STATUS[e.status]
-
-
-class _Flipper:
-    """One timer that steps every FlapLine of a widget until they all settle."""
-
-    def __init__(self, widget: QWidget, lines: Callable[[], list[FlapLine]]):
-        self.w, self.lines = widget, lines
-        self.timer = QTimer(widget)
-        self.timer.setInterval(FLIP_MS)
-        self.timer.timeout.connect(self._tick)
-
-    def kick(self) -> None:
-        if not self.timer.isActive():
-            self.timer.start()
-
-    def _tick(self) -> None:
-        busy = False
-        for line in self.lines():
-            busy |= line.step()
-        self.w.update()
-        if not busy:
-            self.timer.stop()
+ROW_H = 84
+ROW_GAP = 10
+HEAD_H = 54
+TWINKLE_MS = 90
 
 
 # ---------------------------------------------------------------- title bar
 class TitleBar(QWidget):
-    H = 66
+    H = 64
 
     def __init__(self, parent: QWidget):
         super().__init__(parent)
         self.setFixedHeight(self.H)
         self.setMouseTracking(True)
-        self.title = FlapLine(10)
-        self.title.set("ВЫЛЕТЫ", spins=(6, 14))
-        self.clock = FlapLine(5)
-        self.clock.set(time.strftime("%H:%M"), spins=(8, 16))
-        self.flipper = _Flipper(self, lambda: [self.title, self.clock])
-        self.flipper.kick()
-        self._ticks = 0
-        t = QTimer(self)
-        t.setInterval(1000)
-        t.timeout.connect(self._second)
-        t.start()
+        self.title = ""
         self.hover: str | None = None
+        t = QTimer(self)
+        t.setInterval(10_000)
+        t.timeout.connect(self.update)
+        t.start()
 
-    def _second(self) -> None:
-        self._ticks += 1
-        self.clock.set(time.strftime("%H:%M"), spins=(4, 8), stagger=0)
-        if self._ticks % 9 == 0:     # the board speaks both languages, like a real one
-            self.title.set("DEPARTURES" if self.title.text == "ВЫЛЕТЫ" else "ВЫЛЕТЫ", spins=(3, 10))
-        self.flipper.kick()
+    def set_title(self, text: str) -> None:
+        self.title = text
+        self.update()
 
     def _buttons(self) -> dict[str, QRectF]:
-        r = self.width() - 18
-        return {"close": QRectF(r - 30, 18, 30, 30), "min": QRectF(r - 66, 18, 30, 30)}
+        r = self.width() - 20
+        return {"close": QRectF(r - 32, 16, 32, 32), "min": QRectF(r - 72, 16, 32, 32)}
 
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        brand.draw_logo(p, QRectF(20, 15, 36, 36))
-        p.setPen(INK)
-        p.setFont(font(19, QFont.Bold, 1.5))
-        p.drawText(QPointF(68, 33), "POE2 PILOT")
-        p.setPen(DIM)
-        p.setFont(font(11, spacing=0.8))
-        p.drawText(QPointF(69, 50), f"штурман кампании · v{__version__}")
+        brand.draw_logo(p, QRectF(22, 14, 36, 36))
+        f = S.font(22, QFont.ExtraBold, 0.5)
+        path = QPainterPath()
+        path.addText(QPointF(70, 34), f, "PoE2 Pilot")
+        p.setPen(Qt.NoPen)
+        p.setBrush(S.gradient(path.boundingRect(), S.PINK, QColor(130, 90, 255), horizontal=True))
+        p.drawPath(path)
+        p.setPen(S.DIM)
+        p.setFont(S.font(11.5, QFont.Bold))
+        p.drawText(QPointF(71, 51), f"штурман кампании  ·  v{__version__}")
 
-        big = tile_font(22)
-        x0 = (self.width() - self.title.width * 22) / 2
-        draw_flaps(p, self.title, x0, 16, 20, 32, INK, font=big)
+        if self.title:
+            tf = S.font(19, QFont.ExtraBold, 1)
+            tw = QFontMetricsF(tf).horizontalAdvance(self.title)
+            pill = QRectF((self.width() - tw) / 2 - 46, 13, tw + 92, 38)
+            S.soft_card(p, pill, 19, QColor(255, 255, 255, 215), S.WHITE, 1.5, shadow=False)
+            p.setFont(tf)
+            p.setPen(S.INK)
+            p.drawText(pill, Qt.AlignCenter, self.title)
+            for dx in (-1, 1):
+                cx = pill.center().x() + dx * (tw / 2 + 24)
+                S.sparkle(p, QPointF(cx, pill.center().y()), 7, S.PINK if dx < 0 else S.GOLD)
 
         bx = self._buttons()
-        cx = bx["min"].left() - 22 - 5 * 18
-        draw_flaps(p, self.clock, cx, 21, 16, 24, AMBER)
+        clock = QRectF(bx["min"].left() - 92, 16, 80, 32)
+        S.soft_card(p, clock, 16, QColor(255, 255, 255, 200), None, shadow=False)
+        p.setFont(S.font(15, QFont.ExtraBold, 1))
+        p.setPen(S.INK)
+        p.drawText(clock, Qt.AlignCenter, time.strftime("%H:%M"))
         for name, r in bx.items():
-            if self.hover == name:
-                p.setPen(Qt.NoPen)
-                p.setBrush(QColor(200, 60, 50) if name == "close" else QColor(40, 43, 49))
-                p.drawRoundedRect(r, 6, 6)
-            p.setPen(QPen(INK if self.hover == name else DIM, 1.6))
+            on = self.hover == name
+            p.setPen(Qt.NoPen)
+            p.setBrush(S.PINK if on and name == "close" else QColor(255, 255, 255, 230 if on else 170))
+            p.drawEllipse(r)
+            p.setPen(QPen(S.WHITE if on and name == "close" else S.INK, 2, Qt.SolidLine, Qt.RoundCap))
             c = r.center()
             if name == "close":
-                p.drawLine(c + QPointF(-6, -6), c + QPointF(6, 6))
-                p.drawLine(c + QPointF(-6, 6), c + QPointF(6, -6))
+                p.drawLine(c + QPointF(-5, -5), c + QPointF(5, 5))
+                p.drawLine(c + QPointF(-5, 5), c + QPointF(5, -5))
             else:
-                p.drawLine(c + QPointF(-6, 0), c + QPointF(6, 0))
-        p.setPen(QPen(EDGE, 1))
-        p.drawLine(18, self.H - 1, self.width() - 18, self.H - 1)
+                p.drawLine(c + QPointF(-5, 0), c + QPointF(5, 0))
 
     def mouseMoveEvent(self, e):
         hit = next((n for n, r in self._buttons().items() if r.contains(e.position())), None)
@@ -172,128 +123,131 @@ class TitleBar(QWidget):
             self.window().windowHandle().startSystemMove()
 
 
-# ---------------------------------------------------------------- the board
-class Board(QWidget):
+# ---------------------------------------------------------------- build list
+def rarity_badge(p: QPainter, r: QRectF, e: Entry) -> None:
+    tag, _, _, top, bottom = S.rarity(e)
+    S.soft_card(p, r, r.height() * 0.24, S.gradient(r, top, bottom), S.WHITE, 2, shadow=False)
+    gloss = QPainterPath()
+    gloss.addRoundedRect(r.adjusted(3, 3, -3, -r.height() * 0.5), r.height() * 0.2, r.height() * 0.2)
+    p.setPen(Qt.NoPen)
+    p.setBrush(QColor(255, 255, 255, 60))
+    p.drawPath(gloss)
+    p.setFont(S.font(r.height() * (0.34 if len(tag) > 2 else 0.4), QFont.ExtraBold, 0.5))
+    p.setPen(S.WHITE)
+    p.drawText(r, Qt.AlignCenter, tag)
+
+
+class BuildList(QWidget):
     selected = Signal(int)
     activated = Signal(int)
 
-    def __init__(self, entries: tuple[Entry, ...], last: str | None, parent: QWidget):
+    def __init__(self, last: str | None, parent: QWidget):
         super().__init__(parent)
         self.setMouseTracking(True)
         self.last = last
-        self.flipper = _Flipper(self, lambda: [ln for row in self.rows for ln in row])
-        self.set_entries(entries)
-        w = PAD_L + sum(n for _, n in COLS) * (TW + TG) + COL_GAP * (len(COLS) - 1) + 18
-        self.setMinimumWidth(w)
+        self.cls = ""
+        self.entries: tuple[Entry, ...] = ()
+        self.sel = 0
+        self.hover = -1
+        self.top = 0
+        self.setMinimumWidth(560)
 
     def set_entries(self, entries: tuple[Entry, ...], cls: str = "") -> None:
-        """Show these builds; the rows flip in from blank, top to bottom."""
         self.entries, self.cls = entries, cls
         self.sel = next((i for i, e in enumerate(entries) if e.file == self.last), 0)
         self.hover = -1
         self.top = 0
-        self.rows = [tuple(FlapLine(w) for _, w in COLS) for _ in entries]
-        for i, (code, title, status) in enumerate(self.rows):
-            e = entries[i]
-            spins = (3 + i * 2, 9 + i * 2)            # rows settle top to bottom
-            code.set(e.code, spins)
-            title.set(e.title, spins)
-            status.set(self._status(i)[0], spins)
-        self.flipper.kick()
         self.update()
 
-    def _status(self, i: int) -> tuple[str, QColor]:
-        if i == self.sel:
-            return BOARDING
-        return status_of(self.entries[i])[:2]
-
     def visible_rows(self) -> int:
-        return max(1, (self.height() - HEAD_H) // ROW_H)
+        return max(1, int((self.height() - HEAD_H + ROW_GAP) // (ROW_H + ROW_GAP)))
 
     def select(self, i: int) -> None:
         if not self.entries:
             return
         i = max(0, min(len(self.entries) - 1, i))
         old, self.sel = self.sel, i
-        for k in {old, i}:
-            self.rows[k][2].set(self._status(k)[0], spins=(2, 7), stagger=0.3)
         n = self.visible_rows()
         self.top = min(max(self.top, i - n + 1), i)
-        self.flipper.kick()
         self.update()
         if old != i:
             self.selected.emit(i)
 
+    def row_rect(self, k: int) -> QRectF:
+        return QRectF(10, HEAD_H + k * (ROW_H + ROW_GAP), self.width() - 22, ROW_H)
+
     def row_at(self, y: float) -> int:
         if y < HEAD_H:
             return -1
-        i = self.top + int((y - HEAD_H) // ROW_H)
+        i = self.top + int((y - HEAD_H) // (ROW_H + ROW_GAP))
         return i if i < len(self.entries) else -1
 
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
         if self.cls:
-            sign = QRectF(PAD_L, 2, 28, 28)
-            p.setPen(Qt.NoPen)
-            p.setBrush(AMBER)
-            p.drawRoundedRect(sign, 6, 6)
-            draw_glyph(p, self.cls, sign.adjusted(4, 4, -4, -4), SIGN_INK, AMBER)
-            p.setFont(font(19, QFont.Bold, 2))
-            p.setPen(INK)
-            p.drawText(QPointF(PAD_L + 40, 24), self.cls.upper())
-            w = p.fontMetrics().horizontalAdvance(self.cls.upper())
-            p.setFont(font(13))
-            p.setPen(DIM)
-            p.drawText(QPointF(PAD_L + 52 + w, 24), flights(len(self.entries)))
-        x = PAD_L
-        p.setFont(font(11, QFont.DemiBold, 2))
-        p.setPen(AMBER.darker(125))
-        for label, n in COLS:
-            p.drawText(QPointF(x, HEAD_H - 12), label)
-            x += n * (TW + TG) + COL_GAP
-        p.setPen(QPen(EDGE, 1))
-        p.drawLine(0, HEAD_H - 4, self.width(), HEAD_H - 4)
-        if not self.entries:
-            p.setPen(DIM)
-            p.setFont(font(15))
-            p.drawText(self.rect().adjusted(0, HEAD_H, 0, 0), Qt.AlignCenter,
-                       "Рейсов нет: в папке builds пусто")
-            return
-        sub = font(12)
-        fm = QFontMetrics(sub)
+            badge(p, self.cls, QPointF(30, 24), 20)
+            p.setFont(S.font(24, QFont.ExtraBold, 0.5))
+            p.setPen(S.INK)
+            p.drawText(QPointF(60, 33), self.cls)
+            w = QFontMetricsF(p.font()).horizontalAdvance(self.cls)
+            S.chip(p, 72 + w, 13, S.builds_word(len(self.entries)), S.font(12, QFont.Bold), S.WHITE,
+                   S.class_color(self.cls), h=24)
         for k in range(self.visible_rows()):
             i = self.top + k
             if i >= len(self.entries):
                 break
-            e, y = self.entries[i], HEAD_H + k * ROW_H
-            row = QRectF(4, y + 2, self.width() - 8, ROW_H - 4)
-            if i == self.sel or i == self.hover:
-                p.setPen(Qt.NoPen)
-                p.setBrush(ROW_SEL if i == self.sel else ROW_HOVER)
-                p.drawRoundedRect(row, 8, 8)
-            if i == self.sel:
-                p.setBrush(AMBER)
-                p.drawRoundedRect(QRectF(4, y + 12, 4, ROW_H - 24), 2, 2)
-            x = PAD_L
-            for (label, n), line in zip(COLS, self.rows[i]):
-                ink = self._status(i)[1] if label == "СТАТУС" else INK
-                x = draw_flaps(p, line, x, y + 9, TW, TH, ink, TG) + COL_GAP
-            right = f"патч {e.patch}" + ("  ·  прошлый рейс" if e.file == self.last else "")
-            p.setFont(sub)
-            p.setPen(DIM)
-            rw = fm.horizontalAdvance(right)
-            p.drawText(QPointF(self.width() - 18 - rw, y + TH + 28), right)
-            left = " · ".join([e.role, *e.skills])
-            p.setPen(INK if i == self.sel else DIM)
-            p.drawText(QPointF(PAD_L, y + TH + 28),
-                       fm.elidedText(left, Qt.ElideRight, int(self.width() - PAD_L - rw - 36)))
-        p.setFont(font(11))
-        p.setPen(DIM)
-        if self.top > 0:
-            p.drawText(QPointF(self.width() - 60, HEAD_H - 12), "▲ ещё")
+            self._row(p, i, self.row_rect(k))
+        p.setFont(S.font(11, QFont.Bold))
+        p.setPen(S.DIM)
         if self.top + self.visible_rows() < len(self.entries):
-            p.drawText(QPointF(self.width() - 60, self.height() - 4), "▼ ещё")
+            p.drawText(QRectF(0, self.height() - 16, self.width() - 12, 16), Qt.AlignRight, "ещё ▼")
+
+    def _row(self, p: QPainter, i: int, r: QRectF) -> None:
+        e = self.entries[i]
+        sel, hov = i == self.sel, i == self.hover
+        if sel:
+            r = r.translated(4, 0)
+            for k, a in ((8, 30), (4, 60)):
+                g = QColor(S.PINK)
+                g.setAlpha(a)
+                p.setPen(Qt.NoPen)
+                p.setBrush(g)
+                p.drawRoundedRect(r.adjusted(-k, -k, k, k), 18 + k, 18 + k)
+        border = S.PINK if sel else QColor(200, 185, 255) if hov else S.WHITE
+        S.soft_card(p, r, 18, QColor(255, 255, 255, 240 if sel else 215), border, 2.5 if sel else 1.5)
+        rarity_badge(p, QRectF(r.left() + 14, r.top() + 14, 56, 56), e)
+
+        x = r.left() + 86
+        right = r.right() - 150
+        p.setFont(S.font(17, QFont.ExtraBold))
+        p.setPen(S.INK)
+        fm = QFontMetricsF(p.font())
+        title = fm.elidedText(e.title, Qt.ElideRight, right - x - 10)
+        p.drawText(QPointF(x, r.top() + 33), title)
+        if e.file == self.last:
+            S.chip(p, x + fm.horizontalAdvance(title) + 10, r.top() + 15, "последний",
+                   S.font(10.5, QFont.Bold), S.WHITE, S.PINK, h=20)
+        S.chips(p, QRectF(x, r.top() + 44, right - x, 24), [e.role, *e.skills], S.font(11.5, QFont.Bold),
+                S.INK, S.LAVENDER, h=24)
+
+        tag, n, label = S.rarity(e)[:3]
+        sx = r.right() - 132
+        S.stars(p, sx, r.top() + 30, 7.5, n)
+        p.setFont(S.font(12, QFont.Bold))
+        p.setPen(S.PINK.darker(115) if tag == "SSR" else S.DIM)
+        p.drawText(QRectF(sx, r.top() + 44, 120, 18), Qt.AlignLeft, label)
+        p.setFont(S.font(11, QFont.Bold))
+        p.setPen(S.DIM)
+        p.drawText(QRectF(sx, r.top() + 60, 120, 16), Qt.AlignLeft, f"патч {e.patch}")
+        if sel:
+            tip = QPainterPath(QPointF(r.left() - 12, r.center().y() - 9))
+            tip.lineTo(QPointF(r.left() - 3, r.center().y()))
+            tip.lineTo(QPointF(r.left() - 12, r.center().y() + 9))
+            tip.closeSubpath()
+            p.setPen(Qt.NoPen)
+            p.setBrush(S.PINK)
+            p.drawPath(tip)
 
     def resizeEvent(self, _):
         self.select(self.sel)
@@ -302,6 +256,7 @@ class Board(QWidget):
         h = self.row_at(e.position().y())
         if h != self.hover:
             self.hover = h
+            self.setCursor(Qt.PointingHandCursor if h >= 0 else Qt.ArrowCursor)
             self.update()
 
     def leaveEvent(self, _):
@@ -322,10 +277,10 @@ class Board(QWidget):
         self.select(self.sel + (1 if e.angleDelta().y() < 0 else -1))
 
 
-# ---------------------------------------------------------------- boarding pass
-class BoardingPass(QWidget):
-    W, H = 372, 548
-    STUB_H = 112
+# ---------------------------------------------------------------- hero card of the build
+class HeroCard(QWidget):
+    W, H = 384, 548
+    BANNER = 214
 
     def __init__(self, catalog: Catalog, parent: QWidget):
         super().__init__(parent)
@@ -334,8 +289,9 @@ class BoardingPass(QWidget):
         self.cat = catalog
         self.entry: Entry | None = None
         self.link = QRectF()
+        self.phase = 0.0
         self._t = 1.0
-        self.anim = QVariantAnimation(self, startValue=0.0, endValue=1.0, duration=220)
+        self.anim = QVariantAnimation(self, startValue=0.0, endValue=1.0, duration=240)
         self.anim.valueChanged.connect(self._step)
 
     def _step(self, v):
@@ -347,156 +303,102 @@ class BoardingPass(QWidget):
         self.anim.stop()
         self.anim.start()
 
-    def _paper(self, r: QRectF) -> QPainterPath:
-        path = QPainterPath()
-        path.addRoundedRect(r, 12, 12)
-        cut = QPainterPath()
-        y = r.bottom() - self.STUB_H
-        for cx in (r.left(), r.right()):
-            cut.addEllipse(QPointF(cx, y), 13, 13)
-        return path.subtracted(cut)
-
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        e = self.entry
-        t = self._t
-        p.setOpacity(0.35 + 0.65 * t)
-        p.translate(0, (1 - t) * 16)
-        card = QRectF(8, 4, self.W - 16, self.H - 14)
-        paper = self._paper(card)
-        p.setPen(Qt.NoPen)
-        p.setBrush(QColor(0, 0, 0, 140))
-        p.drawPath(paper.translated(0, 5))
-        p.setBrush(PAPER)
-        p.drawPath(paper)
-
-        band = QPainterPath()
-        band.addRoundedRect(QRectF(card.left(), card.top(), card.width(), 46), 12, 12)
-        band.addRect(QRectF(card.left(), card.top() + 30, card.width(), 16))
-        p.setBrush(PAPER_INK)
-        p.drawPath(band.simplified())
-        p.setPen(PAPER)
-        p.setFont(font(11, QFont.DemiBold, 2.2))
-        p.drawText(QPointF(card.left() + 18, card.top() + 28), "ПОСАДОЧНЫЙ ТАЛОН")
-        brand.draw_logo(p, QRectF(card.right() - 40, card.top() + 9, 28, 28))
+        p.setRenderHint(QPainter.SmoothPixmapTransform)
+        e, t = self.entry, self._t
+        card = QRectF(10, 6, self.W - 20, self.H - 18)
+        S.soft_card(p, card, 24, QColor(255, 255, 255, 235), S.WHITE, 2)
         if e is None:
             return
+        col = S.class_color(e.cls)
 
-        L, R = card.left() + 20, card.right() - 20
-        y = card.top() + 74
-
-        def label(text: str, x: float, yy: float) -> None:
-            p.setPen(PAPER_DIM)
-            p.setFont(font(10, QFont.DemiBold, 1.6))
-            p.drawText(QPointF(x, yy), text)
-
-        def value(text: str, x: float, yy: float, px: int = 15, w: float | None = None,
-                  weight: QFont.Weight = QFont.DemiBold) -> None:
-            f = font(px, weight)
-            p.setFont(f)
-            p.setPen(PAPER_INK)
-            if w:
-                text = QFontMetrics(f).elidedText(text, Qt.ElideRight, int(w))
-            p.drawText(QPointF(x, yy), text)
-
-        label("ПАССАЖИР", L, y)
-        value(e.role.upper(), L, y + 28, 24, R - L - 10, QFont.Bold)
-        if e.ascendancy:
-            p.setPen(PAPER_DIM)
-            p.setFont(font(13))
-            p.drawText(QPointF(L, y + 48), e.cls)
-
-        y += 84                                          # from -> to, with the plane between
-        label("ОТКУДА", L, y)
-        label("КУДА", R - 70, y)
-        value("A1", L, y + 36, 34, weight=QFont.Bold)
-        value("END", R - 70, y + 36, 34, weight=QFont.Bold)
-        mid_l, mid_r, my = L + 64, R - 82, y + 24
-        p.setPen(QPen(PAPER_DIM, 1.4, Qt.DashLine))
-        p.drawLine(QPointF(mid_l, my), QPointF(mid_r, my))
-        cx = (mid_l + mid_r) / 2
-        p.setPen(Qt.NoPen)
-        p.setBrush(PAPER)
-        p.drawEllipse(QPointF(cx, my), 15, 15)
-        plane = QPainterPath(QPointF(cx + 11, my))
-        for dx, dy in ((-9, -8), (-4, 0), (-9, 8)):
-            plane.lineTo(QPointF(cx + dx, my + dy))
-        plane.closeSubpath()
-        p.setBrush(PAPER_INK)
-        p.drawPath(plane)
-        p.setPen(PAPER_DIM)
-        p.setFont(font(11))
-        fm = QFontMetrics(p.font())
-        p.drawText(QPointF(L, y + 54), fm.elidedText(self.cat.start, Qt.ElideRight, 140))
-        fin = fm.elidedText(self.cat.finish, Qt.ElideRight, 150)
-        p.drawText(QPointF(R - fm.horizontalAdvance(fin), y + 54), fin)
-
-        y += 82
-        third = (R - L) / 3
-        for k, (lab, val) in enumerate((("РЕЙС", e.code), ("ПАТЧ", e.patch), ("РЕВИЗИЯ", str(e.rev)))):
-            label(lab, L + k * third, y)
-            value(val, L + k * third, y + 22, 17)
-        y += 44
-        label("АВТОР", L, y)
-        value(e.author, L, y + 20, 14, R - L)
-        y += 40
-        label("СКИЛЛЫ", L, y)
-        p.setFont(font(13, QFont.DemiBold))
-        p.setPen(PAPER_INK)
-        p.drawText(QRectF(L, y + 5, R - L, 36), Qt.TextWordWrap, " · ".join(e.skills))
-        y += 46
-        label("ОБЯЗАТЕЛЬНО", L, y)
-        value(", ".join(e.musts) or "—", L, y + 20, 13, R - L)
-        y += 30
-        if e.note:
-            f = font(12)
-            f.setItalic(True)
-            p.setFont(f)
-            p.setPen(PAPER_DIM)
-            p.drawText(QRectF(L, y, R - L, card.bottom() - self.STUB_H - y - 6), Qt.TextWordWrap, e.note)
-
-        sy = card.bottom() - self.STUB_H              # perforation, then the stub
-        p.setPen(QPen(PAPER_DIM, 1.2, Qt.DotLine))
-        p.drawLine(QPointF(card.left() + 18, sy), QPointF(card.right() - 18, sy))
-        bars = hashlib.sha256(f"{e.file}:{e.rev}".encode()).digest()
-        bx = L
-        p.setPen(Qt.NoPen)
-        p.setBrush(PAPER_INK)
-        for b in bars:
-            w = 1 + (b & 3)
-            p.drawRect(QRectF(bx, sy + 22, w, 56))
-            bx += w + 1 + ((b >> 2) & 1) * 2
-            if bx > L + 176:
-                break
-        p.setPen(PAPER_DIM)
-        p.setFont(font(10, spacing=1.4))
-        p.drawText(QPointF(L, sy + 94), e.file.rsplit(".", 1)[0][:30])
-        stamp_text, ink = status_of(e)[2:]
+        banner = QRectF(card.left() + 8, card.top() + 8, card.width() - 16, self.BANNER)
+        clip = QPainterPath()
+        clip.addRoundedRect(banner, 18, 18)
         p.save()
-        p.translate(R - 70, sy + 46)
-        p.rotate(-9)
-        sf = font(13, QFont.Bold, 1.6)
-        sw = QFontMetrics(sf).horizontalAdvance(stamp_text) + 22
-        c = QColor(ink)
-        c.setAlpha(200)
-        p.setPen(QPen(c, 2.2))
-        p.setBrush(Qt.NoBrush)
-        p.drawRoundedRect(QRectF(-sw / 2, -17, sw, 34), 6, 6)
-        p.setPen(QPen(c, 1))
-        p.drawRoundedRect(QRectF(-sw / 2 + 4, -13, sw - 8, 26), 4, 4)
-        p.setFont(sf)
-        p.drawText(QRectF(-sw / 2, -17, sw, 34), Qt.AlignCenter, stamp_text)
+        p.setClipPath(clip)
+        p.fillPath(clip, S.gradient(banner, col.lighter(170), col.lighter(115)))
+        hub = QPointF(banner.right() - 100, banner.bottom() - 30)
+        p.setPen(Qt.NoPen)
+        p.setBrush(QColor(255, 255, 255, 34))
+        for k in range(9):                                 # light rays from behind the hero
+            a = math.radians(100 + k * 20 + self.phase * 4)
+            ray = QPainterPath(hub)
+            ray.lineTo(hub + QPointF(420 * math.cos(a - 0.06), -420 * math.sin(a - 0.06)))
+            ray.lineTo(hub + QPointF(420 * math.cos(a + 0.06), -420 * math.sin(a + 0.06)))
+            ray.closeSubpath()
+            p.drawPath(ray)
+        glow = QRadialGradient(hub, banner.width() * 0.5)
+        glow.setColorAt(0, QColor(255, 255, 255, 200))
+        glow.setColorAt(1, QColor(255, 255, 255, 0))
+        p.setBrush(glow)
+        p.drawRect(banner)
+        side = int(self.BANNER + 6)
+        art = class_art(e.cls, side)
+        if art is not None:
+            p.setOpacity(0.35 + 0.65 * t)
+            p.drawPixmap(QPointF(banner.right() - side + 14 + (1 - t) * 30, banner.bottom() - side + 10), art)
+            p.setOpacity(1.0)
+        for k, (fx, fy, s) in enumerate(((0.12, 0.70, 6), (0.40, 0.18, 8), (0.30, 0.86, 5), (0.92, 0.12, 6))):
+            a = int(160 + 90 * math.sin(self.phase * 2 + k * 1.3))
+            S.sparkle(p, QPointF(banner.left() + fx * banner.width(), banner.top() + fy * banner.height()), s,
+                      QColor(255, 255, 255, max(0, min(255, a))))
         p.restore()
+
+        rarity_badge(p, QRectF(banner.left() + 14, banner.top() + 14, 64, 40), e)
+        S.stars(p, banner.left() + 15, banner.top() + 68, 7, S.rarity(e)[1])
+        p.setFont(S.font(12, QFont.ExtraBold))
+        p.setPen(S.WHITE)
+        p.drawText(QRectF(banner.left() + 14, banner.top() + 80, 160, 20), Qt.AlignLeft, S.rarity(e)[2].upper())
+
+        L, R = card.left() + 22, card.right() - 22
+        y = banner.bottom() + 36
+        p.setFont(S.font(22, QFont.ExtraBold))
+        p.setPen(S.INK)
+        p.drawText(QPointF(L, y), QFontMetricsF(p.font()).elidedText(e.role, Qt.ElideRight, R - L))
+        p.setFont(S.font(13, QFont.Bold))
+        p.setPen(S.DIM)
+        sub = e.title if not e.ascendancy else f"{e.title}  ·  {e.cls}"
+        p.drawText(QPointF(L, y + 22), QFontMetricsF(p.font()).elidedText(sub, Qt.ElideRight, R - L))
+
+        y += 40
+        third = (R - L) / 3
+        for k, (lab, val) in enumerate((("автор", e.author), ("патч", e.patch), ("версия", str(e.rev)))):
+            x = L + k * third
+            p.setFont(S.font(11, QFont.Bold))
+            p.setPen(S.DIM)
+            p.drawText(QPointF(x, y + 12), lab)
+            p.setFont(S.font(14, QFont.ExtraBold))
+            p.setPen(S.INK)
+            p.drawText(QPointF(x, y + 32), QFontMetricsF(p.font()).elidedText(val, Qt.ElideRight, third - 8))
+
+        y += 46
+        p.setFont(S.font(11, QFont.Bold))
+        p.setPen(S.DIM)
+        p.drawText(QPointF(L, y + 10), "скиллы")
+        y += 16 + S.chips(p, QRectF(L, y + 16, R - L, 54), e.skills, S.font(12, QFont.Bold), S.INK, S.LAVENDER,
+                          h=24)
+        y += 12
+        p.setFont(S.font(11, QFont.Bold))
+        p.setPen(S.DIM)
+        p.drawText(QPointF(L, y + 10), "обязательно пройти")
+        y += 16 + S.chips(p, QRectF(L, y + 16, R - L, 54), e.musts or ("ничего",), S.font(12, QFont.Bold),
+                          S.PINK.darker(110), QColor(255, 236, 246), S.PINK, h=24)
+        if e.note:
+            p.setFont(S.font(12))
+            p.setPen(S.DIM)
+            p.drawText(QRectF(L, y + 12, R - L, card.bottom() - y - 46), Qt.TextWordWrap, e.note)
 
         self.link = QRectF()
         if e.source:
-            p.setFont(font(12, QFont.DemiBold))
-            p.setPen(QColor(44, 88, 150))
-            txt = "ГАЙД ↗"
-            w = QFontMetrics(p.font()).horizontalAdvance(txt)
-            self.link = QRectF(R - w, sy + 64, w, 22).translated(0, (1 - t) * 16)
-            p.drawText(QPointF(R - w, sy + 80), txt)
+            p.setFont(S.font(13, QFont.ExtraBold))
+            txt = "открыть гайд ↗"
+            w = QFontMetricsF(p.font()).horizontalAdvance(txt)
+            self.link = QRectF(R - w, card.bottom() - 34, w, 22)
+            p.setPen(S.PINK)
+            p.drawText(self.link, Qt.AlignLeft | Qt.AlignVCenter, txt)
 
     def mouseMoveEvent(self, e):
         self.setCursor(Qt.PointingHandCursor if self.link.contains(e.position()) else Qt.ArrowCursor)
@@ -506,12 +408,13 @@ class BoardingPass(QWidget):
             QDesktopServices.openUrl(QUrl(self.entry.source))
 
 
-# ---------------------------------------------------------------- take-off button
-class TakeoffButton(QAbstractButton):
+# ---------------------------------------------------------------- start button
+class StartButton(QAbstractButton):
     def __init__(self, parent: QWidget):
         super().__init__(parent)
-        self.setFixedHeight(58)
+        self.setFixedHeight(66)
         self.setCursor(Qt.PointingHandCursor)
+        self.phase = 0.0
 
     def enterEvent(self, _):
         self.update()
@@ -522,31 +425,41 @@ class TakeoffButton(QAbstractButton):
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        r = QRectF(self.rect()).adjusted(8, 2, -8, -4)
-        on = self.isEnabled()
-        g = QLinearGradient(r.topLeft(), r.bottomLeft())
-        top = AMBER.lighter(112) if self.underMouse() and on else AMBER
+        r = QRectF(self.rect()).adjusted(12, 4, -12, -8)
+        on, hot = self.isEnabled(), self.underMouse() and self.isEnabled()
+        a, b = (S.PINK, S.GOLD) if on else (S.FAINT, S.FAINT)
+        if hot:
+            a, b = a.lighter(108), b.lighter(108)
         if self.isDown():
-            top = AMBER.darker(115)
-        g.setColorAt(0, top if on else FAINT)
-        g.setColorAt(1, top.darker(118) if on else FAINT.darker(120))
+            a, b = a.darker(110), b.darker(110)
+        S.soft_card(p, r, r.height() / 2, S.gradient(r, a, b, horizontal=True), S.WHITE, 3)
+        gloss = QPainterPath()
+        gloss.addRoundedRect(r.adjusted(10, 5, -10, -r.height() * 0.52), r.height() / 4, r.height() / 4)
         p.setPen(Qt.NoPen)
-        p.setBrush(g)
-        p.drawRoundedRect(r, 12, 12)
-        p.setPen(PAPER_INK)
-        p.setFont(font(21, QFont.Bold, 4))
-        p.drawText(r.adjusted(0, 0, -30, 0), Qt.AlignCenter, "ВЗЛЁТ")
-        c = QPointF(r.right() - 34, r.center().y())
-        plane = QPainterPath(c + QPointF(12, -9))
-        for pt in (QPointF(-12, 0), QPointF(-3, 2), QPointF(0, 10)):
-            plane.lineTo(c + pt)
-        plane.closeSubpath()
-        p.setPen(Qt.NoPen)
-        p.setBrush(PAPER_INK)
-        p.drawPath(plane)
-        p.setPen(QColor(34, 32, 27, 150))
-        p.setFont(font(10, QFont.DemiBold, 1.5))
-        p.drawText(QRectF(r.left() + 16, r.top(), 60, r.height()), Qt.AlignVCenter, "ENTER")
+        p.setBrush(QColor(255, 255, 255, 70))
+        p.drawPath(gloss)
+        if on:                                              # a shine sweeping across
+            x = r.left() + ((self.phase * 0.35) % 1.6 - 0.3) * r.width()
+            shine = QPainterPath(QPointF(x, r.top()))
+            for pt in ((x + 26, r.top()), (x + 6, r.bottom()), (x - 20, r.bottom())):
+                shine.lineTo(QPointF(*pt))
+            shine.closeSubpath()
+            clip = QPainterPath()
+            clip.addRoundedRect(r, r.height() / 2, r.height() / 2)
+            p.save()
+            p.setClipPath(clip)
+            p.setBrush(QColor(255, 255, 255, 70))
+            p.drawPath(shine)
+            p.restore()
+        p.setFont(S.font(23, QFont.ExtraBold, 4))
+        p.setPen(S.WHITE)
+        p.drawText(r, Qt.AlignCenter, "СТАРТ")
+        tw = QFontMetricsF(p.font()).horizontalAdvance("СТАРТ")
+        for dx in (-1, 1):
+            S.sparkle(p, QPointF(r.center().x() + dx * (tw / 2 + 22), r.center().y()), 8, S.WHITE)
+        p.setFont(S.font(10, QFont.ExtraBold, 1))
+        p.setPen(QColor(255, 255, 255, 190))
+        p.drawText(r.adjusted(22, 0, 0, 0), Qt.AlignLeft | Qt.AlignVCenter, "ENTER")
 
 
 # ---------------------------------------------------------------- the window
@@ -567,11 +480,12 @@ def run_async(owner: QWidget, fn: Callable[[], object], cb: Callable[[object, ob
     threading.Thread(target=work, daemon=True).start()
 
 
-BUTTON_CSS = (
-    "QPushButton{color:#ffb23e;background:transparent;border:1px solid #ffb23e;border-radius:8px;"
-    "padding:3px 14px;font:600 12px 'Bahnschrift';}"
-    "QPushButton:hover{background:#ffb23e;color:#22201b;}"
-    "QPushButton:disabled{color:#5a5e66;border-color:#3a3d44;}")
+def button_css(fam: str) -> str:
+    return (f"QPushButton{{color:#ffffff;background:qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #ff5fa2,"
+            f"stop:1 #ffb938);border:2px solid #ffffff;border-radius:11px;padding:4px 16px;min-height:16px;"
+            f"font:800 12px '{fam}';}}"
+            f"QPushButton:hover{{background:qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #ff79b3,stop:1 #ffc95c);}}"
+            f"QPushButton:disabled{{background:#d9d4e8;}}")
 
 
 class BoardWindow(QWidget):
@@ -584,73 +498,72 @@ class BoardWindow(QWidget):
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setWindowTitle("PoE2 Pilot")
         self.setWindowIcon(brand.logo_icon())
+        fam, bold = S.load_fonts(), S.family(700)
         self.cat = catalog
         self.result: str | None = None
         self.restart = False
         self.updater = updater
         self._remote: dict | None = None
         self._open_url: str | None = None
+        rng = random.Random(7)
+        self.twinkles = [(rng.random(), rng.random(), rng.uniform(3, 9), rng.uniform(0, 6.3),
+                          rng.choice((S.WHITE, S.GOLD, S.PINK, QColor(150, 200, 255)))) for _ in range(30)]
+        self.phase = 0.0
 
         self.bar = TitleBar(self)
         prev = catalog.find(last)
-        self.gates = ClassPicker(catalog, prev.cls if prev else None, self, AMBER, INK, DIM, FAINT, EDGE)
-        self.gates.opened.connect(self.open_class)
-        self.gate_flips = _Flipper(self.gates, self.gates.lines)
-        self.gate_flips.kick()
-        self.board = Board((), last, self)
-        self.ticket = BoardingPass(catalog, self)
-        self.go = TakeoffButton(self)
+        self.heroes = HeroPicker(catalog, prev.cls if prev else None, self)
+        self.heroes.opened.connect(self.open_class)
+        self.builds = BuildList(last, self)
+        self.card = HeroCard(catalog, self)
+        self.go = StartButton(self)
         self.go.clicked.connect(self.take_off)
-        self.board.selected.connect(lambda i: self.ticket.set_entry(self.board.entries[i]))
-        self.board.activated.connect(lambda i: self.take_off())
+        self.builds.selected.connect(lambda i: self.card.set_entry(self.builds.entries[i]))
+        self.builds.activated.connect(lambda i: self.take_off())
 
         side = QVBoxLayout()
-        side.setSpacing(14)
-        side.addWidget(self.ticket)
+        side.setSpacing(8)
+        side.addWidget(self.card)
         side.addWidget(self.go)
         side.addStretch(1)
         flight = QWidget(self)
         body = QHBoxLayout(flight)
-        body.setContentsMargins(14, 12, 18, 6)
-        body.setSpacing(16)
-        body.addWidget(self.board, 1)
+        body.setContentsMargins(18, 8, 18, 4)
+        body.setSpacing(18)
+        body.addWidget(self.builds, 1)
         body.addLayout(side)
-        gate_page = QWidget(self)
-        gl = QVBoxLayout(gate_page)
-        gl.setContentsMargins(22, 16, 22, 8)
-        gl.setSpacing(12)
-        hint = QLabel("Выбери класс — откроется табло его рейсов", gate_page)
-        hint.setStyleSheet("color:#80858e;font:13px 'Bahnschrift';")
-        gl.addWidget(hint)
-        gl.addWidget(self.gates, 1)
+        hero_page = QWidget(self)
+        hl = QVBoxLayout(hero_page)
+        hl.setContentsMargins(22, 10, 22, 6)
+        hl.addWidget(self.heroes, 1)
         self.pages = QStackedWidget(self)
-        self.pages.addWidget(gate_page)
+        self.pages.addWidget(hero_page)
         self.pages.addWidget(flight)
 
+        css = f"color:#8a82a8;font:700 12px '{bold}';"
         self.info = QLabel(f"контент {content_version or '—'}  ·  игра {catalog.game or '—'}", self)
         self.news = QLabel("", self)
+        self.keys = QLabel(self)
         for lab in (self.info, self.news):
-            lab.setStyleSheet("color:#80858e;font:12px 'Bahnschrift';")
+            lab.setStyleSheet(css)
+        self.keys.setStyleSheet(f"color:#b0a9c9;font:700 12px '{bold}';")
         self.action = QPushButton(self)
-        self.action.setStyleSheet(BUTTON_CSS)
-        self.action.setCursor(Qt.PointingHandCursor)
+        self.back = QPushButton("← Герои", self)
+        for b in (self.action, self.back):
+            b.setStyleSheet(button_css(fam))           # ExtraBold lives in the base family
+            b.setCursor(Qt.PointingHandCursor)
         self.action.hide()
         self.action.clicked.connect(self._act)
-        self.keys = QLabel(self)
-        self.keys.setStyleSheet("color:#464a52;font:12px 'Bahnschrift';")
-        self.back = QPushButton("← Классы", self)
-        self.back.setStyleSheet(BUTTON_CSS)
-        self.back.setCursor(Qt.PointingHandCursor)
-        self.back.clicked.connect(self.show_gates)
+        self.back.clicked.connect(self.show_heroes)
         foot = QHBoxLayout()
-        foot.setContentsMargins(22, 4, 22, 14)
+        foot.setContentsMargins(24, 2, 24, 14)
         foot.setSpacing(12)
         foot.addWidget(self.back)
         foot.addWidget(self.info)
         foot.addStretch(1)
         foot.addWidget(self.news)
         foot.addWidget(self.action)
-        foot.addSpacing(18)
+        foot.addSpacing(16)
         foot.addWidget(self.keys)
 
         root = QVBoxLayout(self)
@@ -660,17 +573,28 @@ class BoardWindow(QWidget):
         root.addWidget(self.pages, 1)
         root.addLayout(foot)
         self.resize(1190, 720)
-        self.setMinimumSize(1100, 640)
-        self.show_gates()
+        self.setMinimumSize(1100, 660)
+        self.show_heroes()
+
+        self.timer = QTimer(self)                         # twinkles and the start button's shine
+        self.timer.setInterval(TWINKLE_MS)
+        self.timer.timeout.connect(self._twinkle)
+        self.timer.start()
 
         if updater is not None:
             self.news.setText("проверяю обновления…")
             run_async(self, updater.check, self._checked)
 
+    def _twinkle(self) -> None:
+        self.phase += TWINKLE_MS / 1000
+        for w in (self.heroes, self.card, self.go):
+            w.phase = self.phase
+        self.update()
+
     # -- updates
     def _checked(self, res, err) -> None:
         if err is not None:
-            self.news.setText("GitHub недоступен — летим с тем, что есть")
+            self.news.setText("GitHub недоступен — играем с тем, что есть")
             return
         if res.content:
             self._remote = res.content
@@ -710,29 +634,31 @@ class BoardWindow(QWidget):
         QTimer.singleShot(700, self.close)
 
     # -- pages
-    def show_gates(self) -> None:
+    def show_heroes(self) -> None:
         self.pages.setCurrentIndex(0)
         self.back.hide()
-        self.keys.setText("← → ↑ ↓ выбрать   ·   Enter открыть   ·   Esc выход")
+        self.bar.set_title("Выбери героя")
+        self.keys.setText("← → ↑ ↓ выбрать  ·  Enter открыть  ·  Esc выход")
 
     def open_class(self, cls: str) -> None:
         entries = tuple(e for e in self.cat.entries if e.cls == cls)
         if not entries:
             return
-        self.board.set_entries(entries, cls)
-        self.ticket.set_entry(entries[self.board.sel])
+        self.builds.set_entries(entries, cls)
+        self.card.set_entry(entries[self.builds.sel])
         self.pages.setCurrentIndex(1)
         self.back.show()
-        self.keys.setText("↑ ↓ выбрать   ·   Enter взлёт   ·   Esc назад")
+        self.bar.set_title("Выбери билд")
+        self.keys.setText("↑ ↓ выбрать  ·  Enter старт  ·  Esc назад")
 
     @property
     def on_board(self) -> bool:
         return self.pages.currentIndex() == 1
 
-    # -- take-off and keys
+    # -- start and keys
     def take_off(self) -> None:
-        if self.on_board and self.board.entries:
-            self.result = self.board.entries[self.board.sel].file
+        if self.on_board and self.builds.entries:
+            self.result = self.builds.entries[self.builds.sel].file
             self.close()
 
     def keyPressEvent(self, e):
@@ -740,15 +666,15 @@ class BoardWindow(QWidget):
         if not self.on_board:
             arrows = {Qt.Key_Left: (-1, 0), Qt.Key_Right: (1, 0), Qt.Key_Up: (0, -1), Qt.Key_Down: (0, 1)}
             if k in arrows:
-                self.gates.move_focus(*arrows[k])
+                self.heroes.move_focus(*arrows[k])
             elif k in (Qt.Key_Return, Qt.Key_Enter):
-                self.gates.open()
+                self.heroes.open()
             elif k == Qt.Key_Escape:
                 self.close()
             else:
                 super().keyPressEvent(e)
             return
-        b = self.board
+        b = self.builds
         step = {Qt.Key_Up: -1, Qt.Key_Down: 1, Qt.Key_PageUp: -b.visible_rows(),
                 Qt.Key_PageDown: b.visible_rows()}
         if k in step:
@@ -760,17 +686,41 @@ class BoardWindow(QWidget):
         elif k in (Qt.Key_Return, Qt.Key_Enter):
             self.take_off()
         elif k in (Qt.Key_Escape, Qt.Key_Backspace):
-            self.show_gates()
+            self.show_heroes()
         else:
             super().keyPressEvent(e)
 
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        p.setPen(QPen(EDGE, 1))
-        p.setBrush(BG)
-        p.drawRoundedRect(QRectF(self.rect()).adjusted(0.5, 0.5, -0.5, -0.5), 14, 14)
+        r = QRectF(self.rect()).adjusted(0.5, 0.5, -0.5, -0.5)
+        shape = QPainterPath()
+        shape.addRoundedRect(r, 22, 22)
+        g = S.gradient(r, QColor(255, 228, 241), QColor(221, 243, 255))
+        g.setFinalStop(r.bottomRight())
+        g.setColorAt(0.5, QColor(238, 230, 255))
+        p.fillPath(shape, g)
+        p.save()
+        p.setClipPath(shape)
+        for fx, fy, rad, col in ((0.12, 0.18, 300, QColor(255, 255, 255, 150)),
+                                 (0.88, 0.92, 340, QColor(255, 194, 224, 110)),
+                                 (0.92, 0.08, 260, QColor(191, 230, 255, 120))):
+            blob = QRadialGradient(r.left() + fx * r.width(), r.top() + fy * r.height(), rad)
+            blob.setColorAt(0, col)
+            blob.setColorAt(1, QColor(col.red(), col.green(), col.blue(), 0))
+            p.setPen(Qt.NoPen)
+            p.setBrush(blob)
+            p.drawRect(r)
+        for fx, fy, s, ph, col in self.twinkles:
+            c = QColor(col)
+            c.setAlpha(int(110 + 110 * math.sin(self.phase * 1.6 + ph)))
+            S.sparkle(p, QPointF(r.left() + fx * r.width(), r.top() + fy * r.height()), s, c)
+        p.restore()
+        p.setPen(QPen(QColor(255, 255, 255, 230), 1.5))
+        p.setBrush(Qt.NoBrush)
+        p.drawPath(shape)
 
     def closeEvent(self, e):
         super().closeEvent(e)
+        self.timer.stop()
         self.finished.emit()
