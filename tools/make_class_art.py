@@ -21,7 +21,6 @@ OUT = ROOT / "data" / "ui" / "classes"
 SKIN, SKIN_SHADE, SKIN_LINE = "#FFE9DC", "#F7C6B2", "#C9877A"
 LASH = "#2A1B2E"
 MIRROR = 'transform="matrix(-1 0 0 1 200 0)"'
-EYE_SCALE = 'transform="matrix(0.9 0 0 0.9 8.4 11.3)"'      # 0.9 around the eye centre (84, 103)
 
 
 def shape(d: str, fill: str, line: str | None = None, w: float = 1.6, extra: str = "") -> str:
@@ -53,70 +52,63 @@ def twinkle(x: float, y: float, s: float, color: str = "#FFFFFF", opacity: float
 
 
 # ---------------------------------------------------------------- face
+# TV-anime look: flat colours with one hard shadow tone, almond eyes with a small iris and two
+# highlights, thin coloured lines. The head is drawn at 1:1 here and scaled down as a group (HEAD).
+HEAD = 'transform="matrix(0.84 0 0 0.84 16 12.2)"'
+
+
 def eye(c: dict) -> str:
-    """Left eye (viewer's left), centred near (83, 102); the right one is its mirror."""
+    """Left eye (viewer's left), centred near (85, 101); the right one is its mirror."""
     return "".join([
-        shape("M70,97 C72,90 90,88 96,94 L96.5,108 C93,114.5 76,115 71.5,108.5 Z", "url(#sclera)"),
-        f'<ellipse cx="84" cy="103.5" rx="9.6" ry="12" fill="url(#iris)" stroke="{c["eye_dark"]}" stroke-width="1"/>',
-        stroke("M76.5,103.5 A7.5 9.5 0 0 0 91.5,103.5", c["eye_light"], 0.8, 0.55),
-        '<ellipse cx="84" cy="104.5" rx="4.4" ry="6" fill="url(#pupil)"/>',
-        '<ellipse cx="84" cy="96.5" rx="9.8" ry="5.2" fill="url(#lid)"/>',
-        shape("M76.5,108 Q84,117 91.5,108 Q84,112.5 76.5,108 Z", c["eye_glow"], extra=' opacity="0.95"'),
-        '<ellipse cx="80" cy="98.5" rx="3.6" ry="4.6" fill="#FFFFFF" transform="rotate(-22 80 98.5)"/>',
-        '<circle cx="88.5" cy="108.5" r="1.7" fill="#FFFFFF"/>',
-        '<circle cx="79.5" cy="108" r="0.9" fill="#FFFFFF" opacity="0.85"/>',
-        twinkle(89, 98.5, 2.6),
-        # upper lash: thick, winged at the outer corner, a few spikes
-        shape("M69,99 C71,89 88,85.5 98,92.5 L100,91 L98.5,96 C92,90.5 78,90.5 71.5,100.5 Z", LASH),
-        shape("M70.5,96.5 L62.5,92.5 L71,100.5 Z", LASH),
-        shape("M72.5,93.5 L67,87.5 L75.5,91.5 Z", LASH),
-        shape("M77,90.5 L74,85 L80.5,89.5 Z", LASH),
-        stroke("M73.5,88 Q84,82.5 95,87.5", LASH, 0.9, 0.45),          # crease
-        stroke("M75,111.5 Q83,115.5 91,112.5", LASH, 0.9, 0.55),       # lower lash
-        stroke("M72.5,109.5 L70.5,111.5", LASH, 0.9, 0.55),
+        shape("M71,101 C75,94 90,92.5 96.5,98.5 C93.5,108 77,110 71,101 Z", "#FFFFFF"),
+        shape("M71.5,100 C76,94.5 90,93.5 96,98.5 L95.5,100.5 C89,96.5 77,97 72,101.5 Z", "#DCD8EA"),
+        '<ellipse cx="85" cy="101.5" rx="6.6" ry="8" fill="{mid}"/>'.format(mid=c["eye_mid"]),
+        '<ellipse cx="85" cy="98.6" rx="6.1" ry="4.8" fill="{d}" opacity="0.85"/>'.format(d=c["eye_dark"]),
+        '<ellipse cx="85" cy="102" rx="2.8" ry="4" fill="#140C1C"/>',
+        '<ellipse cx="85.5" cy="106" rx="3.8" ry="1.8" fill="{l}" opacity="0.8"/>'.format(l=c["eye_light"]),
+        '<ellipse cx="82.5" cy="98.4" rx="2.3" ry="2.9" fill="#FFFFFF"/>',
+        '<circle cx="88.2" cy="104.6" r="1.1" fill="#FFFFFF"/>',
+        shape("M69,100.5 C73,92.5 90,90.5 97.5,97 L98.5,99.5 C91,94.5 76.5,94.5 70.5,102.5 Z", LASH),
+        shape("M69.5,100.5 L65.5,98.8 L70.6,102.4 Z", LASH),
+        stroke("M76,107.8 Q84,110.3 91.5,107.2", LASH, 0.9, 0.5),
+        stroke("M74,91.5 Q84,87.5 94,90.5", LASH, 0.8, 0.35),
     ])
 
 
 def eye_defs(c: dict) -> str:
-    return "".join([
-        lin("sclera", (0, "#E6E4F2"), (0.35, "#FFFFFF"), (1, "#FFFFFF")),
-        rad("iris", 84, 108, 13, (0, c["eye_light"], 1), (0.55, c["eye_mid"], 1), (1, c["eye_dark"], 1)),
-        rad("pupil", 84, 106, 6, (0, c["eye_dark"], 1), (1, "#140C1C", 1)),
-        lin("lid", (0, c["eye_dark"]), (1, c["eye_dark"]), opacity=(0.8, 0.0)),
-        rad("blush", 0, 0, 1, (0, "#FF7D9C", 0.55), (1, "#FF7D9C", 0)),
-    ])
+    return ""
 
 
 def face(c: dict) -> str:
-    blush = "".join(
-        f'<ellipse cx="{x}" cy="117" rx="10" ry="5" fill="#FF8FA8" opacity="0.32"/>'
-        + stroke(f"M{x - 5},{119} L{x - 3},{115}", "#F2788F", 0.9, 0.7)
-        + stroke(f"M{x - 1},{119} L{x + 1},{115}", "#F2788F", 0.9, 0.7)
-        + stroke(f"M{x + 3},{119} L{x + 5},{115}", "#F2788F", 0.9, 0.7) for x in (76, 124))
     mouths = {
-        "smile": shape("M93.5,125 Q100,133 106.5,125 Q100,127.5 93.5,125 Z", "#9C3550", "#7A2238", 0.9)
-                 + '<ellipse cx="100" cy="129" rx="3.2" ry="1.6" fill="#FF8C9E"/>',
-        "cat": stroke("M94,125 Q97,128.5 100,125.5 Q103,128.5 106,125", "#B4485F", 1.5),
-        "smirk": stroke("M94.5,126 Q101,129.5 107,124", "#B4485F", 1.6),
-        "fang": shape("M93.5,125 Q100,132 106.5,125 Q100,127 93.5,125 Z", "#9C3550", "#7A2238", 0.9)
-                + shape("M101.5,126.2 L103.5,126 L102.6,129 Z", "#FFFFFF"),
+        "smile": stroke("M95,126.5 Q100,130 105,126.5", "#A8485C", 1.4),
+        "cat": stroke("M95,126.5 Q100,129 105,126.5", "#A8485C", 1.3),
+        "smirk": stroke("M95.5,127.5 Q101,129 105.5,125.5", "#A8485C", 1.4),
+        "fang": stroke("M95,126.5 Q100,129.5 105,126.5", "#A8485C", 1.4)
+                + shape("M101.6,127.6 L103.4,127.4 L102.6,130 Z", "#FFFFFF", "#A8485C", 0.5),
     }
+    freckles = "".join(f'<circle cx="{x}" cy="{y}" r="0.7" fill="#D99A80"/>'
+                       for x, y in ((78, 113), (81, 115), (84, 113), (116, 113), (119, 115), (122, 113))
+                       ) if c.get("freckles") else ""
     return "".join([
-        '<ellipse cx="62.5" cy="104" rx="5.5" ry="8" fill="#FBD4C3" stroke="#C9877A" stroke-width="1.2"/>',
-        '<ellipse cx="137.5" cy="104" rx="5.5" ry="8" fill="#FBD4C3" stroke="#C9877A" stroke-width="1.2"/>',
-        shape("M90,126 L110,126 L111.5,152 L88.5,152 Z", "url(#neck)", SKIN_LINE, 1.2),
-        shape("M89.5,136 Q100,150 110.5,136 L111,144 Q100,154 89,144 Z", SKIN_SHADE, extra=' opacity="0.8"'),
-        shape("M63,88 C63,58 80,44 100,44 C120,44 137,58 137,88 C137,113 122,133 100,145"
-              " C78,133 63,113 63,88 Z", "url(#skin)", SKIN_LINE, 1.4),
-        blush,
-        shape("M63.5,88 C63.5,112 77,132 100,145 C86,132 73,114 70,94 Z", SKIN_SHADE, extra=' opacity="0.55"'),
-        f'<g {EYE_SCALE}>{eye(c)}</g>', f'<g {MIRROR}><g {EYE_SCALE}>{eye(c)}</g></g>',
-        shape(c.get("brow", "M73,84.5 Q81,79.5 90.5,82.5 Q81,81.5 73,84.5 Z"), c["hair_line"], c["hair_line"], 1.4),
-        f'<g {MIRROR}>' + shape(c.get("brow", "M73,84.5 Q81,79.5 90.5,82.5 Q81,81.5 73,84.5 Z"),
-                                  c["hair_line"], c["hair_line"], 1.4) + "</g>",
-        stroke("M99,118.5 Q100.5,120.5 102,119.5", SKIN_LINE, 1.1),
+        '<ellipse cx="64" cy="104" rx="5" ry="7.5" fill="{s}" stroke="{l}" stroke-width="1.1"/>'.format(s=SKIN, l=SKIN_LINE),
+        '<ellipse cx="136" cy="104" rx="5" ry="7.5" fill="{s}" stroke="{l}" stroke-width="1.1"/>'.format(s=SKIN, l=SKIN_LINE),
+        shape("M64,88 C64,58 81,46 100,46 C119,46 136,58 136,88 C136,112 122,131 100,145"
+              " C78,131 64,112 64,88 Z", SKIN, SKIN_LINE, 1.2),
+        shape("M64.5,88 C64.5,111 77,131 100,144.5 C87,131 74,114 71,94 Z", SKIN_SHADE),       # cel shadow
+        '<ellipse cx="78" cy="116" rx="8" ry="3.6" fill="#FF8FA8" opacity="0.22"/>',
+        '<ellipse cx="122" cy="116" rx="8" ry="3.6" fill="#FF8FA8" opacity="0.22"/>',
+        freckles,
+        eye(c), f'<g {MIRROR}>{eye(c)}</g>',
+        shape("M101.5,113 L99.2,120.2 L102.6,120.2 Z", SKIN_SHADE),                           # nose shadow
+        stroke("M99.5,120.4 L102.4,120.4", SKIN_LINE, 0.9),
         mouths[c.get("mouth", "smile")],
     ])
+
+
+def neck() -> str:
+    return (shape("M92,126 L108,126 L109.5,162 L90.5,162 Z", SKIN, SKIN_LINE, 1.1)
+            + shape("M92,126 L108,126 L108.6,140 Q100,146 91.4,140 Z", SKIN_SHADE))
 
 
 # ---------------------------------------------------------------- hair
@@ -127,26 +119,28 @@ BANGS_SHADOW = ("M63,84 C66,80 69,78 71,80 C74,86 78,92 81,93 C86,90 89,82 91,74
                 " C107,88 111,82 113,77 C117,84 121,92 125,98 C129,94 132,88 135,84 L137,78 L63,78 Z")
 SIDE_SHORT = "M60,82 C51,100 52,122 57,138 C61,128 65,112 68,96 Z"
 SIDE_LONG = "M61,80 C49,104 48,140 55,176 C62,160 66,128 69,98 Z"
-STRANDS = ("M85,48 Q80,62 79,76", "M100,44 Q98,60 99,72", "M115,48 Q120,62 121,76", "M70,60 Q64,74 63,86",
-           "M130,60 Q136,74 137,86")
-RING = ("M70,58 C80,48 120,48 130,58 L127,62 L123,57 L119,63 L114,56 L109,62 L104,55 L99,62 L94,55"
-        " L89,62 L84,56 L79,63 L75,57 L72,62 Z")
+STRANDS = ("M85,50 Q81,62 80,74", "M115,50 Q119,62 120,74")
+SHINES = ("M74,58 C82,50 92,47 100,47 C92,50 84,54 78,62 Z", "M110,48 C118,49 126,54 130,60 C124,56 117,53 110,50 Z")
 
 
 def hair_front(c: dict) -> str:
     side = SIDE_LONG if c.get("long") else SIDE_SHORT
-    parts = [
-        shape(BANGS_SHADOW, c["hair_dark"], extra=' opacity="0.28"'),
-        shape(side, "url(#hair)", c["hair_line"]), f'<g {MIRROR}>' + shape(side, "url(#hair)", c["hair_line"]) + "</g>",
-        stroke("M60,96 Q56,112 57,126", "#FFFFFF", 1.4, 0.4), stroke("M140,96 Q144,112 143,126", "#FFFFFF", 1.4, 0.4),
-        shape(c.get("bangs", BANGS), "url(#hair)", c["hair_line"], 1.7),
-        shape(c.get("bangs", BANGS), "url(#cel)"),
+    return "".join([
+        shape(BANGS_SHADOW, SKIN_SHADE),                                           # bangs' shadow on the brow
+        shape(side, c["hair"], c["hair_line"], 1.2), f'<g {MIRROR}>' + shape(side, c["hair"], c["hair_line"], 1.2) + "</g>",
         shape(side, "url(#cel)"), f'<g {MIRROR}>' + shape(side, "url(#cel)") + "</g>",
-        shape(RING, c["hair_light"], extra=' opacity="0.75"'),
-        "".join(stroke(d, c["hair_line"], 1.0, 0.55) for d in STRANDS),
-        stroke("M71,66 Q78,60 84,60", "#FFFFFF", 2.2, 0.55),
-    ]
-    return "".join(parts)
+        shape(c.get("bangs", BANGS), c["hair"], c["hair_line"], 1.3),
+        shape(c.get("bangs", BANGS), "url(#cel)"),
+        "".join(shape(d, c["hair_light"], extra=' opacity="0.85"') for d in SHINES),
+        "".join(stroke(d, c["hair_line"], 0.9, 0.4) for d in STRANDS),
+        brows(c),
+    ])
+
+
+def brows(c: dict) -> str:
+    """Drawn over the bangs, as anime does."""
+    d = c.get("brow", "M74,86.5 Q82,83 91.5,85.2")
+    return stroke(d, c["hair_line"], 1.5, 0.9) + f'<g {MIRROR}>' + stroke(d, c["hair_line"], 1.5, 0.9) + "</g>"
 
 
 def hair_back(c: dict) -> str:
@@ -156,36 +150,38 @@ def hair_back(c: dict) -> str:
         d = "M48,98 C42,52 72,28 100,28 C128,28 158,52 152,98 C156,130 160,160 164,186 L36,186 C40,160 44,130 48,98 Z"
     else:
         d = "M50,98 C45,54 72,30 100,30 C128,30 155,54 150,98 C152,112 150,124 146,132 L54,132 C50,124 48,112 50,98 Z"
-    return shape(d, "url(#hairback)", c["hair_line"], 1.6)
+    return shape(d, "url(#hairback)", c["hair_line"], 1.3)
 
 
 # ---------------------------------------------------------------- body
 def body(c: dict) -> str:
     return "".join([
-        shape("M30,200 C34,166 62,150 100,150 C138,150 166,166 170,200 Z", "url(#outfit)", c["outfit_line"], 1.6),
-        stroke("M58,176 Q64,188 62,200", c["outfit_line"], 1.1, 0.5),
-        stroke("M142,176 Q136,188 138,200", c["outfit_line"], 1.1, 0.5),
-        shape("M84,150 L100,174 L116,150 L110,150 L100,164 L90,150 Z", c["trim"], c["outfit_line"], 1.2),
+        shape("M26,200 C28,170 58,154 100,154 C142,154 172,170 174,200 Z", "url(#outfit)", c["outfit_line"], 1.3),
+        stroke("M56,178 Q62,190 60,200", c["outfit_line"], 1.0, 0.5),
+        stroke("M144,178 Q138,190 140,200", c["outfit_line"], 1.0, 0.5),
+        shape("M86,154 L100,176 L114,154 L108,154 L100,166 L92,154 Z", c["trim"], c["outfit_line"], 1.1),
         c.get("body_extra", ""),
     ])
 
 
 def svg(c: dict) -> str:
     defs = "".join([
-        lin("hair", (0, c["hair_light"]), (0.45, c["hair"]), (1, c["hair_dark"])),
-        lin("hairback", (0, c["hair"]), (1, c["hair_dark"])),
+        lin("hair", (0, c["hair"]), (1, c["hair"])),
+        lin("hairback", (0, c["hair_dark"]), (1, c["hair_dark"])),
+        lin("outfit", (0, c["outfit_dark"]), (0.3, c["outfit_dark"]), (0.31, c["outfit"]), (1, c["outfit"]),
+            x2=1, y2=0),                                    # cel shadow on the left, like the face
         lin("cel", (0, c["hair_dark"]), (0.6, c["hair_dark"]), (0.61, c["hair_dark"]), (1, c["hair_dark"]),
-            opacity=(0, 0, 0.4, 0.55)),
-        lin("outfit", (0, c["outfit"]), (1, c["outfit_dark"])),
-        lin("skin", (0, "#FFF3EA"), (0.6, SKIN), (1, "#FCD9C8")),
-        lin("neck", (0, SKIN_SHADE), (1, SKIN)),
-        eye_defs(c), c.get("defs", ""),
+            opacity=(0, 0, 0.5, 0.5)),
+        c.get("defs", ""),
     ])
     scene_defs, scene = SCENES[c["name"]]()
+    head = hair_back(c)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">'
             f"<defs>{defs}{scene_defs}{FLARE_DEFS}</defs>"
-            + scene + c.get("prop", "") + hair_back(c) + body(c) + face(c) + hair_front(c)
-            + c.get("front", "") + flare(c.get("flare", (0.0, 0.0))) + "</svg>")
+            + scene + c.get("prop", "")
+            + f"<g {HEAD}>{head}</g>" + neck() + body(c)
+            + f"<g {HEAD}>{face(c)}{hair_front(c)}{c.get('front', '')}</g>"
+            + flare(c.get("flare", (0.0, 0.0))) + "</svg>")
 
 
 # ---------------------------------------------------------------- scenes (behind the hero)
@@ -401,7 +397,7 @@ CLASSES: dict[str, dict] = {
         hair="#FF7F50", hair_light="#FFB08A", hair_dark="#B83A24", hair_line="#7A2416",
         eye_dark="#7A3510", eye_mid="#D9782C", eye_light="#FFD27A", eye_glow="#FFE3A3",
         outfit="#D5DCEA", outfit_dark="#8792AB", outfit_line="#4A5266", trim="#E2553B", mouth="fang",
-        brow="M72,86 Q81,79 91,81.5 Q81,82 72,86 Z",
+        brow="M73,87.5 Q81,81.5 91.5,83.5",
         bangs=("M54,100 C50,66 70,34 100,32 C130,34 150,66 146,100 L139,82 L133,94 L126,74 L119,90 L111,68"
                " L104,88 L97,66 L90,88 L82,70 L76,91 L69,76 L63,94 Z"),
         defs=WOOD + STEEL, prop=mace(),
@@ -439,7 +435,7 @@ CLASSES: dict[str, dict] = {
         hair="#2EC4B6", hair_light="#9FF5EA", hair_dark="#0F6A72", hair_line="#06474D",
         eye_dark="#08484F", eye_mid="#1FA7A0", eye_light="#9DFCEE", eye_glow="#CFFFF6",
         outfit="#C08A5E", outfit_dark="#6E4529", outfit_line="#3E2514", trim="#2EC4B6", mouth="smirk",
-        brow="M72.5,85 Q81,80 91,82 Q81,82 72.5,85 Z",
+        brow="M73,86.5 Q81,82 91.5,84",
         defs=WOOD + STEEL,
         prop=(shape("M16,194 L166,28 L172,34 L22,200 Z", "url(#wood)", "#3E2514", 1.4)
               + shape("M166,28 L196,0 L180,40 L170,36 Z", "url(#steel)", "#4A5266", 1.4)
@@ -459,7 +455,7 @@ CLASSES: dict[str, dict] = {
         hair="#9A6A47", hair_light="#D3A27A", hair_dark="#5A361E", hair_line="#3A2212",
         eye_dark="#6A3510", eye_mid="#D07A22", eye_light="#FFD08A", eye_glow="#FFE6B8",
         outfit="#4E5672", outfit_dark="#22263A", outfit_line="#141826", trim="#F4A340", mouth="smirk",
-        brow="M72,85.5 Q80,80 90.5,81 Q80,82.5 72,85.5 Z",
+        brow="M73,87 Q80,81.5 91,83",
         bangs=("M54,100 C50,62 72,32 100,32 C128,32 150,62 146,100 C142,88 138,80 134,75 C134,84 130,91 126,95"
                " C124,84 120,74 114,67 C114,78 110,86 104,91 C102,80 98,71 92,64 C90,76 86,85 80,90"
                " C80,80 76,73 70,70 C68,82 62,92 54,100 Z"),
