@@ -29,21 +29,16 @@ def _load_plan(cfg: dict, build_arg: str | None):
 
 
 def _setup_logging() -> None:
-    """Console + %APPDATA%/poe2-pilot/pilot.log (overwritten each start), for in-game test reports."""
+    """Console + %APPDATA%/poe2-pilot/pilot.log (the previous run's kept as pilot.prev.log)."""
     import logging
     from pilot.config import config_dir
+    from pilot.startup import rotate_log
     config_dir().mkdir(parents=True, exist_ok=True)
+    rotate_log(config_dir() / "pilot.log")
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s",
         handlers=[logging.StreamHandler(),
                   logging.FileHandler(config_dir() / "pilot.log", mode="w", encoding="utf-8")])
-
-
-def _alert(text: str) -> None:
-    """A message box: the windowed exe has no console to print to."""
-    from PySide6.QtWidgets import QApplication, QMessageBox
-    QApplication.instance() or QApplication(sys.argv[:1])
-    QMessageBox.warning(None, "PoE2 Pilot", text)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -53,6 +48,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--log", help="path to Client.txt (default: auto-detect)")
     ap.add_argument("--replay", help="replay a Client.txt instead of tailing the live one")
     ap.add_argument("--speed", type=float, default=60.0, help="replay speed multiplier")
+    ap.add_argument("--wait-lock", action="store_true", help=argparse.SUPPRESS)   # set by relaunch()
     args = ap.parse_args(argv)
 
     from pilot.core.engine import RunEngine
@@ -63,9 +59,29 @@ def main(argv: list[str] | None = None) -> int:
     from pilot.core.splits import SplitStore
     from pilot.overlay import run_overlay
 
+    from pilot.config import config_dir
+    from pilot.startup import already_running, ask_client_log, instance_lock, resolve_log
+
+    # one copy at a time; a restart (change of build, update) waits for the old copy to quit
+    lock = None
+    if not args.replay:
+        lock = instance_lock(config_dir() / "pilot.lock", 15000 if args.wait_lock else 0)
+        if lock is None:
+            already_running()
+            return 1
+
     cfg = load_config()
     cfg["on_save"] = save_config
     _setup_logging()
+
+    log = None
+    if not args.replay:                      # before the start window: no point picking a build without it
+        log = resolve_log(args.log, cfg, find_client_log, ask_client_log)
+        if log is None:
+            print("Client.txt не найден: укажите --log или log_path в конфиге", file=sys.stderr)
+            return 2
+        if cfg.get("log_path") == str(log):
+            save_config(cfg)
 
     build = args.build
     if build is None and not args.replay:
@@ -96,6 +112,10 @@ def main(argv: list[str] | None = None) -> int:
     if not args.replay:
         from pilot.launcher import relaunch
         cfg["on_switch_build"] = relaunch
+        if not cfg.get("seen_help"):         # the hotkeys cheat sheet once, on the first take-off
+            cfg["_show_help"] = True        # "_" keys are never saved
+            cfg["seen_help"] = True
+            save_config(cfg)
 
     if detail is not None:
         from pilot.planner.treeview import TreeViewBuilder
@@ -115,13 +135,6 @@ def main(argv: list[str] | None = None) -> int:
         threading.Thread(target=replay, args=(args.replay, on_line, args.speed), daemon=True).start()
         watcher = None
     else:
-        log = Path(args.log or cfg["log_path"] or find_client_log() or "")
-        if not log.is_file():
-            msg = "Client.txt не найден: укажите --log или log_path в конфиге"
-            print(msg, file=sys.stderr)
-            _alert("Не найден лог игры Client.txt.\n\nЗапустите Path of Exile 2 хотя бы раз или укажите "
-                   "log_path в %APPDATA%\\poe2-pilot\\config.json.")
-            return 2
         # started mid-run: rebuild step, timer, level and passives from the log first
         from pilot.core.warmstart import warm_start
         end: list[int] = []
@@ -134,6 +147,8 @@ def main(argv: list[str] | None = None) -> int:
     finally:
         if watcher:
             watcher.stop()
+        if lock is not None:
+            lock.unlock()
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ DEFAULTS: dict = {
     "build_code_file": None,               # last build taken off with (name in builds/ or a path)
     "check_updates": True,                 # start window asks GitHub for new builds and releases
     "update_repo": None,                   # "owner/name"; None -> pilot.updates.REPO
+    "seen_help": False,                    # the hotkeys cheat sheet was shown on the first take-off
     "hud": {"x": None, "y": 24, "scale": 1.0, "opacity": 1.0},
     "hide_when_unfocused": True,
     "pause_when_unfocused": True,          # timer stops while the game window has no focus

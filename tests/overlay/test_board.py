@@ -121,3 +121,14 @@ def test_update_news_in_the_footer(qapp):
     assert "GitHub" in w2.news.text()
     w.close()
     w2.close()
+
+
+def test_hotkeys_cheat_sheet(qapp):
+    from pilot.launcher.help import ACTIONS, HotkeysDialog, pretty, rows
+    assert pretty("alt+]") == "Alt + ]" and pretty("ctrl+shift+g") == "Ctrl + Shift + G"
+    r = rows({"gems": "ctrl+g"})
+    assert len(r) == len(ACTIONS) and ("Ctrl + G", ACTIONS["gems"]) in r
+    d = HotkeysDialog(None)
+    d.show()
+    assert d.grab().width() == d.W
+    d.close()

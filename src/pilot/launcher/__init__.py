@@ -47,4 +47,6 @@ def relaunch(extra: list[str] | None = None) -> None:
         elif not a.startswith("--build="):
             args.append(a)
     head = [sys.executable] if getattr(sys, "frozen", False) else [sys.executable, "-m", "pilot.app"]
+    if "--wait-lock" not in args:
+        args.append("--wait-lock")                # the new copy waits until this one has quit
     subprocess.Popen(head + args + (extra or []), close_fds=True)
