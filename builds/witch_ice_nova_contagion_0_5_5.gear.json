@@ -4,31 +4,129 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas at level 20-30 gives Blood Mage; Venom Crypts (a3-012) stays skipped (player's choice)",
-    "require": ["a2-007"]
+    "require": [
+      "a2-007"
+    ]
   },
   "ascendancy": {
     "_order": "Sanguimancy -> Sunder the Flesh -> Grasping Wounds (Ice Nova Comet Blood Mage guide)",
-    "G2_13": ["Sanguimancy", "Sunder the Flesh"],
-    "G3_10": ["Grasping Wounds"]
+    "G2_13": [
+      "Sanguimancy",
+      "Sunder the Flesh"
+    ],
+    "G3_10": [
+      "Grasping Wounds"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Первый гем: Ice Nova (без Spark)", "Посох: холод, скорость каста"],
-    "3": ["Боссы: Frost Darts, пачки: Nova", "Ботинки: скорость передвижения"],
-    "6": ["Пачка: Contagion, затем Nova", "Мана: Rapid Casting I/Zenith I"],
-    "15": ["Босс: Frost Bomb → Frost Darts", "Elemental Weakness — на боссов"],
-    "20": ["Сехемы 20–30 ур.: Blood Mage", "Profanity — пачки, Agony — боссы"],
-    "29": ["Mana → Life Remnants", "Chaotic Freeze → Contagion"],
-    "36": ["Gelid Staff (ilvl 36): +ур. хол."],
-    "45": ["Siphon Elements + Clarity I"]
+    "1": [
+      "Первый гем: Ice Nova (без Spark)",
+      "Посох: холод, скорость каста"
+    ],
+    "3": [
+      "Боссы: Frost Darts, пачки: Nova",
+      "Ботинки: скорость передвижения"
+    ],
+    "6": [
+      "Пачка: Contagion, затем Nova",
+      "Мана: Rapid Casting I/Zenith I"
+    ],
+    "15": [
+      "Босс: Frost Bomb → Frost Darts",
+      "Elemental Weakness — на боссов"
+    ],
+    "20": [
+      "Сехемы 20–30 ур.: Blood Mage",
+      "Profanity — пачки, Agony — боссы"
+    ],
+    "29": [
+      "Mana → Life Remnants",
+      "Chaotic Freeze → Contagion"
+    ],
+    "36": [
+      "Gelid Staff (ilvl 36): +ур. хол."
+    ],
+    "45": [
+      "Siphon Elements + Clarity I"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "First gem: Ice Nova (no Spark)",
+      "Staff: cold, cast speed"
+    ],
+    "3": [
+      "Bosses: Frost Darts; packs: Nova",
+      "Boots: movement speed"
+    ],
+    "6": [
+      "Packs: Contagion, then Nova",
+      "Mana: Rapid Casting I/Zenith I"
+    ],
+    "15": [
+      "Boss: Frost Bomb → Frost Darts",
+      "Elemental Weakness on bosses"
+    ],
+    "20": [
+      "Sekhemas at 20–30: Blood Mage",
+      "Profanity packs, Agony bosses"
+    ],
+    "29": [
+      "Mana → Life Remnants",
+      "Chaotic Freeze → Contagion"
+    ],
+    "36": [
+      "Gelid Staff (ilvl 36): +cold lv"
+    ],
+    "45": [
+      "Siphon Elements + Clarity I"
+    ]
   },
   "zones": {
-    "G1_2": ["Frost Bomb — лагерь, до Beira"],
-    "G1_4": ["Areagne: Unleash → Ice Nova"],
-    "G2_1": ["Considered Casting — лагерь G2_1"],
-    "G2_13": ["Восхождение: Sanguimancy, Sunder"],
-    "G3_7": ["Blasphemy — Bog Witch (Act 3)"],
-    "G3_10": ["Восхождение: Grasping Wounds"],
-    "G4_11_1a": ["Greater Jeweller's на Ice Nova — Нгакану"]
+    "G1_2": [
+      "Frost Bomb — лагерь, до Beira"
+    ],
+    "G1_4": [
+      "Areagne: Unleash → Ice Nova"
+    ],
+    "G2_1": [
+      "Considered Casting — лагерь G2_1"
+    ],
+    "G2_13": [
+      "Восхождение: Sanguimancy, Sunder"
+    ],
+    "G3_7": [
+      "Blasphemy — Bog Witch (Act 3)"
+    ],
+    "G3_10": [
+      "Восхождение: Grasping Wounds"
+    ],
+    "G4_11_1a": [
+      "Greater Jeweller's на Ice Nova — Нгакану"
+    ]
+  },
+  "zones_en": {
+    "G1_2": [
+      "Frost Bomb: camp, before Beira"
+    ],
+    "G1_4": [
+      "Areagne: Unleash → Ice Nova"
+    ],
+    "G2_1": [
+      "Considered Casting: camp G2_1"
+    ],
+    "G2_13": [
+      "Ascendancy: Sanguimancy, Sunder"
+    ],
+    "G3_7": [
+      "Blasphemy — Bog Witch (Act 3)"
+    ],
+    "G3_10": [
+      "Ascendancy: Grasping Wounds"
+    ],
+    "G4_11_1a": [
+      "Greater Jeweller's on Ice Nova: Ngakanu"
+    ]
   }
 }

@@ -14,6 +14,7 @@ from pilot.contracts import (
 from pilot.core.parser import parse_line_or_tick
 from pilot.core.route import Route, route_area
 from pilot.core.splits import RunRecord, SplitStore, ZoneSegment
+from pilot.i18n import tr
 
 log = logging.getLogger(__name__)
 
@@ -221,7 +222,7 @@ class RunEngine:
                 self._restart_from(entry[0], since)
                 log.info("run reset (Alt+R): restarted from Riverbank at %s", entry[0].ts)
             else:
-                self._toast("Сброс: забег начнётся в Riverbank", "zone", 5.0)
+                self._toast(tr("Сброс: забег начнётся в Riverbank"), "zone", 5.0)
                 log.info("run reset (Alt+R): waiting for the Riverbank")
 
     def allocated_nodes(self) -> set[str] | None:
@@ -263,7 +264,7 @@ class RunEngine:
                 if cur.detail:
                     lines.append(cur.detail)
                 if cur.reward:
-                    lines.append(f"Награда: {cur.reward}")
+                    lines.append(tr("Награда: {reward}", reward=cur.reward))
             # no LevelUp line is logged for level 1, so a running run starts at 1
             level = self._char_level or (1 if self._running else None)
             if self.plan is not None and level is not None:
@@ -273,7 +274,7 @@ class RunEngine:
                     lines.extend(self.plan.hints[gear_lv].gear[:2])
                 lines.extend(self.plan.setup_for(level)[:3])
             if self._running and self._town_visits:
-                lines.append(f"Города: {self._town_visits} · {fmt_time(self._town_s)}")
+                lines.append(tr("Города: {n} · {time}", n=self._town_visits, time=fmt_time(self._town_s)))
             return (lines + self.upcoming(3))[:10]
 
     def gem_rows(self) -> tuple:
@@ -408,7 +409,7 @@ class RunEngine:
             return None
         diff = self._area_level - self._char_level
         if diff > LEVEL_WARN_MARGIN:
-            return f"⚠ Ур. ниже зоны −{diff}"
+            return tr("⚠ Ур. ниже зоны −{diff}", diff=diff)
         return None
 
     # ---- event handlers ----
@@ -430,11 +431,11 @@ class RunEngine:
         self._char_name, self._char_level = ev.character, ev.level
         hint = self.plan.hint_for(ev.level) if self.plan else None
         if hint is None:
-            self._toast(f"Ур. {ev.level}", "level")
+            self._toast(tr("Ур. {level}", level=ev.level), "level")
             return
         # passives and gems as separate toasts so neither gets clipped away
         passives = [f"+{p}" if not p.startswith(("+", "-")) else p for p in hint.passives]
-        self._toast(f"Ур. {ev.level}: " + " · ".join(passives) if passives else f"Ур. {ev.level}",
+        self._toast(tr("Ур. {level}", level=ev.level) + (": " + " · ".join(passives) if passives else ""),
                     "level", 4.0)
         extra = list(hint.gems) + ([hint.note] if hint.note else [])
         if extra:
@@ -456,7 +457,7 @@ class RunEngine:
         for text in lines[:2]:
             self._toast(text, "zone", 6.0)
         if len(lines) > 2:
-            self._toast(f"+{len(lines) - 2} здесь (Alt+Q)", "zone", 6.0)
+            self._toast(tr("+{n} здесь (Alt+Q)", n=len(lines) - 2), "zone", 6.0)
 
     def _ascendancy_hint(self, z: str) -> None:
         hint = self.plan.ascendancy.get(z) if self.plan else None
@@ -479,7 +480,7 @@ class RunEngine:
         now = self._clock()
         if self._off_plan_toast_at is None or now - self._off_plan_toast_at >= OFF_PLAN_TOAST_GAP_S:
             self._off_plan_toast_at = now
-            self._toast(f"Пассивки не по плану: {self._off_plan}", "warn")
+            self._toast(tr("Пассивки не по плану: {n}", n=self._off_plan), "warn")
 
     def _on_area(self, ev: AreaGenerated) -> None:
         z = ev.area_id
@@ -499,7 +500,7 @@ class RunEngine:
         elif z == START_AREA and len(self._done) > 1 and self._pending_new is None:
             # Riverbank deep into a run: maybe a new character; the next LevelUp decides
             self._pending_new = (ev, self._elapsed)
-            self._toast("Новый персонаж? Забег — с ур. 2", "zone", 8.0)
+            self._toast(tr("Новый персонаж? Забег — с ур. 2"), "zone", 8.0)
             log.info("Riverbank at %s during a run: waiting for level-up to decide", ev.ts)
         if z == START_AREA:
             self._riverbank = (ev, self._elapsed)
@@ -517,7 +518,7 @@ class RunEngine:
             self._town_visits += 1
             self._town_s += dur
             if dur > TOWN_WARN_S and not is_town(z):
-                self._toast(f"Город {fmt_time(dur)} · всего {fmt_time(self._town_s)}", "warn", 5.0)
+                self._toast(tr("Город {time} · всего {total}", time=fmt_time(dur), total=fmt_time(self._town_s)), "warn", 5.0)
         self._town_at = self._elapsed if is_town(z) else None
 
     def _restart_from(self, entry_ev: AreaGenerated, since: float) -> None:
@@ -544,7 +545,7 @@ class RunEngine:
         self._char_level = 1                      # a run always starts with a level-1 character
         self._started_iso = ev.ts.isoformat(timespec="seconds")
         self._seg_mark = 0.0
-        self._toast("Ран начат", "zone")
+        self._toast(tr("Ран начат"), "zone")
         hint = self.plan.hint_for(1) if self.plan else None   # level 1 has no LevelUp line
         if hint is not None:
             if hint.gems:
@@ -606,7 +607,7 @@ class RunEngine:
         if off_route:
             nxt = self._first_open()
             if nxt is not None:
-                self._toast(f"Вне маршрута → {steps[nxt].short}", "warn", 5.0)
+                self._toast(tr("Вне маршрута → {step}", step=steps[nxt].short), "warn", 5.0)
         self._ascendancy_hint(z)
         seg = self._segs.get(z)
         if seg is not None and seg.visits == 1:     # pickup hints only on the first visit
@@ -643,7 +644,7 @@ class RunEngine:
         self._finished_before = True
         self._save(status="finished")
         tail = f" ({fmt_delta(delta)})" if delta is not None else ""
-        self._toast(f"Финиш {fmt_time(total)}{tail}", "split", ttl=6.0)
+        self._toast(tr("Финиш {time}", time=fmt_time(total)) + tail, "split", ttl=6.0)
 
     def _save(self, status: str) -> None:
         if self.store is None or self._quiet:

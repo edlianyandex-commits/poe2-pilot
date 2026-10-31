@@ -3,23 +3,113 @@
   "_note": "GuyThatDies Twister Monk levelling (0.5.5), paraphrased. Self-found: no uniques.",
   "pob_uniques": false,
   "gear": {
-    "1": ["Копьё и WS с мула Huntress", "Копьё: макс. скорость атаки", "WS ×2-3 → Twister, WS не качать"],
-    "6": ["Боссы: Parry + Fangs of Frost"],
-    "15": ["Ice-Tipped Arrows перед Twister"],
-    "16": ["Сет 2: копьё + Omen Sceptre"]
+    "1": [
+      "Копьё и WS с мула Huntress",
+      "Копьё: макс. скорость атаки",
+      "WS ×2-3 → Twister, WS не качать"
+    ],
+    "6": [
+      "Боссы: Parry + Fangs of Frost"
+    ],
+    "15": [
+      "Ice-Tipped Arrows перед Twister"
+    ],
+    "16": [
+      "Сет 2: копьё + Omen Sceptre"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Spear + WS from a Huntress mule",
+      "Spear: max attack speed",
+      "WS ×2-3 → Twister; keep WS lv 1"
+    ],
+    "6": [
+      "Bosses: Parry + Fangs of Frost"
+    ],
+    "15": [
+      "Ice-Tipped Arrows before Twister"
+    ],
+    "16": [
+      "Set 2: spear + Omen Sceptre"
+    ]
   },
   "zones": {
-    "G1_town": ["Renly: Twister"],
-    "G1_2": ["Disengage в Клирфелле"],
-    "G1_4": ["Areagne: Retreat I → Twister"],
-    "G1_5": ["Rust King: Fangs of Frost"],
-    "G1_7": ["Lachlann: улучшить Twister"],
-    "G1_9": ["Сокровище: Rage I → Whirling Slash"],
-    "G1_13_2": ["Палач: Rapid Attacks I → WS", "Спасти Leitis → Barrage (камень 5)"],
-    "G1_14": ["Виселица: Prolonged Dur. I → Banner"],
-    "G2_1": ["Zarka: Ice-Tipped Arrows"],
-    "G2_3": ["Награда: Freezing Mark"],
-    "G2_4_1": ["Kabala: Tame Beast (Кет 2-м)"],
-    "G2_13": ["Восхождение: Invoker, I am the Blizzard"]
+    "G1_town": [
+      "Renly: Twister"
+    ],
+    "G1_2": [
+      "Disengage в Клирфелле"
+    ],
+    "G1_4": [
+      "Areagne: Retreat I → Twister"
+    ],
+    "G1_5": [
+      "Rust King: Fangs of Frost"
+    ],
+    "G1_7": [
+      "Lachlann: улучшить Twister"
+    ],
+    "G1_9": [
+      "Сокровище: Rage I → Whirling Slash"
+    ],
+    "G1_13_2": [
+      "Палач: Rapid Attacks I → WS",
+      "Спасти Leitis → Barrage (камень 5)"
+    ],
+    "G1_14": [
+      "Виселица: Prolonged Dur. I → Banner"
+    ],
+    "G2_1": [
+      "Zarka: Ice-Tipped Arrows"
+    ],
+    "G2_3": [
+      "Награда: Freezing Mark"
+    ],
+    "G2_4_1": [
+      "Kabala: Tame Beast (Кет 2-м)"
+    ],
+    "G2_13": [
+      "Восхождение: Invoker, I am the Blizzard"
+    ]
+  },
+  "zones_en": {
+    "G1_town": [
+      "Renly: Twister"
+    ],
+    "G1_2": [
+      "Disengage in Clearfell"
+    ],
+    "G1_4": [
+      "Areagne: Retreat I → Twister"
+    ],
+    "G1_5": [
+      "Rust King: Fangs of Frost"
+    ],
+    "G1_7": [
+      "Lachlann: upgrade Twister"
+    ],
+    "G1_9": [
+      "Treasure: Rage I → Whirling Slash"
+    ],
+    "G1_13_2": [
+      "Executioner: Rapid Attacks I → WS",
+      "Save Leitis → Barrage (gem 5)"
+    ],
+    "G1_14": [
+      "Gallows: Prolonged Dur. I → Banner"
+    ],
+    "G2_1": [
+      "Zarka: Ice-Tipped Arrows"
+    ],
+    "G2_3": [
+      "Reward: Freezing Mark"
+    ],
+    "G2_4_1": [
+      "Kabala: Tame Beast (Keth second)"
+    ],
+    "G2_13": [
+      "Ascendancy: Invoker, I am the Blizzard"
+    ]
   }
 }

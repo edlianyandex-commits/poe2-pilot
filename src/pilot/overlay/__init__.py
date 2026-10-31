@@ -87,6 +87,7 @@ def run_overlay(source, actions, config: dict) -> int:
 
     from pilot import __version__
     from pilot.config import config_dir
+    from pilot.i18n import tr
     from pilot.launcher.help import HotkeysDialog
     from pilot.updates import REPO
 
@@ -105,17 +106,17 @@ def run_overlay(source, actions, config: dict) -> int:
     menu.addAction(f"PoE2 Pilot {__version__}").setEnabled(False)
     menu.addSeparator()
     if config.get("on_switch_build"):
-        menu.addAction("Сменить билд…", switch_build)
+        menu.addAction(tr("Сменить билд…"), switch_build)
         menu.addSeparator()
-    menu.addAction("Положение HUD", hud.toggle_edit)
-    menu.addAction("Гемы", gems.toggle)
-    menu.addAction("Дерево", tree.toggle)
+    menu.addAction(tr("Положение HUD"), hud.toggle_edit)
+    menu.addAction(tr("Гемы"), gems.toggle)
+    menu.addAction(tr("Дерево"), tree.toggle)
     menu.addSeparator()
-    menu.addAction("Хоткеи…", show_help)
-    menu.addAction("Папка логов", lambda: QDesktopServices.openUrl(QUrl.fromLocalFile(str(config_dir()))))
-    menu.addAction("Страница проекта", lambda: QDesktopServices.openUrl(QUrl(f"https://github.com/{REPO}")))
+    menu.addAction(tr("Хоткеи…"), show_help)
+    menu.addAction(tr("Папка логов"), lambda: QDesktopServices.openUrl(QUrl.fromLocalFile(str(config_dir()))))
+    menu.addAction(tr("Страница проекта"), lambda: QDesktopServices.openUrl(QUrl(f"https://github.com/{REPO}")))
     menu.addSeparator()
-    menu.addAction("Выход", app.quit)
+    menu.addAction(tr("Выход"), app.quit)
     tray.setContextMenu(menu)
     tray.show()
 

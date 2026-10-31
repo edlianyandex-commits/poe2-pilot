@@ -4,34 +4,144 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Warbringer (Anvil's Weight) before Bonestorm carries bosses",
-    "require": ["a2-007"]
+    "require": [
+      "a2-007"
+    ]
   },
   "ascendancy": {
     "_order": "Anvil's Weight -> Imploding Impacts -> Renly's Training -> Jade Heritage",
-    "G2_13": ["Anvil's Weight"],
-    "G3_10": ["Imploding Impacts"]
+    "G2_13": [
+      "Anvil's Weight"
+    ],
+    "G3_10": [
+      "Imploding Impacts"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Две одноручные булавы", "Проходные узлы: +Int, не Str"],
-    "3": ["Rolling Slam, затем Boneshatter"],
-    "4": ["Амулет Lapis (Int)"],
-    "6": ["Bone Cage: ~35 Int, пачки", "Без щита: перекат от ударов"],
-    "9": ["Палочка + щит вместо булав", "Слэмы убрать, только кости"],
-    "15": ["Bonestorm — боссы, Cage — пачки"],
-    "17": ["Scavenged Plating: 30 Spirit"],
-    "24": ["Один сет: палочка + щит", "Очки сетов: Defensive Stance"],
-    "29": ["Vulnerability — на боссов"],
-    "31": ["Detonate Dead без Brutality"],
-    "36": ["Очки сетов: Sudden Escalation", "Очки сетов: Constricting"],
-    "45": ["Очки сетов: Radial Force"],
-    "60": ["3-й Trial: Renly's Training"],
-    "70": ["4-й Trial: Jade Heritage"]
+    "1": [
+      "Две одноручные булавы",
+      "Проходные узлы: +Int, не Str"
+    ],
+    "3": [
+      "Rolling Slam, затем Boneshatter"
+    ],
+    "4": [
+      "Амулет Lapis (Int)"
+    ],
+    "6": [
+      "Bone Cage: ~35 Int, пачки",
+      "Без щита: перекат от ударов"
+    ],
+    "9": [
+      "Палочка + щит вместо булав",
+      "Слэмы убрать, только кости"
+    ],
+    "15": [
+      "Bonestorm — боссы, Cage — пачки"
+    ],
+    "17": [
+      "Scavenged Plating: 30 Spirit"
+    ],
+    "24": [
+      "Один сет: палочка + щит",
+      "Очки сетов: Defensive Stance"
+    ],
+    "29": [
+      "Vulnerability — на боссов"
+    ],
+    "31": [
+      "Detonate Dead без Brutality"
+    ],
+    "36": [
+      "Очки сетов: Sudden Escalation",
+      "Очки сетов: Constricting"
+    ],
+    "45": [
+      "Очки сетов: Radial Force"
+    ],
+    "60": [
+      "3-й Trial: Renly's Training"
+    ],
+    "70": [
+      "4-й Trial: Jade Heritage"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Two one-handed maces",
+      "Path nodes: +Int, not Str"
+    ],
+    "3": [
+      "Rolling Slam, then Boneshatter"
+    ],
+    "4": [
+      "Lapis Amulet (Int)"
+    ],
+    "6": [
+      "Bone Cage: ~35 Int, packs",
+      "No shield: dodge roll the hits"
+    ],
+    "9": [
+      "Wand + shield instead of maces",
+      "Drop the slams, bones only"
+    ],
+    "15": [
+      "Bonestorm bosses, Cage packs"
+    ],
+    "17": [
+      "Scavenged Plating: 30 Spirit"
+    ],
+    "24": [
+      "One set: wand + shield",
+      "Set points: Defensive Stance"
+    ],
+    "29": [
+      "Vulnerability on bosses"
+    ],
+    "31": [
+      "Detonate Dead without Brutality"
+    ],
+    "36": [
+      "Set points: Sudden Escalation",
+      "Set points: Constricting"
+    ],
+    "45": [
+      "Set points: Radial Force"
+    ],
+    "60": [
+      "3rd Trial: Renly's Training"
+    ],
+    "70": [
+      "4th Trial: Jade Heritage"
+    ]
   },
   "zones": {
-    "G1_town": ["Ренли/Уна: амулет на Int"],
-    "G1_12": ["King in the Mists: +30 Spirit"],
-    "G2_13": ["Восхождение: Anvil's Weight"],
-    "G3_10": ["Восхождение: Imploding Impacts"]
+    "G1_town": [
+      "Ренли/Уна: амулет на Int"
+    ],
+    "G1_12": [
+      "King in the Mists: +30 Spirit"
+    ],
+    "G2_13": [
+      "Восхождение: Anvil's Weight"
+    ],
+    "G3_10": [
+      "Восхождение: Imploding Impacts"
+    ]
+  },
+  "zones_en": {
+    "G1_town": [
+      "Renly/Una: Int amulet"
+    ],
+    "G1_12": [
+      "King in the Mists: +30 Spirit"
+    ],
+    "G2_13": [
+      "Ascendancy: Anvil's Weight"
+    ],
+    "G3_10": [
+      "Ascendancy: Imploding Impacts"
+    ]
   }
 }

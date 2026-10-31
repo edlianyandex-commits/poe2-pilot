@@ -39,22 +39,24 @@ def ask_client_log() -> str | None:
     """Explain what is missing and let the user point at Client.txt."""
     from PySide6.QtWidgets import QApplication, QFileDialog, QMessageBox
     QApplication.instance() or QApplication([])
+    from pilot.i18n import tr
     box = QMessageBox(QMessageBox.Warning, "PoE2 Pilot",
-                      "Не найден лог игры Client.txt.\n\nОн лежит в папке игры: …\\Path of Exile 2\\logs\\Client.txt. "
-                      "Если игра ещё не запускалась, запусти её один раз.")
-    pick = box.addButton("Указать файл…", QMessageBox.AcceptRole)
-    box.addButton("Выход", QMessageBox.RejectRole)
+                      tr("Не найден лог игры Client.txt.\n\nОн лежит в папке игры: …\\Path of Exile 2\\logs\\Client.txt. "
+                         "Если игра ещё не запускалась, запусти её один раз."))
+    pick = box.addButton(tr("Указать файл…"), QMessageBox.AcceptRole)
+    box.addButton(tr("Выход"), QMessageBox.RejectRole)
     box.exec()
     if box.clickedButton() is not pick:
         return None
     start = STEAM_LOGS if Path(STEAM_LOGS).is_dir() else ""
-    path, _ = QFileDialog.getOpenFileName(None, "Где Client.txt?", start,
-                                          "Client.txt (Client.txt);;Текстовые файлы (*.txt)")
+    path, _ = QFileDialog.getOpenFileName(None, tr("Где Client.txt?"), start,
+                                          "Client.txt (Client.txt);;" + tr("Текстовые файлы") + " (*.txt)")
     return path or None
 
 
 def already_running() -> None:
     from PySide6.QtWidgets import QApplication, QMessageBox
     QApplication.instance() or QApplication([])
+    from pilot.i18n import tr
     QMessageBox.information(None, "PoE2 Pilot",
-                            "PoE2 Pilot уже запущен: его значок в трее, справа на панели задач.")
+                            tr("PoE2 Pilot уже запущен: его значок в трее, справа на панели задач."))

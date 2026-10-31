@@ -7,6 +7,7 @@ import threading
 from pathlib import Path
 
 from pilot.config import load_config, save_config
+from pilot.i18n import tr
 
 from pilot.paths import BUILDS, DATA
 
@@ -22,7 +23,7 @@ def _load_plan(cfg: dict, build_arg: str | None):
     if not p.exists() and (BUILDS / src).exists():     # a bundled build by file name
         p = BUILDS / src
     if not p.exists() and len(src) < 260 and src.endswith((".pob", ".build")):
-        print(f"Билд не найден: {src}", file=sys.stderr)
+        print(tr("Билд не найден: {src}", src=src), file=sys.stderr)
         return None
     # a file path lets the planner pick up the X.gear.json sidecar next to X.pob
     return build_plan_detail(p if p.exists() else src)
@@ -63,6 +64,8 @@ def main(argv: list[str] | None = None) -> int:
     from pilot.startup import already_running, ask_client_log, instance_lock, resolve_log
 
     # one copy at a time; a restart (change of build, update) waits for the old copy to quit
+    from pilot.i18n import set_lang
+    set_lang(load_config().get("language"))
     lock = None
     if not args.replay:
         lock = instance_lock(config_dir() / "pilot.lock", 15000 if args.wait_lock else 0)
@@ -78,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.replay:                      # before the start window: no point picking a build without it
         log = resolve_log(args.log, cfg, find_client_log, ask_client_log)
         if log is None:
-            print("Client.txt не найден: укажите --log или log_path в конфиге", file=sys.stderr)
+            print(tr("Client.txt не найден: укажите --log или log_path в конфиге"), file=sys.stderr)
             return 2
         if cfg.get("log_path") == str(log):
             save_config(cfg)

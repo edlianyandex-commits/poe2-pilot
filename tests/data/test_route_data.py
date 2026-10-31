@@ -19,7 +19,7 @@ KIND_SYMBOLS = {
     "skip": "✕",
 }
 REQUIRED_STEP_KEYS = {"id", "act", "area", "short", "kind"}
-OPTIONAL_STEP_KEYS = {"detail", "split", "done_on", "reward", "optional"}
+OPTIONAL_STEP_KEYS = {"detail", "split", "done_on", "reward", "optional", "short_en", "detail_en"}
 SHORT_MAX = 40
 DETAIL_MAX = 120
 REWARD_MAX = 32
@@ -134,3 +134,12 @@ def test_reward_is_stripped_string():
     for s in STEPS:
         if "reward" in s:
             assert s["reward"].strip() == s["reward"], s["id"]
+
+
+def test_every_step_has_english():
+    import re
+    cyr = re.compile(r"[А-Яа-яЁё]")
+    for s in ROUTE["steps"]:
+        assert s.get("short_en") and not cyr.search(s["short_en"]), s["id"]
+        assert not cyr.search(s.get("detail_en", "")), s["id"]
+        assert bool(s.get("detail")) == bool(s.get("detail_en")), s["id"]

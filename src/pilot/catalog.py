@@ -8,6 +8,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from pilot.i18n import pick
 from pilot.paths import BUILDS, DATA, version_key
 
 CATALOG = "catalog.json"
@@ -56,7 +57,7 @@ def _route_names(route: str) -> dict[str, str]:
         steps = json.loads((DATA / "routes" / f"{route}.json").read_text(encoding="utf-8"))["steps"]
     except (OSError, ValueError, KeyError):
         return {}
-    return {s["id"]: s.get("short", s["id"]).lstrip("✦✕⚔→⌂ ").strip() for s in steps if "id" in s}
+    return {s["id"]: (pick(s, "short") or s["id"]).lstrip("✦✕⚔→⌂ ").strip() for s in steps if "id" in s}
 
 
 def _musts(build: Path, names: dict[str, str]) -> tuple[str, ...]:
@@ -84,7 +85,7 @@ def load_catalog(base: Path = BUILDS) -> Catalog:
             cls=b["class"], ascendancy=b.get("ascendancy", ""), skills=tuple(b.get("skills", ())),
             author=b.get("author", ""), patch=b.get("patch", ""),
             status=b.get("status") if b.get("status") in STATUSES else "custom",
-            source=b.get("source", ""), note=b.get("note", ""),
+            source=b.get("source", ""), note=pick(b, "note", ""),
             musts=_musts(base / b["file"], names),
             outdated=bool(game) and _minor(b.get("patch", "")) < _minor(game)))
     order = list(names.values())

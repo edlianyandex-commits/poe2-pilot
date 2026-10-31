@@ -4,25 +4,86 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Infernalist (Loyal Hellhound)",
-    "require": ["a2-007"]
+    "require": [
+      "a2-007"
+    ]
   },
   "ascendancy": {
     "_order": "Loyal Hellhound -> Altered Flesh (the author's stages)",
-    "G2_13": ["Minion Life", "Loyal Hellhound"],
-    "G3_10": ["Life", "Altered Flesh"]
+    "G2_13": [
+      "Minion Life",
+      "Loyal Hellhound"
+    ],
+    "G3_10": [
+      "Life",
+      "Altered Flesh"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Скипетр + щит: Spirit миньонам", "Unearth: кости из трупов"],
-    "3": ["Skeletal Sniper — основной урон"],
-    "5": ["Снайперы стреляют сквозь Wall"],
-    "10": ["Arsonist вместо Sniper", "Узлы +5 атрибут: брать Int"],
-    "14": ["Pain Offering: сила миньонам"],
-    "25": ["Сехемы: Loyal Hellhound"],
-    "45": ["Spectre: Vaal Guard из Act 3"]
+    "1": [
+      "Скипетр + щит: Spirit миньонам",
+      "Unearth: кости из трупов"
+    ],
+    "3": [
+      "Skeletal Sniper — основной урон"
+    ],
+    "5": [
+      "Снайперы стреляют сквозь Wall"
+    ],
+    "10": [
+      "Arsonist вместо Sniper",
+      "Узлы +5 атрибут: брать Int"
+    ],
+    "14": [
+      "Pain Offering: сила миньонам"
+    ],
+    "25": [
+      "Сехемы: Loyal Hellhound"
+    ],
+    "45": [
+      "Spectre: Vaal Guard из Act 3"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Sceptre + shield: minion Spirit",
+      "Unearth: bones from corpses"
+    ],
+    "3": [
+      "Skeletal Sniper: main damage"
+    ],
+    "5": [
+      "Snipers shoot through the Wall"
+    ],
+    "10": [
+      "Arsonist instead of Sniper",
+      "+5 attribute nodes: take Int"
+    ],
+    "14": [
+      "Pain Offering: minion power"
+    ],
+    "25": [
+      "Sekhemas: Loyal Hellhound"
+    ],
+    "45": [
+      "Spectre: Vaal Guard from Act 3"
+    ]
   },
   "zones": {
-    "G2_13": ["Восхождение: Loyal Hellhound"],
-    "G3_10": ["Восхождение: Altered Flesh"]
+    "G2_13": [
+      "Восхождение: Loyal Hellhound"
+    ],
+    "G3_10": [
+      "Восхождение: Altered Flesh"
+    ]
+  },
+  "zones_en": {
+    "G2_13": [
+      "Ascendancy: Loyal Hellhound"
+    ],
+    "G3_10": [
+      "Ascendancy: Altered Flesh"
+    ]
   }
 }

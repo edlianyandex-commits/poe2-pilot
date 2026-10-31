@@ -11,6 +11,7 @@ from PySide6.QtGui import (QColor, QFont, QFontMetrics, QGuiApplication, QPainte
 from PySide6.QtWidgets import QWidget
 
 from pilot.contracts import HudState
+from pilot.i18n import tr
 
 from . import winapi
 from . import theme
@@ -347,7 +348,7 @@ class HudWindow(QWidget):
         padx, pad_y, row1, row2 = self.u(12), self.u(6), self.u(28), self.u(22)
         pal_name = self.config.get("palette")
         L: dict = {"W": W, "padx": padx}
-        col = max(self.m1.horizontalAdvance("A4"), self.m1.horizontalAdvance("И3")) + self.u(10)
+        col = max(self.m1.horizontalAdvance("A4"), self.m1.horizontalAdvance(tr("И{n}", n=3))) + self.u(10)
         isz = self.u(18)
         L["label"] = act_label(st.act, None)
         L["base1"] = self._base(pad_y, row1, self.m1)

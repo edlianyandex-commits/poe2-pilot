@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from pilot.contracts import GemCard, GemRow, LevelHint, LevelPlan
+from pilot.i18n import pick, tr
 
 from . import data as _data
 from .pobcode import GemEntry, PobBuild, SkillGroup
@@ -189,7 +190,7 @@ def plan_gems(build: PobBuild, warnings: list[str],
                 continue
             seen_skill.add(a.name)
             seq += 1
-            text = f"+ {a.name} (оружие)" if weapon_granted(a) else f"+ {a.name}"
+            text = tr("+ {name} (оружие)", name=a.name) if weapon_granted(a) else f"+ {a.name}"
             events.append(GemEvent(lvl, gp.prio, seq, clip(text),
                                    is_main=(a is gp.lead and gp.is_main)))
         for when, x in sorted(gp.supports, key=lambda t: t[0]):
@@ -297,11 +298,11 @@ def load_gear_file(path: str | Path) -> GearLines:
     equipped uniques are not hinted, only the sidecar's own lines are.
     """
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    gear = raw.get("gear", {}) if isinstance(raw, dict) else {}
+    gear = pick(raw, "gear", {}) if isinstance(raw, dict) else {}       # gear_en in English
     out = GearLines()
     if isinstance(raw, dict) and raw.get("pob_uniques") is False:
         out.pob_uniques = False
-    zones = raw.get("zones", {}) if isinstance(raw, dict) else {}
+    zones = pick(raw, "zones", {}) if isinstance(raw, dict) else {}
     out.zones = {str(a): tuple(clip(str(x), 40) for x in (v if isinstance(v, list) else [v]) if str(x).strip())
                  for a, v in (zones.items() if isinstance(zones, dict) else ()) if not str(a).startswith("_")}
     route = raw.get("route", {}) if isinstance(raw, dict) else {}
@@ -342,7 +343,7 @@ def plan_gear(build: PobBuild, sidecar: dict[int, list[str]] | None = None) -> d
         seen.add(it.name)
         if it.name.lower() in side_text:
             continue
-        out.setdefault(max(1, it.level_req), []).append(clip(f"Надеть {it.name}"))
+        out.setdefault(max(1, it.level_req), []).append(clip(tr("Надеть {name}", name=it.name)))
     for lvl, lines in sidecar.items():   # guide lines first: they are the author's priorities
         out[lvl] = list(lines) + out.get(lvl, [])
     return {k: out[k] for k in sorted(out)}
@@ -391,7 +392,7 @@ def _display(tree: PassiveTree, nid: int, build: PobBuild) -> str:
         if ch is None and choices:  # filler attribute node: use the build's dominant attribute
             vals = list(choices.values())
             ch = max(("int", "dex", "str"), key=vals.count)
-        return ATTR_RU.get(ch, "+5 Атрибут")
+        return tr(ATTR_RU.get(ch, "+5 Атрибут"))
     return n.name or n.sid
 
 
@@ -412,7 +413,7 @@ def format_passives(tree: PassiveTree, nids: list[int], build: PobBuild) -> tupl
         return tuple(labels)
     shown = labels[: MAX_ITEMS - 1]
     rest = sum(counts[d] for d in names[MAX_ITEMS - 1:])
-    return tuple(shown) + (f"+{rest} ещё",)
+    return tuple(shown) + (tr("+{n} ещё", n=rest),)
 
 
 def _component(tree: PassiveTree, root: int, nodes: set[int]) -> set[int]:
@@ -582,7 +583,7 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
         if chunk:
             asc_hints[t["area_id"]] = LevelHint(level=t["typical_char_level"],
                                                 passives=format_passives(tree, chunk, build),
-                                                note="Восхождение")
+                                                note=tr("Восхождение"))
     asc_set = set(asc_order)
 
     hints: dict[int, LevelHint] = {}
@@ -594,9 +595,9 @@ def build_level_plan(build: PobBuild, tree: PassiveTree | None = None,
             continue
         note = None
         if any(n in opens for n in nodes):
-            note = "Самоцвет в гнездо"
+            note = tr("Самоцвет в гнездо")
         if any(e.is_main for e in gems_ev) and lvl > 1 and note is None:
-            note = clip(f"Основной скилл: {main_name}") if note is None else note
+            note = clip(tr("Основной скилл: {name}", name=main_name)) if note is None else note
         hints[lvl] = LevelHint(level=lvl, passives=format_passives(tree, nodes, build),
                                gems=tuple(e.text for e in gems_ev), note=note,
                                gear=tuple(gear_lines))

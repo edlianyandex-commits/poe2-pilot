@@ -4,12 +4,14 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, replace
 from pathlib import Path
+from pilot.i18n import pick
 
 KINDS = frozenset({"move", "wp", "boss", "quest", "town", "trial", "skip"})
 MAX_SHORT, MAX_DETAIL, MAX_REWARD = 40, 120, 32
 VALID_ACTS = frozenset({1, 2, 3, 4, 101, 102, 103})
-_ROUTE_KEYS = {"id", "patch", "title", "steps"}
-_STEP_KEYS = {"id", "act", "area", "short", "detail", "kind", "split", "done_on", "reward", "optional"}
+_ROUTE_KEYS = {"id", "patch", "title", "title_en", "steps"}
+_STEP_KEYS = {"id", "act", "area", "short", "short_en", "detail", "detail_en", "kind", "split", "done_on", "reward",
+              "optional"}
 
 
 class RouteError(ValueError):
@@ -94,7 +96,7 @@ def parse_route(data: object, source: str = "<dict>") -> Route:
             steps.append(step)
     if errs:
         raise RouteError(source, errs)
-    return Route(rid, data.get("title", ""), merge_same_area(steps), data.get("patch", ""))
+    return Route(rid, pick(data, "title", ""), merge_same_area(steps), data.get("patch", ""))
 
 
 # steps a player may skip on the way; they count as done once a later step of the act is reached
@@ -195,19 +197,25 @@ def _parse_step(raw: object, i: int, seen: set[str], errs: list[str]) -> Step | 
     area = raw.get("area")
     if not isinstance(area, str) or not area:
         errs.append(f"{where}: area required non-empty string")
-    short = raw.get("short")
-    if not isinstance(short, str) or not short:
-        errs.append(f"{where}: short required non-empty string")
-    elif len(short) > MAX_SHORT:
-        errs.append(f"{where}: short is {len(short)} chars (max {MAX_SHORT})")
+    for key in ("short", "short_en"):                  # English is optional, Russian is not
+        v = raw.get(key)
+        if key == "short_en" and v is None:
+            continue
+        if not isinstance(v, str) or not v:
+            errs.append(f"{where}: {key} required non-empty string")
+        elif len(v) > MAX_SHORT:
+            errs.append(f"{where}: {key} is {len(v)} chars (max {MAX_SHORT})")
+    short = pick(raw, "short")
     kind = raw.get("kind")
     if kind not in KINDS:
         errs.append(f"{where}: kind {kind!r} not in {sorted(KINDS)}")
-    detail = raw.get("detail", "")
-    if not isinstance(detail, str):
-        errs.append(f"{where}: detail must be a string")
-    elif len(detail) > MAX_DETAIL:
-        errs.append(f"{where}: detail is {len(detail)} chars (max {MAX_DETAIL})")
+    for key in ("detail", "detail_en"):
+        v = raw.get(key, "")
+        if not isinstance(v, str):
+            errs.append(f"{where}: {key} must be a string")
+        elif len(v) > MAX_DETAIL:
+            errs.append(f"{where}: {key} is {len(v)} chars (max {MAX_DETAIL})")
+    detail = pick(raw, "detail", "")
     reward = raw.get("reward")
     if reward is not None:
         if not isinstance(reward, str):

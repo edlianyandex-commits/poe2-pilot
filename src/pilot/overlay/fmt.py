@@ -1,6 +1,8 @@
 """Pure text formatting for the HUD (no Qt required except `elide`)."""
 from __future__ import annotations
 
+from pilot.i18n import tr
+
 MINUS = "−"  # real minus sign, matches the UX mock-up
 
 
@@ -43,7 +45,7 @@ def act_label(act: int | None, area_level: int | None) -> str:
     """'A2 · 19'. Interludes (act >= 101) render as 'И1'..'И3'."""
     parts: list[str] = []
     if act is not None:
-        parts.append(f"И{act - 100}" if act >= 101 else f"A{act}")
+        parts.append(tr("И{n}", n=act - 100) if act >= 101 else f"A{act}")
     if area_level is not None:
         parts.append(str(area_level))
     return " · ".join(parts)
@@ -69,7 +71,7 @@ def details_lines(state, extra: list[str] | None = None, limit: int = 10) -> lis
     if state.step_total:
         head.append(f"{state.step_index + 1}/{state.step_total}")
     if state.char_level is not None:
-        head.append(f"ур. {state.char_level}")
+        head.append(tr("ур. {level}", level=state.char_level))
     if state.area_name:
         head.append(state.area_name)
     if head:
@@ -82,7 +84,7 @@ def details_lines(state, extra: list[str] | None = None, limit: int = 10) -> lis
     if state.step_short:
         lines.append(state.step_short)
     if state.next_short:
-        lines.append("затем: " + state.next_short)
+        lines.append(tr("затем: ") + state.next_short)
     return lines[:limit]
 
 
@@ -160,7 +162,7 @@ RED_GAP = 3
 
 
 def level_text(char_level: int | None) -> str | None:
-    return None if char_level is None else f"ур {char_level}"
+    return None if char_level is None else tr("ур {level}", level=char_level)
 
 
 def zone_pill(area_level: int | None, char_level: int | None) -> ZonePill | None:
@@ -168,7 +170,7 @@ def zone_pill(area_level: int | None, char_level: int | None) -> ZonePill | None
     if area_level is None:
         return None
     gap = area_level - char_level if char_level is not None else 0
-    return ZonePill(f"зона {area_level}", gap >= AMBER_GAP, gap >= RED_GAP)
+    return ZonePill(tr("зона {level}", level=area_level), gap >= AMBER_GAP, gap >= RED_GAP)
 
 
 class Segment(NamedTuple):

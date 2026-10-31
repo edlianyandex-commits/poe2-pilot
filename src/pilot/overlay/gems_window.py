@@ -19,6 +19,7 @@ from PySide6.QtGui import (QColor, QFont, QFontMetrics, QGuiApplication, QPainte
 from PySide6.QtWidgets import QWidget
 
 from pilot.contracts import GemCard, GemRow
+from pilot.i18n import tr
 
 from . import theme, winapi
 from .fmt import elide
@@ -101,7 +102,7 @@ class _Tip(QWidget):
         self.scale = 1.0
 
     def set_card(self, card: GemCard, scale: float = 1.0) -> None:
-        self.set_content(card.name, KIND_LABEL.get(card.kind, card.kind), card.description or "", scale)
+        self.set_content(card.name, tr(KIND_LABEL.get(card.kind, card.kind)), card.description or "", scale)
 
     def set_content(self, title: str, kind_text: str, desc: str = "", scale: float = 1.0) -> None:
         """Bold title, dim kind line, wrapped body (lines separated by newlines)."""
@@ -469,7 +470,7 @@ class GemsWindow(QWidget):
         cb = QGuiApplication.clipboard()
         if cb is not None:
             cb.setText(card.name)
-        self._flash = (f"Скопировано: {card.name}", self._clock() + FLASH_S)
+        self._flash = (tr("Скопировано: {name}", name=card.name), self._clock() + FLASH_S)
         self._flash_timer.start(int(FLASH_S * 1000))
         self.update()
 
@@ -567,7 +568,7 @@ class GemsWindow(QWidget):
         p.drawRoundedRect(QRectF(0, 0, W, H), r, r)
 
         pad = self.u(PAD)
-        head = "Гемы" + (f" · ур {self.level}" if self.level is not None else "")
+        head = tr("Гемы") + (tr(" · ур {level}", level=self.level) if self.level is not None else "")
         self._text(p, pad, self._base(0, self.u(HEADER_H), self.m_head), head, self.f_head,
                    QColor(255, 255, 255))
         # thin separator under the header
@@ -613,5 +614,5 @@ class GemsWindow(QWidget):
             col = QColor(*pal["ahead"])
             self._text(p, pad, base, elide(self._flash[0], self.m_foot, W - 2 * pad), self.f_foot, col)
         elif self.rows:
-            self._text(p, pad, base, "клик — копировать имя", self.f_foot, QColor(255, 255, 255), 0.45)
+            self._text(p, pad, base, tr("клик — копировать имя"), self.f_foot, QColor(255, 255, 255), 0.45)
         p.end()

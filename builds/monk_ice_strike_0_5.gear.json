@@ -4,36 +4,155 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Martial Artist; Ignagduk in the Azak Bog gives +30 Spirit for Combat Frenzy",
-    "require": ["a2-007", "a3-005"]
+    "require": [
+      "a2-007",
+      "a3-005"
+    ]
   },
   "ascendancy": {
     "_order": "Runic Meridians -> Hollow Focus Technique (the guide's Martial Artist)",
-    "G2_13": ["Runic Meridians"],
-    "G3_10": ["Hollow Focus Technique"]
+    "G2_13": [
+      "Runic Meridians"
+    ],
+    "G3_10": [
+      "Hollow Focus Technique"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Копьё: Whirling Slash + Twister", "WS 2–3 раза, потом Twister"],
-    "11": ["Боссы: Frost Bomb → Twister"],
-    "12": ["Перчатки, кольца: плоский урон"],
-    "14": ["Снять копьё: Hollow Palm", "Ice Strike — всё время на ходу"],
-    "15": ["Сильные: Frost Bomb, Bell"],
-    "20": ["Сехемы: Runic Meridians"],
-    "25": ["Босс: EW → Frost Bomb → Mark"],
-    "28": ["Frenzy: заряды при заморозке", "Мало Spirit: Frenzy после болота"],
-    "33": ["Charged Staff: гем 9-го уровня"],
-    "41": ["Shattering Palm: прыжок в пачку"],
-    "48": ["Heavy Frost: Frost Bomb не нужен", "Убрать EW и Freezing Mark"]
+    "1": [
+      "Копьё: Whirling Slash + Twister",
+      "WS 2–3 раза, потом Twister"
+    ],
+    "11": [
+      "Боссы: Frost Bomb → Twister"
+    ],
+    "12": [
+      "Перчатки, кольца: плоский урон"
+    ],
+    "14": [
+      "Снять копьё: Hollow Palm",
+      "Ice Strike — всё время на ходу"
+    ],
+    "15": [
+      "Сильные: Frost Bomb, Bell"
+    ],
+    "20": [
+      "Сехемы: Runic Meridians"
+    ],
+    "25": [
+      "Босс: EW → Frost Bomb → Mark"
+    ],
+    "28": [
+      "Frenzy: заряды при заморозке",
+      "Мало Spirit: Frenzy после болота"
+    ],
+    "33": [
+      "Charged Staff: гем 9-го уровня"
+    ],
+    "41": [
+      "Shattering Palm: прыжок в пачку"
+    ],
+    "48": [
+      "Heavy Frost: Frost Bomb не нужен",
+      "Убрать EW и Freezing Mark"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Spear: Whirling Slash + Twister",
+      "WS 2–3 times, then Twister"
+    ],
+    "11": [
+      "Bosses: Frost Bomb → Twister"
+    ],
+    "12": [
+      "Gloves, rings: flat damage"
+    ],
+    "14": [
+      "Drop the spear: Hollow Palm",
+      "Ice Strike on the move, always"
+    ],
+    "15": [
+      "Tough ones: Frost Bomb, Bell"
+    ],
+    "20": [
+      "Sekhemas: Runic Meridians"
+    ],
+    "25": [
+      "Boss: EW → Frost Bomb → Mark"
+    ],
+    "28": [
+      "Frenzy: charges on freeze",
+      "Low Spirit: Frenzy after the bog"
+    ],
+    "33": [
+      "Charged Staff: lv 9 gem"
+    ],
+    "41": [
+      "Shattering Palm: dash into pack"
+    ],
+    "48": [
+      "Heavy Frost: drop Frost Bomb",
+      "Drop EW and Freezing Mark"
+    ]
   },
   "zones": {
-    "G1_town": ["Ренли/Уна: копьё, Twister"],
-    "G1_4": ["Areagne: Retreat I → Twister"],
-    "G1_12": ["King in the Mists: Herald of Ice"],
-    "G1_13_2": ["После Палача: Ice Strike (Leitis)"],
-    "G2_13": ["Восхождение: Runic Meridians"],
-    "G3_1": ["Lesser Jeweller's → Ice Strike"],
-    "G3_7": ["Ignagduk: +30 Spirit"],
-    "G3_10": ["Восхождение: Hollow Focus Technique"],
-    "G4_11_1a": ["Нгакану: ещё один вендор оружия"]
+    "G1_town": [
+      "Ренли/Уна: копьё, Twister"
+    ],
+    "G1_4": [
+      "Areagne: Retreat I → Twister"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ice"
+    ],
+    "G1_13_2": [
+      "После Палача: Ice Strike (Leitis)"
+    ],
+    "G2_13": [
+      "Восхождение: Runic Meridians"
+    ],
+    "G3_1": [
+      "Lesser Jeweller's → Ice Strike"
+    ],
+    "G3_7": [
+      "Ignagduk: +30 Spirit"
+    ],
+    "G3_10": [
+      "Восхождение: Hollow Focus Technique"
+    ],
+    "G4_11_1a": [
+      "Нгакану: ещё один вендор оружия"
+    ]
+  },
+  "zones_en": {
+    "G1_town": [
+      "Renly/Una: spear, Twister"
+    ],
+    "G1_4": [
+      "Areagne: Retreat I → Twister"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ice"
+    ],
+    "G1_13_2": [
+      "After Executioner: Ice Strike (Leitis)"
+    ],
+    "G2_13": [
+      "Ascendancy: Runic Meridians"
+    ],
+    "G3_1": [
+      "Lesser Jeweller's → Ice Strike"
+    ],
+    "G3_7": [
+      "Ignagduk: +30 Spirit"
+    ],
+    "G3_10": [
+      "Ascendancy: Hollow Focus Technique"
+    ],
+    "G4_11_1a": [
+      "Ngakanu: another weapon vendor"
+    ]
   }
 }

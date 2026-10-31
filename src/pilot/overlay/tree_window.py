@@ -18,6 +18,7 @@ from PySide6.QtGui import (QColor, QFont, QFontMetrics, QGuiApplication, QPainte
 from PySide6.QtWidgets import QWidget
 
 from pilot.contracts import TreeNodeView, TreeView
+from pilot.i18n import tr
 
 from . import theme, winapi
 from .fmt import elide
@@ -92,15 +93,15 @@ def next_nodes(view: TreeView | None) -> list[TreeNodeView]:
 def list_line(node: TreeNodeView) -> str:
     s = f"{node.order} {node.name}" if node.order is not None else node.name
     if node.level is not None:
-        s += f" · ур {node.level}"
+        s += tr(" · ур {level}", level=node.level)
     return s
 
 
 def tip_text(node: TreeNodeView) -> tuple[str, str, str]:
     """(title, kind line, stats body)."""
-    kind = KIND_LABEL.get(node.kind, node.kind)
+    kind = tr(KIND_LABEL.get(node.kind, node.kind))
     if node.level is not None:
-        kind += f" · ур {node.level}"
+        kind += tr(" · ур {level}", level=node.level)
     return node.name, kind, "\n".join(node.stats)
 
 
@@ -591,7 +592,7 @@ class TreeWindow(QWidget):
         cb = QGuiApplication.clipboard()
         if cb is not None:
             cb.setText(name)
-        self._flash = f"Скопировано: {name}"
+        self._flash = tr("Скопировано: {name}", name=name)
         self._flash_timer.start(int(FLASH_S * 1000))
         self.update()
 
@@ -713,11 +714,11 @@ class TreeWindow(QWidget):
         # ---- header: "Дерево · ур N · свободно K"
         x = pad
         base = self._base(0, self.u(HEADER_H), self.m_head)
-        parts = [("Дерево", None)]
+        parts = [(tr("Дерево"), None)]
         if v and v.level is not None:
-            parts.append((f" · ур {v.level}", None))
+            parts.append((tr(" · ур {level}", level=v.level), None))
         if v and v.points_free:
-            parts.append((f" · свободно {v.points_free}", theme.YELLOW))
+            parts.append((tr(" · свободно {n}", n=v.points_free), theme.YELLOW))
         for txt, col in parts:
             self._text(p, x, base, txt, self.f_head, QColor(*col) if col else QColor(255, 255, 255))
             x += self.m_head.horizontalAdvance(txt)
@@ -762,8 +763,9 @@ class TreeWindow(QWidget):
         p.drawRoundedRect(cb, cb.height() / 2, cb.height() / 2)
         p.setFont(self.f_foot)
         p.setPen(QColor(235, 235, 235))
-        tw = self.m_foot.horizontalAdvance("центр")
-        p.drawText(QPointF(cb.center().x() - tw / 2, self._base(cb.top(), cb.height(), self.m_foot)), "центр")
+        centre = tr("центр")
+        tw = self.m_foot.horizontalAdvance(centre)
+        p.drawText(QPointF(cb.center().x() - tw / 2, self._base(cb.top(), cb.height(), self.m_foot)), centre)
 
         # ---- side strip: next nodes
         s = self.strip_rect()
@@ -788,7 +790,7 @@ class TreeWindow(QWidget):
                                    self._base(badge.top(), badge.height(), self.m_num)), lab)
             tx = rect.left() + self.u(28)
             # level first: a long name may be elided, the level must stay visible
-            txt = elide((f"ур {n.level} · " if n.level is not None else "") + n.name, self.m_list,
+            txt = elide((tr("ур {level}", level=n.level) + " · " if n.level is not None else "") + n.name, self.m_list,
                         rect.right() - tx - self.u(2))
             self._text(p, tx, by, txt, self.f_list, QColor(255, 255, 255))
         if not items:
@@ -808,8 +810,8 @@ class TreeWindow(QWidget):
     def _legend(self, p: QPainter, x: float, fy: float, base: float) -> None:
         pal = self.config.get("palette")
         cy = fy + self.u(FOOTER_H) / 2
-        for state, label in (("taken", "взято"), ("next", "дальше"), ("planned", "план"),
-                             ("offplan", "мимо")):
+        for state, label in (("taken", tr("взято")), ("next", tr("дальше")), ("planned", tr("план")),
+                             ("offplan", tr("мимо"))):
             cols = node_colors(state, pal)
             r = self.u(5)
             p.setPen(QPen(QColor(*cols["line"]), self.u(1.5)))

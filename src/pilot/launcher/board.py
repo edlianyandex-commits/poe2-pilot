@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractButton, QHBoxLayout, QLabel, QPushButton
 
 from pilot import __version__, brand
 from pilot.catalog import Catalog, Entry
+from pilot.i18n import lang, tr
 
 from . import style as S
 from .heroes import HeroPicker, badge, class_art
@@ -37,6 +38,7 @@ TWINKLE_MS = 90
 # ---------------------------------------------------------------- title bar
 class TitleBar(QWidget):
     H = 56
+    language = Signal(str)
 
     def __init__(self, parent: QWidget):
         super().__init__(parent)
@@ -57,6 +59,11 @@ class TitleBar(QWidget):
         r = self.width() - 20
         return {"close": QRectF(r - 30, 13, 30, 30), "min": QRectF(r - 68, 13, 30, 30)}
 
+    def _langs(self) -> dict[str, QRectF]:
+        """RU | EN switch, left of the clock."""
+        x = self._buttons()["min"].left() - 84 - 12 - 76
+        return {"ru": QRectF(x, 13, 38, 30), "en": QRectF(x + 38, 13, 38, 30)}
+
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
@@ -69,7 +76,7 @@ class TitleBar(QWidget):
         p.drawPath(path)
         p.setPen(S.DIM)
         p.setFont(S.font(10.5, QFont.Bold))
-        p.drawText(QPointF(63, 44), f"штурман кампании  ·  v{__version__}")
+        p.drawText(QPointF(63, 44), tr("штурман кампании") + f"  ·  v{__version__}")
 
         if self.title:
             tf = S.font(16.5, QFont.ExtraBold, 1)
@@ -89,6 +96,18 @@ class TitleBar(QWidget):
         p.setFont(S.font(13.5, QFont.ExtraBold, 1))
         p.setPen(S.INK)
         p.drawText(clock, Qt.AlignCenter, time.strftime("%H:%M"))
+        langs = self._langs()
+        whole = langs["ru"].united(langs["en"])
+        S.soft_card(p, whole, 15, QColor(255, 255, 255, 200), None, shadow=False)
+        for code, r in langs.items():
+            active = code == lang()
+            if active:
+                p.setPen(Qt.NoPen)
+                p.setBrush(S.gradient(r, S.PINK, S.GOLD, horizontal=True))
+                p.drawRoundedRect(r.adjusted(2, 2, -2, -2), 13, 13)
+            p.setFont(S.font(12, QFont.ExtraBold, 0.5))
+            p.setPen(S.WHITE if active else (S.PINK if self.hover == code else S.DIM))
+            p.drawText(r, Qt.AlignCenter, code.upper())
         for name, r in bx.items():
             on = self.hover == name
             p.setPen(Qt.NoPen)
@@ -103,7 +122,7 @@ class TitleBar(QWidget):
                 p.drawLine(c + QPointF(-5, 0), c + QPointF(5, 0))
 
     def mouseMoveEvent(self, e):
-        hit = next((n for n, r in self._buttons().items() if r.contains(e.position())), None)
+        hit = next((n for n, r in (self._buttons() | self._langs()).items() if r.contains(e.position())), None)
         if hit != self.hover:
             self.hover = hit
             self.update()
@@ -119,6 +138,9 @@ class TitleBar(QWidget):
             self.window().close()
         elif self.hover == "min":
             self.window().showMinimized()
+        elif self.hover in ("ru", "en"):
+            if self.hover != lang():
+                self.language.emit(self.hover)
         elif self.window().windowHandle():
             self.window().windowHandle().startSystemMove()
 
@@ -201,7 +223,7 @@ class BuildList(QWidget):
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
         if self.top + self.visible_rows() < len(self.entries):
-            p.drawText(QRectF(0, self.height() - 16, self.width() - 12, 16), Qt.AlignRight, "ещё ▼")
+            p.drawText(QRectF(0, self.height() - 16, self.width() - 12, 16), Qt.AlignRight, tr("ещё ▼"))
 
     def _row(self, p: QPainter, i: int, r: QRectF) -> None:
         e = self.entries[i]
@@ -226,7 +248,7 @@ class BuildList(QWidget):
         title = fm.elidedText(e.title, Qt.ElideRight, right - x - 10)
         p.drawText(QPointF(x, r.top() + 28), title)
         if e.file == self.last:
-            S.chip(p, x + fm.horizontalAdvance(title) + 10, r.top() + 12, "последний",
+            S.chip(p, x + fm.horizontalAdvance(title) + 10, r.top() + 12, tr("последний"),
                    S.font(10.5, QFont.Bold), S.WHITE, S.PINK, h=20)
         S.chips(p, QRectF(x, r.top() + 38, right - x, 22), [e.role, *e.skills], S.font(11, QFont.Bold),
                 S.INK, S.LAVENDER, h=22)
@@ -239,7 +261,7 @@ class BuildList(QWidget):
         p.drawText(QRectF(sx, r.top() + 36, 104, 18), Qt.AlignLeft, label)
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
-        p.drawText(QRectF(sx, r.top() + 52, 104, 16), Qt.AlignLeft, f"патч {e.patch}")
+        p.drawText(QRectF(sx, r.top() + 52, 104, 16), Qt.AlignLeft, tr("патч {patch}", patch=e.patch))
         if sel:
             tip = QPainterPath(QPointF(r.left() - 12, r.center().y() - 9))
             tip.lineTo(QPointF(r.left() - 3, r.center().y()))
@@ -356,7 +378,7 @@ class HeroCard(QWidget):
 
         y += 32
         third = (R - L) / 3
-        for k, (lab, val) in enumerate((("автор", e.author), ("патч", e.patch), ("версия", str(e.rev)))):
+        for k, (lab, val) in enumerate(((tr("автор"), e.author), (tr("патч"), e.patch), (tr("версия"), str(e.rev)))):
             x = L + k * third
             p.setFont(S.font(11, QFont.Bold))
             p.setPen(S.DIM)
@@ -368,14 +390,14 @@ class HeroCard(QWidget):
         y += 38
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
-        p.drawText(QPointF(L, y + 10), "скиллы")
+        p.drawText(QPointF(L, y + 10), tr("скиллы"))
         y += 14 + S.chips(p, QRectF(L, y + 15, R - L, 48), e.skills, S.font(11, QFont.Bold), S.INK, S.LAVENDER,
                           h=22)
         y += 10
         p.setFont(S.font(11, QFont.Bold))
         p.setPen(S.DIM)
-        p.drawText(QPointF(L, y + 10), "обязательно пройти")
-        y += 14 + S.chips(p, QRectF(L, y + 15, R - L, 48), e.musts or ("ничего",), S.font(11, QFont.Bold),
+        p.drawText(QPointF(L, y + 10), tr("обязательно пройти"))
+        y += 14 + S.chips(p, QRectF(L, y + 15, R - L, 48), e.musts or (tr("ничего"),), S.font(11, QFont.Bold),
                           S.PINK.darker(110), QColor(255, 236, 246), S.PINK, h=22)
         if e.note:
             p.setFont(S.font(11.5))
@@ -385,7 +407,7 @@ class HeroCard(QWidget):
         self.link = QRectF()
         if e.source:
             p.setFont(S.font(12, QFont.ExtraBold))
-            txt = "открыть гайд ↗"
+            txt = tr("открыть гайд ↗")
             w = QFontMetricsF(p.font()).horizontalAdvance(txt)
             self.link = QRectF(R - w, card.bottom() - 30, w, 20)
             p.setPen(S.PINK)
@@ -444,8 +466,9 @@ class StartButton(QAbstractButton):
             p.restore()
         p.setFont(S.font(20, QFont.ExtraBold, 4))
         p.setPen(S.WHITE)
-        p.drawText(r, Qt.AlignCenter, "СТАРТ")
-        tw = QFontMetricsF(p.font()).horizontalAdvance("СТАРТ")
+        start = tr("СТАРТ")
+        p.drawText(r, Qt.AlignCenter, start)
+        tw = QFontMetricsF(p.font()).horizontalAdvance(start)
         for dx in (-1, 1):
             S.sparkle(p, QPointF(r.center().x() + dx * (tw / 2 + 22), r.center().y()), 8, S.WHITE)
         p.setFont(S.font(10, QFont.ExtraBold, 1))
@@ -483,7 +506,7 @@ class BoardWindow(QWidget):
     finished = Signal()
 
     def __init__(self, catalog: Catalog, last: str | None = None, content_version: str = "",
-                 updater: object | None = None):
+                 updater: object | None = None, on_language: Callable[[str], None] | None = None):
         """updater: pilot.updates-like object with check() / apply(manifest) -> int, or None (offline)."""
         super().__init__(None, Qt.Window | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
@@ -502,6 +525,8 @@ class BoardWindow(QWidget):
         self.phase = 0.0
 
         self.bar = TitleBar(self)
+        self.bar.language.connect(self._language)
+        self.on_language = on_language
         prev = catalog.find(last)
         self.heroes = HeroPicker(catalog, prev.cls if prev else None, self)
         self.heroes.opened.connect(self.open_class)
@@ -532,14 +557,14 @@ class BoardWindow(QWidget):
         self.pages.addWidget(flight)
 
         css = f"color:#8a82a8;font:700 12px '{bold}';"
-        self.info = QLabel(f"контент {content_version or '—'}  ·  игра {catalog.game or '—'}", self)
+        self.info = QLabel(tr("контент {content}  ·  игра {game}", content=content_version or "—", game=catalog.game or "—"), self)
         self.news = QLabel("", self)
         self.keys = QLabel(self)
         for lab in (self.info, self.news):
             lab.setStyleSheet(css)
         self.keys.setStyleSheet(f"color:#b0a9c9;font:700 12px '{bold}';")
         self.action = QPushButton(self)
-        self.back = QPushButton("← Герои", self)
+        self.back = QPushButton(tr("← Герои"), self)
         for b in (self.action, self.back):
             b.setStyleSheet(button_css(fam))           # ExtraBold lives in the base family
             b.setCursor(Qt.PointingHandCursor)
@@ -573,7 +598,7 @@ class BoardWindow(QWidget):
         self.timer.start()
 
         if updater is not None:
-            self.news.setText("проверяю обновления…")
+            self.news.setText(tr("проверяю обновления…"))
             run_async(self, updater.check, self._checked)
 
     def _twinkle(self) -> None:
@@ -585,20 +610,20 @@ class BoardWindow(QWidget):
     # -- updates
     def _checked(self, res, err) -> None:
         if err is not None:
-            self.news.setText("GitHub недоступен — играем с тем, что есть")
+            self.news.setText(tr("GitHub недоступен — играем с тем, что есть"))
             return
         if res.content:
             self._remote = res.content
-            self.news.setText(f"новые билды и данные: {res.content.get('version')}")
-            self._button("Обновить")
+            self.news.setText(tr("новые билды и данные: {version}", version=res.content.get("version")))
+            self._button(tr("Обновить"))
         elif res.needs_app or res.app_version:
             v = res.app_version or res.needs_app
-            self.news.setText(f"вышла версия программы {v}"
-                              + (" — новые билды только для неё" if res.needs_app else ""))
+            self.news.setText(tr("вышла версия программы {v}", v=v)
+                              + (tr(" — новые билды только для неё") if res.needs_app else ""))
             self._open_url = res.app_url or self.updater.releases_url()
-            self._button("Скачать")
+            self._button(tr("Скачать"))
         else:
-            self.news.setText("билды свежие")
+            self.news.setText(tr("билды свежие"))
 
     def _button(self, text: str) -> None:
         self.action.setText(text)
@@ -612,24 +637,31 @@ class BoardWindow(QWidget):
         if self._remote is None:
             return
         self.action.setEnabled(False)
-        self.news.setText("загружаю…")
+        self.news.setText(tr("загружаю…"))
         run_async(self, lambda: self.updater.apply(self._remote), self._applied)
 
     def _applied(self, n, err) -> None:
         if err is not None:
-            self.news.setText(f"не удалось обновить: {err}")
+            self.news.setText(tr("не удалось обновить: {err}", err=err))
             self.action.setEnabled(True)
             return
-        self.news.setText(f"обновлено файлов: {n}. Перезапуск…")
+        self.news.setText(tr("обновлено файлов: {n}. Перезапуск…", n=n))
         self.restart = True
         QTimer.singleShot(700, self.close)
+
+    def _language(self, code: str) -> None:
+        """Save the choice and start again in that language (the overlay reads it at start-up)."""
+        if self.on_language is not None:
+            self.on_language(code)
+        self.restart = True
+        self.close()
 
     # -- pages
     def show_heroes(self) -> None:
         self.pages.setCurrentIndex(0)
         self.back.hide()
-        self.bar.set_title("Выбери героя")
-        self.keys.setText("← → ↑ ↓ выбрать  ·  Enter открыть  ·  Esc выход")
+        self.bar.set_title(tr("Выбери героя"))
+        self.keys.setText(tr("← → ↑ ↓ выбрать  ·  Enter открыть  ·  Esc выход"))
 
     def open_class(self, cls: str) -> None:
         entries = tuple(e for e in self.cat.entries if e.cls == cls)
@@ -639,8 +671,8 @@ class BoardWindow(QWidget):
         self.card.set_entry(entries[self.builds.sel])
         self.pages.setCurrentIndex(1)
         self.back.show()
-        self.bar.set_title("Выбери билд")
-        self.keys.setText("↑ ↓ выбрать  ·  Enter старт  ·  Esc назад")
+        self.bar.set_title(tr("Выбери билд"))
+        self.keys.setText(tr("↑ ↓ выбрать  ·  Enter старт  ·  Esc назад"))
 
     @property
     def on_board(self) -> bool:

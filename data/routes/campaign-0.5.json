@@ -2,13 +2,16 @@
   "id": "campaign-0.5",
   "patch": "0.5.x",
   "title": "Кампания 0.5: быстрый маршрут",
+  "title_en": "Campaign 0.5: speed route",
   "steps": [
     {
       "id": "a1-001",
       "act": 1,
       "area": "G1_1",
       "short": "→ Берег реки",
+      "short_en": "→ The Riverbank",
       "detail": "Старт кампании",
+      "detail_en": "Campaign start",
       "kind": "move",
       "split": true
     },
@@ -17,7 +20,9 @@
       "act": 1,
       "area": "G1_1",
       "short": "⚔ The Bloated Miller",
+      "short_en": "⚔ The Bloated Miller",
       "detail": "Обязательный босс зоны",
+      "detail_en": "Required zone boss",
       "kind": "boss"
     },
     {
@@ -25,7 +30,9 @@
       "act": 1,
       "area": "G1_town",
       "short": "⌂ Лагерь Клирфелл",
+      "short_en": "⌂ Clearfell Encampment",
       "detail": "Сдать квест Reaching Clearfell",
+      "detail_en": "Hand in Reaching Clearfell",
       "kind": "town",
       "reward": "Uncut Skill Gem"
     },
@@ -34,7 +41,9 @@
       "act": 1,
       "area": "G1_2",
       "short": "◆ Клирфелл",
+      "short_en": "◆ Clearfell",
       "detail": "WP в зоне. Опц.: Beira в центре (+10% к сопр. холоду)",
+      "detail_en": "WP in the zone. Opt.: Beira in the centre (+10% cold resistance)",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Act_1"
     },
@@ -43,7 +52,9 @@
       "act": 1,
       "area": "G1_3",
       "short": "⚔ The Devourer",
+      "short_en": "⚔ The Devourer",
       "detail": "Опц. Без WP. Камень поддержки и 100 золота; Грельвуд доступен и без норы",
+      "detail_en": "Opt. No WP. Support gem and 100 gold; the Grelwood opens without the burrow",
       "kind": "boss",
       "reward": "Uncut Support Gem",
       "_source": "https://poe2db.tw/us/Act_1",
@@ -54,7 +65,9 @@
       "act": 1,
       "area": "G1_4",
       "short": "◆ Грельвуд",
+      "short_en": "◆ The Grelwood",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -62,7 +75,9 @@
       "act": 1,
       "area": "G1_6",
       "short": "◆ Мрачные заросли",
+      "short_en": "◆ The Grim Tangle",
       "detail": "WP. Квест: корни Mysterious Shade",
+      "detail_en": "WP. Quest: Mysterious Shade's roots",
       "kind": "wp"
     },
     {
@@ -70,7 +85,9 @@
       "act": 1,
       "area": "G1_5",
       "short": "⚔ The Rust King",
+      "short_en": "⚔ The Rust King",
       "detail": "Обязательный. Дает Runed Girdle",
+      "detail_en": "Required. Drops the Runed Girdle",
       "kind": "boss"
     },
     {
@@ -78,7 +95,9 @@
       "act": 1,
       "area": "G1_5",
       "short": "! Secrets in the Dark",
+      "short_en": "! Secrets in the Dark",
       "detail": "3 Runed Girdle: обелиски и босс",
+      "detail_en": "3 Runed Girdles: obelisks and the boss",
       "kind": "quest"
     },
     {
@@ -86,7 +105,9 @@
       "act": 1,
       "area": "G1_7",
       "short": "◆ Кладбище Вечных",
+      "short_en": "◆ Cemetery of the Eternals",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -94,7 +115,9 @@
       "act": 1,
       "area": "G1_7",
       "short": "⚔ Lachlann of Endless Lament",
+      "short_en": "⚔ Lachlann of Endless Lament",
       "detail": "Обязательный. Квест Sorrow Among Stones",
+      "detail_en": "Required. Sorrow Among Stones quest",
       "kind": "boss"
     },
     {
@@ -102,7 +125,9 @@
       "act": 1,
       "area": "G1_8",
       "short": "◆ Мавзолей претора",
+      "short_en": "◆ Mausoleum of the Praetor",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -110,7 +135,9 @@
       "act": 1,
       "area": "G1_8",
       "short": "⚔ Draven, the Eternal Praetor",
+      "short_en": "⚔ Draven, the Eternal Praetor",
       "detail": "Обязательный. Memorial Key Piece",
+      "detail_en": "Required. Memorial Key Piece",
       "kind": "boss"
     },
     {
@@ -118,7 +145,9 @@
       "act": 1,
       "area": "G1_9",
       "short": "◆ Супружеская гробница",
+      "short_en": "◆ Tomb of the Consort",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -126,7 +155,9 @@
       "act": 1,
       "area": "G1_9",
       "short": "⚔ Asinia, the Praetor's Consort",
+      "short_en": "⚔ Asinia, the Praetor's Consort",
       "detail": "Обязательный. Memorial Key Piece",
+      "detail_en": "Required. Memorial Key Piece",
       "kind": "boss"
     },
     {
@@ -134,7 +165,9 @@
       "act": 1,
       "area": "G1_11",
       "short": "◆ Охотничьи угодья",
+      "short_en": "◆ Hunting Grounds",
       "detail": "WP. Crowbell опц.",
+      "detail_en": "WP. Crowbell opt.",
       "kind": "wp"
     },
     {
@@ -142,7 +175,9 @@
       "act": 1,
       "area": "G1_12",
       "short": "◆ Фрейторн",
+      "short_en": "◆ Freythorn",
       "detail": "WP. King in the Mists опц.",
+      "detail_en": "WP. King in the Mists opt.",
       "kind": "wp"
     },
     {
@@ -150,7 +185,9 @@
       "act": 1,
       "area": "G1_13_1",
       "short": "◆ Фермерские земли Огама",
+      "short_en": "◆ Ogham Farmlands",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -158,7 +195,9 @@
       "act": 1,
       "area": "G1_13_2",
       "short": "◆ Деревня Огам",
+      "short_en": "◆ Ogham Village",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -166,7 +205,9 @@
       "act": 1,
       "area": "G1_13_2",
       "short": "⚔ The Executioner",
+      "short_en": "⚔ The Executioner",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -174,7 +215,9 @@
       "act": 1,
       "area": "G1_14",
       "short": "◆ Стены замка",
+      "short_en": "◆ The Manor Ramparts",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -182,7 +225,9 @@
       "act": 1,
       "area": "G1_15",
       "short": "◆ Замок Огам",
+      "short_en": "◆ Ogham Manor",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -190,7 +235,9 @@
       "act": 1,
       "area": "G1_15",
       "short": "⚔ Count Geonor",
+      "short_en": "⚔ Count Geonor",
       "detail": "Обязательный. Открывает Акт 2",
+      "detail_en": "Required. Opens Act 2",
       "kind": "boss"
     },
     {
@@ -198,7 +245,9 @@
       "act": 2,
       "area": "G2_1",
       "short": "→ Окраины Вастири",
+      "short_en": "→ Vastiri Outskirts",
       "detail": "Старт Акта 2",
+      "detail_en": "Act 2 start",
       "kind": "move",
       "split": true
     },
@@ -207,7 +256,9 @@
       "act": 2,
       "area": "G2_1",
       "short": "⚔ Rathbreaker",
+      "short_en": "⚔ Rathbreaker",
       "detail": "Обязательный. Открывает Караван",
+      "detail_en": "Required. Opens the Caravan",
       "kind": "boss"
     },
     {
@@ -215,7 +266,9 @@
       "act": 2,
       "area": "G2_town",
       "short": "⌂ Караван Ардура",
+      "short_en": "⌂ The Ardura Caravan",
       "detail": "Хаб. Карта пустыни",
+      "detail_en": "Hub. Desert map",
       "kind": "town"
     },
     {
@@ -223,7 +276,9 @@
       "act": 2,
       "area": "G2_town",
       "short": "! Earning Passage",
+      "short_en": "! Earning Passage",
       "detail": "Квест",
+      "detail_en": "Quest",
       "kind": "quest",
       "reward": "Uncut Skill Gem"
     },
@@ -232,7 +287,9 @@
       "act": 2,
       "area": "G2_2",
       "short": "◆ Тропа Изменницы",
+      "short_en": "◆ Traitor's Passage",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -240,7 +297,9 @@
       "act": 2,
       "area": "G2_2",
       "short": "⚔ Balbala, the Traitor",
+      "short_en": "⚔ Balbala, the Traitor",
       "detail": "Опц. Открывает испытание Сехем",
+      "detail_en": "Opt. Opens the Trial of the Sekhemas",
       "kind": "boss",
       "optional": true
     },
@@ -249,7 +308,9 @@
       "act": 2,
       "area": "G2_13",
       "short": "✦ Испытание Сехем",
+      "short_en": "✦ Trial of the Sekhemas",
       "detail": "Trial of the Sekhemas. Опционально",
+      "detail_en": "Trial of the Sekhemas. Optional",
       "kind": "trial",
       "optional": true
     },
@@ -258,7 +319,9 @@
       "act": 2,
       "area": "G2_3a",
       "short": "→ Ворота Халани",
+      "short_en": "→ The Halani Gates",
       "detail": "Без WP",
+      "detail_en": "No WP",
       "kind": "move"
     },
     {
@@ -266,7 +329,9 @@
       "act": 2,
       "area": "G2_3a",
       "short": "⚔ Jamanra, the Risen King",
+      "short_en": "⚔ Jamanra, the Risen King",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -274,7 +339,9 @@
       "act": 2,
       "area": "G2_10_1",
       "short": "◆ Каменоломня Маудун",
+      "short_en": "◆ Mawdun Quarry",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -282,7 +349,9 @@
       "act": 2,
       "area": "G2_10_2",
       "short": "◆ Шахта Маудун",
+      "short_en": "◆ Mawdun Mine",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -290,7 +359,9 @@
       "act": 2,
       "area": "G2_10_2",
       "short": "⚔ Rudja, the Dread Engineer",
+      "short_en": "⚔ Rudja, the Dread Engineer",
       "detail": "Обязательный. Освобождает Risu",
+      "detail_en": "Required. Frees Risu",
       "kind": "boss"
     },
     {
@@ -298,7 +369,9 @@
       "act": 2,
       "area": "G2_4_1",
       "short": "◆ Кет",
+      "short_en": "◆ Keth",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -306,7 +379,9 @@
       "act": 2,
       "area": "G2_4_1",
       "short": "✕ Kabala, Constrictor Queen",
+      "short_en": "✕ Kabala, Constrictor Queen",
       "detail": "Опц.: Kabala, Constrictor Queen → 2 очка оружейного сета",
+      "detail_en": "Opt.: Kabala, Constrictor Queen → 2 weapon set points",
       "kind": "skip",
       "_source": "https://poe2db.tw/us/Keth"
     },
@@ -315,7 +390,9 @@
       "act": 2,
       "area": "G2_4_2",
       "short": "◆ Затерянный город",
+      "short_en": "◆ The Lost City",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -323,7 +400,9 @@
       "act": 2,
       "area": "G2_4_3",
       "short": "◆ Захоронённые святилища",
+      "short_en": "◆ Buried Shrines",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -331,7 +410,9 @@
       "act": 2,
       "area": "G2_4_3",
       "short": "⚔ Azarian, the Forsaken Son",
+      "short_en": "⚔ Azarian, the Forsaken Son",
       "detail": "Обязательный. Открывает Water Goddess",
+      "detail_en": "Required. Opens the Water Goddess",
       "kind": "boss"
     },
     {
@@ -339,7 +420,9 @@
       "act": 2,
       "area": "G2_6",
       "short": "◆ Долина Титанов",
+      "short_en": "◆ Valley of the Titans",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -347,7 +430,9 @@
       "act": 2,
       "area": "G2_7",
       "short": "◆ Грот Титанов",
+      "short_en": "◆ The Titan Grotto",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -355,7 +440,9 @@
       "act": 2,
       "area": "G2_7",
       "short": "⚔ Zalmarath, the Colossus",
+      "short_en": "⚔ Zalmarath, the Colossus",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss",
       "reward": "Flame Ruby"
     },
@@ -364,7 +451,9 @@
       "act": 2,
       "area": "G2_5_1",
       "short": "◆ Бесплодные земли мастодонтов",
+      "short_en": "◆ Mastodon Badlands",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -372,7 +461,9 @@
       "act": 2,
       "area": "G2_5_2",
       "short": "◆ Костяные ямы",
+      "short_en": "◆ The Bone Pits",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -380,7 +471,9 @@
       "act": 2,
       "area": "G2_5_2",
       "short": "⚔ Iktab, the Deathlord",
+      "short_en": "⚔ Iktab, the Deathlord",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss",
       "reward": "Mastodon Tusks"
     },
@@ -389,7 +482,9 @@
       "act": 2,
       "area": "G2_5_2",
       "short": "⚔ Ekbab, Ancient Steed",
+      "short_en": "⚔ Ekbab, Ancient Steed",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss",
       "reward": "Mastodon Tusks"
     },
@@ -398,7 +493,9 @@
       "act": 2,
       "area": "G2_8",
       "short": "◆ Дешар",
+      "short_en": "◆ Deshar",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -406,7 +503,9 @@
       "act": 2,
       "area": "G2_9_1",
       "short": "◆ Путь скорби",
+      "short_en": "◆ Path of Mourning",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -414,7 +513,9 @@
       "act": 2,
       "area": "G2_9_2",
       "short": "◆ Шпили Дешара",
+      "short_en": "◆ The Spires of Deshar",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -422,7 +523,9 @@
       "act": 2,
       "area": "G2_9_2",
       "short": "⚔ Tor Gul, the Defiler",
+      "short_en": "⚔ Tor Gul, the Defiler",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -430,7 +533,9 @@
       "act": 2,
       "area": "G2_12",
       "short": "◆ Дредноут",
+      "short_en": "◆ Dreadnought",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -438,7 +543,9 @@
       "act": 2,
       "area": "G2_12",
       "short": "⚔ Jamanra, the Abomination",
+      "short_en": "⚔ Jamanra, the Abomination",
       "detail": "Обязательный. Финал Акта 2; бой в конце Авангарда Дредноута",
+      "detail_en": "Required. Act 2 finale; the fight is at the end of the Dreadnought Vanguard",
       "kind": "boss",
       "_source": "https://www.gamerguides.com/path-of-exile-2/guide/campaign/act-2/the-trail-of-corruption-jamanra-the-abomination-boss-guide"
     },
@@ -447,7 +554,9 @@
       "act": 2,
       "area": "G2_town",
       "short": "⌂ Караван Ардура → Акт 3",
+      "short_en": "⌂ Ardura Caravan → Act 3",
       "detail": "После Jamanra вернуться в лагерь, выбрать переход в Занесённое песком болото",
+      "detail_en": "After Jamanra go back to camp and travel to the Sandswept Marsh",
       "kind": "town",
       "_source": "https://poe2db.tw/us/Act_2"
     },
@@ -456,7 +565,9 @@
       "act": 3,
       "area": "G3_1",
       "short": "→ Занесённое песком болото",
+      "short_en": "→ Sandswept Marsh",
       "detail": "Старт Акта 3. WP",
+      "detail_en": "Act 3 start. WP",
       "kind": "move",
       "split": true
     },
@@ -465,7 +576,9 @@
       "act": 3,
       "area": "G3_town",
       "short": "⌂ Лагерь на зиккурате",
+      "short_en": "⌂ Ziggurat Encampment",
       "detail": "Альва: открывает Храм Копека",
+      "detail_en": "Alva: opens the Temple of Kopec",
       "kind": "town"
     },
     {
@@ -473,7 +586,9 @@
       "act": 3,
       "area": "G3_3",
       "short": "→ Развалины в джунглях",
+      "short_en": "→ Jungle Ruins",
       "detail": "Silverfist опц.",
+      "detail_en": "Silverfist opt.",
       "kind": "move"
     },
     {
@@ -481,7 +596,9 @@
       "act": 3,
       "area": "G3_2_1",
       "short": "◆ Заражённые земли",
+      "short_en": "◆ Infested Barrens",
       "detail": "WP. Stone Altar",
+      "detail_en": "WP. Stone Altar",
       "kind": "wp"
     },
     {
@@ -489,7 +606,9 @@
       "act": 3,
       "area": "G3_7",
       "short": "✕ Болото Азак",
+      "short_en": "✕ The Azak Bog",
       "detail": "Опц. (квест): Ignagduk, the Bog Witch → +30 Spirit навсегда",
+      "detail_en": "Opt. (quest): Ignagduk, the Bog Witch → +30 Spirit for good",
       "kind": "skip",
       "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
@@ -498,7 +617,9 @@
       "act": 3,
       "area": "G3_5",
       "short": "◆ Топи химеридов",
+      "short_en": "◆ Chimeral Wetlands",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -506,7 +627,9 @@
       "act": 3,
       "area": "G3_5",
       "short": "⚔ Xyclucian, the Chimera",
+      "short_en": "⚔ Xyclucian, the Chimera",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -514,7 +637,9 @@
       "act": 3,
       "area": "G3_6_1",
       "short": "✕ Blackjaw, the Remnant",
+      "short_en": "✕ Blackjaw, the Remnant",
       "detail": "Опц.: Flame Core",
+      "detail_en": "Opt.: Flame Core",
       "kind": "skip"
     },
     {
@@ -522,7 +647,9 @@
       "act": 3,
       "area": "G3_6_1",
       "short": "◆ Машинариум Джиквани",
+      "short_en": "◆ Jiquani's Machinarium",
       "detail": "WP. Small Soul Cores",
+      "detail_en": "WP. Small Soul Cores",
       "kind": "wp"
     },
     {
@@ -530,7 +657,9 @@
       "act": 3,
       "area": "G3_6_2",
       "short": "◆ Святилище Джиквани",
+      "short_en": "◆ Jiquani's Sanctum",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -538,7 +667,9 @@
       "act": 3,
       "area": "G3_6_2",
       "short": "⚔ Zicoatl, Warden of the Core",
+      "short_en": "⚔ Zicoatl, Warden of the Core",
       "detail": "Обязательный. Large Soul Core",
+      "detail_en": "Required. Large Soul Core",
       "kind": "boss"
     },
     {
@@ -546,7 +677,9 @@
       "act": 3,
       "area": "G3_4",
       "short": "✕ Ядовитые крипты",
+      "short_en": "✕ The Venom Crypts",
       "detail": "Опц. (вход у WP Развалин): Corpse-snake Venom → Servi, постоянный бафф",
+      "detail_en": "Opt. (entrance at the Jungle Ruins WP): Corpse-snake Venom → Servi, a lasting buff",
       "kind": "skip",
       "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
@@ -555,7 +688,9 @@
       "act": 3,
       "area": "G3_2_2",
       "short": "→ Водотоки Матлан",
+      "short_en": "→ The Matlan Waterways",
       "detail": "Вход через Stone Altar",
+      "detail_en": "Entered through the Stone Altar",
       "kind": "move"
     },
     {
@@ -563,7 +698,9 @@
       "act": 3,
       "area": "G3_8",
       "short": "◆ Затопленный город",
+      "short_en": "◆ The Drowned City",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -571,7 +708,9 @@
       "act": 3,
       "area": "G3_9",
       "short": "✕ Расплавленные залы",
+      "short_en": "✕ The Molten Vault",
       "detail": "Опц. (квест): Mektul, the Forgemaster → открывает Reforging Bench",
+      "detail_en": "Opt. (quest): Mektul, the Forgemaster → opens the Reforging Bench",
       "kind": "skip",
       "_source": "https://maxroll.gg/poe2/getting-started/act-3-campaign-secrets"
     },
@@ -580,7 +719,9 @@
       "act": 3,
       "area": "G3_11",
       "short": "◆ Осквернённая вершина",
+      "short_en": "◆ Apex of Filth",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -588,7 +729,9 @@
       "act": 3,
       "area": "G3_11",
       "short": "⚔ Queen of Filth",
+      "short_en": "⚔ Queen of Filth",
       "detail": "Обязательный. Temple Door Idol",
+      "detail_en": "Required. Temple Door Idol",
       "kind": "boss"
     },
     {
@@ -596,7 +739,9 @@
       "act": 3,
       "area": "G3_12",
       "short": "→ Храм Копека",
+      "short_en": "→ Temple of Kopec",
       "detail": "Idol: Альва откроет вход",
+      "detail_en": "Idol: Alva opens the entrance",
       "kind": "move"
     },
     {
@@ -604,7 +749,9 @@
       "act": 3,
       "area": "G3_12",
       "short": "⚔ Ketzuli, High Priest of the Sun",
+      "short_en": "⚔ Ketzuli, High Priest of the Sun",
       "detail": "Обязателен для сюжета; вход в храм — идол с Queen of Filth. Без WP",
+      "detail_en": "Required for the story; the temple opens with the idol from the Queen of Filth. No WP",
       "kind": "boss",
       "_source": "https://www.gamerguides.com/path-of-exile-2/guide/campaign/act-3/legacy-of-the-vaal-ketzuli-high-priest-of-the-sun-guide"
     },
@@ -613,7 +760,9 @@
       "act": 3,
       "area": "G3_14",
       "short": "◆ Утцааль",
+      "short_en": "◆ Utzaal",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -621,7 +770,9 @@
       "act": 3,
       "area": "G3_14",
       "short": "⚔ Viper Napuatzi",
+      "short_en": "⚔ Viper Napuatzi",
       "detail": "Босс Утцааля",
+      "detail_en": "Utzaal's boss",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Act_3"
     },
@@ -630,7 +781,9 @@
       "act": 3,
       "area": "G3_14",
       "short": "! Inscribed Ultimatum",
+      "short_en": "! Inscribed Ultimatum",
       "detail": "Нужно для Храма Хаоса",
+      "detail_en": "Needed for the Temple of Chaos",
       "kind": "quest"
     },
     {
@@ -638,7 +791,9 @@
       "act": 3,
       "area": "G3_10_Airlock",
       "short": "→ Храм Хаоса",
+      "short_en": "→ Temple of Chaos",
       "detail": "Вход в испытание",
+      "detail_en": "Trial entrance",
       "kind": "move"
     },
     {
@@ -646,7 +801,9 @@
       "act": 3,
       "area": "G3_10",
       "short": "✦ Испытание Хаоса",
+      "short_en": "✦ Trial of Chaos",
       "detail": "Опционально. Uxmal, Chetza, Bahlak",
+      "detail_en": "Optional. Uxmal, Chetza, Bahlak",
       "kind": "trial"
     },
     {
@@ -654,7 +811,9 @@
       "act": 3,
       "area": "G3_16",
       "short": "◆ Аггорат",
+      "short_en": "◆ Aggorat",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -662,7 +821,9 @@
       "act": 3,
       "area": "G3_17",
       "short": "◆ Чёрные залы",
+      "short_en": "◆ The Black Chambers",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -670,7 +831,9 @@
       "act": 3,
       "area": "G3_17",
       "short": "⚔ Doryani, Royal Thaumaturge",
+      "short_en": "⚔ Doryani, Royal Thaumaturge",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -678,7 +841,9 @@
       "act": 4,
       "area": "G4_town",
       "short": "⌂ Кингсмарш",
+      "short_en": "⌂ Kingsmarch",
       "detail": "Старт Акта 4",
+      "detail_en": "Act 4 start",
       "kind": "town",
       "split": true
     },
@@ -687,7 +852,9 @@
       "act": 4,
       "area": "G4_2_1",
       "short": "◆ Кеджский залив",
+      "short_en": "◆ Kedge Bay",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -695,7 +862,9 @@
       "act": 4,
       "area": "G4_2_2",
       "short": "◆ Конец странствия",
+      "short_en": "◆ Journey's End",
       "detail": "WP. Нужна Boat Charter",
+      "detail_en": "WP. Needs the Boat Charter",
       "kind": "wp"
     },
     {
@@ -703,7 +872,9 @@
       "act": 4,
       "area": "G4_2_2",
       "short": "⚔ Captain Hartlin",
+      "short_en": "⚔ Captain Hartlin",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -711,7 +882,9 @@
       "act": 4,
       "area": "G4_2_2",
       "short": "⚔ Omniphobia, Fear Manifest",
+      "short_en": "⚔ Omniphobia, Fear Manifest",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -719,7 +892,9 @@
       "act": 4,
       "area": "G4_3_1",
       "short": "✕ Great White One (опц.)",
+      "short_en": "✕ Great White One (opt.)",
       "detail": "Опц.: Shark Fin → Kaimana (бонус на выбор). Зона — проход к Поющим пещерам",
+      "detail_en": "Opt.: Shark Fin → Kaimana (bonus of your choice). The zone leads to the Singing Caverns",
       "kind": "skip",
       "_source": "https://poe2db.tw/us/Act_4"
     },
@@ -728,7 +903,9 @@
       "act": 4,
       "area": "G4_3_2",
       "short": "◆ Поющие пещеры",
+      "short_en": "◆ Singing Caverns",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -736,7 +913,9 @@
       "act": 4,
       "area": "G4_3_2",
       "short": "⚔ Diamora, Song of Death",
+      "short_en": "⚔ Diamora, Song of Death",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -744,7 +923,9 @@
       "act": 4,
       "area": "G4_1_1",
       "short": "→ Остров Рода",
+      "short_en": "→ Isle of Kin",
       "detail": "Blind Beast опц.",
+      "detail_en": "Blind Beast opt.",
       "kind": "move"
     },
     {
@@ -752,7 +933,9 @@
       "act": 4,
       "area": "G4_1_2",
       "short": "◆ Вулканические лабиринты",
+      "short_en": "◆ Volcanic Warrens",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -760,7 +943,9 @@
       "act": 4,
       "area": "G4_1_2",
       "short": "⚔ Krutog, Lord of Kin",
+      "short_en": "⚔ Krutog, Lord of Kin",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -768,7 +953,9 @@
       "act": 4,
       "area": "G4_5_1",
       "short": "◆ Заброшенная тюрьма",
+      "short_en": "◆ Abandoned Prison",
       "detail": "WP. Chapel Key опц.",
+      "detail_en": "WP. Chapel Key opt.",
       "kind": "wp"
     },
     {
@@ -776,7 +963,9 @@
       "act": 4,
       "area": "G4_5_2",
       "short": "◆ Одиночные камеры",
+      "short_en": "◆ Solitary Confinement",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -784,7 +973,9 @@
       "act": 4,
       "area": "G4_5_2",
       "short": "⚔ The Prisoner",
+      "short_en": "⚔ The Prisoner",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -792,7 +983,9 @@
       "act": 4,
       "area": "G4_7",
       "short": "◆ Остров криков",
+      "short_en": "◆ Shrike Island",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -800,7 +993,9 @@
       "act": 4,
       "area": "G4_7",
       "short": "⚔ Scourge of the Skies",
+      "short_en": "⚔ Scourge of the Skies",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -808,7 +1003,9 @@
       "act": 4,
       "area": "G4_4_1",
       "short": "◆ Глаз Хинекоры",
+      "short_en": "◆ Eye of Hinekora",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -816,7 +1013,9 @@
       "act": 4,
       "area": "G4_4_2",
       "short": "◆ Залы мёртвых",
+      "short_en": "◆ Halls of the Dead",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -824,7 +1023,9 @@
       "act": 4,
       "area": "G4_4_3",
       "short": "✦ Испытание предков",
+      "short_en": "✦ Trial of the Ancestors",
       "detail": "Испытание восхождения (Ascendancy)",
+      "detail_en": "Ascendancy trial",
       "kind": "trial"
     },
     {
@@ -832,7 +1033,9 @@
       "act": 4,
       "area": "G4_11_1a",
       "short": "◆ Нгакану",
+      "short_en": "◆ Ngakanu",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -840,7 +1043,9 @@
       "act": 4,
       "area": "G4_8b",
       "short": "◆ Арастас",
+      "short_en": "◆ Arastas",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -848,7 +1053,9 @@
       "act": 4,
       "area": "G4_8b",
       "short": "⚔ Torvian, Hand of the Saviour",
+      "short_en": "⚔ Torvian, Hand of the Saviour",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -856,7 +1063,9 @@
       "act": 4,
       "area": "G4_10",
       "short": "◆ Раскопки",
+      "short_en": "◆ The Excavation",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -864,7 +1073,9 @@
       "act": 4,
       "area": "G4_10",
       "short": "⚔ Benedictus, First Herald of Utopia",
+      "short_en": "⚔ Benedictus, First Herald of Utopia",
       "detail": "Обязательный",
+      "detail_en": "Required",
       "kind": "boss"
     },
     {
@@ -872,7 +1083,9 @@
       "act": 4,
       "area": "G4_13",
       "short": "→ Мыс грабителя",
+      "short_en": "→ Plunder's Point",
       "detail": "4 Torn Map Piece по островам",
+      "detail_en": "4 Torn Map Pieces across the islands",
       "kind": "move"
     },
     {
@@ -880,7 +1093,9 @@
       "act": 4,
       "area": "G4_11_1b",
       "short": "◆ Нгакану",
+      "short_en": "◆ Ngakanu",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -888,7 +1103,9 @@
       "act": 4,
       "area": "G4_11_2",
       "short": "◆ Сердце племени",
+      "short_en": "◆ Heart of the Tribe",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp"
     },
     {
@@ -896,7 +1113,9 @@
       "act": 4,
       "area": "G4_11_2",
       "short": "⚔ Tavakai, the Chieftain",
+      "short_en": "⚔ Tavakai, the Chieftain",
       "detail": "Обязательный. Финал Акта 4",
+      "detail_en": "Required. Act 4 finale",
       "kind": "boss"
     },
     {
@@ -904,7 +1123,9 @@
       "act": 101,
       "area": "P1_Town",
       "short": "⌂ Пристанище",
+      "short_en": "⌂ The Refuge",
       "detail": "Старт интерлюдии 1; затем выход в Выжженные фермерские земли",
+      "detail_en": "Interlude 1 start; then out to the Scorched Farmlands",
       "kind": "town",
       "split": true,
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
@@ -914,8 +1135,10 @@
       "act": 101,
       "area": "P1_1",
       "short": "→ Выжженные фермерские земли",
+      "short_en": "→ Scorched Farmlands",
       "kind": "move",
       "detail": "WP в зоне",
+      "detail_en": "WP in the zone",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
@@ -923,7 +1146,9 @@
       "act": 101,
       "area": "P1_1",
       "short": "✕ Isolde и Heldra (опц.?)",
+      "short_en": "✕ Isolde & Heldra (opt.?)",
       "detail": "Isolde of the White Shroud, Heldra of the Black Pyre; на востоке зоны",
+      "detail_en": "Isolde of the White Shroud, Heldra of the Black Pyre; east side of the zone",
       "kind": "skip",
       "_unverified": true,
       "_note": "poe2db: обязат. для прохода; guide domistae: опц."
@@ -933,7 +1158,9 @@
       "act": 101,
       "area": "P1_2",
       "short": "◆ Камни Серли",
+      "short_en": "◆ Stones of Serle",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -942,7 +1169,9 @@
       "act": 101,
       "area": "P1_2",
       "short": "⚔ Siora, Blade of the Mists",
+      "short_en": "⚔ Siora, Blade of the Mists",
       "detail": "Сначала 6 мегалитов по краю зоны, затем бой в центре круга",
+      "detail_en": "First the 6 megaliths round the edge, then the fight in the middle of the circle",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -951,8 +1180,10 @@
       "act": 101,
       "area": "P1_3",
       "short": "→ Чернолесье",
+      "short_en": "→ The Blackwood",
       "kind": "move",
       "detail": "WP в зоне. Тьма на входе снимается мегалитами Серли",
+      "detail_en": "WP in the zone. The darkness at the entrance lifts with the Serle megaliths",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
     {
@@ -960,7 +1191,9 @@
       "act": 101,
       "area": "P1_4",
       "short": "◆ Холтен",
+      "short_en": "◆ Holten",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -969,7 +1202,9 @@
       "act": 101,
       "area": "P1_4",
       "short": "✕ Sigbert и Godwin (опц.?)",
+      "short_en": "✕ Sigbert & Godwin (opt.?)",
       "detail": "Sigbert of the Sullied Oath, Godwin of the Shattered Creed: Armourer's Scrap и лут",
+      "detail_en": "Sigbert of the Sullied Oath, Godwin of the Shattered Creed: Armourer's Scrap and loot",
       "kind": "skip",
       "_unverified": true,
       "_note": "poe2db: опц. (Psalm of Blood); guide domistae: обязат."
@@ -979,7 +1214,9 @@
       "act": 101,
       "area": "P1_5",
       "short": "✕ Oswin, the Dread Warden (опц.)",
+      "short_en": "✕ Oswin, the Dread Warden (opt.)",
       "detail": "Вольфенхолд (WP). Опц.: Warden's Ledger → 2 очка оружейного сета",
+      "detail_en": "Wolvenhold (WP). Opt.: Warden's Ledger → 2 weapon set points",
       "kind": "skip",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -988,7 +1225,9 @@
       "act": 101,
       "area": "P1_6",
       "short": "◆ Поместье Холтен",
+      "short_en": "◆ Holten Estate",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -997,7 +1236,9 @@
       "act": 101,
       "area": "P1_6",
       "short": "⚔ Thane Wulfric, Lady Elswyth",
+      "short_en": "⚔ Thane Wulfric, Lady Elswyth",
       "detail": "Обязательны (финал): во двор Поместья — через боковой вход",
+      "detail_en": "Required (finale): into the Estate courtyard through the side entrance",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_Curse_of_Holten"
     },
@@ -1006,7 +1247,9 @@
       "act": 102,
       "area": "P2_Town",
       "short": "⌂ Кхарийский базар",
+      "short_en": "⌂ The Khari Bazaar",
       "detail": "Старт интерлюдии 2",
+      "detail_en": "Interlude 2 start",
       "kind": "town",
       "split": true,
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
@@ -1016,7 +1259,9 @@
       "act": 102,
       "area": "P2_1",
       "short": "→ Кхарийский перевал",
+      "short_en": "→ The Khari Crossing",
       "detail": "Без WP",
+      "detail_en": "No WP",
       "kind": "move",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1025,7 +1270,9 @@
       "act": 102,
       "area": "P2_1",
       "short": "⚔ Akthi и Anundr",
+      "short_en": "⚔ Akthi & Anundr",
       "detail": "Akthi, the Final Sting + Anundr, the Sandworm. Обязательны; арена с чекпойнтом",
+      "detail_en": "Akthi, the Final Sting + Anundr, the Sandworm. Required; arena with a checkpoint",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1034,7 +1281,9 @@
       "act": 102,
       "area": "P2_5",
       "short": "◆ Ворота Галаи",
+      "short_en": "◆ The Galai Gates",
       "detail": "Взять WP сразу; босс Vornas — после Храма Селхари",
+      "detail_en": "Take the WP at once; Vornas comes after the Sel Khari Sanctuary",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1043,7 +1292,9 @@
       "act": 102,
       "area": "P2_2",
       "short": "◆ Воды Хаталя",
+      "short_en": "◆ Pools of Khatal",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1052,7 +1303,9 @@
       "act": 102,
       "area": "P2_3",
       "short": "◆ Храм Селхари",
+      "short_en": "◆ Sel Khari Sanctuary",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1061,7 +1314,9 @@
       "act": 102,
       "area": "P2_3",
       "short": "⚔ Elzarah, the Cobra Lord",
+      "short_en": "⚔ Elzarah, the Cobra Lord",
       "detail": "Обязателен; после него поговорить с Sekhema Asala",
+      "detail_en": "Required; talk to Sekhema Asala afterwards",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1070,7 +1325,9 @@
       "act": 102,
       "area": "P2_5",
       "short": "⚔ Vornas, the Fell Flame",
+      "short_en": "⚔ Vornas, the Fell Flame",
       "detail": "Обязателен: охраняет проход в Кима",
+      "detail_en": "Required: guards the way to Qimah",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1079,7 +1336,9 @@
       "act": 102,
       "area": "P2_6",
       "short": "◆ Кима",
+      "short_en": "◆ Qimah",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1088,7 +1347,9 @@
       "act": 102,
       "area": "P2_7",
       "short": "◆ Водохранилище Кима",
+      "short_en": "◆ Qimah Reservoir",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1097,7 +1358,9 @@
       "act": 102,
       "area": "P2_7",
       "short": "⚔ Azmadi, the Faridun Prince",
+      "short_en": "⚔ Azmadi, the Faridun Prince",
       "detail": "Финал: Grand Barya, Jado и Asala, затем в город к Hooded One",
+      "detail_en": "Finale: Grand Barya, Jado and Asala, then into town to the Hooded One",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_The_Stolen_Barya"
     },
@@ -1106,7 +1369,9 @@
       "act": 103,
       "area": "P3_Town",
       "short": "⌂ Опушка",
+      "short_en": "⌂ The Glade",
       "detail": "Старт интерлюдии 3",
+      "detail_en": "Interlude 3 start",
       "kind": "town",
       "split": true,
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
@@ -1116,7 +1381,9 @@
       "act": 103,
       "area": "P3_1",
       "short": "→ Пепельный лес",
+      "short_en": "→ Ashen Forest",
       "detail": "Без WP",
+      "detail_en": "No WP",
       "kind": "move",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1125,7 +1392,9 @@
       "act": 103,
       "area": "P3_2",
       "short": "◆ Деревня Криар",
+      "short_en": "◆ Kriar Village",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1134,7 +1403,9 @@
       "act": 103,
       "area": "P3_2",
       "short": "⚔ Lythara, the Wayward Spear",
+      "short_en": "⚔ Lythara, the Wayward Spear",
       "detail": "Обязательна. Damage check: убить быстро, пока её не усилили wisps",
+      "detail_en": "Required. Damage check: kill her fast before the wisps empower her",
       "kind": "boss",
       "reward": "+40 Spirit, Uncut Spirit Gem",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
@@ -1144,7 +1415,9 @@
       "act": 103,
       "area": "P3_3",
       "short": "◆ Ледниковое озеро",
+      "short_en": "◆ Glacial Tarn",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1153,7 +1426,9 @@
       "act": 103,
       "area": "P3_3",
       "short": "⚔ Rakkar, the Frozen Talon",
+      "short_en": "⚔ Rakkar, the Frozen Talon",
       "detail": "Обязателен: охраняет проход в Пики Криар",
+      "detail_en": "Required: guards the way to the Kriar Peaks",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1162,7 +1437,9 @@
       "act": 103,
       "area": "P3_4",
       "short": "✕ The Abominable Yeti (опц.)",
+      "short_en": "✕ The Abominable Yeti (opt.)",
       "detail": "Воющие пещеры. Опц.: Icy Tusks → Hilda в Опушке, 2 очка оружейного сета",
+      "detail_en": "Howling Caves. Opt.: Icy Tusks → Hilda in the Glade, 2 weapon set points",
       "kind": "skip",
       "_source": "https://poe2db.tw/us/Howling_Winds"
     },
@@ -1171,7 +1448,9 @@
       "act": 103,
       "area": "P3_5",
       "short": "◆ Пики Криар",
+      "short_en": "◆ Kriar Peaks",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1180,7 +1459,9 @@
       "act": 103,
       "area": "P3_6",
       "short": "◆ Высеченное ущелье",
+      "short_en": "◆ Etched Ravine",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1189,7 +1470,9 @@
       "act": 103,
       "area": "P3_6",
       "short": "⚔ Stormgore, the Guardian",
+      "short_en": "⚔ Stormgore, the Guardian",
       "detail": "Обязателен: открывает путь в Убежище Куачик",
+      "detail_en": "Required: opens the way to the Cuachic Vault",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1198,7 +1481,9 @@
       "act": 103,
       "area": "P3_7",
       "short": "◆ Убежище Куачик",
+      "short_en": "◆ The Cuachic Vault",
       "detail": "WP",
+      "detail_en": "WP",
       "kind": "wp",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1207,7 +1492,9 @@
       "act": 103,
       "area": "P3_7",
       "short": "⚔ Zolin & Zelina",
+      "short_en": "⚔ Zolin & Zelina",
       "detail": "Обязательны (финал). Потом: Doryani, Кингсмарш к Hooded One, Ориат",
+      "detail_en": "Required (finale). Then: Doryani, Kingsmarch to the Hooded One, Oriath",
       "kind": "boss",
       "_source": "https://poe2db.tw/us/Interlude_Doryanis_Contingency"
     },
@@ -1216,7 +1503,9 @@
       "act": 103,
       "area": "G_Endgame_Town",
       "short": "⌂ Убежище в зиккурате",
+      "short_en": "⌂ Ziggurat Refuge",
       "detail": "Финиш кампании",
+      "detail_en": "Campaign finish",
       "kind": "town",
       "split": true
     }

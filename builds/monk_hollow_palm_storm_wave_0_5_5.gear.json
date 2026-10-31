@@ -4,39 +4,173 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Martial Artist; Bog Witch gives War Banner and +30 Spirit (player's choice)",
-    "require": ["a2-007", "a3-005"]
+    "require": [
+      "a2-007",
+      "a3-005"
+    ]
   },
   "ascendancy": {
     "_order": "Runic Meridians -> Hollow Focus Technique -> Hollow Resonance Technique (PoE Vault)",
-    "G2_13": ["Runic Meridians"],
-    "G3_10": ["Hollow Focus Technique"]
+    "G2_13": [
+      "Runic Meridians"
+    ],
+    "G3_10": [
+      "Hollow Focus Technique"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Квотерстафф: плоский урон", "Glacial Cascade: бить кончиком"],
-    "2": ["Frozen Locus в пачку → Cascade"],
-    "3": ["Пассивки по HUD, холод не брать"],
-    "10": ["Herald of Ice: лёд взрывается"],
-    "13": ["Hollow Palm: оружие не нужно", "Броня: уклонение/ES"],
-    "16": ["Перчатки, кольца: плоский урон"],
-    "20": ["Сехемы: Runic Meridians"],
-    "22": ["Смена гемов, без респека", "Tempest Flurry — боссы"],
-    "31": ["Hand of Chayula: 1-й гем ур. 9", "Босс: Frost Bomb, затем Flurry"],
-    "45": ["Greater Jeweller's → Storm Wave"],
-    "60": ["3-й Trial: Hollow Resonance"]
+    "1": [
+      "Квотерстафф: плоский урон",
+      "Glacial Cascade: бить кончиком"
+    ],
+    "2": [
+      "Frozen Locus в пачку → Cascade"
+    ],
+    "3": [
+      "Пассивки по HUD, холод не брать"
+    ],
+    "10": [
+      "Herald of Ice: лёд взрывается"
+    ],
+    "13": [
+      "Hollow Palm: оружие не нужно",
+      "Броня: уклонение/ES"
+    ],
+    "16": [
+      "Перчатки, кольца: плоский урон"
+    ],
+    "20": [
+      "Сехемы: Runic Meridians"
+    ],
+    "22": [
+      "Смена гемов, без респека",
+      "Tempest Flurry — боссы"
+    ],
+    "31": [
+      "Hand of Chayula: 1-й гем ур. 9",
+      "Босс: Frost Bomb, затем Flurry"
+    ],
+    "45": [
+      "Greater Jeweller's → Storm Wave"
+    ],
+    "60": [
+      "3-й Trial: Hollow Resonance"
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Quarterstaff: flat damage",
+      "Glacial Cascade: hit with tip"
+    ],
+    "2": [
+      "Frozen Locus in pack → Cascade"
+    ],
+    "3": [
+      "Passives per HUD, skip cold"
+    ],
+    "10": [
+      "Herald of Ice: ice explodes"
+    ],
+    "13": [
+      "Hollow Palm: no weapon needed",
+      "Armour: evasion/ES"
+    ],
+    "16": [
+      "Gloves, rings: flat damage"
+    ],
+    "20": [
+      "Sekhemas: Runic Meridians"
+    ],
+    "22": [
+      "Gem swap, no respec",
+      "Tempest Flurry: bosses"
+    ],
+    "31": [
+      "Hand of Chayula: 1st gem lv 9",
+      "Boss: Frost Bomb, then Flurry"
+    ],
+    "45": [
+      "Greater Jeweller's → Storm Wave"
+    ],
+    "60": [
+      "3rd Trial: Hollow Resonance"
+    ]
   },
   "zones": {
-    "G1_town": ["Renly: квест, Glacial Cascade"],
-    "G1_2": ["Лагерь: Frost Bomb"],
-    "G1_5": ["Red Vale: Frozen Locus"],
-    "G1_12": ["King in the Mists: Herald of Ice"],
-    "G1_13_2": ["После Палача: Ice Strike (Leitis)"],
-    "G2_10_1": ["Uncut Spirit Gem: Herald of Thunder"],
-    "G2_10_2": ["Поддержка ур. 2: Elemental Armament II"],
-    "G2_4_3": ["Lesser Jeweller's → Storm Wave"],
-    "G2_13": ["Восхождение: Runic Meridians"],
-    "G3_7": ["Bog Witch: War Banner, +30 Spirit"],
-    "G3_10": ["Восхождение: Hollow Focus Technique"],
-    "G4_11_1a": ["Нгакану: Greater Jeweller's → Storm Wave"]
+    "G1_town": [
+      "Renly: квест, Glacial Cascade"
+    ],
+    "G1_2": [
+      "Лагерь: Frost Bomb"
+    ],
+    "G1_5": [
+      "Red Vale: Frozen Locus"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ice"
+    ],
+    "G1_13_2": [
+      "После Палача: Ice Strike (Leitis)"
+    ],
+    "G2_10_1": [
+      "Uncut Spirit Gem: Herald of Thunder"
+    ],
+    "G2_10_2": [
+      "Поддержка ур. 2: Elemental Armament II"
+    ],
+    "G2_4_3": [
+      "Lesser Jeweller's → Storm Wave"
+    ],
+    "G2_13": [
+      "Восхождение: Runic Meridians"
+    ],
+    "G3_7": [
+      "Bog Witch: War Banner, +30 Spirit"
+    ],
+    "G3_10": [
+      "Восхождение: Hollow Focus Technique"
+    ],
+    "G4_11_1a": [
+      "Нгакану: Greater Jeweller's → Storm Wave"
+    ]
+  },
+  "zones_en": {
+    "G1_town": [
+      "Renly: quest, Glacial Cascade"
+    ],
+    "G1_2": [
+      "Camp: Frost Bomb"
+    ],
+    "G1_5": [
+      "Red Vale: Frozen Locus"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ice"
+    ],
+    "G1_13_2": [
+      "After Executioner: Ice Strike (Leitis)"
+    ],
+    "G2_10_1": [
+      "Uncut Spirit Gem: Herald of Thunder"
+    ],
+    "G2_10_2": [
+      "Lv 2 support: Elemental Armament II"
+    ],
+    "G2_4_3": [
+      "Lesser Jeweller's → Storm Wave"
+    ],
+    "G2_13": [
+      "Ascendancy: Runic Meridians"
+    ],
+    "G3_7": [
+      "Bog Witch: War Banner, +30 Spirit"
+    ],
+    "G3_10": [
+      "Ascendancy: Hollow Focus Technique"
+    ],
+    "G4_11_1a": [
+      "Ngakanu: Greater Jeweller's → Storm Wave"
+    ]
   }
 }

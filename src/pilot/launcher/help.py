@@ -6,6 +6,7 @@ from PySide6.QtGui import QColor, QFont, QFontMetricsF, QPainter, QPainterPath
 from PySide6.QtWidgets import QDialog, QPushButton, QWidget
 
 from . import style as S
+from pilot.i18n import tr
 
 # hotkey name (overlay.hotkeys.DEFAULT_HOTKEYS) -> what it does
 ACTIONS = {
@@ -34,7 +35,7 @@ def pretty(combo: str) -> str:
 def rows(hotkeys: dict | None) -> list[tuple[str, str]]:
     from pilot.overlay.hotkeys import DEFAULT_HOTKEYS
     keys = {**DEFAULT_HOTKEYS, **(hotkeys or {})}
-    return [(pretty(keys[name]), text) for name, text in ACTIONS.items() if keys.get(name)]
+    return [(pretty(keys[name]), tr(text)) for name, text in ACTIONS.items() if keys.get(name)]
 
 
 class HotkeysDialog(QDialog):
@@ -44,13 +45,14 @@ class HotkeysDialog(QDialog):
     def __init__(self, hotkeys: dict | None, parent: QWidget | None = None):
         super().__init__(parent, Qt.Dialog | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setWindowTitle("PoE2 Pilot — хоткеи")
+        self.setWindowTitle("PoE2 Pilot — " + tr("хоткеи"))
         self.rows = rows(hotkeys)
         tf = S.font(12.5, QFont.Bold)
+        self.tips = [tr(t) for t in TIPS]
         self.tip_h = [QFontMetricsF(tf).boundingRect(QRectF(0, 0, self.W - 90, 200), Qt.TextWordWrap, t).height() + 8
-                      for t in TIPS]
+                      for t in self.tips]
         self.setFixedSize(self.W, int(118 + self.ROW * len(self.rows) + sum(self.tip_h) + 90))
-        ok = QPushButton("Понятно", self)
+        ok = QPushButton(tr("Понятно"), self)
         from .board import button_css
         ok.setStyleSheet(button_css(S.load_fonts()))
         ok.setCursor(Qt.PointingHandCursor)
@@ -68,12 +70,13 @@ class HotkeysDialog(QDialog):
         S.soft_card(p, r, 22, g, S.WHITE, 2)
         p.setFont(S.font(22, QFont.ExtraBold, 0.5))
         p.setPen(S.INK)
-        p.drawText(QPointF(r.left() + 30, r.top() + 46), "Хоткеи")
-        S.sparkle(p, QPointF(r.left() + 30 + QFontMetricsF(p.font()).horizontalAdvance("Хоткеи") + 18,
+        title = tr("Хоткеи")
+        p.drawText(QPointF(r.left() + 30, r.top() + 46), title)
+        S.sparkle(p, QPointF(r.left() + 30 + QFontMetricsF(p.font()).horizontalAdvance(title) + 18,
                              r.top() + 38), 7, S.PINK)
         p.setFont(S.font(12, QFont.Bold))
         p.setPen(S.DIM)
-        p.drawText(QPointF(r.left() + 30, r.top() + 70), "работают, пока игра на переднем плане")
+        p.drawText(QPointF(r.left() + 30, r.top() + 70), tr("работают, пока игра на переднем плане"))
 
         y = r.top() + 92
         kf = S.font(13, QFont.ExtraBold)
@@ -85,7 +88,7 @@ class HotkeysDialog(QDialog):
             y += self.ROW
         y += 10
         p.setFont(S.font(12.5, QFont.Bold))
-        for tip, h in zip(TIPS, self.tip_h):
+        for tip, h in zip(self.tips, self.tip_h):
             S.sparkle(p, QPointF(r.left() + 36, y + 10), 5, S.GOLD)
             p.setPen(S.DIM)
             p.drawText(QRectF(r.left() + 50, y, r.width() - 70, h), Qt.TextWordWrap, tip)

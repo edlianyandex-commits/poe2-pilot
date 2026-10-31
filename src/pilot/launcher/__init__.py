@@ -22,7 +22,12 @@ def pick_build(cfg: dict) -> str | None:
     if cfg.get("check_updates", True):
         from pilot.updates import Updater
         updater = Updater(cfg.get("update_repo") or Updater().repo)
-    win = BoardWindow(load_catalog(), last=cfg.get("build_code_file"),
+    def on_language(code: str) -> None:
+        from pilot.config import save_config
+        cfg["language"] = code
+        save_config(cfg)
+
+    win = BoardWindow(load_catalog(), last=cfg.get("build_code_file"), on_language=on_language,
                       content_version=(read_manifest(CONTENT) or {}).get("version", ""), updater=updater)
     loop = QEventLoop()
     win.finished.connect(loop.quit)

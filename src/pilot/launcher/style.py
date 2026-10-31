@@ -12,6 +12,7 @@ from PySide6.QtGui import (QColor, QFont, QFontDatabase, QFontMetricsF, QLinearG
                            QPainterPath, QPen)
 
 from pilot.paths import root
+from pilot.i18n import lang, tr
 
 INK = QColor(46, 37, 84)
 DIM = QColor(138, 130, 168)
@@ -70,7 +71,9 @@ def font(px: float, weight: QFont.Weight = QFont.Normal, spacing: float = 0) -> 
 
 
 def rarity(e) -> tuple:
-    return OUTDATED if e.outdated else RARITY[e.status]
+    """(badge, stars, label in the UI language, gradient top, bottom)."""
+    tag, n, label, top, bottom = OUTDATED if e.outdated else RARITY[e.status]
+    return tag, n, tr(label), top, bottom
 
 
 def class_color(cls: str) -> QColor:
@@ -167,4 +170,8 @@ def plural(n: int, one: str, few: str, many: str) -> str:
 
 
 def builds_word(n: int) -> str:
-    return f"{n} {plural(n, 'билд', 'билда', 'билдов')}" if n else "скоро"
+    if not n:
+        return tr("скоро")
+    if lang() == "en":
+        return f"{n} build" + ("" if n == 1 else "s")
+    return f"{n} {plural(n, 'билд', 'билда', 'билдов')}"

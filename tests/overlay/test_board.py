@@ -132,3 +132,21 @@ def test_hotkeys_cheat_sheet(qapp):
     d.show()
     assert d.grab().width() == d.W
     d.close()
+
+
+def test_language_switch_saves_and_restarts(qapp):
+    picked = []
+    w = BoardWindow(load_catalog(ROOT / "builds"), on_language=picked.append)
+    w.show()
+    w._language("en")
+    assert picked == ["en"] and w.restart and not w.isVisible()
+
+
+def test_english_start_window(qapp):
+    from pilot import i18n
+    i18n.set_lang("en")
+    w = _window(qapp)
+    assert w.bar.title == "Choose your hero" and w.back.text() == "← Heroes"
+    w.open_class("Witch")
+    assert w.bar.title == "Choose a build" and S.builds_word(4) == "4 builds"
+    w.close()

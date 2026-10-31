@@ -4,31 +4,142 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas gives Gemling (Essence of Virtue); Ignagduk in the Azak Bog gives +30 Spirit for Attrition",
-    "require": ["a2-007", "a3-005"]
+    "require": [
+      "a2-007",
+      "a3-005"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q)",
-    "1": ["Арбалет — главный приоритет", "Explosive Grenade в пачку"],
-    "6": ["Flash Grenade: оглушение"],
-    "8": ["Pounce: прыжок к пачке", "Сет 2: талисман под Pounce"],
-    "10": ["Herald of Ash: поджог пачек"],
-    "14": ["Gas → Explosive: подрыв облака"],
-    "22": ["Сехемы: Essence of Virtue"],
-    "31": ["Oil Grenade: масло → поджог"],
-    "48": ["Demolitionist: чередуй гранаты"],
-    "55": ["Cluster Grenade: гем 13 ур."]
+    "1": [
+      "Арбалет — главный приоритет",
+      "Explosive Grenade в пачку"
+    ],
+    "6": [
+      "Flash Grenade: оглушение"
+    ],
+    "8": [
+      "Pounce: прыжок к пачке",
+      "Сет 2: талисман под Pounce"
+    ],
+    "10": [
+      "Herald of Ash: поджог пачек"
+    ],
+    "14": [
+      "Gas → Explosive: подрыв облака"
+    ],
+    "22": [
+      "Сехемы: Essence of Virtue"
+    ],
+    "31": [
+      "Oil Grenade: масло → поджог"
+    ],
+    "48": [
+      "Demolitionist: чередуй гранаты"
+    ],
+    "55": [
+      "Cluster Grenade: гем 13 ур."
+    ]
+  },
+  "gear_en": {
+    "1": [
+      "Crossbow is top priority",
+      "Explosive Grenade into packs"
+    ],
+    "6": [
+      "Flash Grenade: stun"
+    ],
+    "8": [
+      "Pounce: leap to the pack",
+      "Set 2: Talisman for Pounce"
+    ],
+    "10": [
+      "Herald of Ash: ignites packs"
+    ],
+    "14": [
+      "Gas → Explosive: pop the cloud"
+    ],
+    "22": [
+      "Sekhemas: Essence of Virtue"
+    ],
+    "31": [
+      "Oil Grenade: oil → ignite"
+    ],
+    "48": [
+      "Demolitionist: swap grenades"
+    ],
+    "55": [
+      "Cluster Grenade: lv 13 gem"
+    ]
   },
   "zones": {
-    "G1_town": ["Renly: Explosive Grenade"],
-    "G1_2": ["Лагерь: Frost Bomb"],
-    "G1_5": ["Red Vale: стойки → Tense Crossbow"],
-    "G1_12": ["King in the Mists: Herald of Ash"],
-    "G1_13_2": ["После Палача: Gas Grenade (Leitis)"],
-    "G2_4_3": ["Lesser Jeweller's → Explosive Grenade"],
-    "G2_13": ["Восхождение: Essence of Virtue"],
-    "G3_1": ["Lesser Jeweller's → Gas Grenade"],
-    "G3_7": ["Ignagduk: +30 Spirit → Attrition"],
-    "G3_10": ["Восхождение: Implanted Gems"],
-    "G4_11_1a": ["Нгакану: Greater Jeweller's → Explosive"]
+    "G1_town": [
+      "Renly: Explosive Grenade"
+    ],
+    "G1_2": [
+      "Лагерь: Frost Bomb"
+    ],
+    "G1_5": [
+      "Red Vale: стойки → Tense Crossbow"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ash"
+    ],
+    "G1_13_2": [
+      "После Палача: Gas Grenade (Leitis)"
+    ],
+    "G2_4_3": [
+      "Lesser Jeweller's → Explosive Grenade"
+    ],
+    "G2_13": [
+      "Восхождение: Essence of Virtue"
+    ],
+    "G3_1": [
+      "Lesser Jeweller's → Gas Grenade"
+    ],
+    "G3_7": [
+      "Ignagduk: +30 Spirit → Attrition"
+    ],
+    "G3_10": [
+      "Восхождение: Implanted Gems"
+    ],
+    "G4_11_1a": [
+      "Нгакану: Greater Jeweller's → Explosive"
+    ]
+  },
+  "zones_en": {
+    "G1_town": [
+      "Renly: Explosive Grenade"
+    ],
+    "G1_2": [
+      "Camp: Frost Bomb"
+    ],
+    "G1_5": [
+      "Red Vale: racks → Tense Crossbow"
+    ],
+    "G1_12": [
+      "King in the Mists: Herald of Ash"
+    ],
+    "G1_13_2": [
+      "After Executioner: Gas Grenade (Leitis)"
+    ],
+    "G2_4_3": [
+      "Lesser Jeweller's → Explosive Grenade"
+    ],
+    "G2_13": [
+      "Ascendancy: Essence of Virtue"
+    ],
+    "G3_1": [
+      "Lesser Jeweller's → Gas Grenade"
+    ],
+    "G3_7": [
+      "Ignagduk: +30 Spirit → Attrition"
+    ],
+    "G3_10": [
+      "Ascendancy: Implanted Gems"
+    ],
+    "G4_11_1a": [
+      "Ngakanu: Greater Jeweller's → Explosive"
+    ]
   }
 }

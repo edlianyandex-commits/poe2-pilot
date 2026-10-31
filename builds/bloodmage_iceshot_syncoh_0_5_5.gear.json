@@ -4,37 +4,171 @@
   "pob_uniques": false,
   "route": {
     "_why": "Sekhemas: first ascendancy (Blood Barbs) before the Ice Shot switch; Bog Witch: +30 Spirit",
-    "require": ["a2-007", "a3-005"]
+    "require": [
+      "a2-007",
+      "a3-005"
+    ]
   },
   "ascendancy": {
     "_order": "Blood Barbs -> Grasping Wounds -> Whispers of the Flesh -> Crimson Power",
-    "G2_13": ["Blood Barbs"],
-    "G3_10": ["Grasping Wounds"]
+    "G2_13": [
+      "Blood Barbs"
+    ],
+    "G3_10": [
+      "Grasping Wounds"
+    ]
   },
   "gear": {
     "_lines": "at most 2 per level are shown (toast and Alt+Q); bows, flasks and the 24-31 prep from Timesaver's 0.5.5 Ice Shot levelling guide and Fervor's 0.5 Ice Shot guide",
-    "2": ["Боссы: Rod под ноги, затем Arrow", "War Banner — только на боссах"],
-    "5": ["Shortbow в Red Vale"],
-    "10": ["Гир: flat cold, Bleed+Ailment", "Флаконы: новые на 10/16/23/30/40"],
-    "11": ["Warden Bow, без валюты", "Торговец — каждые 2 уровня"],
-    "14": ["Жизнь, ES, резисты; +proj. gems"],
-    "16": ["Recurve Bow (31 Dex)", "Самоцвет: Mana on Kill (≥1)"],
-    "23": ["Флаконы: обновить", "Uncut 6–7 ур. не тратить до 31"],
-    "24": ["Snipe + 1-я Lesser Jeweller's"],
-    "28": ["Dualstring/Cultist Bow (ilvl 33)"],
-    "30": ["Флаконы: обновить", "К 31: Freezing Mark 7 + 2 гема"],
-    "31": ["Смена: Ice Shot + Snipe", "2-я Lesser Jeweller's → Ice Shot"],
-    "32": ["Трудный босс: Freeze → Ice Shot", "Freezing Mark обязателен"],
-    "40": ["2-й Trial: Grasping Wounds", "Флаконы: обновить"],
-    "45": ["Artillery Bow (ilvl 46, %phys)"],
-    "60": ["3-й Trial: Whispers of the Flesh"]
+    "2": [
+      "Боссы: Rod под ноги, затем Arrow",
+      "War Banner — только на боссах"
+    ],
+    "5": [
+      "Shortbow в Red Vale"
+    ],
+    "10": [
+      "Гир: flat cold, Bleed+Ailment",
+      "Флаконы: новые на 10/16/23/30/40"
+    ],
+    "11": [
+      "Warden Bow, без валюты",
+      "Торговец — каждые 2 уровня"
+    ],
+    "14": [
+      "Жизнь, ES, резисты; +proj. gems"
+    ],
+    "16": [
+      "Recurve Bow (31 Dex)",
+      "Самоцвет: Mana on Kill (≥1)"
+    ],
+    "23": [
+      "Флаконы: обновить",
+      "Uncut 6–7 ур. не тратить до 31"
+    ],
+    "24": [
+      "Snipe + 1-я Lesser Jeweller's"
+    ],
+    "28": [
+      "Dualstring/Cultist Bow (ilvl 33)"
+    ],
+    "30": [
+      "Флаконы: обновить",
+      "К 31: Freezing Mark 7 + 2 гема"
+    ],
+    "31": [
+      "Смена: Ice Shot + Snipe",
+      "2-я Lesser Jeweller's → Ice Shot"
+    ],
+    "32": [
+      "Трудный босс: Freeze → Ice Shot",
+      "Freezing Mark обязателен"
+    ],
+    "40": [
+      "2-й Trial: Grasping Wounds",
+      "Флаконы: обновить"
+    ],
+    "45": [
+      "Artillery Bow (ilvl 46, %phys)"
+    ],
+    "60": [
+      "3-й Trial: Whispers of the Flesh"
+    ]
+  },
+  "gear_en": {
+    "2": [
+      "Bosses: Rod at feet, then Arrow",
+      "War Banner: bosses only"
+    ],
+    "5": [
+      "Shortbow in the Red Vale"
+    ],
+    "10": [
+      "Gear: flat cold, Bleed+Ailment",
+      "Flasks: new at 10/16/23/30/40"
+    ],
+    "11": [
+      "Warden Bow, no currency",
+      "Vendor every 2 levels"
+    ],
+    "14": [
+      "Life, ES, resists; +proj. gems"
+    ],
+    "16": [
+      "Recurve Bow (31 Dex)",
+      "Jewel: Mana on Kill (≥1)"
+    ],
+    "23": [
+      "Flasks: upgrade",
+      "Keep lv 6–7 Uncut gems till 31"
+    ],
+    "24": [
+      "Snipe + 1st Lesser Jeweller's"
+    ],
+    "28": [
+      "Dualstring/Cultist Bow (ilvl 33)"
+    ],
+    "30": [
+      "Flasks: upgrade",
+      "By 31: Freezing Mark 7 + 2 gems"
+    ],
+    "31": [
+      "Swap: Ice Shot + Snipe",
+      "2nd Lesser Jeweller's → Ice Shot"
+    ],
+    "32": [
+      "Hard boss: Freeze → Ice Shot",
+      "Freezing Mark is a must"
+    ],
+    "40": [
+      "2nd Trial: Grasping Wounds",
+      "Flasks: upgrade"
+    ],
+    "45": [
+      "Artillery Bow (ilvl 46, %phys)"
+    ],
+    "60": [
+      "3rd Trial: Whispers of the Flesh"
+    ]
   },
   "zones": {
-    "G1_2": ["Beira: +10% к сопр. холоду"],
-    "G1_12": ["King in the Mists: +30 Spirit"],
-    "G2_13": ["Восхождение: Blood Barbs"],
-    "G3_7": ["Bog Witch: +30 Spirit"],
-    "G3_6_1": ["Blackjaw: +10% к сопр. огню"],
-    "G3_4": ["Venom Crypts: +25% порог оглушения"]
+    "G1_2": [
+      "Beira: +10% к сопр. холоду"
+    ],
+    "G1_12": [
+      "King in the Mists: +30 Spirit"
+    ],
+    "G2_13": [
+      "Восхождение: Blood Barbs"
+    ],
+    "G3_7": [
+      "Bog Witch: +30 Spirit"
+    ],
+    "G3_6_1": [
+      "Blackjaw: +10% к сопр. огню"
+    ],
+    "G3_4": [
+      "Venom Crypts: +25% порог оглушения"
+    ]
+  },
+  "zones_en": {
+    "G1_2": [
+      "Beira: +10% cold resistance"
+    ],
+    "G1_12": [
+      "King in the Mists: +30 Spirit"
+    ],
+    "G2_13": [
+      "Ascendancy: Blood Barbs"
+    ],
+    "G3_7": [
+      "Bog Witch: +30 Spirit"
+    ],
+    "G3_6_1": [
+      "Blackjaw: +10% fire resistance"
+    ],
+    "G3_4": [
+      "Venom Crypts: +25% stun threshold"
+    ]
   }
 }

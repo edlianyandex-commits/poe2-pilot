@@ -14,6 +14,7 @@ from PySide6.QtWidgets import QWidget
 
 from pilot.catalog import Catalog
 from pilot.paths import DATA
+from pilot.i18n import tr
 
 from . import style as S
 
@@ -234,7 +235,7 @@ class HeroPicker(QWidget):
             S.stars(p, plate.right() - 12 - 5 * 4 * 2.3, plate.top() + 37, 4, best)
         badge(p, c, QPointF(r.left() + 22, r.top() + 22), 15, live)
         if not live:
-            S.chip(p, r.right() - 62, r.top() + 11, "скоро", S.font(11, QFont.Bold), S.WHITE,
+            S.chip(p, r.right() - 62, r.top() + 11, tr("скоро"), S.font(11, QFont.Bold), S.WHITE,
                    QColor(170, 164, 190))
 
     def mouseMoveEvent(self, e):
