@@ -1,3 +1,5 @@
+import os
+import tempfile
 import math
 from pathlib import Path
 
@@ -8,7 +10,9 @@ from pilot.overlay import tree_window as tw
 from pilot.overlay import winapi
 from pilot.overlay.demo import demo_tree_view
 
-SCREENS = Path(__file__).resolve().parents[2] / "docs" / "screens"
+# docs/screens is refreshed only on request (POE2_PILOT_SCREENS=1); a plain run renders to the temp dir
+SCREENS = (Path(__file__).resolve().parents[2] / "docs" / "screens" if os.environ.get("POE2_PILOT_SCREENS")
+           else Path(tempfile.gettempdir()) / "poe2-pilot-screens")
 
 
 def N(sid, name, x, y, state="other", kind="small", order=None, level=None, stats=(), url=None):

@@ -1,3 +1,5 @@
+import os
+import tempfile
 import threading
 from pathlib import Path
 
@@ -7,7 +9,9 @@ from pilot.contracts import GemCard, GemRow
 from pilot.overlay import gems_window as gw
 from pilot.overlay import winapi
 
-SCREENS = Path(__file__).resolve().parents[2] / "docs" / "screens"
+# docs/screens is refreshed only on request (POE2_PILOT_SCREENS=1); a plain run renders to the temp dir
+SCREENS = (Path(__file__).resolve().parents[2] / "docs" / "screens" if os.environ.get("POE2_PILOT_SCREENS")
+           else Path(tempfile.gettempdir()) / "poe2-pilot-screens")
 
 
 def card(name, kind="support", color="int", desc="", url=None):

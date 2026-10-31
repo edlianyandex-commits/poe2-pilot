@@ -77,6 +77,7 @@ python -m pilot.app --build grenades_gemling_0_5_5.build   # сразу с би�
 python -m pilot.app --replay tests/fixtures/campaign_ru.log --speed 400   # демо на записанном забеге
 python -m pilot.planner builds/grenades_gemling_0_5_5.build              # план билда в консоль
 python -m pytest
+POE2_PILOT_SCREENS=1 python -m pytest tests/overlay   # заодно перерисовать картинки HUD в docs/screens
 ```
 Сборка exe: `pip install pyinstaller`, затем `python packaging/build_exe.py --windowed`. Результат появится в `dist/PoE2Pilot/`.
 Релиз: подними `__version__` в `src/pilot/__init__.py` и запушь тег `vX.Y.Z`. GitHub Actions соберёт zip и выложит его на Releases.

@@ -1,4 +1,6 @@
-"""Render the HUD offscreen over a noisy game-like background and save PNGs to docs/screens."""
+"""Render the HUD offscreen over a noisy game-like background and save PNGs (docs/screens on request)."""
+import os
+import tempfile
 import random
 from pathlib import Path
 
@@ -6,7 +8,9 @@ import pytest
 
 from pilot.contracts import HudState, Toast
 
-SCREENS = Path(__file__).resolve().parents[2] / "docs" / "screens"
+# docs/screens is refreshed only on request (POE2_PILOT_SCREENS=1); a plain run renders to the temp dir
+SCREENS = (Path(__file__).resolve().parents[2] / "docs" / "screens" if os.environ.get("POE2_PILOT_SCREENS")
+           else Path(tempfile.gettempdir()) / "poe2-pilot-screens")
 
 
 def _backdrop(w, h, seed=7):
